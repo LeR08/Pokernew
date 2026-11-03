@@ -1,0 +1,3 @@
+# Hand-history fixtures must stay byte-exact (offsets, encodings, CRLF are part of the format).
+crates/hh-parsers/fixtures/** -text
+*.snap -text

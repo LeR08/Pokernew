@@ -321,7 +321,7 @@ fn re_entries_make_one_tournament_with_two_entries() {
 fn non_utf8_file_is_not_reimported_at_every_scan() {
     let tmp = tempfile::tempdir().unwrap();
     let file = tmp.path().join("cp1252.txt");
-    let utf8 = std::fs::read_to_string(fixtures().join(TRIDENT)).unwrap();
+    let utf8 = std::fs::read_to_string(fixtures().join(TRIDENT)).unwrap().replace("\r\n", "\n");
     let bytes: Vec<u8> = utf8.chars().map(|c| if c == '€' { 0x80 } else { c as u8 }).collect();
     std::fs::write(&file, &bytes).unwrap();
     let mut imp = Importer::new(open_in_memory().unwrap(), 1).unwrap();
