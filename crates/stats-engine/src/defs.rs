@@ -88,9 +88,10 @@ pub struct CompiledStat {
 pub fn compile(id: &str, def: &StatDef) -> Result<CompiledStat, StatError> {
     let f = expr::parse(&def.formula).map_err(StatError::Formula)?;
     let w = match &def.where_ {
-        Some(w) if !w.trim().is_empty() => {
-            Some(compile::condition(&expr::parse(w).map_err(StatError::Where)?).map_err(StatError::Compile)?)
-        }
+        Some(w) if !w.trim().is_empty() => Some(
+            compile::condition(&expr::parse(w).map_err(StatError::Where)?)
+                .map_err(StatError::Compile)?,
+        ),
         _ => None,
     };
     let sample_expr = match &def.sample {

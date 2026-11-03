@@ -30,7 +30,8 @@ enum Msg {
 pub struct FolderWatcher {
     tx: mpsc::Sender<Msg>,
     thread: Option<JoinHandle<()>>,
-    _debouncer: Option<notify_debouncer_mini::Debouncer<notify_debouncer_mini::notify::RecommendedWatcher>>,
+    _debouncer:
+        Option<notify_debouncer_mini::Debouncer<notify_debouncer_mini::notify::RecommendedWatcher>>,
     pub folders: Vec<PathBuf>,
 }
 
@@ -45,7 +46,11 @@ pub struct WatchEvent {
 impl FolderWatcher {
     /// Starts watching `folders` with `importer`; `on_import` runs on the
     /// watcher thread after every pass that did something.
-    pub fn start<F>(importer: Importer, folders: Vec<PathBuf>, on_import: F) -> Result<Self, DbError>
+    pub fn start<F>(
+        importer: Importer,
+        folders: Vec<PathBuf>,
+        on_import: F,
+    ) -> Result<Self, DbError>
     where
         F: Fn(WatchEvent) + Send + 'static,
     {
@@ -69,7 +74,12 @@ impl FolderWatcher {
             .spawn(move || run(importer, folders2, rx, on_import))
             .map_err(|e| DbError::Other(e.to_string()))?;
         tx.send(Msg::Rescan).ok();
-        Ok(Self { tx, thread: Some(thread), _debouncer: Some(debouncer), folders })
+        Ok(Self {
+            tx,
+            thread: Some(thread),
+            _debouncer: Some(debouncer),
+            folders,
+        })
     }
 
     /// Imports a file, folder or zip on the watcher thread (manual import).
@@ -91,7 +101,12 @@ impl Drop for FolderWatcher {
     }
 }
 
-fn run<F: Fn(WatchEvent)>(importer: Arc<Mutex<Importer>>, folders: Vec<PathBuf>, rx: mpsc::Receiver<Msg>, on_import: F) {
+fn run<F: Fn(WatchEvent)>(
+    importer: Arc<Mutex<Importer>>,
+    folders: Vec<PathBuf>,
+    rx: mpsc::Receiver<Msg>,
+    on_import: F,
+) {
     let emit = |r: Result<ImportReport, DbError>, trigger: &'static str| match r {
         Ok(report) if report.files_imported > 0 => on_import(WatchEvent { report, trigger }),
         Ok(_) => {}

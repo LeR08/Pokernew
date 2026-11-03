@@ -184,8 +184,9 @@ export interface Backend {
   playModeGet(): Promise<boolean>;
   hudSetVisible(visible: boolean): Promise<void>;
   hudSetEdit(edit: boolean): Promise<void>;
-  hudSimulate(seats: number): Promise<string>;
-  hudClearSimulated(): Promise<void>;
+  /** Edit one table's HUD on the table itself (null = stop editing). */
+  hudSetEditTable(windowId: number | null): Promise<void>;
+  hudSetTableHidden(windowId: number, hidden: boolean): Promise<void>;
   hudOverlay(windowId: number): Promise<OverlayData>;
   hudSaveSeat(tableSize: number, slot: number, x: number, y: number): Promise<void>;
   /** "playmode" (bool), "hud-refresh", "hud-edit" (bool), "hud-status". */

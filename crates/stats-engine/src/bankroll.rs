@@ -65,7 +65,11 @@ pub fn bankroll(conn: &Connection) -> Result<Bankroll, lps_db::DbError> {
     }
     b.balance_cents = bal;
     b.avg_buy_in_cents = conn
-        .query_row("SELECT AVG(buy_in_cents + fee_cents) FROM tournaments", [], |r| r.get::<_, Option<f64>>(0))?
+        .query_row(
+            "SELECT AVG(buy_in_cents + fee_cents) FROM tournaments",
+            [],
+            |r| r.get::<_, Option<f64>>(0),
+        )?
         .map(|v| v.round() as i64);
     Ok(b)
 }

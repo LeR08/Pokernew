@@ -62,7 +62,14 @@ pub fn sessions(conn: &Connection, filter: &Filter) -> rusqlite::Result<Vec<Sess
     );
     let mut st = conn.prepare(&sql)?;
     let rows = st.query_map(params_from_iter(w.params), |r| {
-        Ok((r.get::<_, i64>(0)?, r.get::<_, f64>(1)?, r.get::<_, i64>(2)?, r.get::<_, Option<i64>>(3)?, r.get::<_, i64>(4)?, r.get::<_, i64>(5)?))
+        Ok((
+            r.get::<_, i64>(0)?,
+            r.get::<_, f64>(1)?,
+            r.get::<_, i64>(2)?,
+            r.get::<_, Option<i64>>(3)?,
+            r.get::<_, i64>(4)?,
+            r.get::<_, i64>(5)?,
+        ))
     })?;
     let mut out: Vec<Session> = Vec::new();
     let mut tourneys: Vec<i64> = Vec::new();
@@ -71,7 +78,16 @@ pub fn sessions(conn: &Connection, filter: &Filter) -> rusqlite::Result<Vec<Sess
         let new = out.last().is_none_or(|s| t - s.end > SESSION_GAP);
         if new {
             tourneys.clear();
-            out.push(Session { start: t, end: t, hands: 0, net_bb: 0.0, net_cash_cents: 0, tournaments: 0, vpip_hands: 0, pfr_hands: 0 });
+            out.push(Session {
+                start: t,
+                end: t,
+                hands: 0,
+                net_bb: 0.0,
+                net_cash_cents: 0,
+                tournaments: 0,
+                vpip_hands: 0,
+                pfr_hands: 0,
+            });
         }
         let s = out.last_mut().expect("just pushed");
         s.end = t;
@@ -129,7 +145,9 @@ impl Ctx {
 
 /// Applies every rule to one hand.
 pub fn review_hand(hand: &Hand, hand_id: i64) -> Vec<Finding> {
-    let Some(hero) = hand.players.iter().position(|p| p.is_hero) else { return vec![] };
+    let Some(hero) = hand.players.iter().position(|p| p.is_hero) else {
+        return vec![];
+    };
     let p = &hand.players[hero];
     let bb = hand.big_blind.max(1) as f64;
     let cx = Ctx {
@@ -139,16 +157,28 @@ pub fn review_hand(hand: &Hand, hand_id: i64) -> Vec<Finding> {
         chen: chen(&p.hole_cards),
     };
     let net_bb = p.net_won() as f64 / bb;
-    let mut found: Vec<(&'static str, Kind, serde_json::Map<String, serde_json::Value>)> = Vec::new();
+    let mut found: Vec<(
+        &'static str,
+        Kind,
+        serde_json::Map<String, serde_json::Value>,
+    )> = Vec::new();
     macro_rules! add {
         ($rule:expr, $kind:expr, $detail:expr) => {
-            found.push(($rule, $kind, $detail.as_object().cloned().unwrap_or_default()))
+            found.push((
+                $rule,
+                $kind,
+                $detail.as_object().cloned().unwrap_or_default(),
+            ))
         };
     }
     let class = cx.class.clone().unwrap_or_default();
 
     // ---- Preflop walk ----
-    let pre: Vec<_> = hand.actions.iter().filter(|a| a.street == Street::Preflop && !a.kind.is_post()).collect();
+    let pre: Vec<_> = hand
+        .actions
+        .iter()
+        .filter(|a| a.street == Street::Preflop && !a.kind.is_post())
+        .collect();
     let mut raises = 0;
     let mut entered = false; // someone called or raised before
     let mut hero_first = true;
@@ -162,16 +192,26 @@ pub fn review_hand(hand: &Hand, hand_id: i64) -> Vec<Finding> {
         if a.player == hero {
             if hero_first {
                 let pos = p.position;
-                if !entered && a.kind == ActionKind::Call && !matches!(pos, Some(Position::Sb | Position::Bb)) {
+                if !entered
+                    && a.kind == ActionKind::Call
+                    && !matches!(pos, Some(Position::Sb | Position::Bb))
+                {
                     add!("open_limp", Kind::Review, serde_json::json!({}));
                 }
-                if !entered && a.kind == ActionKind::Raise && pos.is_some_and(Position::is_steal_position) {
+                if !entered
+                    && a.kind == ActionKind::Raise
+                    && pos.is_some_and(Position::is_steal_position)
+                {
                     hero_steal = true;
                 }
                 if raises == 0 && a.kind == ActionKind::Raise && a.is_all_in {
                     hero_open_shove = true;
                 }
-                if pos == Some(Position::Sb) && raises == 1 && a.kind == ActionKind::Call && hand.players.len() >= 4 {
+                if pos == Some(Position::Sb)
+                    && raises == 1
+                    && a.kind == ActionKind::Call
+                    && hand.players.len() >= 4
+                {
                     flat_call_sb = true;
                 }
             }
@@ -183,13 +223,22 @@ pub fn review_hand(hand: &Hand, hand_id: i64) -> Vec<Finding> {
             }
             if a.kind == ActionKind::Fold {
                 hero_folded_pre = true;
-                if is_premium(&p.hole_cards) && (raises <= 1 || matches!(class.as_str(), "AA" | "KK")) {
-                    add!("premium_fold", Kind::Review, serde_json::json!({ "hand": class, "raises": raises }));
+                if is_premium(&p.hole_cards)
+                    && (raises <= 1 || matches!(class.as_str(), "AA" | "KK"))
+                {
+                    add!(
+                        "premium_fold",
+                        Kind::Review,
+                        serde_json::json!({ "hand": class, "raises": raises })
+                    );
                 }
             }
             hero_first = false;
         }
-        if matches!(a.kind, ActionKind::Call | ActionKind::Raise | ActionKind::Bet) {
+        if matches!(
+            a.kind,
+            ActionKind::Call | ActionKind::Raise | ActionKind::Bet
+        ) {
             entered = true;
         }
         if a.kind == ActionKind::Raise {
@@ -197,53 +246,128 @@ pub fn review_hand(hand: &Hand, hand_id: i64) -> Vec<Finding> {
         }
     }
     if flat_call_sb {
-        add!("sb_flat", Kind::Review, serde_json::json!({ "hand": class }));
+        add!(
+            "sb_flat",
+            Kind::Review,
+            serde_json::json!({ "hand": class })
+        );
     }
     if hero_open_shove && cx.stack_bb > 15.0 && cx.chen.is_some_and(|c| c < 6) {
-        add!("weak_shove", Kind::Review, serde_json::json!({ "hand": class, "stack": cx.bb(p.stack) }));
+        add!(
+            "weak_shove",
+            Kind::Review,
+            serde_json::json!({ "hand": class, "stack": cx.bb(p.stack) })
+        );
     }
     if hero_open_shove && cx.stack_bb <= 10.0 && cx.chen.is_some_and(|c| c >= 7) {
-        add!("short_shove", Kind::Good, serde_json::json!({ "hand": class, "stack": cx.bb(p.stack) }));
+        add!(
+            "short_shove",
+            Kind::Good,
+            serde_json::json!({ "hand": class, "stack": cx.bb(p.stack) })
+        );
     }
     if cx.stack_bb <= 12.0 && hero_raised_not_allin && hero_folded_pre {
-        add!("raise_fold_short", Kind::Review, serde_json::json!({ "stack": cx.bb(p.stack), "lost": cx.bb(p.invested) }));
+        add!(
+            "raise_fold_short",
+            Kind::Review,
+            serde_json::json!({ "stack": cx.bb(p.stack), "lost": cx.bb(p.invested) })
+        );
     }
 
     // ---- Later streets ----
     let won_without_showdown = p.net_won() > 0 && !p.went_to_showdown;
     if hero_steal && won_without_showdown && hand.board.is_empty() {
-        add!("steal_won", Kind::Good, serde_json::json!({ "won": cx.bb(p.net_won()) }));
+        add!(
+            "steal_won",
+            Kind::Good,
+            serde_json::json!({ "won": cx.bb(p.net_won()) })
+        );
     }
     if hero_3bet && p.net_won() > 0 {
-        add!("three_bet_won", Kind::Good, serde_json::json!({ "hand": class, "won": cx.bb(p.net_won()) }));
+        add!(
+            "three_bet_won",
+            Kind::Good,
+            serde_json::json!({ "hand": class, "won": cx.bb(p.net_won()) })
+        );
     }
     // C-bet: hero was the last preflop raiser and bet first on the flop.
-    let last_raiser = pre.iter().rev().find(|a| a.kind == ActionKind::Raise).map(|a| a.player);
-    let first_flop_bet = hand.actions.iter().find(|a| a.street == Street::Flop && a.kind.is_aggressive());
-    if last_raiser == Some(hero) && first_flop_bet.is_some_and(|a| a.player == hero) && won_without_showdown {
-        add!("cbet_won", Kind::Good, serde_json::json!({ "won": cx.bb(p.net_won()) }));
+    let last_raiser = pre
+        .iter()
+        .rev()
+        .find(|a| a.kind == ActionKind::Raise)
+        .map(|a| a.player);
+    let first_flop_bet = hand
+        .actions
+        .iter()
+        .find(|a| a.street == Street::Flop && a.kind.is_aggressive());
+    if last_raiser == Some(hero)
+        && first_flop_bet.is_some_and(|a| a.player == hero)
+        && won_without_showdown
+    {
+        add!(
+            "cbet_won",
+            Kind::Good,
+            serde_json::json!({ "won": cx.bb(p.net_won()) })
+        );
     }
-    let river: Vec<_> = hand.actions.iter().filter(|a| a.street == Street::River).collect();
-    if p.went_to_showdown && p.net_won() > 0 && river.iter().any(|a| a.player == hero && a.kind.is_aggressive()) {
-        add!("value_bet", Kind::Good, serde_json::json!({ "won": cx.bb(p.net_won()) }));
+    let river: Vec<_> = hand
+        .actions
+        .iter()
+        .filter(|a| a.street == Street::River)
+        .collect();
+    if p.went_to_showdown
+        && p.net_won() > 0
+        && river
+            .iter()
+            .any(|a| a.player == hero && a.kind.is_aggressive())
+    {
+        add!(
+            "value_bet",
+            Kind::Good,
+            serde_json::json!({ "won": cx.bb(p.net_won()) })
+        );
     }
     if p.went_to_showdown && p.net_won() < 0 {
-        if let Some(call) = river.iter().find(|a| a.player == hero && a.kind == ActionKind::Call) {
+        if let Some(call) = river
+            .iter()
+            .find(|a| a.player == hero && a.kind == ActionKind::Call)
+        {
             // The bet being called is at least half of the pot before it.
-            let bet = river.iter().rev().find(|b| b.kind.is_aggressive() && b.player != hero && b.pot_before <= call.pot_before);
+            let bet = river.iter().rev().find(|b| {
+                b.kind.is_aggressive() && b.player != hero && b.pot_before <= call.pot_before
+            });
             if let Some(bet) = bet {
                 if bet.amount * 2 >= bet.pot_before {
-                    add!("river_call_lost", Kind::Review, serde_json::json!({ "call": cx.bb(call.amount), "lost": cx.bb(-p.net_won()) }));
+                    add!(
+                        "river_call_lost",
+                        Kind::Review,
+                        serde_json::json!({ "call": cx.bb(call.amount), "lost": cx.bb(-p.net_won()) })
+                    );
                 }
             }
         }
     }
-    let folded = hand.actions.iter().any(|a| a.player == hero && a.kind == ActionKind::Fold);
-    if folded && !hero_folded_pre_premium_only(&found) && p.invested as f64 >= 15.0 * bb && p.invested * 10 >= p.stack * 3 {
-        add!("big_fold", Kind::Review, serde_json::json!({ "lost": cx.bb(p.invested) }));
+    let folded = hand
+        .actions
+        .iter()
+        .any(|a| a.player == hero && a.kind == ActionKind::Fold);
+    if folded
+        && !hero_folded_pre_premium_only(&found)
+        && p.invested as f64 >= 15.0 * bb
+        && p.invested * 10 >= p.stack * 3
+    {
+        add!(
+            "big_fold",
+            Kind::Review,
+            serde_json::json!({ "lost": cx.bb(p.invested) })
+        );
     }
     if net_bb >= 20.0 {
-        add!("big_pot", Kind::Good, serde_json::json!({ "won": cx.bb(p.net_won()) }));
+        add!(
+            "big_pot",
+            Kind::Good,
+            serde_json::json!({ "won": cx.bb(p.net_won()) })
+        );
     }
 
     found
@@ -263,7 +387,13 @@ pub fn review_hand(hand: &Hand, hand_id: i64) -> Vec<Finding> {
 }
 
 /// `big_fold` would repeat `premium_fold`; keep the more specific one.
-fn hero_folded_pre_premium_only(found: &[(&'static str, Kind, serde_json::Map<String, serde_json::Value>)]) -> bool {
+fn hero_folded_pre_premium_only(
+    found: &[(
+        &'static str,
+        Kind,
+        serde_json::Map<String, serde_json::Value>,
+    )],
+) -> bool {
     found.iter().any(|(r, _, _)| *r == "premium_fold")
 }
 
@@ -285,7 +415,12 @@ pub struct SessionReview {
 }
 
 /// Reviews the hero's hands between `start` and `end` (inclusive, Unix seconds).
-pub fn review_session(conn: &Connection, filter: &Filter, start: i64, end: i64) -> Result<SessionReview, lps_db::DbError> {
+pub fn review_session(
+    conn: &Connection,
+    filter: &Filter,
+    start: i64,
+    end: i64,
+) -> Result<SessionReview, lps_db::DbError> {
     let mut f = filter.clone();
     f.from = Some(start);
     f.to = Some(end + 1);
@@ -317,7 +452,16 @@ pub fn review_session(conn: &Connection, filter: &Filter, start: i64, end: i64) 
     });
 
     let ratio = |a: i64, b: i64| (b > 0).then(|| a as f64 / b as f64);
-    let (vpip, pfr, hands) = session.as_ref().map(|s| (ratio(s.vpip_hands, s.hands), ratio(s.pfr_hands, s.hands), s.hands)).unwrap_or((None, None, 0));
+    let (vpip, pfr, hands) = session
+        .as_ref()
+        .map(|s| {
+            (
+                ratio(s.vpip_hands, s.hands),
+                ratio(s.pfr_hands, s.hands),
+                s.hands,
+            )
+        })
+        .unwrap_or((None, None, 0));
     let mut all = filter.clone();
     all.from = None;
     all.to = None;
@@ -333,9 +477,18 @@ pub fn review_session(conn: &Connection, filter: &Filter, start: i64, end: i64) 
         |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?)),
     )?;
     let vpip_overall = ratio(v_all, n_all);
-    let tilt_warning = hands >= 50 && matches!((vpip, vpip_overall), (Some(s), Some(o)) if s >= o + 0.10);
-    let worst_hand = ids.iter().copied().min_by(|a, b| a.1.total_cmp(&b.1)).filter(|x| x.1 < 0.0);
-    let best_hand = ids.iter().copied().max_by(|a, b| a.1.total_cmp(&b.1)).filter(|x| x.1 > 0.0);
+    let tilt_warning =
+        hands >= 50 && matches!((vpip, vpip_overall), (Some(s), Some(o)) if s >= o + 0.10);
+    let worst_hand = ids
+        .iter()
+        .copied()
+        .min_by(|a, b| a.1.total_cmp(&b.1))
+        .filter(|x| x.1 < 0.0);
+    let best_hand = ids
+        .iter()
+        .copied()
+        .max_by(|a, b| a.1.total_cmp(&b.1))
+        .filter(|x| x.1 > 0.0);
     Ok(SessionReview {
         session,
         findings,

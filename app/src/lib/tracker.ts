@@ -349,7 +349,6 @@ export interface WindowInfo {
   scale: number;
   minimized: boolean;
   visible: boolean;
-  simulated: boolean;
 }
 
 export interface TableWindow {
@@ -365,6 +364,8 @@ export interface HudStatus {
   playMode: boolean;
   unlockIn: number;
   tables: TableWindow[];
+  editTable: number | null;
+  hidden: number[];
   windows: WindowInfo[];
 }
 
@@ -396,6 +397,6 @@ export interface OverlayData {
   layout: HudLayout;
   layoutId: string;
   edit: boolean;
-  simulated: boolean;
+  windowId: number;
   stats: StatMeta[];
 }

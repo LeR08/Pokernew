@@ -71,7 +71,10 @@ struct FileRow {
 }
 
 fn now_ms() -> i64 {
-    SystemTime::now().duration_since(UNIX_EPOCH).map(|d| d.as_millis() as i64).unwrap_or(0)
+    SystemTime::now()
+        .duration_since(UNIX_EPOCH)
+        .map(|d| d.as_millis() as i64)
+        .unwrap_or(0)
 }
 
 fn mtime_ms(meta: &std::fs::Metadata) -> i64 {
@@ -97,7 +100,11 @@ impl Importer {
             .thread_name(|i| format!("lps-parse-{i}"))
             .build()
             .map_err(|e| DbError::Other(e.to_string()))?;
-        Ok(Self { conn, cache: IdCache::default(), pool })
+        Ok(Self {
+            conn,
+            cache: IdCache::default(),
+            pool,
+        })
     }
 
     pub fn conn(&self) -> &Connection {
@@ -127,7 +134,10 @@ impl Importer {
     }
 
     fn import_any_file(&mut self, path: &Path) -> Result<ImportReport, DbError> {
-        if path.extension().is_some_and(|e| e.eq_ignore_ascii_case("zip")) {
+        if path
+            .extension()
+            .is_some_and(|e| e.eq_ignore_ascii_case("zip"))
+        {
             self.import_zip(path)
         } else {
             self.import_file(path)
@@ -156,7 +166,8 @@ impl Importer {
     pub fn import_zip(&mut self, path: &Path) -> Result<ImportReport, DbError> {
         let file = std::fs::File::open(path)?;
         let mtime = file.metadata().map(|m| mtime_ms(&m)).unwrap_or(0);
-        let mut zip = zip::ZipArchive::new(file).map_err(|e| DbError::Other(format!("{}: {e}", path.display())))?;
+        let mut zip = zip::ZipArchive::new(file)
+            .map_err(|e| DbError::Other(format!("{}: {e}", path.display())))?;
         let mut total = ImportReport::default();
         for i in 0..zip.len() {
             let mut entry = zip.by_index(i).map_err(|e| DbError::Other(e.to_string()))?;
@@ -168,7 +179,9 @@ impl Importer {
             let mut buf = Vec::with_capacity(size as usize);
             entry.read_to_end(&mut buf)?;
             drop(entry);
-            let r = self.import_source(&key, size, mtime, |offset| Ok(buf[offset as usize..].to_vec()))?;
+            let r = self.import_source(&key, size, mtime, |offset| {
+                Ok(buf[offset as usize..].to_vec())
+            })?;
             total.add(&r);
         }
         Ok(total)
@@ -203,11 +216,17 @@ impl Importer {
         read_from: impl FnOnce(u64) -> std::io::Result<Vec<u8>>,
     ) -> Result<ImportReport, DbError> {
         let start = Instant::now();
-        let mut report = ImportReport { files_seen: 1, ..Default::default() };
+        let mut report = ImportReport {
+            files_seen: 1,
+            ..Default::default()
+        };
         let row = self.file_row(key)?;
         let settled = now_ms() - mtime > SETTLED_MS;
         // Unchanged since last time: nothing to do (unless a pending tail can now be taken).
-        if row.size == size && row.mtime == mtime && (row.offset == size || !settled || row.kind.as_deref() != Some("hands")) {
+        if row.size == size
+            && row.mtime == mtime
+            && (row.offset == size || !settled || row.kind.as_deref() != Some("hands"))
+        {
             return Ok(report);
         }
         // Shrunk or replaced: start over (duplicates are ignored anyway).
@@ -219,16 +238,26 @@ impl Importer {
         let to_file = |text_off: usize| offset + decoded.byte_offset(text_off) as i64;
         let text = &decoded.text;
 
-        let detected: Option<(&'static dyn HandHistoryParser, &'static str)> = match (&row.room, &row.kind) {
-            (Some(room), Some(kind)) if offset > 0 && kind != "unknown" => {
-                parser_for_room(room).map(|p| (p, if kind == "summary" { "summary" } else { "hands" }))
-            }
-            _ => match detect(text.as_bytes()) {
-                Some(Detected::Hands(p)) => Some((p, "hands")),
-                Some(Detected::Summary(p)) => Some((p, "summary")),
-                None => None,
-            },
-        };
+        let detected: Option<(&'static dyn HandHistoryParser, &'static str)> =
+            match (&row.room, &row.kind) {
+                (Some(room), Some(kind)) if offset > 0 && kind != "unknown" => {
+                    parser_for_room(room).map(|p| {
+                        (
+                            p,
+                            if kind == "summary" {
+                                "summary"
+                            } else {
+                                "hands"
+                            },
+                        )
+                    })
+                }
+                _ => match detect(text.as_bytes()) {
+                    Some(Detected::Hands(p)) => Some((p, "hands")),
+                    Some(Detected::Summary(p)) => Some((p, "summary")),
+                    None => None,
+                },
+            };
         let Some((parser, kind)) = detected else {
             self.conn.execute(
                 "UPDATE import_files SET kind = 'unknown', size = ?, mtime = ?, offset = ?, updated_at = ? WHERE id = ?",
@@ -264,8 +293,9 @@ impl Importer {
                 }
             }
             let consumed_end = take.last().map(|r| r.end).unwrap_or(0);
-            let parsed: Vec<Result<lps_core_model::Hand, ParseError>> =
-                self.pool.install(|| take.par_iter().map(|r| parser.parse(r)).collect());
+            let parsed: Vec<Result<lps_core_model::Hand, ParseError>> = self
+                .pool
+                .install(|| take.par_iter().map(|r| parser.parse(r)).collect());
             report.hands_parsed = parsed.len();
             for (chunk_raws, chunk) in take.chunks(BATCH).zip(parsed.chunks(BATCH)) {
                 let tx = self.conn.transaction()?;
@@ -317,7 +347,13 @@ impl Importer {
     }
 }
 
-fn store_error(tx: &rusqlite::Transaction<'_>, file_id: i64, offset: i64, e: &ParseError, raw: &str) -> Result<(), DbError> {
+fn store_error(
+    tx: &rusqlite::Transaction<'_>,
+    file_id: i64,
+    offset: i64,
+    e: &ParseError,
+    raw: &str,
+) -> Result<(), DbError> {
     tx.prepare_cached(
         "INSERT OR IGNORE INTO import_errors (file_id, byte_offset, line_no, line, message, raw, created_at)
          VALUES (?, ?, ?, ?, ?, ?, ?)",
@@ -327,7 +363,9 @@ fn store_error(tx: &rusqlite::Transaction<'_>, file_id: i64, offset: i64, e: &Pa
 }
 
 fn walk(dir: &Path, out: &mut Vec<PathBuf>) {
-    let Ok(rd) = std::fs::read_dir(dir) else { return };
+    let Ok(rd) = std::fs::read_dir(dir) else {
+        return;
+    };
     for e in rd.flatten() {
         let p = e.path();
         match e.file_type() {
@@ -383,7 +421,13 @@ pub fn retry_errors(conn: &Connection) -> Result<usize, DbError> {
 }
 
 pub fn file_offset(conn: &Connection, key: &str) -> Result<Option<i64>, DbError> {
-    Ok(conn.query_row("SELECT offset FROM import_files WHERE path = ?", [key], |r| r.get(0)).optional()?)
+    Ok(conn
+        .query_row(
+            "SELECT offset FROM import_files WHERE path = ?",
+            [key],
+            |r| r.get(0),
+        )
+        .optional()?)
 }
 
 /// Writes every stored error, as test cases, to one text file.

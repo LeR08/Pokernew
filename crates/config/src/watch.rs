@@ -45,7 +45,9 @@ where
         .watcher()
         .watch(&root, RecursiveMode::Recursive)
         .map_err(|e| ConfigError::Watch(e.to_string()))?;
-    Ok(ConfigWatcher { _debouncer: debouncer })
+    Ok(ConfigWatcher {
+        _debouncer: debouncer,
+    })
 }
 
 #[cfg(test)]
@@ -67,13 +69,30 @@ mod tests {
         std::thread::sleep(Duration::from_millis(100));
 
         let path = tmp.path().join("settings.toml");
-        let text = std::fs::read_to_string(&path).unwrap().replace("language = \"fr\"", "language = \"en\"");
+        let text = std::fs::read_to_string(&path)
+            .unwrap()
+            .replace("language = \"fr\"", "language = \"en\"");
         let start = Instant::now();
         std::fs::write(&path, text).unwrap();
 
-        let ev = rx.recv_timeout(Duration::from_secs(5)).expect("no reload event");
-        assert_eq!(ev, ConfigEvent::Changed { family: "settings".into(), id: "settings".into() });
-        assert!(start.elapsed() < Duration::from_secs(1), "took {:?}", start.elapsed());
-        assert_eq!(store.get("settings", "settings").unwrap()["general"]["language"], "en");
+        let ev = rx
+            .recv_timeout(Duration::from_secs(5))
+            .expect("no reload event");
+        assert_eq!(
+            ev,
+            ConfigEvent::Changed {
+                family: "settings".into(),
+                id: "settings".into()
+            }
+        );
+        assert!(
+            start.elapsed() < Duration::from_secs(1),
+            "took {:?}",
+            start.elapsed()
+        );
+        assert_eq!(
+            store.get("settings", "settings").unwrap()["general"]["language"],
+            "en"
+        );
     }
 }

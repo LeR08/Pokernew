@@ -24,7 +24,12 @@ fn stamp(unix: i64) -> String {
     let days = unix.div_euclid(86_400);
     let secs = unix.rem_euclid(86_400);
     let (y, m, d) = civil_from_days(days);
-    format!("{y:04}{m:02}{d:02}-{:02}{:02}{:02}", secs / 3600, secs % 3600 / 60, secs % 60)
+    format!(
+        "{y:04}{m:02}{d:02}-{:02}{:02}{:02}",
+        secs / 3600,
+        secs % 3600 / 60,
+        secs % 60
+    )
 }
 
 fn civil_from_days(z: i64) -> (i64, i64, i64) {
@@ -41,7 +46,12 @@ fn civil_from_days(z: i64) -> (i64, i64, i64) {
 }
 
 /// Backs up `conn` into `dir`, then keeps only the `keep` most recent backups.
-pub fn backup(conn: &Connection, dir: &Path, keep: usize, now_unix: i64) -> Result<PathBuf, DbError> {
+pub fn backup(
+    conn: &Connection,
+    dir: &Path,
+    keep: usize,
+    now_unix: i64,
+) -> Result<PathBuf, DbError> {
     std::fs::create_dir_all(dir)?;
     let target = dir.join(format!("database-{}.sqlite", stamp(now_unix)));
     conn.backup(rusqlite::MAIN_DB, &target, None)?;
@@ -55,7 +65,9 @@ pub fn backup(conn: &Connection, dir: &Path, keep: usize, now_unix: i64) -> Resu
 
 pub fn list(dir: &Path) -> Result<Vec<BackupInfo>, DbError> {
     let mut out = Vec::new();
-    let Ok(rd) = std::fs::read_dir(dir) else { return Ok(out) };
+    let Ok(rd) = std::fs::read_dir(dir) else {
+        return Ok(out);
+    };
     for e in rd.flatten() {
         let name = e.file_name().to_string_lossy().into_owned();
         if name.starts_with("database-") && name.ends_with(".sqlite") {
@@ -66,7 +78,11 @@ pub fn list(dir: &Path) -> Result<Vec<BackupInfo>, DbError> {
                 .and_then(|t| t.duration_since(std::time::UNIX_EPOCH).ok())
                 .map(|d| d.as_secs() as i64)
                 .unwrap_or(0);
-            out.push(BackupInfo { name, size: meta.len(), created_at });
+            out.push(BackupInfo {
+                name,
+                size: meta.len(),
+                created_at,
+            });
         }
     }
     out.sort_by(|a, b| b.name.cmp(&a.name));
@@ -75,7 +91,10 @@ pub fn list(dir: &Path) -> Result<Vec<BackupInfo>, DbError> {
 
 /// The newest backup's age decides whether a scheduled backup is due.
 pub fn is_due(dir: &Path, every_secs: i64, now_unix: i64) -> bool {
-    list(dir).ok().and_then(|l| l.first().map(|b| now_unix - b.created_at >= every_secs)).unwrap_or(true)
+    list(dir)
+        .ok()
+        .and_then(|l| l.first().map(|b| now_unix - b.created_at >= every_secs))
+        .unwrap_or(true)
 }
 
 /// Schedules `name` to replace the database at the next start.
@@ -88,9 +107,15 @@ pub fn request_restore(data_dir: &Path, backups_dir: &Path, name: &str) -> Resul
 }
 
 /// Applies a pending restore. Call before opening the database.
-pub fn apply_pending_restore(data_dir: &Path, backups_dir: &Path, db_path: &Path) -> Result<Option<String>, DbError> {
+pub fn apply_pending_restore(
+    data_dir: &Path,
+    backups_dir: &Path,
+    db_path: &Path,
+) -> Result<Option<String>, DbError> {
     let pending = data_dir.join(PENDING);
-    let Ok(name) = std::fs::read_to_string(&pending) else { return Ok(None) };
+    let Ok(name) = std::fs::read_to_string(&pending) else {
+        return Ok(None);
+    };
     let name = name.trim().to_string();
     let src = backups_dir.join(&name);
     if src.is_file() {

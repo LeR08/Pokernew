@@ -75,10 +75,16 @@ impl ResolveInput {
 /// Picks the data folder. Does not create it.
 pub fn resolve(input: &ResolveInput) -> Option<DataDir> {
     if let Some(p) = &input.cli {
-        return Some(DataDir { path: p.clone(), source: DataDirSource::CommandLine });
+        return Some(DataDir {
+            path: p.clone(),
+            source: DataDirSource::CommandLine,
+        });
     }
     if let Some(p) = &input.env {
-        return Some(DataDir { path: PathBuf::from(p), source: DataDirSource::Environment });
+        return Some(DataDir {
+            path: PathBuf::from(p),
+            source: DataDirSource::Environment,
+        });
     }
     if let Some(exe) = &input.exe_dir {
         if exe.join(PORTABLE_FLAG).is_file() {

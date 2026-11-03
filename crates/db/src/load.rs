@@ -1,15 +1,19 @@
 //! Rebuilds a [`Hand`] from the database (replayer, counter recompute).
 
 use lps_core_model::{
-    parse_cards, Action, ActionKind, BettingLimit, Card, GameType, Hand, PlayerInHand, Position, Street, TournamentRef,
-    Unit, Variant,
+    parse_cards, Action, ActionKind, BettingLimit, Card, GameType, Hand, PlayerInHand, Position,
+    Street, TournamentRef, Unit, Variant,
 };
 use rusqlite::{params, Connection};
 
 use crate::DbError;
 
 fn compact_cards(s: &str) -> Vec<Card> {
-    let spaced: Vec<String> = s.as_bytes().chunks(2).map(|c| String::from_utf8_lossy(c).into_owned()).collect();
+    let spaced: Vec<String> = s
+        .as_bytes()
+        .chunks(2)
+        .map(|c| String::from_utf8_lossy(c).into_owned())
+        .collect();
     parse_cards(&spaced.join(" ")).unwrap_or_default()
 }
 
@@ -148,7 +152,11 @@ pub fn load_hand(conn: &Connection, hand_id: i64) -> Result<(Hand, Vec<i64>), Db
             "SELECT w.seat, p.name, w.stack FROM hand_waiting w JOIN players p ON p.id = w.player_id WHERE w.hand_id = ? ORDER BY w.seat",
         )?;
         let rows = st.query_map([hand_id], |r| {
-            Ok(lps_core_model::WaitingPlayer { seat: r.get(0)?, name: r.get(1)?, stack: r.get(2)? })
+            Ok(lps_core_model::WaitingPlayer {
+                seat: r.get(0)?,
+                name: r.get(1)?,
+                stack: r.get(2)?,
+            })
         })?;
         for row in rows {
             hand.waiting.push(row?);

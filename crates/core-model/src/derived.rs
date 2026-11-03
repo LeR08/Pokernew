@@ -50,7 +50,11 @@ pub fn flop_texture(flop: &[Card]) -> i64 {
         let r: Vec<i64> = distinct.iter().map(|x| *x as i64).collect();
         let span = r[2] - r[0];
         // Ace low: A23, A24, A35, A45…
-        let low_span = if distinct[2] == Rank::Ace { r[1] + 1 } else { i64::MAX };
+        let low_span = if distinct[2] == Rank::Ace {
+            r[1] + 1
+        } else {
+            i64::MAX
+        };
         if span <= 4 || low_span <= 4 {
             t |= texture::CONNECTED;
         }
@@ -82,7 +86,11 @@ pub fn derive(hand: &Hand) -> Derived {
     } else {
         0
     };
-    Derived { pf_raises, players_flop, flop_texture: flop_texture(hand.board.get(..3).unwrap_or(&[])) }
+    Derived {
+        pf_raises,
+        players_flop,
+        flop_texture: flop_texture(hand.board.get(..3).unwrap_or(&[])),
+    }
 }
 
 #[cfg(test)]

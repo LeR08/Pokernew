@@ -18,14 +18,23 @@ pub struct IdCache {
 fn stats_sql() -> String {
     let cols = COUNTERS.join(", ");
     let marks = vec!["?"; COUNTERS.len() + 2].join(", ");
-    format!("INSERT OR REPLACE INTO hand_player_stats (hand_id, player_id, {cols}) VALUES ({marks})")
+    format!(
+        "INSERT OR REPLACE INTO hand_player_stats (hand_id, player_id, {cols}) VALUES ({marks})"
+    )
 }
 
-fn player_id(tx: &Transaction<'_>, cache: &mut IdCache, room: &str, name: &str, is_hero: bool) -> Result<i64, DbError> {
+fn player_id(
+    tx: &Transaction<'_>,
+    cache: &mut IdCache,
+    room: &str,
+    name: &str,
+    is_hero: bool,
+) -> Result<i64, DbError> {
     let key = (room.to_string(), name.to_string());
     if let Some(&(id, hero)) = cache.players.get(&key) {
         if is_hero && !hero {
-            tx.prepare_cached("UPDATE players SET is_hero = 1 WHERE id = ?")?.execute([id])?;
+            tx.prepare_cached("UPDATE players SET is_hero = 1 WHERE id = ?")?
+                .execute([id])?;
             cache.players.insert(key, (id, true));
         }
         return Ok(id);
@@ -36,7 +45,8 @@ fn player_id(tx: &Transaction<'_>, cache: &mut IdCache, room: &str, name: &str, 
         .prepare_cached("SELECT id, is_hero FROM players WHERE room = ? AND name = ?")?
         .query_row(params![room, name], |r| Ok((r.get(0)?, r.get(1)?)))?;
     let hero = if is_hero && !hero {
-        tx.prepare_cached("UPDATE players SET is_hero = 1 WHERE id = ?")?.execute([id])?;
+        tx.prepare_cached("UPDATE players SET is_hero = 1 WHERE id = ?")?
+            .execute([id])?;
         true
     } else {
         hero
@@ -45,8 +55,14 @@ fn player_id(tx: &Transaction<'_>, cache: &mut IdCache, room: &str, name: &str, 
     Ok(id)
 }
 
-fn tournament_id(tx: &Transaction<'_>, cache: &mut IdCache, hand: &Hand) -> Result<Option<i64>, DbError> {
-    let Some(t) = &hand.tournament else { return Ok(None) };
+fn tournament_id(
+    tx: &Transaction<'_>,
+    cache: &mut IdCache,
+    hand: &Hand,
+) -> Result<Option<i64>, DbError> {
+    let Some(t) = &hand.tournament else {
+        return Ok(None);
+    };
     let key = (hand.room.clone(), t.id.clone());
     if let Some(&id) = cache.tournaments.get(&key) {
         return Ok(Some(id));
@@ -65,7 +81,12 @@ fn tournament_id(tx: &Transaction<'_>, cache: &mut IdCache, hand: &Hand) -> Resu
 
 /// Inserts one hand. Returns `false` when it was already in the database
 /// (same room + hand number): nothing is written then.
-pub fn insert_hand(tx: &Transaction<'_>, cache: &mut IdCache, hand: &Hand, file_id: Option<i64>) -> Result<bool, DbError> {
+pub fn insert_hand(
+    tx: &Transaction<'_>,
+    cache: &mut IdCache,
+    hand: &Hand,
+    file_id: Option<i64>,
+) -> Result<bool, DbError> {
     let tid = tournament_id(tx, cache, hand)?;
     let inserted = tx
         .prepare_cached(
@@ -165,7 +186,12 @@ pub fn insert_hand(tx: &Transaction<'_>, cache: &mut IdCache, hand: &Hand, file_
 }
 
 /// (Re)writes the counters row of every player of a stored hand.
-pub fn write_counters(tx: &Transaction<'_>, hand_id: i64, player_ids: &[i64], hand: &Hand) -> Result<(), DbError> {
+pub fn write_counters(
+    tx: &Transaction<'_>,
+    hand_id: i64,
+    player_ids: &[i64],
+    hand: &Hand,
+) -> Result<(), DbError> {
     let sql = stats_sql();
     let mut st = tx.prepare_cached(&sql)?;
     for (pid, c) in player_ids.iter().zip(compute(hand)) {
@@ -179,13 +205,31 @@ pub fn write_counters(tx: &Transaction<'_>, hand_id: i64, player_ids: &[i64], ha
 }
 
 /// Derived columns used by the advanced filters.
-pub fn write_derived(tx: &Transaction<'_>, hand_id: i64, player_ids: &[i64], hand: &Hand) -> Result<(), DbError> {
+pub fn write_derived(
+    tx: &Transaction<'_>,
+    hand_id: i64,
+    player_ids: &[i64],
+    hand: &Hand,
+) -> Result<(), DbError> {
     let d = lps_core_model::derived::derive(hand);
-    tx.prepare_cached("UPDATE hands SET pf_raises = ?, players_flop = ?, flop_texture = ? WHERE id = ?")?
-        .execute(params![d.pf_raises, d.players_flop, d.flop_texture, hand_id])?;
-    let mut st = tx.prepare_cached("UPDATE hand_players SET hand_class = ? WHERE hand_id = ? AND player_id = ?")?;
+    tx.prepare_cached(
+        "UPDATE hands SET pf_raises = ?, players_flop = ?, flop_texture = ? WHERE id = ?",
+    )?
+    .execute(params![
+        d.pf_raises,
+        d.players_flop,
+        d.flop_texture,
+        hand_id
+    ])?;
+    let mut st = tx.prepare_cached(
+        "UPDATE hand_players SET hand_class = ? WHERE hand_id = ? AND player_id = ?",
+    )?;
     for (pid, p) in player_ids.iter().zip(&hand.players) {
-        st.execute(params![lps_core_model::preflop::hand_class(&p.hole_cards), hand_id, pid])?;
+        st.execute(params![
+            lps_core_model::preflop::hand_class(&p.hole_cards),
+            hand_id,
+            pid
+        ])?;
     }
     Ok(())
 }
@@ -194,12 +238,18 @@ pub fn write_derived(tx: &Transaction<'_>, hand_id: i64, player_ids: &[i64], han
 /// one summary per entry (re-entries): the last one gives the final result,
 /// winnings and bounties are summed, and `entries` buy-ins were paid.
 pub fn upsert_summary(tx: &Transaction<'_>, entries: &[TournamentSummary]) -> Result<(), DbError> {
-    let Some(s) = entries.last() else { return Ok(()) };
+    let Some(s) = entries.last() else {
+        return Ok(());
+    };
     let won: i64 = entries.iter().map(|e| e.won_cents).sum();
     let bounty_won: i64 = entries.iter().map(|e| e.bounty_won_cents).sum();
     let ticket_won: i64 = entries.iter().map(|e| e.ticket_won_cents).sum();
     // Same rule as the hand parser (Expresso = Spin & Go format).
-    let game_type = if s.name.starts_with("Expresso") { "spin" } else { "mtt" };
+    let game_type = if s.name.starts_with("Expresso") {
+        "spin"
+    } else {
+        "mtt"
+    };
     let duration: Option<i64> = entries.iter().map(|e| e.duration_secs).sum();
     tx.execute(
         "INSERT INTO tournaments (room, room_tournament_id, name, game_type, currency, buy_in_cents, bounty_cents, fee_cents,
@@ -240,8 +290,16 @@ pub fn upsert_summary(tx: &Transaction<'_>, entries: &[TournamentSummary]) -> Re
 }
 
 /// Looks up a hand id.
-pub fn hand_id(tx: &rusqlite::Connection, room: &str, hand_no: &str) -> Result<Option<i64>, DbError> {
+pub fn hand_id(
+    tx: &rusqlite::Connection,
+    room: &str,
+    hand_no: &str,
+) -> Result<Option<i64>, DbError> {
     Ok(tx
-        .query_row("SELECT id FROM hands WHERE room = ? AND hand_no = ?", params![room, hand_no], |r| r.get(0))
+        .query_row(
+            "SELECT id FROM hands WHERE room = ? AND hand_no = ?",
+            params![room, hand_no],
+            |r| r.get(0),
+        )
         .optional()?)
 }

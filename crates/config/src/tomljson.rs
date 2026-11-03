@@ -16,7 +16,9 @@ pub fn toml_to_json(text: &str) -> Result<Value, String> {
 /// Merges `value` (a JSON object) into `doc`: changed keys are updated in
 /// place, new keys are appended, keys missing from `value` are removed.
 pub fn merge_json_into_doc(doc: &mut DocumentMut, value: &Value) -> Result<(), String> {
-    let obj = value.as_object().ok_or("top-level value must be an object")?;
+    let obj = value
+        .as_object()
+        .ok_or("top-level value must be an object")?;
     merge_table(doc.as_table_mut(), obj);
     Ok(())
 }
@@ -77,7 +79,9 @@ fn json_num_eq(a: &Value, b: &Value) -> bool {
             x.len() == y.len() && x.iter().zip(y).all(|(a, b)| json_num_eq(a, b))
         }
         (Value::Object(x), Value::Object(y)) => {
-            x.len() == y.len() && x.iter().all(|(k, a)| y.get(k).is_some_and(|b| json_num_eq(a, b)))
+            x.len() == y.len()
+                && x.iter()
+                    .all(|(k, a)| y.get(k).is_some_and(|b| json_num_eq(a, b)))
         }
         _ => a == b,
     }

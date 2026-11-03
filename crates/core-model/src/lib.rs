@@ -13,8 +13,8 @@ pub mod hand;
 pub mod position;
 pub mod preflop;
 
-pub use card::{cards_to_string, parse_cards, Card, CardParseError, Rank, Suit};
 /// Alias kept for test readability.
 pub use card::cards_to_string as cards_to_string_compat;
+pub use card::{cards_to_string, parse_cards, Card, CardParseError, Rank, Suit};
 pub use hand::*;
 pub use position::{assign_positions, Position};

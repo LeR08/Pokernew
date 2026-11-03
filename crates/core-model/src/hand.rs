@@ -118,7 +118,11 @@ impl ActionKind {
     pub fn is_post(self) -> bool {
         matches!(
             self,
-            ActionKind::PostAnte | ActionKind::PostSmallBlind | ActionKind::PostBigBlind | ActionKind::PostStraddle | ActionKind::PostDead
+            ActionKind::PostAnte
+                | ActionKind::PostSmallBlind
+                | ActionKind::PostBigBlind
+                | ActionKind::PostStraddle
+                | ActionKind::PostDead
         )
     }
     /// Voluntary aggressive action.
@@ -268,11 +272,17 @@ impl Hand {
             ));
         }
         if self.total_pot != invested {
-            errs.push(format!("total pot {} != sum invested {invested}", self.total_pot));
+            errs.push(format!(
+                "total pot {} != sum invested {invested}",
+                self.total_pot
+            ));
         }
         for p in &self.players {
             if p.invested > p.stack {
-                errs.push(format!("{} invested {} > stack {}", p.name, p.invested, p.stack));
+                errs.push(format!(
+                    "{} invested {} > stack {}",
+                    p.name, p.invested, p.stack
+                ));
             }
             if p.position.is_none() {
                 errs.push(format!("{} has no position", p.name));
@@ -285,7 +295,11 @@ impl Hand {
             errs.push(format!("board has {} cards", self.board.len()));
         }
         let mut seen = std::collections::HashSet::new();
-        for c in self.board.iter().chain(self.players.iter().flat_map(|p| p.hole_cards.iter())) {
+        for c in self
+            .board
+            .iter()
+            .chain(self.players.iter().flat_map(|p| p.hole_cards.iter()))
+        {
             if !seen.insert(*c) {
                 errs.push(format!("card {c} appears twice"));
             }

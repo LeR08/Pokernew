@@ -35,8 +35,8 @@ pub mod summary;
 use std::sync::LazyLock;
 
 use lps_core_model::{
-    assign_positions, card::parse_cards, Action, ActionKind, BettingLimit, Card, GameType, Hand, PlayerInHand,
-    Street, TournamentRef, Unit, Variant,
+    assign_positions, card::parse_cards, Action, ActionKind, BettingLimit, Card, GameType, Hand,
+    PlayerInHand, Street, TournamentRef, Unit, Variant,
 };
 use regex::Regex;
 
@@ -106,7 +106,10 @@ impl HandHistoryParser for Winamax {
         }
     }
 
-    fn parse_summaries(&self, text: &str) -> Result<Vec<lps_core_model::TournamentSummary>, ParseError> {
+    fn parse_summaries(
+        &self,
+        text: &str,
+    ) -> Result<Vec<lps_core_model::TournamentSummary>, ParseError> {
         summary::parse_all(text)
     }
 
@@ -132,8 +135,14 @@ impl HandHistoryParser for Winamax {
             // (Winamax writes two blank lines after every hand).
             let after = &chunk[body.len()..];
             let blank_lines = after.matches('\n').count();
-            let complete = body.contains("*** SUMMARY ***") && (k + 1 < starts.len() || blank_lines >= 2);
-            out.push(RawHand { text: body, start: s, end: e, complete });
+            let complete =
+                body.contains("*** SUMMARY ***") && (k + 1 < starts.len() || blank_lines >= 2);
+            out.push(RawHand {
+                text: body,
+                start: s,
+                end: e,
+                complete,
+            });
         }
         out
     }
@@ -174,9 +183,15 @@ enum Section {
 
 impl HandBuilder {
     fn parse(mut self, text: &str) -> Result<Hand, ParseError> {
-        let mut lines = text.lines().map(|l| l.trim_end_matches('\r')).enumerate().map(|(i, l)| (i + 1, l));
+        let mut lines = text
+            .lines()
+            .map(|l| l.trim_end_matches('\r'))
+            .enumerate()
+            .map(|(i, l)| (i + 1, l));
 
-        let (n, header) = lines.next().ok_or_else(|| ParseError::whole("empty hand"))?;
+        let (n, header) = lines
+            .next()
+            .ok_or_else(|| ParseError::whole("empty hand"))?;
         let header = strip_bom(header);
         struct Header {
             hand_no: String,
@@ -189,8 +204,15 @@ impl HandBuilder {
         }
         let date = |d: &str| parse_utc(d).ok_or_else(|| ParseError::new(n, header, "bad date"));
         let hd = if let Some(h) = HEADER_MTT.captures(header) {
-            let num = |name: &str| -> i64 { h.name(name).and_then(|m| m.as_str().parse().ok()).unwrap_or(0) };
-            let money = |name: &str| parse_cents(&h[name]).ok_or_else(|| ParseError::new(n, header, format!("bad amount in {name}")));
+            let num = |name: &str| -> i64 {
+                h.name(name)
+                    .and_then(|m| m.as_str().parse().ok())
+                    .unwrap_or(0)
+            };
+            let money = |name: &str| {
+                parse_cents(&h[name])
+                    .ok_or_else(|| ParseError::new(n, header, format!("bad amount in {name}")))
+            };
             Header {
                 hand_no: h["id"].to_string(),
                 played_at: date(&h["date"])?,
@@ -198,12 +220,19 @@ impl HandBuilder {
                 sb: num("sb"),
                 bb: num("bb"),
                 // Negative levels exist (late registration?): unknown.
-                level: h["lvl"].parse::<i64>().ok().filter(|l| *l >= 0).map(|l| l as u32),
+                level: h["lvl"]
+                    .parse::<i64>()
+                    .ok()
+                    .filter(|l| *l >= 0)
+                    .map(|l| l as u32),
                 tourney: Some((h["name"].to_string(), money("bi")?, money("fee")?)),
             }
         } else if let Some(h) = HEADER_CASH.captures(header) {
             self.cash = true;
-            let money = |name: &str| parse_cents(&h[name]).ok_or_else(|| ParseError::new(n, header, format!("bad amount in {name}")));
+            let money = |name: &str| {
+                parse_cents(&h[name])
+                    .ok_or_else(|| ParseError::new(n, header, format!("bad amount in {name}")))
+            };
             Header {
                 hand_no: h["id"].to_string(),
                 played_at: date(&h["date"])?,
@@ -216,13 +245,29 @@ impl HandBuilder {
         } else {
             return Err(ParseError::new(n, header, "unrecognised Winamax header"));
         };
-        let Header { hand_no, played_at, ante, sb, bb, level, tourney } = hd;
+        let Header {
+            hand_no,
+            played_at,
+            ante,
+            sb,
+            bb,
+            level,
+            tourney,
+        } = hd;
 
-        let (n, tline) = lines.next().ok_or_else(|| ParseError::whole("missing table line"))?;
-        let t = TABLE.captures(tline).ok_or_else(|| ParseError::new(n, tline, "unrecognised table line"))?;
+        let (n, tline) = lines
+            .next()
+            .ok_or_else(|| ParseError::whole("missing table line"))?;
+        let t = TABLE
+            .captures(tline)
+            .ok_or_else(|| ParseError::new(n, tline, "unrecognised table line"))?;
         let table_name = t["table"].to_string();
-        let max_seats: u8 = t["max"].parse().map_err(|_| ParseError::new(n, tline, "bad max seats"))?;
-        let button_seat: u8 = t["btn"].parse().map_err(|_| ParseError::new(n, tline, "bad button seat"))?;
+        let max_seats: u8 = t["max"]
+            .parse()
+            .map_err(|_| ParseError::new(n, tline, "bad max seats"))?;
+        let button_seat: u8 = t["btn"]
+            .parse()
+            .map_err(|_| ParseError::new(n, tline, "bad button seat"))?;
         let tournament = match tourney {
             Some((name, buy_in_cents, fee_cents)) => match TABLE_TOURNEY.captures(&table_name) {
                 Some(c) => Some(TournamentRef {
@@ -232,7 +277,13 @@ impl HandBuilder {
                     fee_cents,
                     table_number: c["no"].parse().ok(),
                 }),
-                None => return Err(ParseError::new(n, tline, "tournament table name without (id)#number")),
+                None => {
+                    return Err(ParseError::new(
+                        n,
+                        tline,
+                        "tournament table name without (id)#number",
+                    ))
+                }
             },
             None => None,
         };
@@ -253,15 +304,24 @@ impl HandBuilder {
             }
             match section {
                 Section::Seats => {
-                    let c = SEAT.captures(line).ok_or_else(|| ParseError::new(n, line, "expected a seat line"))?;
+                    let c = SEAT
+                        .captures(line)
+                        .ok_or_else(|| ParseError::new(n, line, "expected a seat line"))?;
                     let bounty_cents = match c.name("bounty") {
-                        Some(b) => Some(parse_cents(b.as_str()).ok_or_else(|| ParseError::new(n, line, "bad bounty"))?),
+                        Some(b) => Some(
+                            parse_cents(b.as_str())
+                                .ok_or_else(|| ParseError::new(n, line, "bad bounty"))?,
+                        ),
                         None => None,
                     };
                     self.players.push(PlayerInHand {
-                        seat: c["seat"].parse().map_err(|_| ParseError::new(n, line, "bad seat"))?,
+                        seat: c["seat"]
+                            .parse()
+                            .map_err(|_| ParseError::new(n, line, "bad seat"))?,
                         name: c["name"].to_string(),
-                        stack: self.amt(&c["stack"]).ok_or_else(|| ParseError::new(n, line, "bad stack"))?,
+                        stack: self
+                            .amt(&c["stack"])
+                            .ok_or_else(|| ParseError::new(n, line, "bad stack"))?,
                         position: None,
                         hole_cards: vec![],
                         is_hero: false,
@@ -275,8 +335,8 @@ impl HandBuilder {
                     if let Some(c) = DEALT.captures(line) {
                         let i = self.player(n, line, &c["name"])?;
                         self.players[i].is_hero = true;
-                        self.players[i].hole_cards =
-                            parse_cards(&c["cards"]).map_err(|e| ParseError::new(n, line, e.to_string()))?;
+                        self.players[i].hole_cards = parse_cards(&c["cards"])
+                            .map_err(|e| ParseError::new(n, line, e.to_string()))?;
                     } else {
                         self.action_line(n, line, Street::Preflop, true)?;
                     }
@@ -291,10 +351,17 @@ impl HandBuilder {
 
         self.drop_players_not_dealt_in();
         let seats: Vec<u8> = self.players.iter().map(|p| p.seat).collect();
-        for (p, pos) in self.players.iter_mut().zip(assign_positions(&seats, button_seat, self.sb_seat, self.bb_seat)) {
+        for (p, pos) in self.players.iter_mut().zip(assign_positions(
+            &seats,
+            button_seat,
+            self.sb_seat,
+            self.bb_seat,
+        )) {
             p.position = pos;
         }
-        let total_pot = self.total_pot.ok_or_else(|| ParseError::whole("missing 'Total pot' line"))?;
+        let total_pot = self
+            .total_pot
+            .ok_or_else(|| ParseError::whole("missing 'Total pot' line"))?;
 
         let hand = Hand {
             room: ROOM.into(),
@@ -325,7 +392,10 @@ impl HandBuilder {
         };
         let problems = hand.check();
         if !problems.is_empty() {
-            return Err(ParseError::whole(format!("inconsistent hand: {}", problems.join("; "))));
+            return Err(ParseError::whole(format!(
+                "inconsistent hand: {}",
+                problems.join("; ")
+            )));
         }
         Ok(hand)
     }
@@ -345,7 +415,8 @@ impl HandBuilder {
                     .captures_iter(cards)
                     .last()
                     .ok_or_else(|| ParseError::new(n, line, "missing board cards"))?;
-                let new = parse_cards(&last[1]).map_err(|e| ParseError::new(n, line, e.to_string()))?;
+                let new =
+                    parse_cards(&last[1]).map_err(|e| ParseError::new(n, line, e.to_string()))?;
                 s.board.extend(new);
                 if s.board.len() != street.board_len() {
                     return Err(ParseError::new(n, line, "board size does not match street"));
@@ -369,7 +440,11 @@ impl HandBuilder {
                 Ok(Section::Showdown)
             }
             "SUMMARY" => Ok(Section::Summary),
-            _ => Err(ParseError::new(n, line, format!("unknown section '{title}'"))),
+            _ => Err(ParseError::new(
+                n,
+                line,
+                format!("unknown section '{title}'"),
+            )),
         }
     }
 
@@ -398,7 +473,11 @@ impl HandBuilder {
         }
         for (p, keep) in self.players.iter().zip(&active) {
             if !keep {
-                self.waiting.push(lps_core_model::WaitingPlayer { seat: p.seat, name: p.name.clone(), stack: p.stack });
+                self.waiting.push(lps_core_model::WaitingPlayer {
+                    seat: p.seat,
+                    name: p.name.clone(),
+                    stack: p.stack,
+                });
             }
         }
         let mut i = 0;
@@ -437,15 +516,38 @@ impl HandBuilder {
     /// Splits "<player name> <rest>" using the known names (longest first).
     fn split_player<'l>(&self, n: usize, line: &'l str) -> Result<(usize, &'l str), ParseError> {
         for &i in &self.by_name_len {
-            if let Some(rest) = line.strip_prefix(self.players[i].name.as_str()).and_then(|r| r.strip_prefix(' ')) {
+            if let Some(rest) = line
+                .strip_prefix(self.players[i].name.as_str())
+                .and_then(|r| r.strip_prefix(' '))
+            {
                 return Ok((i, rest));
             }
         }
-        Err(ParseError::new(n, line, "line does not start with a known player"))
+        Err(ParseError::new(
+            n,
+            line,
+            "line does not start with a known player",
+        ))
     }
 
-    fn push(&mut self, player: usize, street: Street, kind: ActionKind, amount: i64, raise_to: Option<i64>, is_all_in: bool) {
-        self.actions.push(Action { player, street, kind, amount, raise_to, is_all_in, pot_before: self.pot });
+    fn push(
+        &mut self,
+        player: usize,
+        street: Street,
+        kind: ActionKind,
+        amount: i64,
+        raise_to: Option<i64>,
+        is_all_in: bool,
+    ) {
+        self.actions.push(Action {
+            player,
+            street,
+            kind,
+            amount,
+            raise_to,
+            is_all_in,
+            pot_before: self.pot,
+        });
         self.pot += amount;
         self.players[player].invested += amount;
         if kind != ActionKind::PostAnte {
@@ -453,7 +555,13 @@ impl HandBuilder {
         }
     }
 
-    fn action_line(&mut self, n: usize, line: &str, street: Street, blinds: bool) -> Result<(), ParseError> {
+    fn action_line(
+        &mut self,
+        n: usize,
+        line: &str,
+        street: Street,
+        blinds: bool,
+    ) -> Result<(), ParseError> {
         let (p, rest) = self.split_player(n, line)?;
         let (rest, all_in) = match rest.strip_suffix(" and is all-in") {
             Some(r) => (r, true),
@@ -461,7 +569,11 @@ impl HandBuilder {
         };
         let cash = self.cash;
         let amount = |s: &str| {
-            let v = if cash { s.strip_suffix('€').and_then(parse_cents) } else { s.parse::<i64>().ok() };
+            let v = if cash {
+                s.strip_suffix('€').and_then(parse_cents)
+            } else {
+                s.parse::<i64>().ok()
+            };
             v.ok_or_else(|| ParseError::new(n, line, "bad amount"))
         };
         let seat = self.players[p].seat;
@@ -470,7 +582,14 @@ impl HandBuilder {
                 self.push(p, street, ActionKind::PostAnte, amount(a)?, None, all_in);
             } else if let Some(a) = rest.strip_prefix("posts small blind ") {
                 self.sb_seat.get_or_insert(seat);
-                self.push(p, street, ActionKind::PostSmallBlind, amount(a)?, None, all_in);
+                self.push(
+                    p,
+                    street,
+                    ActionKind::PostSmallBlind,
+                    amount(a)?,
+                    None,
+                    all_in,
+                );
             } else if let Some(a) = rest.strip_prefix("posts big blind ") {
                 // A newcomer posting "out of position" is not the big blind of the hand.
                 let (a, oop) = match a.strip_suffix(" out of position") {
@@ -480,7 +599,14 @@ impl HandBuilder {
                 if !oop {
                     self.bb_seat.get_or_insert(seat);
                 }
-                self.push(p, street, ActionKind::PostBigBlind, amount(a)?, None, all_in);
+                self.push(
+                    p,
+                    street,
+                    ActionKind::PostBigBlind,
+                    amount(a)?,
+                    None,
+                    all_in,
+                );
             } else {
                 return Err(ParseError::new(n, line, "unknown post"));
             }
@@ -495,7 +621,9 @@ impl HandBuilder {
                 } else if let Some(a) = rest.strip_prefix("bets ") {
                     self.push(p, street, ActionKind::Bet, amount(a)?, None, all_in);
                 } else if let Some(r) = rest.strip_prefix("raises ") {
-                    let (_incr, to) = r.split_once(" to ").ok_or_else(|| ParseError::new(n, line, "raise without 'to'"))?;
+                    let (_incr, to) = r
+                        .split_once(" to ")
+                        .ok_or_else(|| ParseError::new(n, line, "raise without 'to'"))?;
                     let to = amount(to)?;
                     let added = to - self.street_in[p];
                     if added <= 0 {
@@ -517,12 +645,20 @@ impl HandBuilder {
     }
 
     fn collect(&mut self, n: usize, line: &str, p: usize, rest: &str) -> Result<(), ParseError> {
-        let (amt, from) = rest.split_once(" from ").ok_or_else(|| ParseError::new(n, line, "collected without 'from'"))?;
-        let ok = from == "pot" || from == "main pot" || from.strip_prefix("side pot ").is_some_and(|k| k.parse::<u32>().is_ok());
+        let (amt, from) = rest
+            .split_once(" from ")
+            .ok_or_else(|| ParseError::new(n, line, "collected without 'from'"))?;
+        let ok = from == "pot"
+            || from == "main pot"
+            || from
+                .strip_prefix("side pot ")
+                .is_some_and(|k| k.parse::<u32>().is_ok());
         if !ok {
             return Err(ParseError::new(n, line, "unknown pot"));
         }
-        self.players[p].collected += self.amt(amt).ok_or_else(|| ParseError::new(n, line, "bad amount"))?;
+        self.players[p].collected += self
+            .amt(amt)
+            .ok_or_else(|| ParseError::new(n, line, "bad amount"))?;
         Ok(())
     }
 
@@ -537,12 +673,25 @@ impl HandBuilder {
         }
     }
 
-    fn show(&mut self, n: usize, line: &str, p: usize, after_bracket: &str, at_showdown: bool) -> Result<(), ParseError> {
-        let (cards, _desc) = after_bracket.split_once(']').ok_or_else(|| ParseError::new(n, line, "bad shows line"))?;
+    fn show(
+        &mut self,
+        n: usize,
+        line: &str,
+        p: usize,
+        after_bracket: &str,
+        at_showdown: bool,
+    ) -> Result<(), ParseError> {
+        let (cards, _desc) = after_bracket
+            .split_once(']')
+            .ok_or_else(|| ParseError::new(n, line, "bad shows line"))?;
         let cards = parse_cards(cards).map_err(|e| ParseError::new(n, line, e.to_string()))?;
         let pl = &mut self.players[p];
         if !pl.hole_cards.is_empty() && pl.hole_cards != cards {
-            return Err(ParseError::new(n, line, "shown cards differ from dealt cards"));
+            return Err(ParseError::new(
+                n,
+                line,
+                "shown cards differ from dealt cards",
+            ));
         }
         pl.hole_cards = cards;
         if at_showdown {
@@ -553,15 +702,23 @@ impl HandBuilder {
 
     fn summary_line(&mut self, n: usize, line: &str) -> Result<(), ParseError> {
         if let Some(c) = TOTAL_POT.captures(line) {
-            let pot = self.amt(&c["pot"]).ok_or_else(|| ParseError::new(n, line, "bad pot"))?;
+            let pot = self
+                .amt(&c["pot"])
+                .ok_or_else(|| ParseError::new(n, line, "bad pot"))?;
             self.rake = match c.name("rake") {
-                Some(r) => self.amt(r.as_str()).ok_or_else(|| ParseError::new(n, line, "bad rake"))?,
+                Some(r) => self
+                    .amt(r.as_str())
+                    .ok_or_else(|| ParseError::new(n, line, "bad rake"))?,
                 None => 0,
             };
             // Winamax prints the pot after rake; we store the pot before rake.
             self.total_pot = Some(pot + self.rake);
         } else if line.starts_with("Total pot ") {
-            return Err(ParseError::new(n, line, "unsupported pot/rake format (no sample yet)"));
+            return Err(ParseError::new(
+                n,
+                line,
+                "unsupported pot/rake format (no sample yet)",
+            ));
         } else if line.starts_with("Board: [") || line.starts_with("Seat ") {
             // Redundant with the action lines.
         } else {

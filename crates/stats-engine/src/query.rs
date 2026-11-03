@@ -99,7 +99,10 @@ impl Filter {
             params.push(Value::Integer(t));
         }
         if !self.hand_classes.is_empty() {
-            parts.push(format!("hp.hand_class IN ({})", vec!["?"; self.hand_classes.len()].join(", ")));
+            parts.push(format!(
+                "hp.hand_class IN ({})",
+                vec!["?"; self.hand_classes.len()].join(", ")
+            ));
             params.extend(self.hand_classes.iter().map(|v| Value::Text(v.clone())));
         }
         if !self.pot_types.is_empty() {
@@ -150,7 +153,10 @@ impl Filter {
             params.push(Value::Integer(self.buy_in_min.unwrap_or(0)));
             params.push(Value::Integer(self.buy_in_max.unwrap_or(i64::MAX)));
         }
-        Sql { text: parts.join(" AND "), params }
+        Sql {
+            text: parts.join(" AND "),
+            params,
+        }
     }
 }
 
@@ -182,7 +188,9 @@ impl Group {
             Group::GameType => "h.game_type",
             Group::Month => "strftime('%Y-%m', h.played_at, 'unixepoch')",
             Group::Account | Group::Player => "p.name",
-            Group::Stake => "CASE WHEN h.game_type = 'cash' THEN 'cash:' || h.big_blind ELSE h.game_type END",
+            Group::Stake => {
+                "CASE WHEN h.game_type = 'cash' THEN 'cash:' || h.big_blind ELSE h.game_type END"
+            }
         }
     }
     fn order(self) -> &'static str {
@@ -219,7 +227,12 @@ pub struct ReportRow {
 }
 
 /// One row per group with every stat.
-pub fn report(conn: &Connection, filter: &Filter, stats: &[CompiledStat], group: Group) -> rusqlite::Result<Vec<ReportRow>> {
+pub fn report(
+    conn: &Connection,
+    filter: &Filter,
+    stats: &[CompiledStat],
+    group: Group,
+) -> rusqlite::Result<Vec<ReportRow>> {
     report_limited(conn, filter, stats, group, 0, i64::MAX)
 }
 
@@ -246,7 +259,11 @@ pub fn report_limited(
         select.push_str(&st.sample.text);
         params.extend(st.sample.params.iter().cloned());
     }
-    let sql = format!("{select} {FROM} WHERE {} GROUP BY k HAVING COUNT(*) >= ? ORDER BY {} LIMIT ?", w.text, group.order());
+    let sql = format!(
+        "{select} {FROM} WHERE {} GROUP BY k HAVING COUNT(*) >= ? ORDER BY {} LIMIT ?",
+        w.text,
+        group.order()
+    );
     params.extend(w.params);
     params.push(Value::Integer(min_hands));
     params.push(Value::Integer(limit));
@@ -301,11 +318,16 @@ pub fn graph(conn: &Connection, filter: &Filter, max_points: usize) -> rusqlite:
     );
     let mut stmt = conn.prepare(&sql)?;
     let rows: Vec<(i64, f64, bool, i64)> = stmt
-        .query_map(params_from_iter(w.params), |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?, r.get(3)?)))?
+        .query_map(params_from_iter(w.params), |r| {
+            Ok((r.get(0)?, r.get(1)?, r.get(2)?, r.get(3)?))
+        })?
         .collect::<rusqlite::Result<_>>()?;
     let n = rows.len();
     let step = n.div_ceil(max_points.max(1)).max(1);
-    let mut g = Graph { hands: n as i64, ..Default::default() };
+    let mut g = Graph {
+        hands: n as i64,
+        ..Default::default()
+    };
     let (mut tot, mut sd, mut nsd, mut cash) = (0.0, 0.0, 0.0, 0i64);
     for (i, (t, bb, showdown, cents)) in rows.into_iter().enumerate() {
         tot += bb;
@@ -364,7 +386,10 @@ pub struct TournamentTotals {
 }
 
 /// Tournaments the hero played, newest first, and their totals.
-pub fn tournaments(conn: &Connection, filter: &Filter) -> rusqlite::Result<(Vec<TournamentRow>, TournamentTotals)> {
+pub fn tournaments(
+    conn: &Connection,
+    filter: &Filter,
+) -> rusqlite::Result<(Vec<TournamentRow>, TournamentTotals)> {
     let w = filter.to_sql();
     let sql = format!(
         "SELECT t.id, t.name, t.game_type, COALESCE(t.started_at, MIN(h.played_at)), COUNT(*), t.entries,
@@ -396,7 +421,10 @@ pub fn tournaments(conn: &Connection, filter: &Filter) -> rusqlite::Result<(Vec<
             })
         })?
         .collect::<rusqlite::Result<_>>()?;
-    let mut tot = TournamentTotals { tournaments: rows.len() as i64, ..Default::default() };
+    let mut tot = TournamentTotals {
+        tournaments: rows.len() as i64,
+        ..Default::default()
+    };
     let mut itm = 0;
     let mut chrono: Vec<&TournamentRow> = rows.iter().filter(|r| r.won_cents.is_some()).collect();
     chrono.sort_by_key(|r| r.started_at);
@@ -438,9 +466,18 @@ pub struct HandRow {
 }
 
 /// One page of the hero's hands, newest first.
-pub fn hands(conn: &Connection, filter: &Filter, limit: i64, offset: i64) -> rusqlite::Result<(Vec<HandRow>, i64)> {
+pub fn hands(
+    conn: &Connection,
+    filter: &Filter,
+    limit: i64,
+    offset: i64,
+) -> rusqlite::Result<(Vec<HandRow>, i64)> {
     let w = filter.to_sql();
-    let total: i64 = conn.query_row(&format!("SELECT COUNT(*) {FROM} WHERE {}", w.text), params_from_iter(w.params.iter()), |r| r.get(0))?;
+    let total: i64 = conn.query_row(
+        &format!("SELECT COUNT(*) {FROM} WHERE {}", w.text),
+        params_from_iter(w.params.iter()),
+        |r| r.get(0),
+    )?;
     let sql = format!(
         "SELECT h.id, h.played_at, h.game_type, h.table_name, p.name, hp.position, hp.hole_cards, h.board, hp.stack_bb,
                 hp.net_won, hp.net_won_bb, h.unit, hp.went_to_showdown

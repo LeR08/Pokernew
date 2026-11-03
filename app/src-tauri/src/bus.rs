@@ -40,7 +40,9 @@ impl Default for EventBus {
 
 impl EventBus {
     pub fn new(capacity: usize) -> Self {
-        Self { tx: broadcast::channel(capacity).0 }
+        Self {
+            tx: broadcast::channel(capacity).0,
+        }
     }
 
     /// Publishes an event; having no subscriber is not an error.
@@ -61,7 +63,10 @@ mod tests {
     fn subscribers_receive_published_events() {
         let bus = EventBus::default();
         let mut rx = bus.subscribe();
-        bus.publish(AppEvent::Config(ConfigEvent::Changed { family: "settings".into(), id: "settings".into() }));
+        bus.publish(AppEvent::Config(ConfigEvent::Changed {
+            family: "settings".into(),
+            id: "settings".into(),
+        }));
         let e = rx.try_recv().unwrap();
         assert_eq!(e.channel(), "config://event");
         let json = serde_json::to_value(&e).unwrap();

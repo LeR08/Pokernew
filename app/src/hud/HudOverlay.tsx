@@ -175,9 +175,16 @@ export function HudOverlay() {
         .map((s) => (
           <Panel key={s.seat} seat={s} data={data} pos={positions[s.slot] ?? defaultPos(s.slot, n)} onMove={save(s.slot)} />
         ))}
-      {data.simulated && (
-        <div className="absolute bottom-1 right-1 rounded bg-black/60 px-1 text-[10px] text-white" data-testid="hud-simulated">
-          {t("hud.simulation")}
+      {data.edit && (
+        <div className="absolute left-1/2 top-1 flex -translate-x-1/2 items-center gap-2 rounded bg-[#3987e5] px-2 py-1 text-xs text-white shadow" data-testid="hud-edit-bar">
+          {t("hud.edit_bar")}
+          <button
+            className="rounded bg-white px-2 py-0.5 font-semibold text-[#1a1a19]"
+            data-testid="hud-edit-done"
+            onClick={() => void getBackend().then((b) => b.hudSetEditTable(null))}
+          >
+            {t("hud.table_done")}
+          </button>
         </div>
       )}
     </div>

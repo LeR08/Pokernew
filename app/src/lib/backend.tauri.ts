@@ -124,8 +124,8 @@ export function createTauriBackend(): Backend {
     playModeGet: () => call<boolean>("play_mode_get"),
     hudSetVisible: (visible) => call("hud_set_visible", { visible }),
     hudSetEdit: (edit) => call("hud_set_edit", { edit }),
-    hudSimulate: (seats) => call<string>("hud_simulate", { seats }),
-    hudClearSimulated: () => call("hud_clear_simulated"),
+    hudSetEditTable: (windowId) => call("hud_set_edit_table", { windowId }),
+    hudSetTableHidden: (windowId, hidden) => call("hud_set_table_hidden", { windowId, hidden }),
     hudOverlay: (windowId) => call<OverlayData>("hud_overlay", { windowId }),
     hudSaveSeat: (tableSize, slot, x, y) => call("hud_save_seat", { tableSize, slot, x, y }),
     onHudEvent(cb) {

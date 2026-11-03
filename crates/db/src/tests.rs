@@ -25,14 +25,36 @@ fn imports_all_fixtures_without_errors_and_no_duplicates_on_reimport() {
     let tmp = tempfile::tempdir().unwrap();
     let mut imp = importer(&tmp.path().join("db.sqlite"));
     let r = imp.import_path(&fixtures()).unwrap();
-    assert_eq!((r.hands_inserted, r.errors, r.summaries), (496, 0, 4), "{r:?}");
+    assert_eq!(
+        (r.hands_inserted, r.errors, r.summaries),
+        (496, 0, 4),
+        "{r:?}"
+    );
     let s = stats(imp.conn()).unwrap();
     assert_eq!((s.hands, s.hero_hands), (496, 496));
 
     // Cash hands are stored in cents, Expresso as spin.
-    assert_eq!(count(imp.conn(), "SELECT COUNT(*) FROM hands WHERE game_type = 'cash' AND unit = 'cents'"), 22);
-    assert_eq!(count(imp.conn(), "SELECT COUNT(*) FROM tournaments WHERE game_type = 'spin'"), 2);
-    assert_eq!(count(imp.conn(), "SELECT ticket_won_cents FROM tournaments WHERE room_tournament_id = '910389948'"), 2000);
+    assert_eq!(
+        count(
+            imp.conn(),
+            "SELECT COUNT(*) FROM hands WHERE game_type = 'cash' AND unit = 'cents'"
+        ),
+        22
+    );
+    assert_eq!(
+        count(
+            imp.conn(),
+            "SELECT COUNT(*) FROM tournaments WHERE game_type = 'spin'"
+        ),
+        2
+    );
+    assert_eq!(
+        count(
+            imp.conn(),
+            "SELECT ticket_won_cents FROM tournaments WHERE room_tournament_id = '910389948'"
+        ),
+        2000
+    );
     // Same folder again: files unchanged -> nothing read.
     let r2 = imp.import_path(&fixtures()).unwrap();
     assert_eq!((r2.hands_parsed, r2.hands_inserted), (0, 0));
@@ -60,7 +82,10 @@ fn summaries_complete_the_tournament_rows() {
             |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?, r.get(3)?, r.get(4)?, r.get(5)?, r.get(6)?, r.get(7)?)),
         )
         .unwrap();
-    assert_eq!((name.as_str(), buy_in, bounty, fee, pos, won, bwon, hands), ("SPACE KO", 45, 25, 5, 203, 52, 51, 176));
+    assert_eq!(
+        (name.as_str(), buy_in, bounty, fee, pos, won, bwon, hands),
+        ("SPACE KO", 45, 25, 5, 203, 52, 51, 176)
+    );
 }
 
 #[test]
@@ -76,20 +101,30 @@ fn live_file_is_imported_incrementally_and_resumes_after_restart() {
     {
         let mut imp = importer(&db);
         let r = imp.import_file(&file).unwrap();
-        assert_eq!(r.hands_inserted, 10, "the hand being written is left for later");
+        assert_eq!(
+            r.hands_inserted, 10,
+            "the hand being written is left for later"
+        );
     }
     // "Restart": new importer on the same database; the file has grown by one hand.
     let next_hand_end = full.match_indices("Winamax Poker - ").nth(11).unwrap().0;
     std::fs::write(&file, &full[..next_hand_end]).unwrap();
     let mut imp = importer(&db);
     let r = imp.import_file(&file).unwrap();
-    assert_eq!((r.hands_parsed, r.hands_inserted), (1, 1), "only the new hand is parsed");
+    assert_eq!(
+        (r.hands_parsed, r.hands_inserted),
+        (1, 1),
+        "only the new hand is parsed"
+    );
 
     std::fs::write(&file, &full).unwrap();
     let r = imp.import_file(&file).unwrap();
     assert_eq!((r.hands_parsed, r.hands_inserted, r.errors), (13, 13, 0));
     assert_eq!(count(imp.conn(), "SELECT COUNT(*) FROM hands"), 24);
-    assert_eq!(import::file_offset(imp.conn(), &file.to_string_lossy()).unwrap(), Some(full.len() as i64));
+    assert_eq!(
+        import::file_offset(imp.conn(), &file.to_string_lossy()).unwrap(),
+        Some(full.len() as i64)
+    );
 }
 
 #[test]
@@ -100,7 +135,9 @@ fn stored_hands_reload_identically() {
     let wx = lps_hh_parsers::winamax::Winamax;
     for raw in wx.split(&text) {
         let parsed = wx.parse(&raw).unwrap();
-        let id = write::hand_id(imp.conn(), "winamax", &parsed.hand_no).unwrap().unwrap();
+        let id = write::hand_id(imp.conn(), "winamax", &parsed.hand_no)
+            .unwrap()
+            .unwrap();
         let (loaded, _) = load::load_hand(imp.conn(), id).unwrap();
         assert_eq!(loaded, parsed);
     }
@@ -128,7 +165,11 @@ fn net_won_sums_to_zero_and_matches_stack_changes() {
              WHERE hp.is_hero = 1 AND h.table_name LIKE 'TRIDENT SPACE KO(1195602081)%' ORDER BY h.played_at",
         )
         .unwrap();
-    let rows: Vec<(i64, i64)> = st.query_map([], |r| Ok((r.get(0)?, r.get(1)?))).unwrap().map(Result::unwrap).collect();
+    let rows: Vec<(i64, i64)> = st
+        .query_map([], |r| Ok((r.get(0)?, r.get(1)?)))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect();
     for w in rows.windows(2) {
         assert_eq!(w[0].0 + w[0].1, w[1].0);
     }
@@ -156,17 +197,60 @@ fn counters_on_a_hand_checked_by_hand() {
     let btn = "Player34";
     let sb = "Player10";
     let hero = "Tantaculejen";
-    assert_eq!((get(btn, "cnt_vpip"), get(btn, "cnt_pfr"), get(btn, "cnt_limp")), (1, 0, 1));
+    assert_eq!(
+        (
+            get(btn, "cnt_vpip"),
+            get(btn, "cnt_pfr"),
+            get(btn, "cnt_limp")
+        ),
+        (1, 0, 1)
+    );
     assert_eq!((get(btn, "opp_steal"), get(btn, "cnt_steal")), (1, 0));
     assert_eq!((get(btn, "opp_3bet"), get(btn, "cnt_3bet")), (1, 0));
-    assert_eq!((get(sb, "cnt_vpip"), get(sb, "cnt_pfr"), get(sb, "opp_steal")), (1, 1, 0));
-    assert_eq!((get(hero, "cnt_vpip"), get(hero, "opp_3bet"), get(hero, "cnt_3bet")), (0, 1, 0));
+    assert_eq!(
+        (
+            get(sb, "cnt_vpip"),
+            get(sb, "cnt_pfr"),
+            get(sb, "opp_steal")
+        ),
+        (1, 1, 0)
+    );
+    assert_eq!(
+        (
+            get(hero, "cnt_vpip"),
+            get(hero, "opp_3bet"),
+            get(hero, "cnt_3bet")
+        ),
+        (0, 1, 0)
+    );
     assert_eq!(get(hero, "opp_fold_to_steal"), 0, "a limp is not a steal");
     assert_eq!((get(sb, "opp_cbet_flop"), get(sb, "cnt_cbet_flop")), (1, 1));
-    assert_eq!((get(btn, "opp_fold_to_cbet_flop"), get(btn, "cnt_fold_to_cbet_flop")), (1, 0));
-    assert_eq!((get(btn, "cnt_saw_flop"), get(hero, "cnt_saw_flop")), (1, 0));
-    assert_eq!((get(btn, "cnt_wtsd"), get(btn, "cnt_wsd"), get(sb, "cnt_wsd")), (1, 1, 0));
-    assert_eq!((get(sb, "cnt_postflop_bets_raises"), get(btn, "cnt_postflop_calls")), (3, 3));
+    assert_eq!(
+        (
+            get(btn, "opp_fold_to_cbet_flop"),
+            get(btn, "cnt_fold_to_cbet_flop")
+        ),
+        (1, 0)
+    );
+    assert_eq!(
+        (get(btn, "cnt_saw_flop"), get(hero, "cnt_saw_flop")),
+        (1, 0)
+    );
+    assert_eq!(
+        (
+            get(btn, "cnt_wtsd"),
+            get(btn, "cnt_wsd"),
+            get(sb, "cnt_wsd")
+        ),
+        (1, 1, 0)
+    );
+    assert_eq!(
+        (
+            get(sb, "cnt_postflop_bets_raises"),
+            get(btn, "cnt_postflop_calls")
+        ),
+        (3, 3)
+    );
     assert_eq!(get(btn, "cnt_allin_preflop"), 0);
 }
 
@@ -201,15 +285,29 @@ fn recompute_gives_identical_counters() {
         // Snapshot the counters, recompute, compare.
         let snap = |c: &Connection| -> Vec<Vec<i64>> {
             let cols = counters::COUNTERS.join(", ");
-            let mut st = c.prepare(&format!("SELECT {cols} FROM hand_player_stats ORDER BY hand_id, player_id")).unwrap();
-            st.query_map([], |r| (0..counters::COUNTERS.len()).map(|i| r.get(i)).collect())
-                .unwrap()
-                .map(Result::unwrap)
-                .collect()
+            let mut st = c
+                .prepare(&format!(
+                    "SELECT {cols} FROM hand_player_stats ORDER BY hand_id, player_id"
+                ))
+                .unwrap();
+            st.query_map([], |r| {
+                (0..counters::COUNTERS.len()).map(|i| r.get(i)).collect()
+            })
+            .unwrap()
+            .map(Result::unwrap)
+            .collect()
         };
         let before = snap(imp.conn());
-        let mut c2 = std::mem::replace(&mut imp, Importer::new(open_in_memory().unwrap(), 1).unwrap()).into_conn();
-        c2.execute("UPDATE hand_player_stats SET cnt_vpip = 0, cnt_wtsd = 0", []).unwrap();
+        let mut c2 = std::mem::replace(
+            &mut imp,
+            Importer::new(open_in_memory().unwrap(), 1).unwrap(),
+        )
+        .into_conn();
+        c2.execute(
+            "UPDATE hand_player_stats SET cnt_vpip = 0, cnt_wtsd = 0",
+            [],
+        )
+        .unwrap();
         assert_eq!(recompute_counters(&mut c2).unwrap(), 496);
         assert_eq!(snap(&c2), before);
     }
@@ -220,7 +318,9 @@ fn recompute_gives_identical_counters() {
 fn parse_errors_are_stored_with_the_raw_hand() {
     let tmp = tempfile::tempdir().unwrap();
     let file = tmp.path().join("bad.txt");
-    let text = std::fs::read_to_string(fixtures().join(TRIDENT)).unwrap().replacen("Tantaculejen folds", "Tantaculejen dances", 1);
+    let text = std::fs::read_to_string(fixtures().join(TRIDENT))
+        .unwrap()
+        .replacen("Tantaculejen folds", "Tantaculejen dances", 1);
     std::fs::write(&file, text).unwrap();
     let mut imp = Importer::new(open_in_memory().unwrap(), 1).unwrap();
     let r = imp.import_file(&file).unwrap();
@@ -245,7 +345,8 @@ fn zip_archives_are_imported() {
         let mut z = zip::ZipWriter::new(f);
         let opts: zip::write::SimpleFileOptions = Default::default();
         z.start_file("a/trident.txt", opts).unwrap();
-        std::io::Write::write_all(&mut z, &std::fs::read(fixtures().join(TRIDENT)).unwrap()).unwrap();
+        std::io::Write::write_all(&mut z, &std::fs::read(fixtures().join(TRIDENT)).unwrap())
+            .unwrap();
         z.finish().unwrap();
     }
     let mut imp = Importer::new(open_in_memory().unwrap(), 1).unwrap();
@@ -263,13 +364,20 @@ fn backup_and_restore() {
     let b = backup::backup(imp.conn(), &backups, 2, 1_793_644_483).unwrap();
     backup::backup(imp.conn(), &backups, 2, 1_793_644_484).unwrap();
     backup::backup(imp.conn(), &backups, 2, 1_793_644_485).unwrap();
-    assert_eq!(backup::list(&backups).unwrap().len(), 2, "only the 2 newest are kept");
+    assert_eq!(
+        backup::list(&backups).unwrap().len(),
+        2,
+        "only the 2 newest are kept"
+    );
     assert!(!b.exists());
     imp.import_path(&fixtures()).unwrap();
     drop(imp);
     let newest = backup::list(&backups).unwrap()[0].name.clone();
     backup::request_restore(tmp.path(), &backups, &newest).unwrap();
-    assert_eq!(backup::apply_pending_restore(tmp.path(), &backups, &db).unwrap(), Some(newest));
+    assert_eq!(
+        backup::apply_pending_restore(tmp.path(), &backups, &db).unwrap(),
+        Some(newest)
+    );
     let conn = open(&db).unwrap();
     assert_eq!(count(&conn, "SELECT COUNT(*) FROM hands"), 24);
 }
@@ -295,7 +403,10 @@ fn bench_100k_hands() {
             std::fs::write(dir.join(format!("{copy}_{k}.txt")), text).unwrap();
         }
     }
-    let threads: usize = std::env::var("LPS_THREADS").ok().and_then(|v| v.parse().ok()).unwrap_or(0);
+    let threads: usize = std::env::var("LPS_THREADS")
+        .ok()
+        .and_then(|v| v.parse().ok())
+        .unwrap_or(0);
     let mut imp = Importer::new(open(&tmp.path().join("db.sqlite")).unwrap(), threads).unwrap();
     let r = imp.import_path(&dir).unwrap();
     println!(
@@ -304,7 +415,11 @@ fn bench_100k_hands() {
         r.elapsed_ms,
         r.hands_per_sec(),
         r.errors,
-        if threads == 0 { rayon::current_num_threads() } else { threads }
+        if threads == 0 {
+            rayon::current_num_threads()
+        } else {
+            threads
+        }
     );
     assert_eq!(r.errors, 0);
     assert!(r.hands_inserted >= 100_000);
@@ -333,20 +448,36 @@ fn re_entries_make_one_tournament_with_two_entries() {
 fn non_utf8_file_is_not_reimported_at_every_scan() {
     let tmp = tempfile::tempdir().unwrap();
     let file = tmp.path().join("cp1252.txt");
-    let utf8 = std::fs::read_to_string(fixtures().join(TRIDENT)).unwrap().replace("\r\n", "\n");
-    let bytes: Vec<u8> = utf8.chars().map(|c| if c == '€' { 0x80 } else { c as u8 }).collect();
+    let utf8 = std::fs::read_to_string(fixtures().join(TRIDENT))
+        .unwrap()
+        .replace("\r\n", "\n");
+    let bytes: Vec<u8> = utf8
+        .chars()
+        .map(|c| if c == '€' { 0x80 } else { c as u8 })
+        .collect();
     std::fs::write(&file, &bytes).unwrap();
     let mut imp = Importer::new(open_in_memory().unwrap(), 1).unwrap();
     let r = imp.import_file(&file).unwrap();
     assert_eq!((r.hands_inserted, r.errors), (24, 0));
-    assert_eq!(import::file_offset(imp.conn(), &file.to_string_lossy()).unwrap(), Some(bytes.len() as i64));
+    assert_eq!(
+        import::file_offset(imp.conn(), &file.to_string_lossy()).unwrap(),
+        Some(bytes.len() as i64)
+    );
     let r2 = imp.import_file(&file).unwrap();
     assert_eq!(r2.hands_parsed, 0);
     // Appending one more (Windows-1252) hand reads only that hand.
-    let last = utf8.trim_end().rsplit("\n\n\n").next().unwrap().replace("-56-1793645123", "-57-1793645200");
+    let last = utf8
+        .trim_end()
+        .rsplit("\n\n\n")
+        .next()
+        .unwrap()
+        .replace("-56-1793645123", "-57-1793645200");
     let mut more = bytes.clone();
     more.extend(b"\n\n\n");
-    more.extend(last.chars().map(|c| if c == '€' { 0x80u8 } else { c as u8 }));
+    more.extend(
+        last.chars()
+            .map(|c| if c == '€' { 0x80u8 } else { c as u8 }),
+    );
     more.extend(b"\n\n\n");
     std::fs::write(&file, &more).unwrap();
     let r3 = imp.import_file(&file).unwrap();
@@ -359,13 +490,23 @@ fn files_with_errors_are_retried_when_parsers_change() {
     let db = tmp.path().join("db.sqlite");
     let file = tmp.path().join("bad.txt");
     let good = std::fs::read_to_string(fixtures().join(TRIDENT)).unwrap();
-    std::fs::write(&file, good.replacen("Tantaculejen folds", "Tantaculejen dances", 1)).unwrap();
+    std::fs::write(
+        &file,
+        good.replacen("Tantaculejen folds", "Tantaculejen dances", 1),
+    )
+    .unwrap();
     {
         let mut imp = importer(&db);
         assert_eq!(imp.import_file(&file).unwrap().errors, 1);
     }
     // Simulate an older parser version, and a file the new parser understands.
-    open(&db).unwrap().execute("UPDATE meta SET value = '1' WHERE key = 'parser_version'", []).unwrap();
+    open(&db)
+        .unwrap()
+        .execute(
+            "UPDATE meta SET value = '1' WHERE key = 'parser_version'",
+            [],
+        )
+        .unwrap();
     std::fs::write(&file, &good).unwrap();
     let mut imp = importer(&db);
     assert_eq!(count(imp.conn(), "SELECT COUNT(*) FROM import_errors"), 0);
@@ -400,10 +541,23 @@ fn derived_columns_are_filled_and_backfilled() {
             )
             .unwrap();
         assert_eq!(class, "Q8o");
-        imp.conn().execute("UPDATE hands SET pf_raises = NULL", []).unwrap();
-        imp.conn().execute("UPDATE hand_players SET hand_class = NULL", []).unwrap();
+        imp.conn()
+            .execute("UPDATE hands SET pf_raises = NULL", [])
+            .unwrap();
+        imp.conn()
+            .execute("UPDATE hand_players SET hand_class = NULL", [])
+            .unwrap();
     }
     let conn = open(&db).unwrap();
-    assert_eq!(count(&conn, "SELECT COUNT(*) FROM hands WHERE pf_raises IS NULL"), 0);
-    assert_eq!(count(&conn, "SELECT COUNT(*) FROM hand_players WHERE is_hero = 1 AND hand_class IS NULL"), 0);
+    assert_eq!(
+        count(&conn, "SELECT COUNT(*) FROM hands WHERE pf_raises IS NULL"),
+        0
+    );
+    assert_eq!(
+        count(
+            &conn,
+            "SELECT COUNT(*) FROM hand_players WHERE is_hero = 1 AND hand_class IS NULL"
+        ),
+        0
+    );
 }

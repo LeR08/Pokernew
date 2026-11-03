@@ -1,35 +1,48 @@
 import { expect, test } from "@playwright/test";
 
-test("HUD page: simulated table, edit mode", async ({ page }) => {
+test("HUD page: detected table, per-table edit and hide", async ({ page }) => {
   await page.goto("/#/m/hud");
   await expect(page.getByTestId("hud-unsupported")).toBeVisible();
   await expect(page.getByTestId("hud-playmode")).toContainText("Étude");
-  await page.getByTestId("simulate-3").click();
-  await expect(page.getByTestId("hud-msg")).toContainText("TRIDENT SPACE KO");
-  await expect(page.getByTestId("hud-tables")).toContainText("SIMULATION");
+  const row = page.getByTestId("hud-table");
+  await expect(row).toHaveCount(1);
+  await expect(row).toContainText("Winamax TRIDENT SPACE KO(1195602081)(#0053)");
+  const edit = page.getByTestId("hud-table-edit");
+  await expect(edit).toContainText("Modifier le HUD de cette table");
+  await edit.click();
+  await expect(edit).toContainText("Terminer");
+  await edit.click();
+  await expect(edit).toContainText("Modifier le HUD de cette table");
+  const hide = page.getByTestId("hud-table-hide");
+  await expect(hide).toContainText("Masquer");
+  await hide.click();
+  await expect(hide).toContainText("Afficher");
   await page.getByTestId("hud-edit").click();
   await expect(page.getByTestId("hud-edit")).toContainText("Quitter");
 });
 
-test("HUD overlay: one panel per opponent, drag saves the position, popup in edit mode", async ({ page }) => {
-  await page.goto("/#/m/hud");
-  await page.getByTestId("hud-edit").click();
-  await page.goto("/#/hud/1000000");
-  const panels = page.getByTestId("hud-panel");
-  await expect(panels).toHaveCount(2); // hero panel hidden by default
-  await expect(page.getByTestId("hud-simulated")).toBeVisible();
-});
-
-test("HUD overlay drag and popup", async ({ page }) => {
-  // The mock keeps edit mode per page load: turn it on from the overlay's own backend.
-  await page.goto("/#/hud/1000000");
-  await page.evaluate(async () => {
+async function editTable(page: import("@playwright/test").Page, id: number | null) {
+  await page.evaluate(async (windowId) => {
     // Runs in the browser, against the Vite dev server's module graph.
     const path = "/src/lib/backend.ts";
-    const m = (await import(/* @vite-ignore */ path)) as { getBackend: () => Promise<{ hudSetEdit: (e: boolean) => Promise<void> }> };
-    const b = await m.getBackend();
-    await b.hudSetEdit(true);
-  });
+    const m = (await import(/* @vite-ignore */ path)) as {
+      getBackend: () => Promise<{ hudSetEditTable: (id: number | null) => Promise<void> }>;
+    };
+    await (await m.getBackend()).hudSetEditTable(windowId);
+  }, id);
+}
+
+test("HUD overlay: one panel per opponent, no edit bar outside edit mode", async ({ page }) => {
+  await page.goto("/#/hud/1");
+  await expect(page.getByTestId("hud-panel")).toHaveCount(2); // the mock layout hides the hero
+  await expect(page.getByTestId("hud-edit-bar")).toHaveCount(0);
+});
+
+test("HUD overlay: per-table edit, drag, popup, done", async ({ page }) => {
+  await page.goto("/#/hud/1");
+  await expect(page.getByTestId("hud-panel")).toHaveCount(2);
+  await editTable(page, 1);
+  await expect(page.getByTestId("hud-edit-bar")).toBeVisible();
   const panel = page.getByTestId("hud-panel").first();
   await expect(panel).toHaveCSS("cursor", "move");
   await panel.hover();
@@ -40,6 +53,8 @@ test("HUD overlay drag and popup", async ({ page }) => {
   await page.mouse.move(before!.x + 160, before!.y + 120, { steps: 8 });
   await page.mouse.up();
   await expect.poll(async () => (await page.getByTestId("hud-panel").first().boundingBox())!.x).toBeGreaterThan(before!.x + 100);
+  await page.getByTestId("hud-edit-done").click();
+  await expect(page.getByTestId("hud-edit-bar")).toHaveCount(0);
 });
 
 test("show my own HUD panel", async ({ page }) => {

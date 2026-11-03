@@ -24,28 +24,56 @@ pub struct PlayerNotes {
 }
 
 fn player_id(conn: &Connection, room: &str, name: &str) -> Result<i64, DbError> {
-    conn.query_row("SELECT id FROM players WHERE room = ? AND name = ?", params![room, name], |r| r.get(0))
-        .optional()?
-        .ok_or_else(|| DbError::Other(format!("unknown player {name}")))
+    conn.query_row(
+        "SELECT id FROM players WHERE room = ? AND name = ?",
+        params![room, name],
+        |r| r.get(0),
+    )
+    .optional()?
+    .ok_or_else(|| DbError::Other(format!("unknown player {name}")))
 }
 
 pub fn notes(conn: &Connection, room: &str, name: &str) -> Result<PlayerNotes, DbError> {
     let id = player_id(conn, room, name)?;
-    let colour: Option<String> = conn.query_row("SELECT colour FROM players WHERE id = ?", [id], |r| r.get(0))?;
+    let colour: Option<String> =
+        conn.query_row("SELECT colour FROM players WHERE id = ?", [id], |r| {
+            r.get(0)
+        })?;
     let mut st = conn.prepare("SELECT id, text, auto, created_at FROM notes WHERE player_id = ? ORDER BY created_at DESC, id DESC")?;
     let notes = st
-        .query_map([id], |r| Ok(Note { id: r.get(0)?, text: r.get(1)?, auto: r.get(2)?, created_at: r.get(3)? }))?
+        .query_map([id], |r| {
+            Ok(Note {
+                id: r.get(0)?,
+                text: r.get(1)?,
+                auto: r.get(2)?,
+                created_at: r.get(3)?,
+            })
+        })?
         .collect::<Result<_, _>>()?;
-    Ok(PlayerNotes { player_id: id, name: name.into(), colour, notes })
+    Ok(PlayerNotes {
+        player_id: id,
+        name: name.into(),
+        colour,
+        notes,
+    })
 }
 
-pub fn add_note(conn: &Connection, room: &str, name: &str, text: &str, now: i64) -> Result<i64, DbError> {
+pub fn add_note(
+    conn: &Connection,
+    room: &str,
+    name: &str,
+    text: &str,
+    now: i64,
+) -> Result<i64, DbError> {
     let text = text.trim();
     if text.is_empty() {
         return Err(DbError::Other("empty note".into()));
     }
     let id = player_id(conn, room, name)?;
-    conn.execute("INSERT INTO notes (player_id, text, auto, created_at) VALUES (?, ?, 0, ?)", params![id, text, now])?;
+    conn.execute(
+        "INSERT INTO notes (player_id, text, auto, created_at) VALUES (?, ?, 0, ?)",
+        params![id, text, now],
+    )?;
     Ok(conn.last_insert_rowid())
 }
 
@@ -55,9 +83,17 @@ pub fn delete_note(conn: &Connection, note_id: i64) -> Result<(), DbError> {
 }
 
 /// Colour label of a player ("red", "green"…; None clears it).
-pub fn set_colour(conn: &Connection, room: &str, name: &str, colour: Option<&str>) -> Result<(), DbError> {
+pub fn set_colour(
+    conn: &Connection,
+    room: &str,
+    name: &str,
+    colour: Option<&str>,
+) -> Result<(), DbError> {
     let id = player_id(conn, room, name)?;
-    conn.execute("UPDATE players SET colour = ? WHERE id = ?", params![colour, id])?;
+    conn.execute(
+        "UPDATE players SET colour = ? WHERE id = ?",
+        params![colour, id],
+    )?;
     Ok(())
 }
 
@@ -77,9 +113,18 @@ pub struct Tx {
 }
 
 pub fn list_tx(conn: &Connection) -> Result<Vec<Tx>, DbError> {
-    let mut st = conn.prepare("SELECT id, room, at, kind, amount_cents, note FROM bankroll_tx ORDER BY at DESC, id DESC")?;
+    let mut st = conn.prepare(
+        "SELECT id, room, at, kind, amount_cents, note FROM bankroll_tx ORDER BY at DESC, id DESC",
+    )?;
     let rows = st.query_map([], |r| {
-        Ok(Tx { id: r.get(0)?, room: r.get(1)?, at: r.get(2)?, kind: r.get(3)?, amount_cents: r.get(4)?, note: r.get(5)? })
+        Ok(Tx {
+            id: r.get(0)?,
+            room: r.get(1)?,
+            at: r.get(2)?,
+            kind: r.get(3)?,
+            amount_cents: r.get(4)?,
+            note: r.get(5)?,
+        })
     })?;
     Ok(rows.collect::<Result<_, _>>()?)
 }
@@ -116,22 +161,59 @@ mod tests {
     #[test]
     fn notes_colours_and_movements() {
         let conn = crate::open_in_memory().unwrap();
-        conn.execute("INSERT INTO players (room, name) VALUES ('winamax', 'Villain')", []).unwrap();
+        conn.execute(
+            "INSERT INTO players (room, name) VALUES ('winamax', 'Villain')",
+            [],
+        )
+        .unwrap();
         add_note(&conn, "winamax", "Villain", "  paie trop large  ", 10).unwrap();
         add_note(&conn, "winamax", "Villain", "bluffe la river", 20).unwrap();
         assert!(add_note(&conn, "winamax", "Villain", "  ", 30).is_err());
         set_colour(&conn, "winamax", "Villain", Some("red")).unwrap();
         let n = notes(&conn, "winamax", "Villain").unwrap();
         assert_eq!(n.colour.as_deref(), Some("red"));
-        assert_eq!(n.notes.iter().map(|x| x.text.as_str()).collect::<Vec<_>>(), ["bluffe la river", "paie trop large"]);
+        assert_eq!(
+            n.notes.iter().map(|x| x.text.as_str()).collect::<Vec<_>>(),
+            ["bluffe la river", "paie trop large"]
+        );
         delete_note(&conn, n.notes[0].id).unwrap();
         assert_eq!(notes(&conn, "winamax", "Villain").unwrap().notes.len(), 1);
 
-        let dep = Tx { id: 0, room: "winamax".into(), at: 1, kind: "deposit".into(), amount_cents: 5000, note: String::new() };
+        let dep = Tx {
+            id: 0,
+            room: "winamax".into(),
+            at: 1,
+            kind: "deposit".into(),
+            amount_cents: 5000,
+            note: String::new(),
+        };
         add_tx(&conn, &dep).unwrap();
-        add_tx(&conn, &Tx { kind: "withdrawal".into(), amount_cents: 2000, at: 2, ..dep.clone() }).unwrap();
-        assert!(add_tx(&conn, &Tx { amount_cents: 0, ..dep.clone() }).is_err());
-        assert!(add_tx(&conn, &Tx { kind: "theft".into(), ..dep.clone() }).is_err());
+        add_tx(
+            &conn,
+            &Tx {
+                kind: "withdrawal".into(),
+                amount_cents: 2000,
+                at: 2,
+                ..dep.clone()
+            },
+        )
+        .unwrap();
+        assert!(add_tx(
+            &conn,
+            &Tx {
+                amount_cents: 0,
+                ..dep.clone()
+            }
+        )
+        .is_err());
+        assert!(add_tx(
+            &conn,
+            &Tx {
+                kind: "theft".into(),
+                ..dep.clone()
+            }
+        )
+        .is_err());
         let all = list_tx(&conn).unwrap();
         assert_eq!(all.iter().map(signed).sum::<i64>(), 3000);
     }

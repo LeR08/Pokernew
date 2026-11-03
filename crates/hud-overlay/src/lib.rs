@@ -3,7 +3,7 @@
 //! * [`WindowInfo`]: a top-level window as the OS reports it (title, class,
 //!   program, client rectangle in physical pixels, DPI scale);
 //! * [`source`]: where windows come from — Win32 on Windows (EnumWindows +
-//!   SetWinEventHook), nothing elsewhere, plus simulated tables;
+//!   SetWinEventHook), nothing elsewhere;
 //! * [`matching`]: which window is which table, from the tables of the
 //!   recently imported hands (pure logic, tested).
 
@@ -24,7 +24,7 @@ pub struct Rect {
 #[derive(Debug, Clone, PartialEq, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct WindowInfo {
-    /// Native handle (HWND) or a simulated id.
+    /// Native handle (HWND).
     pub id: u64,
     pub title: String,
     pub class: String,
@@ -36,5 +36,4 @@ pub struct WindowInfo {
     pub scale: f64,
     pub minimized: bool,
     pub visible: bool,
-    pub simulated: bool,
 }

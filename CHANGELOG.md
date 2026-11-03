@@ -9,9 +9,14 @@ Format: [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/). Versions follo
 - Une fenêtre HUD transparente, toujours au-dessus et transparente aux clics par table ; stats historiques par siège, rafraîchies à chaque import ; popup détaillé avec les notes.
 - Dispositions `hud/*.toml` (stats, positions par taille de table, opacité…), mode édition par glisser-déposer, raccourcis globaux (Ctrl+Alt+H, Ctrl+Alt+E).
 - Mode jeu (fair-play) : modules d'étude verrouillés quand une table est ouverte, déverrouillés 60 s après la dernière.
-- Module HUD : table simulée, tables détectées, inspecteur de fenêtres.
+- Module HUD : tables détectées automatiquement, **édition du HUD table par table** (« Modifier le HUD de cette table » → barre « Terminer » sur la table), masquer le HUD d'une table, afficher son propre panneau, inspecteur de fenêtres.
+
+### Retiré / Removed
+- Mode « table simulée » (remplacé par la détection automatique).
 
 ### Corrigé / Fixed
+- Titres de fenêtre Winamax réels (`Winamax Monster Stack(1196250156)(#0000)`) reconnus : comparaison normalisée (casse, espaces, ponctuation).
+- Joueurs assis sans être servis gardés dans la main (panneau HUD de chaque adversaire).
 - Onglet Adversaires vide quand un compte héros était sélectionné.
 
 ## Phase 2 : Tracker

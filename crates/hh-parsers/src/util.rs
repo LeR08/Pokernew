@@ -11,11 +11,19 @@ pub fn parse_cents(s: &str) -> Option<i64> {
         Some((i, f)) => (i, f),
         None => (s, ""),
     };
-    if int.is_empty() || !int.bytes().all(|b| b.is_ascii_digit()) || frac.len() > 2 || !frac.bytes().all(|b| b.is_ascii_digit()) {
+    if int.is_empty()
+        || !int.bytes().all(|b| b.is_ascii_digit())
+        || frac.len() > 2
+        || !frac.bytes().all(|b| b.is_ascii_digit())
+    {
         return None;
     }
     let i: i64 = int.parse().ok()?;
-    let f: i64 = if frac.is_empty() { 0 } else { format!("{frac:0<2}").parse().ok()? };
+    let f: i64 = if frac.is_empty() {
+        0
+    } else {
+        format!("{frac:0<2}").parse().ok()?
+    };
     Some(i * 100 + f)
 }
 
@@ -23,9 +31,17 @@ pub fn parse_cents(s: &str) -> Option<i64> {
 pub fn parse_utc(s: &str) -> Option<i64> {
     let (date, time) = s.split_once(' ')?;
     let mut d = date.split('/');
-    let (y, m, day): (i64, i64, i64) = (d.next()?.parse().ok()?, d.next()?.parse().ok()?, d.next()?.parse().ok()?);
+    let (y, m, day): (i64, i64, i64) = (
+        d.next()?.parse().ok()?,
+        d.next()?.parse().ok()?,
+        d.next()?.parse().ok()?,
+    );
     let mut t = time.split(':');
-    let (hh, mm, ss): (i64, i64, i64) = (t.next()?.parse().ok()?, t.next()?.parse().ok()?, t.next()?.parse().ok()?);
+    let (hh, mm, ss): (i64, i64, i64) = (
+        t.next()?.parse().ok()?,
+        t.next()?.parse().ok()?,
+        t.next()?.parse().ok()?,
+    );
     if !(1..=12).contains(&m) || !(1..=31).contains(&day) || hh > 23 || mm > 59 || ss > 60 {
         return None;
     }
@@ -80,8 +96,8 @@ pub struct Decoded {
 }
 
 const CP1252_80_9F: [char; 32] = [
-    '€', '\u{81}', '‚', 'ƒ', '„', '…', '†', '‡', 'ˆ', '‰', 'Š', '‹', 'Œ', '\u{8d}', 'Ž', '\u{8f}', '\u{90}', '‘', '’', '“',
-    '”', '•', '–', '—', '˜', '™', 'š', '›', 'œ', '\u{9d}', 'ž', 'Ÿ',
+    '€', '\u{81}', '‚', 'ƒ', '„', '…', '†', '‡', 'ˆ', '‰', 'Š', '‹', 'Œ', '\u{8d}', 'Ž', '\u{8f}',
+    '\u{90}', '‘', '’', '“', '”', '•', '–', '—', '˜', '™', 'š', '›', 'œ', '\u{9d}', 'ž', 'Ÿ',
 ];
 
 fn cp1252(b: u8) -> char {
@@ -95,7 +111,11 @@ impl Decoded {
     pub fn new(bytes: Vec<u8>) -> Self {
         let len = bytes.len();
         match String::from_utf8(bytes) {
-            Ok(text) => Decoded { text, map: None, len },
+            Ok(text) => Decoded {
+                text,
+                map: None,
+                len,
+            },
             Err(e) => {
                 let bytes = e.into_bytes();
                 let mut text = String::with_capacity(len + len / 8);
@@ -125,7 +145,11 @@ impl Decoded {
                         }
                     }
                 }
-                Decoded { text, map: Some(map), len }
+                Decoded {
+                    text,
+                    map: Some(map),
+                    len,
+                }
             }
         }
     }

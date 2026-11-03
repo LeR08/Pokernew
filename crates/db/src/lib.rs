@@ -37,7 +37,11 @@ pub const PARSER_VERSION: i64 = 3;
 
 fn requeue_errors_if_parsers_changed(conn: &Connection) -> Result<(), DbError> {
     let stored: Option<i64> = conn
-        .query_row("SELECT value FROM meta WHERE key = 'parser_version'", [], |r| r.get::<_, String>(0))
+        .query_row(
+            "SELECT value FROM meta WHERE key = 'parser_version'",
+            [],
+            |r| r.get::<_, String>(0),
+        )
         .ok()
         .and_then(|v| v.parse().ok());
     if stored != Some(PARSER_VERSION) {
@@ -140,8 +144,11 @@ pub struct DbStats {
 
 pub fn stats(conn: &Connection) -> Result<DbStats, DbError> {
     let one = |sql: &str| conn.query_row(sql, [], |r| r.get::<_, i64>(0));
-    let (first, last): (Option<i64>, Option<i64>) =
-        conn.query_row("SELECT MIN(played_at), MAX(played_at) FROM hands", [], |r| Ok((r.get(0)?, r.get(1)?)))?;
+    let (first, last): (Option<i64>, Option<i64>) = conn.query_row(
+        "SELECT MIN(played_at), MAX(played_at) FROM hands",
+        [],
+        |r| Ok((r.get(0)?, r.get(1)?)),
+    )?;
     Ok(DbStats {
         hands: one("SELECT COUNT(*) FROM hands")?,
         hero_hands: one("SELECT COUNT(*) FROM hand_players WHERE is_hero = 1")?,

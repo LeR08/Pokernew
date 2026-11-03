@@ -21,7 +21,10 @@ pub struct Sql {
 
 impl Sql {
     pub fn raw(text: impl Into<String>) -> Self {
-        Self { text: text.into(), params: vec![] }
+        Self {
+            text: text.into(),
+            params: vec![],
+        }
     }
     fn push(&mut self, other: Sql) {
         self.text.push_str(&other.text);
@@ -38,25 +41,44 @@ pub struct CompileError(pub String);
 
 /// Per-hand fields usable in `where` conditions.
 pub const ROW_FIELDS: &[(&str, &str, &str)] = &[
-    ("position", "hp.position", "UTG, UTG1, UTG2, MP, LJ, HJ, CO, BTN, SB, BB"),
+    (
+        "position",
+        "hp.position",
+        "UTG, UTG1, UTG2, MP, LJ, HJ, CO, BTN, SB, BB",
+    ),
     ("game_type", "h.game_type", "'cash', 'mtt', 'sng', 'spin'"),
     ("room", "h.room", "'winamax'"),
-    ("big_blind", "h.big_blind", "big blind (cents in cash, chips in tournaments)"),
+    (
+        "big_blind",
+        "h.big_blind",
+        "big blind (cents in cash, chips in tournaments)",
+    ),
     ("ante", "h.ante", "ante"),
     ("level", "h.level", "blind level (tournaments)"),
     ("max_seats", "h.max_seats", "table size: 2, 3, 6, 9…"),
     ("players", "h.n_players", "players dealt in"),
     ("stack_bb", "hp.stack_bb", "starting stack in big blinds"),
     ("showdown", "h.showdown", "1 if the hand reached showdown"),
-    ("went_to_showdown", "hp.went_to_showdown", "1 if the player reached showdown"),
-    ("net_won_bb", "hp.net_won_bb", "result of the hand in big blinds"),
+    (
+        "went_to_showdown",
+        "hp.went_to_showdown",
+        "1 if the player reached showdown",
+    ),
+    (
+        "net_won_bb",
+        "hp.net_won_bb",
+        "result of the hand in big blinds",
+    ),
 ];
 
 /// Per-hand numbers that can also be summed in formulas.
-pub const SUM_FIELDS: &[(&str, &str)] = &[("net_won_bb", "hp.net_won_bb"), ("net_won", "hp.net_won")];
+pub const SUM_FIELDS: &[(&str, &str)] =
+    &[("net_won_bb", "hp.net_won_bb"), ("net_won", "hp.net_won")];
 
 fn counter_col(name: &str) -> Option<String> {
-    lps_db::counters::COUNTERS.contains(&name).then(|| format!("s.{name}"))
+    lps_db::counters::COUNTERS
+        .contains(&name)
+        .then(|| format!("s.{name}"))
 }
 
 fn row_col(name: &str) -> Option<String> {
@@ -68,7 +90,12 @@ fn row_col(name: &str) -> Option<String> {
 }
 
 fn sum_col(name: &str) -> Option<String> {
-    counter_col(name).or_else(|| SUM_FIELDS.iter().find(|(n, _)| *n == name).map(|(_, c)| (*c).to_string()))
+    counter_col(name).or_else(|| {
+        SUM_FIELDS
+            .iter()
+            .find(|(n, _)| *n == name)
+            .map(|(_, c)| (*c).to_string())
+    })
 }
 
 /// Compiles a per-hand condition.
@@ -84,7 +111,8 @@ pub fn condition(e: &Expr) -> Result<Sql, CompileError> {
             out.lit("?");
         }
         Expr::Ident(name) => {
-            let col = row_col(name).ok_or_else(|| CompileError(format!("unknown field '{name}'")))?;
+            let col =
+                row_col(name).ok_or_else(|| CompileError(format!("unknown field '{name}'")))?;
             out.lit(&col);
         }
         Expr::Neg(x) => {
@@ -109,7 +137,11 @@ pub fn condition(e: &Expr) -> Result<Sql, CompileError> {
     Ok(out)
 }
 
-fn call(name: &str, args: &[Expr], f: &dyn Fn(&Expr) -> Result<Sql, CompileError>) -> Result<Sql, CompileError> {
+fn call(
+    name: &str,
+    args: &[Expr],
+    f: &dyn Fn(&Expr) -> Result<Sql, CompileError>,
+) -> Result<Sql, CompileError> {
     match (name, args) {
         ("if", [c, a, b]) => {
             let mut out = Sql::raw("(CASE WHEN ");
@@ -121,13 +153,20 @@ fn call(name: &str, args: &[Expr], f: &dyn Fn(&Expr) -> Result<Sql, CompileError
             out.lit(" END)");
             Ok(out)
         }
-        ("if", _) => Err(CompileError("if() takes 3 arguments: if(condition, then, else)".into())),
-        _ => Err(CompileError(format!("unknown function '{name}' (only if() exists)"))),
+        ("if", _) => Err(CompileError(
+            "if() takes 3 arguments: if(condition, then, else)".into(),
+        )),
+        _ => Err(CompileError(format!(
+            "unknown function '{name}' (only if() exists)"
+        ))),
     }
 }
 
 /// Inside `if()` the condition uses the same context as the surrounding formula.
-fn condition_any(c: &Expr, f: &dyn Fn(&Expr) -> Result<Sql, CompileError>) -> Result<Sql, CompileError> {
+fn condition_any(
+    c: &Expr,
+    f: &dyn Fn(&Expr) -> Result<Sql, CompileError>,
+) -> Result<Sql, CompileError> {
     f(c)
 }
 
@@ -140,12 +179,18 @@ pub fn formula(e: &Expr, filter: Option<&Sql>) -> Result<Sql, CompileError> {
             out.params.push(Value::Real(*n));
             out.lit("?");
         }
-        Expr::Str(_) => return Err(CompileError("text is only allowed in conditions (where)".into())),
+        Expr::Str(_) => {
+            return Err(CompileError(
+                "text is only allowed in conditions (where)".into(),
+            ))
+        }
         Expr::Ident(name) => {
             let col = match sum_col(name) {
                 Some(c) => c,
                 None if row_col(name).is_some() => {
-                    return Err(CompileError(format!("'{name}' is a per-hand field: use it in 'where', not in the formula")))
+                    return Err(CompileError(format!(
+                        "'{name}' is a per-hand field: use it in 'where', not in the formula"
+                    )))
                 }
                 None => return Err(CompileError(format!("unknown counter '{name}'"))),
             };
@@ -195,7 +240,10 @@ mod tests {
     #[test]
     fn simple_ratio() {
         let s = formula(&parse("cnt_vpip / cnt_hands").unwrap(), None).unwrap();
-        assert_eq!(s.text, "(SUM(s.cnt_vpip) * 1.0 / NULLIF(SUM(s.cnt_hands), 0))");
+        assert_eq!(
+            s.text,
+            "(SUM(s.cnt_vpip) * 1.0 / NULLIF(SUM(s.cnt_hands), 0))"
+        );
         assert!(s.params.is_empty());
     }
 
@@ -211,7 +259,9 @@ mod tests {
 
     #[test]
     fn injection_is_impossible() {
-        let w = condition(&parse("position = 'BB''; DROP TABLE hands; --'").unwrap_or(Expr::Str("x".into())));
+        let w = condition(
+            &parse("position = 'BB''; DROP TABLE hands; --'").unwrap_or(Expr::Str("x".into())),
+        );
         // Either a syntax error or a bound string: never raw SQL.
         if let Ok(w) = w {
             assert!(!w.text.contains("DROP"));
@@ -220,9 +270,18 @@ mod tests {
 
     #[test]
     fn helpful_errors() {
-        assert!(formula(&parse("position").unwrap(), None).unwrap_err().0.contains("where"));
-        assert!(formula(&parse("cnt_nope").unwrap(), None).unwrap_err().0.contains("unknown counter"));
-        assert!(condition(&parse("nope = 1").unwrap()).unwrap_err().0.contains("unknown field"));
+        assert!(formula(&parse("position").unwrap(), None)
+            .unwrap_err()
+            .0
+            .contains("where"));
+        assert!(formula(&parse("cnt_nope").unwrap(), None)
+            .unwrap_err()
+            .0
+            .contains("unknown counter"));
+        assert!(condition(&parse("nope = 1").unwrap())
+            .unwrap_err()
+            .0
+            .contains("unknown field"));
         assert!(formula(&parse("max(1)").unwrap(), None).is_err());
         assert!(formula(&parse("'a'").unwrap(), None).is_err());
     }

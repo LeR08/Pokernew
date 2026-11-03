@@ -10,10 +10,11 @@
 //! * **Play mode** (fair-play, not a setting): as soon as one real table is
 //!   detected, study modules are locked; they unlock [`UNLOCK_AFTER`] after
 //!   the last table closed.
-//! * Simulated tables let the user design layouts without playing (and let
-//!   us test on systems without Win32 tracking).
+//! * Each table can be **edited on its own** (its overlay takes the mouse so
+//!   panels can be dragged on the real table, with a "Done" button) or hidden.
+//! * Windows of this app are never taken for tables.
 
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::mpsc::{self, RecvTimeoutError};
 use std::sync::{Arc, Mutex};
@@ -23,7 +24,9 @@ use lps_hud_overlay::matching::{match_tables, ActiveTable, RoomRules, TableWindo
 use lps_hud_overlay::{source, Rect, WindowInfo};
 use serde::Serialize;
 use serde_json::Value;
-use tauri::{AppHandle, Emitter, Manager, PhysicalPosition, PhysicalSize, WebviewUrl, WebviewWindowBuilder};
+use tauri::{
+    AppHandle, Emitter, Manager, PhysicalPosition, PhysicalSize, WebviewUrl, WebviewWindowBuilder,
+};
 
 use crate::state::AppState;
 
@@ -49,7 +52,11 @@ pub struct HudStatus {
     /// Seconds before study modules unlock (0 when unlocked or still playing).
     pub unlock_in: u64,
     pub tables: Vec<TableWindow>,
-    /// Windows that look like poker clients but matched no table (for the inspector).
+    /// Table being edited on its own (window id).
+    pub edit_table: Option<u64>,
+    /// Tables whose HUD the user hid (window ids).
+    pub hidden: Vec<u64>,
+    /// Windows that matched no table (for the inspector).
     pub windows: Vec<WindowInfo>,
 }
 
@@ -63,7 +70,22 @@ struct Inner {
     overlays: HashMap<String, (String, String, Rect)>,
     matches: Vec<TableWindow>,
     windows: Vec<WindowInfo>,
-    simulated: Vec<(WindowInfo, ActiveTable)>,
+    edit_table: Option<u64>,
+    hidden: HashSet<u64>,
+}
+
+impl Inner {
+    fn editing(&self, window_id: u64) -> bool {
+        self.edit || self.edit_table == Some(window_id)
+    }
+}
+
+/// File name of our own executable (its windows are never tables).
+fn own_process() -> String {
+    std::env::current_exe()
+        .ok()
+        .and_then(|p| p.file_name().map(|n| n.to_string_lossy().into_owned()))
+        .unwrap_or_default()
 }
 
 pub struct HudService {
@@ -72,8 +94,8 @@ pub struct HudService {
     pub play_mode: Arc<AtomicBool>,
 }
 
-/// Fair-play rule: playing while a real table is open, and for
-/// [`UNLOCK_AFTER`] after the last one closed. Simulated tables never count.
+/// Fair-play rule: playing while a table is open, and for
+/// [`UNLOCK_AFTER`] after the last one closed.
 pub fn is_play_mode(real_table_open: bool, last_real_table: Option<Instant>) -> bool {
     real_table_open || last_real_table.is_some_and(|t| t.elapsed() < UNLOCK_AFTER)
 }
@@ -87,7 +109,10 @@ impl HudService {
         let (tx, rx) = mpsc::channel::<Msg>();
         let svc = Arc::new(Self {
             tx: Mutex::new(tx.clone()),
-            inner: Mutex::new(Inner { visible: true, ..Default::default() }),
+            inner: Mutex::new(Inner {
+                visible: true,
+                ..Default::default()
+            }),
             play_mode: Arc::new(AtomicBool::new(false)),
         });
         let wtx = Mutex::new(tx);
@@ -97,7 +122,9 @@ impl HudService {
             }
         });
         let svc2 = svc.clone();
-        let _ = std::thread::Builder::new().name("lps-hud".into()).spawn(move || svc2.run(app, rx));
+        let _ = std::thread::Builder::new()
+            .name("lps-hud".into())
+            .spawn(move || svc2.run(app, rx));
         svc
     }
 
@@ -133,11 +160,22 @@ impl HudService {
                 let v = state.store.get("rooms", &id)?;
                 Some(RoomRules {
                     room: id,
-                    processes: v["processes"].as_array().map(|a| a.iter().filter_map(|x| x.as_str().map(String::from)).collect()).unwrap_or_default(),
+                    processes: v["processes"]
+                        .as_array()
+                        .map(|a| {
+                            a.iter()
+                                .filter_map(|x| x.as_str().map(String::from))
+                                .collect()
+                        })
+                        .unwrap_or_default(),
                     title_pattern: v["title_pattern"]
                         .as_str()
                         .filter(|p| !p.is_empty())
-                        .and_then(|p| regex::Regex::new(p).map_err(|e| log::warn!("bad title_pattern: {e}")).ok()),
+                        .and_then(|p| {
+                            regex::Regex::new(p)
+                                .map_err(|e| log::warn!("bad title_pattern: {e}"))
+                                .ok()
+                        }),
                     hud_allowed: v["hud_allowed"].as_bool().unwrap_or(false),
                 })
             })
@@ -146,13 +184,24 @@ impl HudService {
 
     fn refresh(&self, app: &AppHandle, data_changed: bool) {
         let state = app.state::<AppState>();
-        let now = std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).map(|d| d.as_secs() as i64).unwrap_or(0);
-        let mut windows = source::snapshot();
-        let mut tables: Vec<ActiveTable> = state
+        let now = std::time::SystemTime::now()
+            .duration_since(std::time::UNIX_EPOCH)
+            .map(|d| d.as_secs() as i64)
+            .unwrap_or(0);
+        let own = own_process();
+        let windows: Vec<WindowInfo> = source::snapshot()
+            .into_iter()
+            .filter(|w| !w.process.eq_ignore_ascii_case(&own))
+            .collect();
+        let tables: Vec<ActiveTable> = state
             .import
             .as_ref()
             .and_then(|svc| {
-                svc.with_reader(|c| lps_stats_engine::hud::recent_tables(c, now - RECENT).map_err(lps_db::DbError::Sqlite)).ok()
+                svc.with_reader(|c| {
+                    lps_stats_engine::hud::recent_tables(c, now - RECENT)
+                        .map_err(lps_db::DbError::Sqlite)
+                })
+                .ok()
             })
             .unwrap_or_default()
             .into_iter()
@@ -166,15 +215,13 @@ impl HudService {
             })
             .collect();
         let rules = Self::rules(&state);
-        let Ok(mut inner) = self.inner.lock() else { return };
-        for (w, t) in &inner.simulated {
-            windows.push(w.clone());
-            tables.push(t.clone());
-        }
+        let Ok(mut inner) = self.inner.lock() else {
+            return;
+        };
         let matches = match_tables(&windows, &tables, &rules);
 
-        // ---- Play mode (real tables only) ----
-        let real = matches.iter().any(|m| !m.window.simulated);
+        // ---- Play mode ----
+        let real = !matches.is_empty();
         if real {
             inner.last_real_table = Some(Instant::now());
         }
@@ -188,18 +235,30 @@ impl HudService {
 
         // ---- Overlays ----
         let allowed = |room: &str| rules.iter().any(|r| r.room == room && r.hud_allowed);
-        let wanted: Vec<&TableWindow> =
-            if inner.visible { matches.iter().filter(|m| allowed(&m.table.room)).collect() } else { vec![] };
-        let wanted_labels: Vec<String> = wanted.iter().map(|m| overlay_label(m.window.id)).collect();
-        let stale: Vec<String> = inner.overlays.keys().filter(|l| !wanted_labels.contains(l)).cloned().collect();
+        let wanted: Vec<&TableWindow> = if inner.visible {
+            matches
+                .iter()
+                .filter(|m| allowed(&m.table.room) && !inner.hidden.contains(&m.window.id))
+                .collect()
+        } else {
+            vec![]
+        };
+        let wanted_labels: Vec<String> =
+            wanted.iter().map(|m| overlay_label(m.window.id)).collect();
+        let stale: Vec<String> = inner
+            .overlays
+            .keys()
+            .filter(|l| !wanted_labels.contains(l))
+            .cloned()
+            .collect();
         for label in stale {
             if let Some(w) = app.get_webview_window(&label) {
                 let _ = w.close();
             }
             inner.overlays.remove(&label);
         }
-        let edit = inner.edit;
         for m in wanted {
+            let editing = inner.editing(m.window.id);
             let label = overlay_label(m.window.id);
             let r = m.window.client;
             match app.get_webview_window(&label) {
@@ -211,28 +270,35 @@ impl HudService {
                     }
                 }
                 None => {
-                    let built = WebviewWindowBuilder::new(app, &label, WebviewUrl::App(format!("index.html#/hud/{}", m.window.id).into()))
-                        .title("HUD")
-                        .decorations(false)
-                        .transparent(true)
-                        .shadow(false)
-                        .always_on_top(true)
-                        .skip_taskbar(true)
-                        .resizable(false)
-                        .focused(false)
-                        .visible(true)
-                        .build();
+                    let built = WebviewWindowBuilder::new(
+                        app,
+                        &label,
+                        WebviewUrl::App(format!("index.html#/hud/{}", m.window.id).into()),
+                    )
+                    .title("HUD")
+                    .decorations(false)
+                    .transparent(true)
+                    .shadow(false)
+                    .always_on_top(true)
+                    .skip_taskbar(true)
+                    .resizable(false)
+                    .focused(false)
+                    .visible(true)
+                    .build();
                     match built {
                         Ok(w) => {
                             let _ = w.set_position(PhysicalPosition::new(r.x, r.y));
-                            let _ = w.set_size(PhysicalSize::new(r.w.max(1) as u32, r.h.max(1) as u32));
-                            let _ = w.set_ignore_cursor_events(!edit);
+                            let _ =
+                                w.set_size(PhysicalSize::new(r.w.max(1) as u32, r.h.max(1) as u32));
+                            let _ = w.set_ignore_cursor_events(!editing);
                         }
                         Err(e) => log::warn!("cannot open HUD window: {e}"),
                     }
                 }
             }
-            inner.overlays.insert(label, (m.table.room.clone(), m.table.table_name.clone(), r));
+            inner
+                .overlays
+                .insert(label, (m.table.room.clone(), m.table.table_name.clone(), r));
         }
         let changed = inner.matches != matches;
         inner.matches = matches;
@@ -246,10 +312,20 @@ impl HudService {
     pub fn status(&self) -> HudStatus {
         let inner = self.inner.lock().ok();
         let Some(i) = inner else {
-            return HudStatus { supported: source::supported(), visible: false, edit: false, play_mode: false, unlock_in: 0, tables: vec![], windows: vec![] };
+            return HudStatus {
+                supported: source::supported(),
+                visible: false,
+                edit: false,
+                play_mode: false,
+                unlock_in: 0,
+                tables: vec![],
+                edit_table: None,
+                hidden: vec![],
+                windows: vec![],
+            };
         };
         let matched: Vec<u64> = i.matches.iter().map(|m| m.window.id).collect();
-        let unlock_in = match (i.play_mode, i.matches.iter().any(|m| !m.window.simulated), i.last_real_table) {
+        let unlock_in = match (i.play_mode, !i.matches.is_empty(), i.last_real_table) {
             (true, false, Some(t)) => UNLOCK_AFTER.saturating_sub(t.elapsed()).as_secs(),
             _ => 0,
         };
@@ -260,14 +336,31 @@ impl HudService {
             play_mode: i.play_mode,
             unlock_in,
             tables: i.matches.clone(),
-            windows: i.windows.iter().filter(|w| !matched.contains(&w.id) && !w.simulated && w.client.w > 200).cloned().collect(),
+            edit_table: i.edit_table,
+            hidden: i.hidden.iter().copied().collect(),
+            windows: i
+                .windows
+                .iter()
+                .filter(|w| !matched.contains(&w.id) && w.client.w > 200)
+                .cloned()
+                .collect(),
         }
     }
 
-    /// Which table an overlay shows.
+    /// Which table an overlay shows, and whether it is being edited.
     pub fn overlay_table(&self, window_id: u64) -> Option<(String, String, u8, bool)> {
         let i = self.inner.lock().ok()?;
-        i.matches.iter().find(|m| m.window.id == window_id).map(|m| (m.table.room.clone(), m.table.table_name.clone(), m.table.max_seats, m.window.simulated))
+        i.matches
+            .iter()
+            .find(|m| m.window.id == window_id)
+            .map(|m| {
+                (
+                    m.table.room.clone(),
+                    m.table.table_name.clone(),
+                    m.table.max_seats,
+                    i.editing(window_id),
+                )
+            })
     }
 
     pub fn set_visible(&self, app: &AppHandle, v: bool) {
@@ -283,75 +376,77 @@ impl HudService {
         self.set_visible(app, v);
     }
 
-    pub fn set_edit(&self, app: &AppHandle, edit: bool) {
-        let labels: Vec<String> = match self.inner.lock() {
-            Ok(mut i) => {
-                i.edit = edit;
-                i.overlays.keys().cloned().collect()
-            }
+    fn apply_edit(&self, app: &AppHandle) {
+        let states: Vec<(String, bool)> = match self.inner.lock() {
+            Ok(i) => i
+                .matches
+                .iter()
+                .map(|m| (overlay_label(m.window.id), i.editing(m.window.id)))
+                .collect(),
             Err(_) => return,
         };
-        for l in labels {
+        for (l, editing) in states {
             if let Some(w) = app.get_webview_window(&l) {
-                let _ = w.set_ignore_cursor_events(!edit);
+                let _ = w.set_ignore_cursor_events(!editing);
+                if editing {
+                    let _ = w.set_focus();
+                }
             }
         }
-        let _ = app.emit("hud://edit", edit);
+        let _ = app.emit("hud://edit", ());
+        let _ = app.emit("hud://status", ());
+    }
+
+    pub fn set_edit(&self, app: &AppHandle, edit: bool) {
+        if let Ok(mut i) = self.inner.lock() {
+            i.edit = edit;
+            if !edit {
+                i.edit_table = None;
+            }
+        }
+        self.apply_edit(app);
+    }
+
+    /// Edit one table's HUD on the table itself (None = stop).
+    pub fn set_edit_table(&self, app: &AppHandle, window_id: Option<u64>) {
+        if let Ok(mut i) = self.inner.lock() {
+            i.edit_table = window_id;
+            if window_id.is_none() {
+                i.edit = false;
+            }
+        }
+        self.apply_edit(app);
+    }
+
+    /// Hides (or shows again) the HUD of one table.
+    pub fn set_hidden(&self, app: &AppHandle, window_id: u64, hidden: bool) {
+        if let Ok(mut i) = self.inner.lock() {
+            if hidden {
+                i.hidden.insert(window_id);
+            } else {
+                i.hidden.remove(&window_id);
+            }
+        }
+        self.send(Msg::Config);
         let _ = app.emit("hud://status", ());
     }
 
     pub fn toggle_edit(&self, app: &AppHandle) {
-        let e = self.inner.lock().map(|i| !i.edit).unwrap_or(false);
+        let e = self
+            .inner
+            .lock()
+            .map(|i| !(i.edit || i.edit_table.is_some()))
+            .unwrap_or(false);
         self.set_edit(app, e);
-    }
-
-    /// Adds a simulated table of `seats` players using the most recent table of that size.
-    pub fn simulate(&self, app: &AppHandle, seats: u8) -> Result<String, String> {
-        let state = app.state::<AppState>();
-        let svc = state.import.as_ref().ok_or("database unavailable")?;
-        let all = svc.with_reader(|c| lps_stats_engine::hud::recent_tables(c, 0).map_err(lps_db::DbError::Sqlite)).map_err(|e| e.to_string())?;
-        let t = all.into_iter().find(|t| t.max_seats == seats).ok_or_else(|| format!("no imported {seats}-max table yet"))?;
-        let mut inner = self.inner.lock().map_err(|_| "lock")?;
-        let id = 1_000_000 + inner.simulated.len() as u64;
-        let n = inner.simulated.len() as i32;
-        let window = WindowInfo {
-            id,
-            title: format!("[simulation] {}", t.table_name),
-            class: "simulation".into(),
-            process: "local-poker-suite".into(),
-            client: Rect { x: 80 + 40 * n, y: 80 + 40 * n, w: 800, h: 560 },
-            scale: 1.0,
-            minimized: false,
-            visible: true,
-            simulated: true,
-        };
-        inner.simulated.push((
-            window,
-            ActiveTable {
-                room: t.room,
-                table_name: t.table_name.clone(),
-                tournament_id: t.tournament_id,
-                table_number: t.table_number,
-                max_seats: t.max_seats,
-                last_hand_at: t.last_hand_at,
-            },
-        ));
-        drop(inner);
-        self.send(Msg::Config);
-        Ok(t.table_name)
-    }
-
-    pub fn clear_simulated(&self) {
-        if let Ok(mut i) = self.inner.lock() {
-            i.simulated.clear();
-        }
-        self.send(Msg::Config);
     }
 }
 
 /// "Ctrl+Alt+H" from hotkeys.toml -> the plugin's format ("Meta" is "Super").
 pub fn shortcut_string(s: &str) -> String {
-    s.split('+').map(|p| if p == "Meta" { "Super" } else { p }).collect::<Vec<_>>().join("+")
+    s.split('+')
+        .map(|p| if p == "Meta" { "Super" } else { p })
+        .collect::<Vec<_>>()
+        .join("+")
 }
 
 pub fn hotkey(state: &AppState, action: &str, default: &str) -> String {
@@ -371,7 +466,11 @@ pub fn layout(state: &AppState) -> Value {
         .and_then(|p| state.store.get("profiles", &p))
         .and_then(|p| p["hud"].as_str().map(String::from))
         .unwrap_or_else(|| "standard".into());
-    state.store.get("hud", &profile).or_else(|| state.store.get("hud", "standard")).unwrap_or(Value::Null)
+    state
+        .store
+        .get("hud", &profile)
+        .or_else(|| state.store.get("hud", "standard"))
+        .unwrap_or(Value::Null)
 }
 
 pub fn layout_id(state: &AppState) -> String {
@@ -392,10 +491,19 @@ mod tests {
     #[test]
     fn play_mode_rule() {
         assert!(super::is_play_mode(true, None));
-        assert!(!super::is_play_mode(false, None), "never played: study mode");
-        assert!(super::is_play_mode(false, Some(Instant::now())), "just closed: still locked");
+        assert!(
+            !super::is_play_mode(false, None),
+            "never played: study mode"
+        );
+        assert!(
+            super::is_play_mode(false, Some(Instant::now())),
+            "just closed: still locked"
+        );
         let long_ago = Instant::now().checked_sub(Duration::from_secs(61)).unwrap();
-        assert!(!super::is_play_mode(false, Some(long_ago)), "unlocked after 60 s");
+        assert!(
+            !super::is_play_mode(false, Some(long_ago)),
+            "unlocked after 60 s"
+        );
     }
 
     #[test]

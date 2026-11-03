@@ -81,3 +81,13 @@ n'apparaît pas. Corrections :
   et reçoivent un panneau : c'est la cause probable du vilain sans HUD ;
 - case « Afficher mon propre panneau » dans le module HUD, cochée par défaut dans les nouvelles dispositions ;
 - le HUD se redessine dès que la disposition, les stats ou le profil changent.
+
+## Deuxième retour (3 nov. 2026)
+
+* Retour : la table « Winamax Monster Stack(1196250156)(#0000) » n'était pas reconnue, un panneau adversaire manquait, le panneau héros était absent ; demande de retirer la simulation et de pouvoir modifier le HUD table par table.
+* Fait :
+  * rapprochement titre ↔ table **normalisé** (minuscules, sans espaces ni ponctuation) avec les clés « nom #numéro » et « id-tournoi #numéro » ; le numéro de table est pris tel qu'il est écrit dans les mains (pas de « #43 » qui attrape « #0043 » d'une autre table) ;
+  * joueurs assis mais non servis conservés (`hand_waiting`, migration v6) → ils ont leur panneau ;
+  * `show_hero = true` par défaut, case « Afficher mon panneau » ;
+  * simulation retirée ; chaque table détectée a « Modifier le HUD de cette table » (seule cette fenêtre devient cliquable, barre « Terminer » dessus) et « Masquer » ;
+  * tests : 9 tests de rapprochement (titres réels), e2e HUD réécrits (édition par table, glisser, popup, Terminer).

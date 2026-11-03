@@ -20,15 +20,24 @@ pub struct CommandError {
 impl From<ConfigError> for CommandError {
     fn from(e: ConfigError) -> Self {
         match e {
-            ConfigError::Invalid(issues) => Self { message: "invalid config".into(), issues },
-            other => Self { message: other.to_string(), issues: vec![] },
+            ConfigError::Invalid(issues) => Self {
+                message: "invalid config".into(),
+                issues,
+            },
+            other => Self {
+                message: other.to_string(),
+                issues: vec![],
+            },
         }
     }
 }
 
 impl From<String> for CommandError {
     fn from(message: String) -> Self {
-        Self { message, issues: vec![] }
+        Self {
+            message,
+            issues: vec![],
+        }
     }
 }
 
@@ -94,7 +103,11 @@ pub mod logic {
     }
 
     pub fn is_valid_module_id(id: &str) -> bool {
-        !id.is_empty() && id.len() <= 32 && id.chars().all(|c| c.is_ascii_lowercase() || c.is_ascii_digit() || c == '-')
+        !id.is_empty()
+            && id.len() <= 32
+            && id
+                .chars()
+                .all(|c| c.is_ascii_lowercase() || c.is_ascii_digit() || c == '-')
     }
 }
 
@@ -119,17 +132,35 @@ pub fn config_raw(s: State<'_, AppState>, family: String, id: String) -> Res<Str
 }
 
 #[tauri::command]
-pub fn config_validate(s: State<'_, AppState>, family: String, id: String, text: String) -> Vec<Issue> {
-    s.store.validate_text(&family, &id, &text).err().unwrap_or_default()
+pub fn config_validate(
+    s: State<'_, AppState>,
+    family: String,
+    id: String,
+    text: String,
+) -> Vec<Issue> {
+    s.store
+        .validate_text(&family, &id, &text)
+        .err()
+        .unwrap_or_default()
 }
 
 #[tauri::command]
-pub fn config_save_text(s: State<'_, AppState>, family: String, id: String, text: String) -> Res<()> {
+pub fn config_save_text(
+    s: State<'_, AppState>,
+    family: String,
+    id: String,
+    text: String,
+) -> Res<()> {
     logic::save_text(&s, &family, &id, &text)
 }
 
 #[tauri::command]
-pub fn config_save_value(s: State<'_, AppState>, family: String, id: String, value: Value) -> Res<()> {
+pub fn config_save_value(
+    s: State<'_, AppState>,
+    family: String,
+    id: String,
+    value: Value,
+) -> Res<()> {
     logic::save_value(&s, &family, &id, &value)
 }
 
@@ -145,7 +176,9 @@ pub fn config_issues(s: State<'_, AppState>) -> Vec<Issue> {
 
 #[tauri::command]
 pub fn schema_get(s: State<'_, AppState>, family: String) -> Res<Value> {
-    s.store.schema(&family).ok_or_else(|| format!("unknown family {family}").into())
+    s.store
+        .schema(&family)
+        .ok_or_else(|| format!("unknown family {family}").into())
 }
 
 /// Logs total start-up time (process start -> first screen rendered) to
@@ -154,15 +187,27 @@ pub fn schema_get(s: State<'_, AppState>, family: String) -> Res<Value> {
 pub fn frontend_ready(s: State<'_, AppState>) {
     use std::io::Write;
     let total = s.started.elapsed().as_millis();
-    log::info!("start-up: backend {} ms, first screen {} ms", s.backend_ready_ms, total);
+    log::info!(
+        "start-up: backend {} ms, first screen {} ms",
+        s.backend_ready_ms,
+        total
+    );
     let dir = s.data_dir.path.join("logs");
     if std::fs::create_dir_all(&dir).is_ok() {
-        if let Ok(mut f) = std::fs::OpenOptions::new().create(true).append(true).open(dir.join("startup.log")) {
+        if let Ok(mut f) = std::fs::OpenOptions::new()
+            .create(true)
+            .append(true)
+            .open(dir.join("startup.log"))
+        {
             let ts = std::time::SystemTime::now()
                 .duration_since(std::time::UNIX_EPOCH)
                 .map(|d| d.as_secs())
                 .unwrap_or(0);
-            let _ = writeln!(f, "{ts}\tbackend_ms={}\tfirst_screen_ms={total}", s.backend_ready_ms);
+            let _ = writeln!(
+                f,
+                "{ts}\tbackend_ms={}\tfirst_screen_ms={total}",
+                s.backend_ready_ms
+            );
         }
     }
 }
@@ -178,13 +223,17 @@ pub fn open_module_window(app: AppHandle, module_id: String) -> Res<()> {
         let _ = w.unminimize();
         return w.set_focus().map_err(|e| e.to_string().into());
     }
-    WebviewWindowBuilder::new(&app, label, WebviewUrl::App(format!("index.html#/window/{module_id}").into()))
-        .title(format!("Local Poker Suite — {module_id}"))
-        .inner_size(1100.0, 760.0)
-        .min_inner_size(640.0, 480.0)
-        .build()
-        .map(|_| ())
-        .map_err(|e| e.to_string().into())
+    WebviewWindowBuilder::new(
+        &app,
+        label,
+        WebviewUrl::App(format!("index.html#/window/{module_id}").into()),
+    )
+    .title(format!("Local Poker Suite — {module_id}"))
+    .inner_size(1100.0, 760.0)
+    .min_inner_size(640.0, 480.0)
+    .build()
+    .map(|_| ())
+    .map_err(|e| e.to_string().into())
 }
 
 #[cfg(test)]
@@ -197,7 +246,10 @@ mod tests {
 
     fn state() -> (tempfile::TempDir, AppState) {
         let tmp = tempfile::tempdir().unwrap();
-        let dd = DataDir { path: tmp.path().join("data"), source: DataDirSource::Portable };
+        let dd = DataDir {
+            path: tmp.path().join("data"),
+            source: DataDirSource::Portable,
+        };
         let s = AppState::init_at(dd, Instant::now()).unwrap();
         (tmp, s)
     }
@@ -207,7 +259,10 @@ mod tests {
         let (tmp, s) = state();
         assert!(tmp.path().join("data/settings.toml").is_file());
         let info = logic::app_info(&s);
-        assert_eq!(serde_json::to_value(&info).unwrap()["dataDirSource"], "portable");
+        assert_eq!(
+            serde_json::to_value(&info).unwrap()["dataDirSource"],
+            "portable"
+        );
     }
 
     #[test]
@@ -218,14 +273,21 @@ mod tests {
         v["appearance"]["density"] = json!("compact");
         logic::save_value(&s, "settings", "settings", &v).unwrap();
         let e = rx.try_recv().unwrap();
-        assert_eq!(serde_json::to_value(&e).unwrap()["payload"]["kind"], "changed");
-        assert_eq!(logic::config_get(&s, "settings", "settings").unwrap()["appearance"]["density"], "compact");
+        assert_eq!(
+            serde_json::to_value(&e).unwrap()["payload"]["kind"],
+            "changed"
+        );
+        assert_eq!(
+            logic::config_get(&s, "settings", "settings").unwrap()["appearance"]["density"],
+            "compact"
+        );
     }
 
     #[test]
     fn invalid_save_returns_issues() {
         let (_tmp, s) = state();
-        let err = logic::save_text(&s, "themes", "bad", "name = \"x\"\nbase = \"blue\"\n").unwrap_err();
+        let err =
+            logic::save_text(&s, "themes", "bad", "name = \"x\"\nbase = \"blue\"\n").unwrap_err();
         assert!(!err.issues.is_empty());
     }
 

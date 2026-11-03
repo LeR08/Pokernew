@@ -43,10 +43,18 @@ pub struct ParseError {
 
 impl ParseError {
     pub fn new(line_no: usize, line: &str, message: impl Into<String>) -> Self {
-        Self { line_no, line: line.to_string(), message: message.into() }
+        Self {
+            line_no,
+            line: line.to_string(),
+            message: message.into(),
+        }
     }
     pub fn whole(message: impl Into<String>) -> Self {
-        Self { line_no: 0, line: String::new(), message: message.into() }
+        Self {
+            line_no: 0,
+            line: String::new(),
+            message: message.into(),
+        }
     }
 }
 
@@ -90,7 +98,10 @@ pub fn parser_for_room(room: &str) -> Option<&'static dyn HandHistoryParser> {
 pub fn detect(first_bytes: &[u8]) -> Option<Detected> {
     let mut best: Option<(Confidence, Detected)> = None;
     for &p in registry() {
-        for (c, d) in [(p.sniff_summary(first_bytes), Detected::Summary(p)), (p.sniff(first_bytes), Detected::Hands(p))] {
+        for (c, d) in [
+            (p.sniff_summary(first_bytes), Detected::Summary(p)),
+            (p.sniff(first_bytes), Detected::Hands(p)),
+        ] {
             if c > Confidence::No && best.as_ref().is_none_or(|(b, _)| c > *b) {
                 best = Some((c, d));
             }

@@ -44,8 +44,14 @@ pub fn run(started: Instant) {
             {
                 use tauri_plugin_global_shortcut::{GlobalShortcutExt, Shortcut, ShortcutState};
                 let st = app.state::<state::AppState>();
-                let toggle: Option<Shortcut> = hud::shortcut_string(&hud::hotkey(&st, "toggle_hud", "Ctrl+Alt+H")).parse().ok();
-                let edit: Option<Shortcut> = hud::shortcut_string(&hud::hotkey(&st, "hud_edit", "Ctrl+Alt+E")).parse().ok();
+                let toggle: Option<Shortcut> =
+                    hud::shortcut_string(&hud::hotkey(&st, "toggle_hud", "Ctrl+Alt+H"))
+                        .parse()
+                        .ok();
+                let edit: Option<Shortcut> =
+                    hud::shortcut_string(&hud::hotkey(&st, "hud_edit", "Ctrl+Alt+E"))
+                        .parse()
+                        .ok();
                 let (t2, e2, h2) = (toggle, edit, hud.clone());
                 app.handle().plugin(
                     tauri_plugin_global_shortcut::Builder::new()
@@ -75,14 +81,18 @@ pub fn run(started: Instant) {
             let store = st.store.clone();
             let app_handle = app.handle().clone();
             let hud_handle = app.handle().clone();
-            let last_autonotes = std::sync::Arc::new(std::sync::Mutex::new(std::time::Instant::now() - std::time::Duration::from_secs(3600)));
+            let last_autonotes = std::sync::Arc::new(std::sync::Mutex::new(
+                std::time::Instant::now() - std::time::Duration::from_secs(3600),
+            ));
             tauri::async_runtime::spawn(async move {
                 loop {
                     match rx.recv().await {
                         Ok(ev) => {
                             // Room folders changed: restart the watcher on the new list.
-                            if let bus::AppEvent::Config(lps_config::ConfigEvent::Changed { family, .. }
-                            | lps_config::ConfigEvent::Removed { family, .. }) = &ev
+                            if let bus::AppEvent::Config(
+                                lps_config::ConfigEvent::Changed { family, .. }
+                                | lps_config::ConfigEvent::Removed { family, .. },
+                            ) = &ev
                             {
                                 if family == "rooms" || family == "settings" {
                                     if let Some(svc) = import.clone() {
@@ -96,7 +106,9 @@ pub fn run(started: Instant) {
                                 }
                             }
                             // New hands: refresh the auto-notes, at most once a minute.
-                            if let Some(h) = hud_handle.try_state::<std::sync::Arc<hud::HudService>>() {
+                            if let Some(h) =
+                                hud_handle.try_state::<std::sync::Arc<hud::HudService>>()
+                            {
                                 match &ev {
                                     bus::AppEvent::HandsImported(_) => h.send(hud::Msg::Data),
                                     bus::AppEvent::Config(_) => h.send(hud::Msg::Config),
@@ -125,8 +137,12 @@ pub fn run(started: Instant) {
                                 }
                             }
                             let payload = match &ev {
-                                bus::AppEvent::Config(c) => serde_json::to_value(c).unwrap_or_default(),
-                                bus::AppEvent::HandsImported(w) => serde_json::to_value(w).unwrap_or_default(),
+                                bus::AppEvent::Config(c) => {
+                                    serde_json::to_value(c).unwrap_or_default()
+                                }
+                                bus::AppEvent::HandsImported(w) => {
+                                    serde_json::to_value(w).unwrap_or_default()
+                                }
                             };
                             let _ = handle.emit(ev.channel(), payload);
                         }
@@ -189,8 +205,8 @@ pub fn run(started: Instant) {
             hud_commands::play_mode_get,
             hud_commands::hud_set_visible,
             hud_commands::hud_set_edit,
-            hud_commands::hud_simulate,
-            hud_commands::hud_clear_simulated,
+            hud_commands::hud_set_edit_table,
+            hud_commands::hud_set_table_hidden,
             hud_commands::hud_overlay,
             hud_commands::hud_save_seat,
         ])

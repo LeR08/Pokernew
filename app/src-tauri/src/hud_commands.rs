@@ -35,13 +35,18 @@ pub fn hud_set_edit(app: AppHandle, hud: State<'_, Arc<HudService>>, edit: bool)
 }
 
 #[tauri::command]
-pub fn hud_simulate(app: AppHandle, hud: State<'_, Arc<HudService>>, seats: u8) -> Res<String> {
-    hud.simulate(&app, seats).map_err(CommandError::from)
+pub fn hud_set_edit_table(app: AppHandle, hud: State<'_, Arc<HudService>>, window_id: Option<u64>) {
+    hud.set_edit_table(&app, window_id);
 }
 
 #[tauri::command]
-pub fn hud_clear_simulated(hud: State<'_, Arc<HudService>>) {
-    hud.clear_simulated();
+pub fn hud_set_table_hidden(
+    app: AppHandle,
+    hud: State<'_, Arc<HudService>>,
+    window_id: u64,
+    hidden: bool,
+) {
+    hud.set_hidden(&app, window_id, hidden);
 }
 
 #[derive(Debug, Serialize)]
@@ -51,20 +56,34 @@ pub struct OverlayData {
     pub layout: Value,
     pub layout_id: String,
     pub edit: bool,
-    pub simulated: bool,
+    pub window_id: u64,
     pub stats: Vec<StatMeta>,
 }
 
 /// Everything an overlay window needs to draw its table.
 #[tauri::command]
-pub fn hud_overlay(s: State<'_, AppState>, hud: State<'_, Arc<HudService>>, window_id: u64) -> Res<OverlayData> {
+pub fn hud_overlay(
+    s: State<'_, AppState>,
+    hud: State<'_, Arc<HudService>>,
+    window_id: u64,
+) -> Res<OverlayData> {
     let lay = layout(&s);
     let lid = layout_id(&s);
-    let status = hud.status();
-    let Some((room, table_name, _, simulated)) = hud.overlay_table(window_id) else {
-        return Ok(OverlayData { table: None, layout: lay, layout_id: lid, edit: status.edit, simulated: false, stats: vec![] });
+    let Some((room, table_name, _, editing)) = hud.overlay_table(window_id) else {
+        return Ok(OverlayData {
+            table: None,
+            layout: lay,
+            layout_id: lid,
+            edit: false,
+            window_id,
+            stats: vec![],
+        });
     };
-    let rotate = s.store.get("rooms", &room).and_then(|r| r["rotate_hero_to_bottom"].as_bool()).unwrap_or(true);
+    let rotate = s
+        .store
+        .get("rooms", &room)
+        .and_then(|r| r["rotate_hero_to_bottom"].as_bool())
+        .unwrap_or(true);
     let (compiled, metas, _) = load_stats(&s);
     let wanted: Vec<String> = lay["rows"]
         .as_array()
@@ -74,28 +93,46 @@ pub fn hud_overlay(s: State<'_, AppState>, hud: State<'_, Arc<HudService>>, wind
         .chain(lay["popup"].as_array().cloned().unwrap_or_default())
         .filter_map(|v| v.as_str().map(String::from))
         .collect();
-    let used: Vec<_> = compiled.into_iter().filter(|c| wanted.contains(&c.id)).collect();
+    let used: Vec<_> = compiled
+        .into_iter()
+        .filter(|c| wanted.contains(&c.id))
+        .collect();
     let table = s
         .import
         .as_ref()
         .ok_or_else(|| CommandError::from("database unavailable".to_string()))?
-        .with_reader(|c| lps_stats_engine::hud::table(c, &room, &table_name, &used, rotate).map_err(lps_db::DbError::Sqlite))
+        .with_reader(|c| {
+            lps_stats_engine::hud::table(c, &room, &table_name, &used, rotate)
+                .map_err(lps_db::DbError::Sqlite)
+        })
         .map_err(|e| CommandError::from(e.to_string()))?;
     Ok(OverlayData {
         table,
         layout: lay,
         layout_id: lid,
-        edit: status.edit,
-        simulated,
-        stats: metas.into_iter().filter(|m| wanted.contains(&m.id)).collect(),
+        edit: editing,
+        window_id,
+        stats: metas
+            .into_iter()
+            .filter(|m| wanted.contains(&m.id))
+            .collect(),
     })
 }
 
 /// Saves a panel position (edit mode) into the active layout file.
 #[tauri::command]
-pub fn hud_save_seat(s: State<'_, AppState>, table_size: u8, slot: usize, x: f64, y: f64) -> Res<()> {
+pub fn hud_save_seat(
+    s: State<'_, AppState>,
+    table_size: u8,
+    slot: usize,
+    x: f64,
+    y: f64,
+) -> Res<()> {
     let id = layout_id(&s);
-    let mut lay = s.store.get("hud", &id).ok_or_else(|| CommandError::from(format!("hud/{id}.toml not found")))?;
+    let mut lay = s
+        .store
+        .get("hud", &id)
+        .ok_or_else(|| CommandError::from(format!("hud/{id}.toml not found")))?;
     let key = table_size.to_string();
     let mut seats: Vec<Value> = lay["seats"][&key].as_array().cloned().unwrap_or_default();
     while seats.len() < table_size as usize {

@@ -26,15 +26,51 @@ pub struct Family {
 
 /// All families known in this build.
 pub const FAMILIES: &[Family] = &[
-    Family { name: "settings", layout: Layout::Single("settings.toml"), schema: "settings" },
-    Family { name: "hotkeys", layout: Layout::Single("hotkeys.toml"), schema: "hotkeys" },
-    Family { name: "themes", layout: Layout::Dir("themes"), schema: "theme" },
-    Family { name: "profiles", layout: Layout::Dir("profiles"), schema: "profile" },
-    Family { name: "rooms", layout: Layout::Dir("rooms"), schema: "room" },
-    Family { name: "stats", layout: Layout::Dir("stats"), schema: "stats" },
-    Family { name: "leaks", layout: Layout::Dir("leaks"), schema: "leaks" },
-    Family { name: "notes", layout: Layout::Dir("notes"), schema: "notes" },
-    Family { name: "hud", layout: Layout::Dir("hud"), schema: "hud" },
+    Family {
+        name: "settings",
+        layout: Layout::Single("settings.toml"),
+        schema: "settings",
+    },
+    Family {
+        name: "hotkeys",
+        layout: Layout::Single("hotkeys.toml"),
+        schema: "hotkeys",
+    },
+    Family {
+        name: "themes",
+        layout: Layout::Dir("themes"),
+        schema: "theme",
+    },
+    Family {
+        name: "profiles",
+        layout: Layout::Dir("profiles"),
+        schema: "profile",
+    },
+    Family {
+        name: "rooms",
+        layout: Layout::Dir("rooms"),
+        schema: "room",
+    },
+    Family {
+        name: "stats",
+        layout: Layout::Dir("stats"),
+        schema: "stats",
+    },
+    Family {
+        name: "leaks",
+        layout: Layout::Dir("leaks"),
+        schema: "leaks",
+    },
+    Family {
+        name: "notes",
+        layout: Layout::Dir("notes"),
+        schema: "notes",
+    },
+    Family {
+        name: "hud",
+        layout: Layout::Dir("hud"),
+        schema: "hud",
+    },
 ];
 
 /// Looks a family up by name.

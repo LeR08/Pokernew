@@ -48,15 +48,17 @@ mod win32 {
     use windows::Win32::Foundation::{CloseHandle, HWND, LPARAM, POINT, RECT};
     use windows::Win32::Graphics::Gdi::ClientToScreen;
     use windows::Win32::System::Threading::{
-        OpenProcess, QueryFullProcessImageNameW, PROCESS_NAME_WIN32, PROCESS_QUERY_LIMITED_INFORMATION,
+        OpenProcess, QueryFullProcessImageNameW, PROCESS_NAME_WIN32,
+        PROCESS_QUERY_LIMITED_INFORMATION,
     };
     use windows::Win32::UI::Accessibility::{SetWinEventHook, HWINEVENTHOOK};
     use windows::Win32::UI::HiDpi::GetDpiForWindow;
     use windows::Win32::UI::WindowsAndMessaging::{
-        DispatchMessageW, EnumWindows, GetClassNameW, GetClientRect, GetMessageW, GetWindowTextLengthW, GetWindowTextW,
-        GetWindowThreadProcessId, IsIconic, IsWindowVisible, TranslateMessage, EVENT_OBJECT_CREATE,
-        EVENT_OBJECT_NAMECHANGE, EVENT_SYSTEM_FOREGROUND, EVENT_SYSTEM_MINIMIZEEND, MSG, OBJID_WINDOW,
-        WINEVENT_OUTOFCONTEXT, WINEVENT_SKIPOWNPROCESS,
+        DispatchMessageW, EnumWindows, GetClassNameW, GetClientRect, GetMessageW,
+        GetWindowTextLengthW, GetWindowTextW, GetWindowThreadProcessId, IsIconic, IsWindowVisible,
+        TranslateMessage, EVENT_OBJECT_CREATE, EVENT_OBJECT_NAMECHANGE, EVENT_SYSTEM_FOREGROUND,
+        EVENT_SYSTEM_MINIMIZEEND, MSG, OBJID_WINDOW, WINEVENT_OUTOFCONTEXT,
+        WINEVENT_SKIPOWNPROCESS,
     };
 
     use crate::{Rect, WindowInfo};
@@ -86,16 +88,27 @@ mod win32 {
         // SAFETY: Win32 calls; the process handle is closed below.
         unsafe {
             GetWindowThreadProcessId(hwnd, Some(&mut pid));
-            let Ok(h) = OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION, false, pid) else { return String::new() };
+            let Ok(h) = OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION, false, pid) else {
+                return String::new();
+            };
             let mut buf = [0u16; 1024];
             let mut size = buf.len() as u32;
-            let ok = QueryFullProcessImageNameW(h, PROCESS_NAME_WIN32, PWSTR(buf.as_mut_ptr()), &mut size).is_ok();
+            let ok = QueryFullProcessImageNameW(
+                h,
+                PROCESS_NAME_WIN32,
+                PWSTR(buf.as_mut_ptr()),
+                &mut size,
+            )
+            .is_ok();
             let _ = CloseHandle(h);
             if !ok {
                 return String::new();
             }
             let path = String::from_utf16_lossy(&buf[..size as usize]);
-            path.rsplit(['\\', '/']).next().unwrap_or_default().to_string()
+            path.rsplit(['\\', '/'])
+                .next()
+                .unwrap_or_default()
+                .to_string()
         }
     }
 
@@ -120,11 +133,15 @@ mod win32 {
                 title,
                 class: class(hwnd),
                 process: process(hwnd),
-                client: Rect { x: origin.x, y: origin.y, w: rc.right - rc.left, h: rc.bottom - rc.top },
+                client: Rect {
+                    x: origin.x,
+                    y: origin.y,
+                    w: rc.right - rc.left,
+                    h: rc.bottom - rc.top,
+                },
                 scale: if dpi == 0 { 1.0 } else { dpi as f64 / 96.0 },
                 minimized: IsIconic(hwnd).as_bool(),
                 visible,
-                simulated: false,
             })
         }
     }
@@ -142,7 +159,10 @@ mod win32 {
         let mut out: Vec<WindowInfo> = Vec::new();
         // SAFETY: the callback only uses `out` during this call.
         unsafe {
-            let _ = EnumWindows(Some(enum_cb), LPARAM(&mut out as *mut Vec<WindowInfo> as isize));
+            let _ = EnumWindows(
+                Some(enum_cb),
+                LPARAM(&mut out as *mut Vec<WindowInfo> as isize),
+            );
         }
         out
     }
@@ -172,20 +192,38 @@ mod win32 {
             log::warn!("window watcher already running");
             return;
         }
-        let _ = std::thread::Builder::new().name("lps-win-events".into()).spawn(|| {
-            let flags = WINEVENT_OUTOFCONTEXT | WINEVENT_SKIPOWNPROCESS;
-            // SAFETY: hooks live for the whole process; the message loop below services them.
-            unsafe {
-                // create, destroy, show, hide, … location change, name change
-                SetWinEventHook(EVENT_OBJECT_CREATE, EVENT_OBJECT_NAMECHANGE, None, Some(event_cb), 0, 0, flags);
-                // foreground, move/size start/end, minimise start/end
-                SetWinEventHook(EVENT_SYSTEM_FOREGROUND, EVENT_SYSTEM_MINIMIZEEND, None, Some(event_cb), 0, 0, flags);
-                let mut msg = MSG::default();
-                while GetMessageW(&mut msg, None, 0, 0).as_bool() {
-                    let _ = TranslateMessage(&msg);
-                    DispatchMessageW(&msg);
+        let _ = std::thread::Builder::new()
+            .name("lps-win-events".into())
+            .spawn(|| {
+                let flags = WINEVENT_OUTOFCONTEXT | WINEVENT_SKIPOWNPROCESS;
+                // SAFETY: hooks live for the whole process; the message loop below services them.
+                unsafe {
+                    // create, destroy, show, hide, … location change, name change
+                    SetWinEventHook(
+                        EVENT_OBJECT_CREATE,
+                        EVENT_OBJECT_NAMECHANGE,
+                        None,
+                        Some(event_cb),
+                        0,
+                        0,
+                        flags,
+                    );
+                    // foreground, move/size start/end, minimise start/end
+                    SetWinEventHook(
+                        EVENT_SYSTEM_FOREGROUND,
+                        EVENT_SYSTEM_MINIMIZEEND,
+                        None,
+                        Some(event_cb),
+                        0,
+                        0,
+                        flags,
+                    );
+                    let mut msg = MSG::default();
+                    while GetMessageW(&mut msg, None, 0, 0).as_bool() {
+                        let _ = TranslateMessage(&msg);
+                        DispatchMessageW(&msg);
+                    }
                 }
-            }
-        });
+            });
     }
 }

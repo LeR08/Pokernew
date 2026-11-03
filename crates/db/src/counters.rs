@@ -103,7 +103,13 @@ impl PlayerCounters {
 /// Computes the counters of every player of `hand` (same order as `hand.players`).
 pub fn compute(hand: &Hand) -> Vec<PlayerCounters> {
     let n = hand.players.len();
-    let mut c = vec![PlayerCounters { hands: 1, ..Default::default() }; n];
+    let mut c = vec![
+        PlayerCounters {
+            hands: 1,
+            ..Default::default()
+        };
+        n
+    ];
     let pos = |i: usize| hand.players[i].position;
 
     // ---- Preflop -------------------------------------------------------
@@ -119,7 +125,11 @@ pub fn compute(hand: &Hand) -> Vec<PlayerCounters> {
     let mut seen_f3b_opp = vec![false; n];
     let mut seen_fts_opp = vec![false; n];
 
-    for a in hand.actions.iter().filter(|a| a.street == Street::Preflop && !a.kind.is_post()) {
+    for a in hand
+        .actions
+        .iter()
+        .filter(|a| a.street == Street::Preflop && !a.kind.is_post())
+    {
         let p = a.player;
         let pc = &mut c[p];
         let first_decision = !acted[p];
@@ -134,7 +144,12 @@ pub fn compute(hand: &Hand) -> Vec<PlayerCounters> {
         }
         // Facing a steal in the blinds.
         if let Some(s) = steal_raiser {
-            if s != p && raises == 1 && !entered_after_steal && !seen_fts_opp[p] && matches!(pos(p), Some(Position::Sb | Position::Bb)) {
+            if s != p
+                && raises == 1
+                && !entered_after_steal
+                && !seen_fts_opp[p]
+                && matches!(pos(p), Some(Position::Sb | Position::Bb))
+            {
                 seen_fts_opp[p] = true;
                 pc.opp_fold_to_steal = 1;
                 pc.fold_to_steal = i64::from(a.kind == ActionKind::Fold);

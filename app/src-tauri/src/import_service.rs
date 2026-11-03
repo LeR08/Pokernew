@@ -60,19 +60,33 @@ pub struct ImportService {
 }
 
 fn now() -> i64 {
-    SystemTime::now().duration_since(UNIX_EPOCH).map(|d| d.as_secs() as i64).unwrap_or(0)
+    SystemTime::now()
+        .duration_since(UNIX_EPOCH)
+        .map(|d| d.as_secs() as i64)
+        .unwrap_or(0)
 }
 
 /// Enabled rooms' folders from `rooms/*.toml`.
 pub fn configured_folders(store: &ConfigStore) -> Vec<FolderStatus> {
     let mut out = Vec::new();
     for id in store.list("rooms") {
-        let Some(room) = store.get("rooms", &id) else { continue };
+        let Some(room) = store.get("rooms", &id) else {
+            continue;
+        };
         if room["enabled"] != Value::Bool(true) {
             continue;
         }
-        for f in room["folders"].as_array().into_iter().flatten().filter_map(Value::as_str) {
-            out.push(FolderStatus { room: id.clone(), path: f.to_string(), exists: Path::new(f).is_dir() });
+        for f in room["folders"]
+            .as_array()
+            .into_iter()
+            .flatten()
+            .filter_map(Value::as_str)
+        {
+            out.push(FolderStatus {
+                room: id.clone(),
+                path: f.to_string(),
+                exists: Path::new(f).is_dir(),
+            });
         }
     }
     out
@@ -87,7 +101,11 @@ fn worker_threads(store: &ConfigStore) -> usize {
 
 impl ImportService {
     /// Applies a pending restore, opens/migrates the database and starts the watcher.
-    pub fn start(data_dir: &Path, store: &ConfigStore, bus: EventBus) -> Result<Arc<Self>, DbError> {
+    pub fn start(
+        data_dir: &Path,
+        store: &ConfigStore,
+        bus: EventBus,
+    ) -> Result<Arc<Self>, DbError> {
         let db_path = data_dir.join(DB_FILE);
         let backups_dir = data_dir.join(BACKUPS_DIR);
         if let Some(name) = backup::apply_pending_restore(data_dir, &backups_dir, &db_path)? {
@@ -111,19 +129,34 @@ impl ImportService {
     /// (Re)starts the watcher with the folders currently configured.
     pub fn restart_watcher(&self, store: &ConfigStore) -> Result<(), DbError> {
         let folders = configured_folders(store);
-        let paths: Vec<PathBuf> = folders.iter().filter(|f| f.exists).map(|f| PathBuf::from(&f.path)).collect();
-        let mut guard = self.watcher.lock().map_err(|_| DbError::Other("watcher lock poisoned".into()))?;
+        let paths: Vec<PathBuf> = folders
+            .iter()
+            .filter(|f| f.exists)
+            .map(|f| PathBuf::from(&f.path))
+            .collect();
+        let mut guard = self
+            .watcher
+            .lock()
+            .map_err(|_| DbError::Other("watcher lock poisoned".into()))?;
         *guard = None; // stop the old one first (joins its thread)
         let importer = Importer::new(lps_db::open(&self.db_path)?, worker_threads(store))?;
         let bus = self.bus.clone();
         let history = self.history.clone();
-        *guard = Some(FolderWatcher::start(importer, paths, move |ev: WatchEvent| {
-            if let Ok(mut h) = history.lock() {
-                h.push_front(ImportRecord { at: now(), trigger: ev.trigger, report: ev.report.clone() });
-                h.truncate(HISTORY);
-            }
-            bus.publish(AppEvent::HandsImported(ev));
-        })?);
+        *guard = Some(FolderWatcher::start(
+            importer,
+            paths,
+            move |ev: WatchEvent| {
+                if let Ok(mut h) = history.lock() {
+                    h.push_front(ImportRecord {
+                        at: now(),
+                        trigger: ev.trigger,
+                        report: ev.report.clone(),
+                    });
+                    h.truncate(HISTORY);
+                }
+                bus.publish(AppEvent::HandsImported(ev));
+            },
+        )?);
         if let Ok(mut f) = self.folders.lock() {
             *f = folders;
         }
@@ -131,8 +164,14 @@ impl ImportService {
     }
 
     pub fn import_now(&self, path: PathBuf) -> Result<(), DbError> {
-        let guard = self.watcher.lock().map_err(|_| DbError::Other("watcher lock poisoned".into()))?;
-        guard.as_ref().ok_or_else(|| DbError::Other("import service stopped".into()))?.import_now(path);
+        let guard = self
+            .watcher
+            .lock()
+            .map_err(|_| DbError::Other("watcher lock poisoned".into()))?;
+        guard
+            .as_ref()
+            .ok_or_else(|| DbError::Other("import service stopped".into()))?
+            .import_now(path);
         Ok(())
     }
 
@@ -140,13 +179,23 @@ impl ImportService {
         ImportStatus {
             folders: self.folders.lock().map(|f| f.clone()).unwrap_or_default(),
             watching: self.watcher.lock().map(|w| w.is_some()).unwrap_or(false),
-            history: self.history.lock().map(|h| h.iter().cloned().collect()).unwrap_or_default(),
+            history: self
+                .history
+                .lock()
+                .map(|h| h.iter().cloned().collect())
+                .unwrap_or_default(),
             db_path: self.db_path.display().to_string(),
         }
     }
 
-    pub fn with_reader<T>(&self, f: impl FnOnce(&Connection) -> Result<T, DbError>) -> Result<T, DbError> {
-        let conn = self.reader.lock().map_err(|_| DbError::Other("reader lock poisoned".into()))?;
+    pub fn with_reader<T>(
+        &self,
+        f: impl FnOnce(&Connection) -> Result<T, DbError>,
+    ) -> Result<T, DbError> {
+        let conn = self
+            .reader
+            .lock()
+            .map_err(|_| DbError::Other("reader lock poisoned".into()))?;
         f(&conn)
     }
 
@@ -158,19 +207,24 @@ impl ImportService {
     /// Checks every 10 minutes whether the scheduled backup is due.
     pub fn spawn_backup_scheduler(self: &Arc<Self>, store: Arc<ConfigStore>) {
         let svc = Arc::clone(self);
-        let _ = std::thread::Builder::new().name("lps-backup".into()).spawn(move || loop {
-            std::thread::sleep(Duration::from_secs(60));
-            let cfg = store.get("settings", "settings").map(|s| s["backup"].clone()).unwrap_or(Value::Null);
-            let enabled = cfg["enabled"].as_bool().unwrap_or(true);
-            let every = cfg["every_hours"].as_i64().unwrap_or(24) * 3600;
-            let keep = cfg["keep"].as_u64().unwrap_or(7) as usize;
-            if enabled && backup::is_due(&svc.backups_dir, every, now()) {
-                match svc.backup_now(keep) {
-                    Ok(p) => log::info!("backup written to {}", p.display()),
-                    Err(e) => log::warn!("backup failed: {e}"),
+        let _ = std::thread::Builder::new()
+            .name("lps-backup".into())
+            .spawn(move || loop {
+                std::thread::sleep(Duration::from_secs(60));
+                let cfg = store
+                    .get("settings", "settings")
+                    .map(|s| s["backup"].clone())
+                    .unwrap_or(Value::Null);
+                let enabled = cfg["enabled"].as_bool().unwrap_or(true);
+                let every = cfg["every_hours"].as_i64().unwrap_or(24) * 3600;
+                let keep = cfg["keep"].as_u64().unwrap_or(7) as usize;
+                if enabled && backup::is_due(&svc.backups_dir, every, now()) {
+                    match svc.backup_now(keep) {
+                        Ok(p) => log::info!("backup written to {}", p.display()),
+                        Err(e) => log::warn!("backup failed: {e}"),
+                    }
                 }
-            }
-            std::thread::sleep(Duration::from_secs(540));
-        });
+                std::thread::sleep(Duration::from_secs(540));
+            });
     }
 }

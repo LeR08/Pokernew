@@ -31,14 +31,23 @@ pub struct FoundAccount {
 }
 
 fn accounts_in(room: &str, accounts_dir: &Path, sub: &str, out: &mut Vec<FoundAccount>) {
-    let Ok(rd) = std::fs::read_dir(accounts_dir) else { return };
+    let Ok(rd) = std::fs::read_dir(accounts_dir) else {
+        return;
+    };
     for e in rd.flatten() {
         let folder = e.path().join(sub);
         if folder.is_dir() {
-            let files = std::fs::read_dir(&folder).map(|r| r.flatten().count()).unwrap_or(0);
+            let files = std::fs::read_dir(&folder)
+                .map(|r| r.flatten().count())
+                .unwrap_or(0);
             let account = e.file_name().to_string_lossy().into_owned();
             if !out.iter().any(|f| f.folder == folder) {
-                out.push(FoundAccount { room: room.into(), account, folder, files });
+                out.push(FoundAccount {
+                    room: room.into(),
+                    account,
+                    folder,
+                    files,
+                });
             }
         }
     }
@@ -49,11 +58,21 @@ pub fn detect_accounts(base: &BaseDirs) -> Vec<FoundAccount> {
     let mut out = Vec::new();
     // Winamax. Seen on the user's PC: %APPDATA%\winamax\documents\accounts\<pseudo>\history
     if let Some(a) = &base.app_data {
-        accounts_in("winamax", &a.join("winamax").join("documents").join("accounts"), "history", &mut out);
+        accounts_in(
+            "winamax",
+            &a.join("winamax").join("documents").join("accounts"),
+            "history",
+            &mut out,
+        );
     }
     // Also documented by Winamax for older clients: Documents\Winamax Poker\accounts\<pseudo>\history
     if let Some(d) = &base.documents {
-        accounts_in("winamax", &d.join("Winamax Poker").join("accounts"), "history", &mut out);
+        accounts_in(
+            "winamax",
+            &d.join("Winamax Poker").join("accounts"),
+            "history",
+            &mut out,
+        );
     }
     out.sort_by(|a, b| (&a.room, &a.account).cmp(&(&b.room, &b.account)));
     out
@@ -75,8 +94,15 @@ mod tests {
         std::fs::write(h1.join("a.txt"), "x").unwrap();
         // An account folder without history is ignored.
         std::fs::create_dir_all(appdata.join("winamax/documents/accounts/Empty")).unwrap();
-        let found = detect_accounts(&BaseDirs { app_data: Some(appdata), local_app_data: None, documents: Some(docs) });
-        let names: Vec<(&str, usize)> = found.iter().map(|f| (f.account.as_str(), f.files)).collect();
+        let found = detect_accounts(&BaseDirs {
+            app_data: Some(appdata),
+            local_app_data: None,
+            documents: Some(docs),
+        });
+        let names: Vec<(&str, usize)> = found
+            .iter()
+            .map(|f| (f.account.as_str(), f.files))
+            .collect();
         assert_eq!(names, [("Other", 0), ("Tantaculejen", 1)]);
         std::fs::remove_dir_all(&tmp).unwrap();
     }

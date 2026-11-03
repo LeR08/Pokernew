@@ -121,7 +121,9 @@ pub fn evaluate(
     let mut needed: Vec<String> = Vec::new();
     let mut parsed = Vec::new();
     for (id, r) in &rules.rule {
-        let Ok(e) = expr::parse(&r.when) else { continue };
+        let Ok(e) = expr::parse(&r.when) else {
+            continue;
+        };
         let mut ids = Vec::new();
         idents(&e, &mut ids);
         if ids.iter().all(|i| stats.iter().any(|s| &s.id == i)) {
@@ -131,9 +133,17 @@ pub fn evaluate(
     }
     needed.sort();
     needed.dedup();
-    let wanted: Vec<CompiledStat> = stats.iter().filter(|s| needed.contains(&s.id)).cloned().collect();
+    let wanted: Vec<CompiledStat> = stats
+        .iter()
+        .filter(|s| needed.contains(&s.id))
+        .cloned()
+        .collect();
     let min = rules.rule.values().map(|r| r.min_sample).min().unwrap_or(0);
-    let filter = Filter { who: Some("opponents".into()), rooms: vec![room.into()], ..Default::default() };
+    let filter = Filter {
+        who: Some("opponents".into()),
+        rooms: vec![room.into()],
+        ..Default::default()
+    };
     let rows = query::report_limited(conn, &filter, &wanted, Group::Player, min.max(1), i64::MAX)?;
     let mut out = Vec::new();
     for row in rows {
@@ -154,22 +164,44 @@ pub fn evaluate(
             }
             let mut text = match &rule.text {
                 Text::Plain(t) => t.clone(),
-                Text::I18n { fr, en } => if lang == "fr" { fr.clone() } else { en.clone() },
+                Text::I18n { fr, en } => {
+                    if lang == "fr" {
+                        fr.clone()
+                    } else {
+                        en.clone()
+                    }
+                }
             };
             for i in ids {
-                let fmt = wanted.iter().find(|s| &s.id == i).map(|s| s.def.format.as_str()).unwrap_or("pct0");
+                let fmt = wanted
+                    .iter()
+                    .find(|s| &s.id == i)
+                    .map(|s| s.def.format.as_str())
+                    .unwrap_or("pct0");
                 text = text.replace(&format!("{{{i}}}"), &format_value(vars[i], fmt));
             }
-            out.push(AutoNote { player: row.key.clone(), rule: (*id).clone(), text });
+            out.push(AutoNote {
+                player: row.key.clone(),
+                rule: (*id).clone(),
+                text,
+            });
         }
     }
     Ok(out)
 }
 
 /// Replaces all auto-notes of `room` by `notes`. Returns how many were written.
-pub fn apply(conn: &mut Connection, room: &str, notes: &[AutoNote], now: i64) -> rusqlite::Result<usize> {
+pub fn apply(
+    conn: &mut Connection,
+    room: &str,
+    notes: &[AutoNote],
+    now: i64,
+) -> rusqlite::Result<usize> {
     let tx = conn.transaction()?;
-    tx.execute("DELETE FROM notes WHERE auto = 1 AND player_id IN (SELECT id FROM players WHERE room = ?)", [room])?;
+    tx.execute(
+        "DELETE FROM notes WHERE auto = 1 AND player_id IN (SELECT id FROM players WHERE room = ?)",
+        [room],
+    )?;
     {
         let mut st = tx.prepare(
             "INSERT INTO notes (player_id, text, auto, created_at, rule)

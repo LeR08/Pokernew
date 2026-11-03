@@ -33,7 +33,11 @@ pub enum ConfigEvent {
     /// A file was deleted.
     Removed { family: String, id: String },
     /// A file is invalid; the previous valid version (if any) is kept.
-    Invalid { family: String, id: String, issues: Vec<Issue> },
+    Invalid {
+        family: String,
+        id: String,
+        issues: Vec<Issue>,
+    },
 }
 
 struct Entry {
@@ -100,7 +104,9 @@ impl ConfigStore {
 
     /// Ids of the valid files of a family, sorted.
     pub fn list(&self, family_name: &str) -> Vec<String> {
-        let Ok(entries) = self.entries.read() else { return vec![] };
+        let Ok(entries) = self.entries.read() else {
+            return vec![];
+        };
         let mut ids: Vec<String> = entries
             .keys()
             .filter(|(f, _)| f == family_name)
@@ -126,13 +132,21 @@ impl ConfigStore {
 
     /// Absolute path of a file (it may not exist yet).
     pub fn path_of(&self, family_name: &str, id: &str) -> Result<PathBuf, ConfigError> {
-        let fam = family(family_name).ok_or_else(|| ConfigError::UnknownFamily(family_name.into()))?;
-        let rel = fam.rel_path(id).ok_or_else(|| ConfigError::BadId(id.into()))?;
+        let fam =
+            family(family_name).ok_or_else(|| ConfigError::UnknownFamily(family_name.into()))?;
+        let rel = fam
+            .rel_path(id)
+            .ok_or_else(|| ConfigError::BadId(id.into()))?;
         Ok(self.root.join(rel))
     }
 
     /// Parses and validates TOML text for a family, without saving.
-    pub fn validate_text(&self, family_name: &str, id: &str, text: &str) -> Result<Value, Vec<Issue>> {
+    pub fn validate_text(
+        &self,
+        family_name: &str,
+        id: &str,
+        text: &str,
+    ) -> Result<Value, Vec<Issue>> {
         let issue = |pointer: String, message: String| Issue {
             family: family_name.into(),
             id: id.into(),
@@ -140,7 +154,10 @@ impl ConfigStore {
             message,
         };
         let Some(fam) = family(family_name) else {
-            return Err(vec![issue(String::new(), format!("unknown config family '{family_name}'"))]);
+            return Err(vec![issue(
+                String::new(),
+                format!("unknown config family '{family_name}'"),
+            )]);
         };
         let value = toml_to_json(text).map_err(|m| vec![issue(String::new(), m)])?;
         self.validate_value(fam, id, &value)?;
@@ -166,8 +183,15 @@ impl ConfigStore {
     }
 
     /// Validates then atomically writes raw TOML text, and updates memory.
-    pub fn save_text(&self, family_name: &str, id: &str, text: &str) -> Result<ConfigEvent, ConfigError> {
-        let value = self.validate_text(family_name, id, text).map_err(ConfigError::Invalid)?;
+    pub fn save_text(
+        &self,
+        family_name: &str,
+        id: &str,
+        text: &str,
+    ) -> Result<ConfigEvent, ConfigError> {
+        let value = self
+            .validate_text(family_name, id, text)
+            .map_err(ConfigError::Invalid)?;
         let path = self.path_of(family_name, id)?;
         write_atomic(&path, text)?;
         Ok(self.apply(family_name, id, value))
@@ -175,22 +199,39 @@ impl ConfigStore {
 
     /// Validates a JSON value (from a settings form) and merges it into the
     /// existing TOML file, keeping comments and formatting.
-    pub fn save_value(&self, family_name: &str, id: &str, value: &Value) -> Result<ConfigEvent, ConfigError> {
-        let fam = family(family_name).ok_or_else(|| ConfigError::UnknownFamily(family_name.into()))?;
+    pub fn save_value(
+        &self,
+        family_name: &str,
+        id: &str,
+        value: &Value,
+    ) -> Result<ConfigEvent, ConfigError> {
+        let fam =
+            family(family_name).ok_or_else(|| ConfigError::UnknownFamily(family_name.into()))?;
         let path = self.path_of(family_name, id)?;
         let mut doc: DocumentMut = match std::fs::read_to_string(&path) {
             Ok(text) => text.parse().unwrap_or_default(),
             Err(_) => DocumentMut::new(),
         };
         merge_json_into_doc(&mut doc, value).map_err(|m| {
-            ConfigError::Invalid(vec![Issue { family: family_name.into(), id: id.into(), pointer: String::new(), message: m }])
+            ConfigError::Invalid(vec![Issue {
+                family: family_name.into(),
+                id: id.into(),
+                pointer: String::new(),
+                message: m,
+            }])
         })?;
         let text = doc.to_string();
         // Validate what will actually be on disk (number types may differ from the JSON).
         let on_disk = toml_to_json(&text).map_err(|m| {
-            ConfigError::Invalid(vec![Issue { family: family_name.into(), id: id.into(), pointer: String::new(), message: m }])
+            ConfigError::Invalid(vec![Issue {
+                family: family_name.into(),
+                id: id.into(),
+                pointer: String::new(),
+                message: m,
+            }])
         })?;
-        self.validate_value(fam, id, &on_disk).map_err(ConfigError::Invalid)?;
+        self.validate_value(fam, id, &on_disk)
+            .map_err(ConfigError::Invalid)?;
         write_atomic(&path, &text)?;
         Ok(self.apply(family_name, id, on_disk))
     }
@@ -210,7 +251,12 @@ impl ConfigStore {
             Ok(t) => t,
             Err(_) if !path.exists() => return Some(self.forget(fam.name, &id)),
             Err(e) => {
-                let issues = vec![Issue { family: fam.name.into(), id: id.clone(), pointer: String::new(), message: e.to_string() }];
+                let issues = vec![Issue {
+                    family: fam.name.into(),
+                    id: id.clone(),
+                    pointer: String::new(),
+                    message: e.to_string(),
+                }];
                 return Some(self.set_issues(fam.name, &id, issues));
             }
         };
@@ -242,7 +288,10 @@ impl ConfigStore {
         if let Ok(mut m) = self.entries.write() {
             m.insert(key, Entry { value });
         }
-        ConfigEvent::Changed { family: fam.into(), id: id.into() }
+        ConfigEvent::Changed {
+            family: fam.into(),
+            id: id.into(),
+        }
     }
 
     fn forget(&self, fam: &str, id: &str) -> ConfigEvent {
@@ -253,14 +302,21 @@ impl ConfigStore {
         if let Ok(mut m) = self.entries.write() {
             m.remove(&key);
         }
-        ConfigEvent::Removed { family: fam.into(), id: id.into() }
+        ConfigEvent::Removed {
+            family: fam.into(),
+            id: id.into(),
+        }
     }
 
     fn set_issues(&self, fam: &str, id: &str, issues: Vec<Issue>) -> ConfigEvent {
         if let Ok(mut m) = self.issues.write() {
             m.insert((fam.to_string(), id.to_string()), issues.clone());
         }
-        ConfigEvent::Invalid { family: fam.into(), id: id.into(), issues }
+        ConfigEvent::Invalid {
+            family: fam.into(),
+            id: id.into(),
+            issues,
+        }
     }
 }
 
@@ -295,7 +351,10 @@ mod tests {
         assert!(store.issues().is_empty(), "{:#?}", store.issues());
         assert_eq!(store.list("themes"), vec!["dark", "light"]);
         assert_eq!(store.list("profiles"), vec!["cash-6max", "mtt", "spin"]);
-        assert_eq!(store.get("settings", "settings").unwrap()["general"]["language"], "fr");
+        assert_eq!(
+            store.get("settings", "settings").unwrap()["general"]["language"],
+            "fr"
+        );
         // Tables keep the file order (stats are shown in the order they are written).
         let stats = store.get("stats", "core").unwrap();
         let ids: Vec<&String> = stats["stat"].as_object().unwrap().keys().collect();
@@ -306,7 +365,9 @@ mod tests {
     fn invalid_file_keeps_previous_value() {
         let (tmp, store) = fresh();
         let path = tmp.path().join("settings.toml");
-        let text = std::fs::read_to_string(&path).unwrap().replace("language = \"fr\"", "language = \"de\"");
+        let text = std::fs::read_to_string(&path)
+            .unwrap()
+            .replace("language = \"fr\"", "language = \"de\"");
         std::fs::write(&path, text).unwrap();
         match store.reload_path(&path) {
             Some(ConfigEvent::Invalid { issues, .. }) => {
@@ -314,7 +375,10 @@ mod tests {
             }
             other => panic!("expected Invalid, got {other:?}"),
         }
-        assert_eq!(store.get("settings", "settings").unwrap()["general"]["language"], "fr");
+        assert_eq!(
+            store.get("settings", "settings").unwrap()["general"]["language"],
+            "fr"
+        );
         assert_eq!(store.issues().len(), 1);
     }
 
@@ -335,9 +399,14 @@ mod tests {
         let text = std::fs::read_to_string(tmp.path().join("settings.toml")).unwrap();
         assert!(text.contains("# Langue de l'interface"));
         assert!(text.contains("language = \"en\""));
-        assert_eq!(store.get("settings", "settings").unwrap()["general"]["language"], "en");
+        assert_eq!(
+            store.get("settings", "settings").unwrap()["general"]["language"],
+            "en"
+        );
         // Re-reading the same file reports no change.
-        assert!(store.reload_path(&tmp.path().join("settings.toml")).is_none());
+        assert!(store
+            .reload_path(&tmp.path().join("settings.toml"))
+            .is_none());
     }
 
     #[test]
@@ -345,13 +414,18 @@ mod tests {
         let (_tmp, store) = fresh();
         let mut v = store.get("settings", "settings").unwrap();
         v["appearance"]["density"] = json!("huge");
-        assert!(matches!(store.save_value("settings", "settings", &v), Err(ConfigError::Invalid(_))));
+        assert!(matches!(
+            store.save_value("settings", "settings", &v),
+            Err(ConfigError::Invalid(_))
+        ));
     }
 
     #[test]
     fn new_theme_file_then_delete() {
         let (tmp, store) = fresh();
-        let text = defaults::default_text("themes/dark.toml").unwrap().replace("Sombre / Dark", "Mine");
+        let text = defaults::default_text("themes/dark.toml")
+            .unwrap()
+            .replace("Sombre / Dark", "Mine");
         store.save_text("themes", "mine", &text).unwrap();
         assert!(tmp.path().join("themes/mine.toml").is_file());
         assert_eq!(store.get("themes", "mine").unwrap()["name"], "Mine");

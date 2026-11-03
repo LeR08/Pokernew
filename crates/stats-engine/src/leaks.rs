@@ -112,7 +112,13 @@ pub fn wilson(p: f64, n: i64) -> (f64, f64) {
 pub const MIN_SAMPLE: i64 = 20;
 pub const IMPACT_MIN_HANDS: i64 = 50;
 /// Counters that describe an outcome, not a decision.
-const OUTCOME_COUNTERS: &[&str] = &["cnt_wtsd", "cnt_wsd", "cnt_wwsf", "cnt_won_hand", "cnt_saw_flop"];
+const OUTCOME_COUNTERS: &[&str] = &[
+    "cnt_wtsd",
+    "cnt_wsd",
+    "cnt_wwsf",
+    "cnt_won_hand",
+    "cnt_saw_flop",
+];
 
 fn ratio_counters(formula: &str) -> Option<(String, String)> {
     match expr::parse(formula).ok()? {
@@ -130,7 +136,13 @@ fn ratio_counters(formula: &str) -> Option<(String, String)> {
     }
 }
 
-fn spot_results(conn: &Connection, filter: &Filter, game_type: &str, a: &str, b: &str) -> rusqlite::Result<(Option<f64>, Option<f64>)> {
+fn spot_results(
+    conn: &Connection,
+    filter: &Filter,
+    game_type: &str,
+    a: &str,
+    b: &str,
+) -> rusqlite::Result<(Option<f64>, Option<f64>)> {
     let mut f = filter.clone();
     f.game_types = vec![game_type.to_string()];
     let w = f.to_sql();
@@ -152,15 +164,30 @@ fn spot_results(conn: &Connection, filter: &Filter, game_type: &str, a: &str, b:
 }
 
 /// Every target stat, per game type played.
-pub fn find(conn: &Connection, filter: &Filter, stats: &[CompiledStat], targets: &TargetsFile) -> rusqlite::Result<Vec<LeakRow>> {
-    let wanted: Vec<CompiledStat> = stats.iter().filter(|s| targets.target.contains_key(&s.id)).cloned().collect();
+pub fn find(
+    conn: &Connection,
+    filter: &Filter,
+    stats: &[CompiledStat],
+    targets: &TargetsFile,
+) -> rusqlite::Result<Vec<LeakRow>> {
+    let wanted: Vec<CompiledStat> = stats
+        .iter()
+        .filter(|s| targets.target.contains_key(&s.id))
+        .cloned()
+        .collect();
     let rows = query::report(conn, filter, &wanted, Group::GameType)?;
     let mut out = Vec::new();
     for row in &rows {
         for (id, target) in &targets.target {
-            let Some(range) = target.range_for(&row.key) else { continue };
-            let Some(st) = wanted.iter().find(|s| &s.id == id) else { continue };
-            let Some(v) = row.stats.iter().find(|s| &s.id == id) else { continue };
+            let Some(range) = target.range_for(&row.key) else {
+                continue;
+            };
+            let Some(st) = wanted.iter().find(|s| &s.id == id) else {
+                continue;
+            };
+            let Some(v) = row.stats.iter().find(|s| &s.id == id) else {
+                continue;
+            };
             let is_pct = st.def.format.starts_with("pct");
             let (lo, hi) = match (v.value, is_pct) {
                 (Some(p), true) => {
@@ -175,12 +202,28 @@ pub fn find(conn: &Connection, filter: &Filter, stats: &[CompiledStat], targets:
             let (status, direction) = match v.value {
                 _ if v.sample < st.def.min_sample.unwrap_or(MIN_SAMPLE) => (Status::TooFew, None),
                 None => (Status::TooFew, None),
-                Some(x) if below(x) => (if hi.is_some_and(below) { Status::Leak } else { Status::Possible }, Some("low")),
-                Some(x) if above(x) => (if lo.is_some_and(above) { Status::Leak } else { Status::Possible }, Some("high")),
+                Some(x) if below(x) => (
+                    if hi.is_some_and(below) {
+                        Status::Leak
+                    } else {
+                        Status::Possible
+                    },
+                    Some("low"),
+                ),
+                Some(x) if above(x) => (
+                    if lo.is_some_and(above) {
+                        Status::Leak
+                    } else {
+                        Status::Possible
+                    },
+                    Some("high"),
+                ),
                 Some(_) => (Status::Ok, None),
             };
             let (done, not) = match ratio_counters(&st.def.formula) {
-                Some((a, b)) if st.def.where_.is_none() => spot_results(conn, filter, &row.key, &a, &b)?,
+                Some((a, b)) if st.def.where_.is_none() => {
+                    spot_results(conn, filter, &row.key, &a, &b)?
+                }
                 _ => (None, None),
             };
             out.push(LeakRow {
@@ -226,7 +269,10 @@ mod tests {
 
     #[test]
     fn ratio_detection() {
-        assert_eq!(ratio_counters("cnt_3bet / opp_3bet"), Some(("cnt_3bet".into(), "opp_3bet".into())));
+        assert_eq!(
+            ratio_counters("cnt_3bet / opp_3bet"),
+            Some(("cnt_3bet".into(), "opp_3bet".into()))
+        );
         assert_eq!(ratio_counters("net_won_bb * 100 / cnt_hands"), None);
         assert_eq!(ratio_counters("cnt_wsd / cnt_wtsd"), None, "outcome stat");
     }

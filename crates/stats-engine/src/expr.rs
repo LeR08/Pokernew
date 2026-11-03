@@ -109,59 +109,71 @@ fn lex(src: &str) -> Result<Vec<(usize, Tok)>, SyntaxError> {
             i += 1;
             continue;
         }
-        let tok = if c.is_ascii_digit() || (c == '.' && b.get(i + 1).is_some_and(u8::is_ascii_digit)) {
-            while i < b.len() && (b[i].is_ascii_digit() || b[i] == b'.') {
-                i += 1;
-            }
-            let s = &src[start..i];
-            Tok::Num(s.parse().map_err(|_| SyntaxError { pos: start, message: format!("bad number '{s}'") })?)
-        } else if c.is_ascii_alphabetic() || c == '_' {
-            while i < b.len() && (b[i].is_ascii_alphanumeric() || b[i] == b'_') {
-                i += 1;
-            }
-            Tok::Ident(src[start..i].to_ascii_lowercase())
-        } else if c == '\'' {
-            i += 1;
-            let s0 = i;
-            while i < b.len() && b[i] != b'\'' {
-                i += 1;
-            }
-            if i >= b.len() {
-                return Err(SyntaxError { pos: start, message: "unterminated string".into() });
-            }
-            let s = src[s0..i].to_string();
-            i += 1;
-            Tok::Str(s)
-        } else {
-            let two = src.get(i..i + 2).unwrap_or("");
-            let op: Option<&'static str> = match two {
-                "<=" => Some("<="),
-                ">=" => Some(">="),
-                "!=" => Some("!="),
-                "<>" => Some("!="),
-                "==" => Some("="),
-                _ => None,
-            };
-            if let Some(op) = op {
-                i += 2;
-                Tok::Op(op)
-            } else {
-                i += 1;
-                match c {
-                    '+' => Tok::Op("+"),
-                    '-' => Tok::Op("-"),
-                    '*' => Tok::Op("*"),
-                    '/' => Tok::Op("/"),
-                    '=' => Tok::Op("="),
-                    '<' => Tok::Op("<"),
-                    '>' => Tok::Op(">"),
-                    '(' => Tok::LParen,
-                    ')' => Tok::RParen,
-                    ',' => Tok::Comma,
-                    _ => return Err(SyntaxError { pos: start, message: format!("unexpected character '{c}'") }),
+        let tok =
+            if c.is_ascii_digit() || (c == '.' && b.get(i + 1).is_some_and(u8::is_ascii_digit)) {
+                while i < b.len() && (b[i].is_ascii_digit() || b[i] == b'.') {
+                    i += 1;
                 }
-            }
-        };
+                let s = &src[start..i];
+                Tok::Num(s.parse().map_err(|_| SyntaxError {
+                    pos: start,
+                    message: format!("bad number '{s}'"),
+                })?)
+            } else if c.is_ascii_alphabetic() || c == '_' {
+                while i < b.len() && (b[i].is_ascii_alphanumeric() || b[i] == b'_') {
+                    i += 1;
+                }
+                Tok::Ident(src[start..i].to_ascii_lowercase())
+            } else if c == '\'' {
+                i += 1;
+                let s0 = i;
+                while i < b.len() && b[i] != b'\'' {
+                    i += 1;
+                }
+                if i >= b.len() {
+                    return Err(SyntaxError {
+                        pos: start,
+                        message: "unterminated string".into(),
+                    });
+                }
+                let s = src[s0..i].to_string();
+                i += 1;
+                Tok::Str(s)
+            } else {
+                let two = src.get(i..i + 2).unwrap_or("");
+                let op: Option<&'static str> = match two {
+                    "<=" => Some("<="),
+                    ">=" => Some(">="),
+                    "!=" => Some("!="),
+                    "<>" => Some("!="),
+                    "==" => Some("="),
+                    _ => None,
+                };
+                if let Some(op) = op {
+                    i += 2;
+                    Tok::Op(op)
+                } else {
+                    i += 1;
+                    match c {
+                        '+' => Tok::Op("+"),
+                        '-' => Tok::Op("-"),
+                        '*' => Tok::Op("*"),
+                        '/' => Tok::Op("/"),
+                        '=' => Tok::Op("="),
+                        '<' => Tok::Op("<"),
+                        '>' => Tok::Op(">"),
+                        '(' => Tok::LParen,
+                        ')' => Tok::RParen,
+                        ',' => Tok::Comma,
+                        _ => {
+                            return Err(SyntaxError {
+                                pos: start,
+                                message: format!("unexpected character '{c}'"),
+                            })
+                        }
+                    }
+                }
+            };
         out.push((start, tok));
     }
     out.push((src.len(), Tok::End));
@@ -188,7 +200,10 @@ impl Parser {
         t
     }
     fn err<T>(&self, message: impl Into<String>) -> Result<T, SyntaxError> {
-        Err(SyntaxError { pos: self.pos(), message: message.into() })
+        Err(SyntaxError {
+            pos: self.pos(),
+            message: message.into(),
+        })
     }
     fn is_word(&self, w: &str) -> bool {
         matches!(self.peek(), Tok::Ident(s) if s == w)
@@ -316,9 +331,15 @@ impl Parser {
 /// Parses a formula or a condition.
 pub fn parse(src: &str) -> Result<Expr, SyntaxError> {
     if src.trim().is_empty() {
-        return Err(SyntaxError { pos: 0, message: "empty formula".into() });
+        return Err(SyntaxError {
+            pos: 0,
+            message: "empty formula".into(),
+        });
     }
-    let mut p = Parser { toks: lex(src)?, i: 0 };
+    let mut p = Parser {
+        toks: lex(src)?,
+        i: 0,
+    };
     let e = p.or()?;
     if !matches!(p.peek(), Tok::End) {
         let t = p.peek().clone();
@@ -334,15 +355,21 @@ mod tests {
     #[test]
     fn precedence() {
         let e = parse("a + b * 2 > 3 and not c = 'BB' or d").unwrap();
-        let Expr::Bin(BinOp::Or, l, _) = e else { panic!() };
-        let Expr::Bin(BinOp::And, cmp, not) = *l else { panic!() };
+        let Expr::Bin(BinOp::Or, l, _) = e else {
+            panic!()
+        };
+        let Expr::Bin(BinOp::And, cmp, not) = *l else {
+            panic!()
+        };
         assert!(matches!(*cmp, Expr::Bin(BinOp::Gt, _, _)));
         assert!(matches!(*not, Expr::Not(_)));
     }
 
     #[test]
     fn calls_and_errors() {
-        assert!(matches!(parse("if(x > 1, 2, 3)").unwrap(), Expr::Call(n, a) if n == "if" && a.len() == 3));
+        assert!(
+            matches!(parse("if(x > 1, 2, 3)").unwrap(), Expr::Call(n, a) if n == "if" && a.len() == 3)
+        );
         let e = parse("cnt_vpip / ").unwrap_err();
         assert_eq!(e.pos, 11);
         assert!(parse("(a").is_err());

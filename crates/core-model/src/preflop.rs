@@ -40,7 +40,11 @@ fn high_card_points(r: Rank) -> f64 {
 /// Chen score, from −1 (72o) to 20 (AA).
 pub fn chen(cards: &[Card]) -> Option<i32> {
     let [a, b] = cards else { return None };
-    let (hi, lo) = if a.rank() >= b.rank() { (*a, *b) } else { (*b, *a) };
+    let (hi, lo) = if a.rank() >= b.rank() {
+        (*a, *b)
+    } else {
+        (*b, *a)
+    };
     let mut score = high_card_points(hi.rank());
     if hi.rank() == lo.rank() {
         score = (score * 2.0).max(5.0);
@@ -65,7 +69,10 @@ pub fn chen(cards: &[Card]) -> Option<i32> {
 
 /// AA, KK, QQ, AKs, AKo.
 pub fn is_premium(cards: &[Card]) -> bool {
-    matches!(hand_class(cards).as_deref(), Some("AA" | "KK" | "QQ" | "AKs" | "AKo"))
+    matches!(
+        hand_class(cards).as_deref(),
+        Some("AA" | "KK" | "QQ" | "AKs" | "AKo")
+    )
 }
 
 #[cfg(test)]

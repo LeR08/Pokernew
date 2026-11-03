@@ -230,9 +230,13 @@ pub fn configure(conn: &Connection) -> Result<(), DbError> {
 /// Applies pending migrations and adds missing counter columns.
 /// Returns the counters that were added (their values must be recomputed).
 pub fn migrate(conn: &mut Connection) -> Result<Vec<&'static str>, DbError> {
-    let version: usize = conn.query_row("PRAGMA user_version", [], |r| r.get::<_, i64>(0))? as usize;
+    let version: usize =
+        conn.query_row("PRAGMA user_version", [], |r| r.get::<_, i64>(0))? as usize;
     if version > MIGRATIONS.len() {
-        return Err(DbError::TooNew { found: version, supported: MIGRATIONS.len() });
+        return Err(DbError::TooNew {
+            found: version,
+            supported: MIGRATIONS.len(),
+        });
     }
     for (i, sql) in MIGRATIONS.iter().enumerate().skip(version) {
         let tx = conn.transaction()?;
@@ -245,11 +249,14 @@ pub fn migrate(conn: &mut Connection) -> Result<Vec<&'static str>, DbError> {
         let rows = st.query_map([], |r| r.get(0))?;
         rows.collect::<Result<_, _>>()?
     };
-    let fresh_db: bool = conn.query_row("SELECT NOT EXISTS (SELECT 1 FROM hands)", [], |r| r.get(0))?;
+    let fresh_db: bool =
+        conn.query_row("SELECT NOT EXISTS (SELECT 1 FROM hands)", [], |r| r.get(0))?;
     let mut added = Vec::new();
     for &c in COUNTERS {
         if !existing.iter().any(|e| e == c) {
-            conn.execute_batch(&format!("ALTER TABLE hand_player_stats ADD COLUMN {c} INTEGER NOT NULL DEFAULT 0"))?;
+            conn.execute_batch(&format!(
+                "ALTER TABLE hand_player_stats ADD COLUMN {c} INTEGER NOT NULL DEFAULT 0"
+            ))?;
             if !fresh_db {
                 added.push(c);
             }

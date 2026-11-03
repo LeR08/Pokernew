@@ -16,7 +16,10 @@ type Res<T> = Result<T, CommandError>;
 
 fn svc(s: &AppState) -> Res<&ImportService> {
     s.import.as_deref().ok_or_else(|| {
-        CommandError::from(format!("database unavailable: {}", s.db_error.clone().unwrap_or_default()))
+        CommandError::from(format!(
+            "database unavailable: {}",
+            s.db_error.clone().unwrap_or_default()
+        ))
     })
 }
 
@@ -47,7 +50,9 @@ pub fn import_paths(s: State<'_, AppState>, paths: Vec<String>) -> Res<()> {
 
 #[tauri::command]
 pub fn import_errors(s: State<'_, AppState>, limit: Option<i64>) -> Res<Vec<ImportErrorRow>> {
-    svc(&s)?.with_reader(|c| list_errors(c, limit.unwrap_or(200))).map_err(err)
+    svc(&s)?
+        .with_reader(|c| list_errors(c, limit.unwrap_or(200)))
+        .map_err(err)
 }
 
 /// Re-parses files that had errors (after a parser update).
@@ -67,13 +72,21 @@ pub fn import_errors_export(s: State<'_, AppState>) -> Res<String> {
         .duration_since(std::time::UNIX_EPOCH)
         .map(|d| d.as_secs())
         .unwrap_or(0);
-    let path = svc.data_dir.join("logs").join(format!("import-errors-{now}.txt"));
-    svc.with_reader(|c| lps_db::import::export_errors(c, &path)).map_err(err)?;
+    let path = svc
+        .data_dir
+        .join("logs")
+        .join(format!("import-errors-{now}.txt"));
+    svc.with_reader(|c| lps_db::import::export_errors(c, &path))
+        .map_err(err)?;
     Ok(path.display().to_string())
 }
 
 pub fn base_dirs() -> BaseDirs {
-    BaseDirs { app_data: dirs::config_dir(), local_app_data: dirs::data_local_dir(), documents: dirs::document_dir() }
+    BaseDirs {
+        app_data: dirs::config_dir(),
+        local_app_data: dirs::data_local_dir(),
+        documents: dirs::document_dir(),
+    }
 }
 
 #[tauri::command]
@@ -94,7 +107,9 @@ pub fn backup_now(s: State<'_, AppState>) -> Res<String> {
         .and_then(|v| v["backup"]["keep"].as_u64())
         .unwrap_or(7) as usize;
     let p = svc(&s)?.backup_now(keep).map_err(err)?;
-    Ok(p.file_name().map(|n| n.to_string_lossy().into_owned()).unwrap_or_default())
+    Ok(p.file_name()
+        .map(|n| n.to_string_lossy().into_owned())
+        .unwrap_or_default())
 }
 
 /// Schedules the restore; it is applied when the app restarts.
@@ -122,13 +137,23 @@ mod tests {
     use crate::state::AppState;
 
     fn fixtures() -> String {
-        Path::new(env!("CARGO_MANIFEST_DIR")).join("../../crates/hh-parsers/fixtures/winamax").display().to_string()
+        Path::new(env!("CARGO_MANIFEST_DIR"))
+            .join("../../crates/hh-parsers/fixtures/winamax")
+            .display()
+            .to_string()
     }
 
     #[test]
     fn configuring_a_room_folder_imports_its_hands() {
         let tmp = tempfile::tempdir().unwrap();
-        let s = AppState::init_at(DataDir { path: tmp.path().join("data"), source: DataDirSource::Portable }, Instant::now()).unwrap();
+        let s = AppState::init_at(
+            DataDir {
+                path: tmp.path().join("data"),
+                source: DataDirSource::Portable,
+            },
+            Instant::now(),
+        )
+        .unwrap();
         let svc = s.import.clone().expect("database opened");
         let mut rx = s.bus.subscribe();
 

@@ -80,7 +80,12 @@ fn middle_positions(k: usize) -> &'static [Position] {
 /// * `sb`, `bb`: seat numbers of the blind posters, if any.
 ///
 /// Returns one position per entry of `seats`, in the same order.
-pub fn assign_positions(seats: &[u8], button: u8, sb: Option<u8>, bb: Option<u8>) -> Vec<Option<Position>> {
+pub fn assign_positions(
+    seats: &[u8],
+    button: u8,
+    sb: Option<u8>,
+    bb: Option<u8>,
+) -> Vec<Option<Position>> {
     let mut clockwise: Vec<u8> = seats.to_vec();
     clockwise.sort_unstable();
     // Rotate so the first seat is the first one after the button.
@@ -91,14 +96,25 @@ pub fn assign_positions(seats: &[u8], button: u8, sb: Option<u8>, bb: Option<u8>
     let mut out: Vec<(u8, Position)> = Vec::with_capacity(n);
     if n == 2 {
         // Heads-up: the button posts the small blind; the other player is BB.
-        let bb_seat = bb.or_else(|| clockwise.iter().copied().find(|&s| s != button)).unwrap_or(clockwise[0]);
+        let bb_seat = bb
+            .or_else(|| clockwise.iter().copied().find(|&s| s != button))
+            .unwrap_or(clockwise[0]);
         for &s in &clockwise {
-            out.push((s, if s == bb_seat { Position::Bb } else { Position::Btn }));
+            out.push((
+                s,
+                if s == bb_seat {
+                    Position::Bb
+                } else {
+                    Position::Btn
+                },
+            ));
         }
     } else {
         let btn_seat = seats.contains(&button).then_some(button);
         // Seats after the big blind (or after the button when nobody posted it).
-        let anchor = bb.or(sb).and_then(|b| clockwise.iter().position(|&s| s == b));
+        let anchor = bb
+            .or(sb)
+            .and_then(|b| clockwise.iter().position(|&s| s == b));
         let after_blinds: Vec<u8> = match anchor {
             Some(i) => clockwise[i + 1..].to_vec(),
             None => clockwise.clone(),
@@ -112,7 +128,11 @@ pub fn assign_positions(seats: &[u8], button: u8, sb: Option<u8>, bb: Option<u8>
         // With more than 7 middle seats (never in NLHE ≤ 10-max) the extra ones get UTG.
         let offset = middle.len().saturating_sub(labels.len());
         for (i, &s) in middle.iter().enumerate() {
-            let p = if i < offset { Position::Utg } else { labels[i - offset] };
+            let p = if i < offset {
+                Position::Utg
+            } else {
+                labels[i - offset]
+            };
             out.push((s, p));
         }
         for &s in &clockwise {
@@ -146,7 +166,10 @@ mod tests {
     #[test]
     fn six_max_full() {
         // Button on 3: SB 4, BB 5, then 6 (UTG), 1 (HJ), 2 (CO).
-        assert_eq!(labels(&[1, 2, 3, 4, 5, 6], 3, Some(4), Some(5)), ["HJ", "CO", "BTN", "SB", "BB", "UTG"]);
+        assert_eq!(
+            labels(&[1, 2, 3, 4, 5, 6], 3, Some(4), Some(5)),
+            ["HJ", "CO", "BTN", "SB", "BB", "UTG"]
+        );
     }
 
     #[test]
@@ -158,13 +181,19 @@ mod tests {
     #[test]
     fn dead_small_blind() {
         // Real Winamax hand: button seat 5, nobody posts SB, seat 1 posts BB.
-        assert_eq!(labels(&[1, 2, 3, 4, 5], 5, None, Some(1)), ["BB", "UTG", "HJ", "CO", "BTN"]);
+        assert_eq!(
+            labels(&[1, 2, 3, 4, 5], 5, None, Some(1)),
+            ["BB", "UTG", "HJ", "CO", "BTN"]
+        );
     }
 
     #[test]
     fn dead_button() {
         // Button seat 6 is empty; SB 1, BB 2.
-        assert_eq!(labels(&[1, 2, 3, 4, 5], 6, Some(1), Some(2)), ["SB", "BB", "UTG", "HJ", "CO"]);
+        assert_eq!(
+            labels(&[1, 2, 3, 4, 5], 6, Some(1), Some(2)),
+            ["SB", "BB", "UTG", "HJ", "CO"]
+        );
     }
 
     #[test]
@@ -176,7 +205,10 @@ mod tests {
         );
         let ten: Vec<u8> = (1..=10).collect();
         let p = assign_positions(&ten, 10, Some(1), Some(2));
-        assert_eq!(p[2..9].iter().map(|x| x.unwrap()).collect::<Vec<_>>(), [Utg, Utg1, Utg2, Mp, Lj, Hj, Co]);
+        assert_eq!(
+            p[2..9].iter().map(|x| x.unwrap()).collect::<Vec<_>>(),
+            [Utg, Utg1, Utg2, Mp, Lj, Hj, Co]
+        );
     }
 
     #[test]

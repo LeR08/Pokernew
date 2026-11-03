@@ -61,15 +61,16 @@ export function mockTracker(statsMeta: () => StatMeta[]): Pick<
   | "playModeGet"
   | "hudSetVisible"
   | "hudSetEdit"
-  | "hudSimulate"
-  | "hudClearSimulated"
+  | "hudSetEditTable"
+  | "hudSetTableHidden"
   | "hudOverlay"
   | "hudSaveSeat"
   | "onHudEvent"
 > {
   let hudVisible = true;
   let hudEdit = false;
-  let simulated = 0;
+  let editTable: number | null = null;
+  const hiddenTables = new Set<number>();
   const hudListeners = new Set<(k: "playmode" | "hud-refresh" | "hud-edit" | "hud-status", p: unknown) => void>();
   const savedSeats: Record<string, [number, number][]> = {};
   const notes = new Map<string, Note[]>();
@@ -247,13 +248,16 @@ export function mockTracker(statsMeta: () => StatMeta[]): Pick<
       return 1;
     },
     async hudStatus() {
+      // The browser mock pretends one Winamax table is open (window id 1).
       const h = HANDS[0];
-      const tables = Array.from({ length: simulated }, (_, i) => ({
-        window: { id: 1000000 + i, title: `[simulation] ${h.table_name}`, class: "simulation", process: "local-poker-suite", client: { x: 80, y: 80, w: 800, h: 560 }, scale: 1, minimized: false, visible: true, simulated: true },
-        table: { room: "winamax", tableName: h.table_name, tournamentId: "1195602081", tableNumber: 53, maxSeats: h.max_seats, lastHandAt: h.played_at },
-        matchedBy: h.table_name,
-      }));
-      return { supported: false, visible: hudVisible, edit: hudEdit, playMode: false, unlockIn: 0, tables, windows: [] };
+      const tables = [
+        {
+          window: { id: 1, title: "Winamax TRIDENT SPACE KO(1195602081)(#0053)", class: "Chrome_WidgetWin_1", process: "Winamax.exe", client: { x: 0, y: 30, w: 700, h: 500 }, scale: 1, minimized: false, visible: true },
+          table: { room: "winamax", tableName: h.table_name, tournamentId: "1195602081", tableNumber: 53, maxSeats: h.max_seats, lastHandAt: h.played_at },
+          matchedBy: h.table_name,
+        },
+      ];
+      return { supported: false, visible: hudVisible, edit: hudEdit, playMode: false, unlockIn: 0, tables, editTable, hidden: [...hiddenTables], windows: [] };
     },
     async playModeGet() {
       return false;
@@ -266,13 +270,15 @@ export function mockTracker(statsMeta: () => StatMeta[]): Pick<
       hudEdit = e;
       hudListeners.forEach((l) => l("hud-edit", e));
     },
-    async hudSimulate() {
-      simulated += 1;
-      hudListeners.forEach((l) => l("hud-status", null));
-      return HANDS[0].table_name;
+    async hudSetEditTable(id) {
+      editTable = id;
+      if (id === null) hudEdit = false;
+      hudListeners.forEach((l) => l("hud-edit", null));
     },
-    async hudClearSimulated() {
-      simulated = 0;
+    async hudSetTableHidden(id, hidden) {
+      if (hidden) hiddenTables.add(id);
+      else hiddenTables.delete(id);
+      hudListeners.forEach((l) => l("hud-status", null));
     },
     async hudOverlay() {
       const h = HANDS[0];
@@ -290,8 +296,8 @@ export function mockTracker(statsMeta: () => StatMeta[]): Pick<
       return {
         layout,
         layoutId: "standard",
-        edit: hudEdit,
-        simulated: true,
+        edit: hudEdit || editTable === 1,
+        windowId: 1,
         stats: stats.filter((m) => layout.rows.flat().includes(m.id) || layout.popup.includes(m.id)),
         table: {
           room: "winamax",

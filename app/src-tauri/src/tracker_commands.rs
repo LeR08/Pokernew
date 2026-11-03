@@ -2,7 +2,9 @@
 
 use lps_core_model::Hand;
 use lps_stats_engine::defs::{ColourRange, Text};
-use lps_stats_engine::query::{self, Filter, Graph, Group, HandRow, ReportRow, TournamentRow, TournamentTotals};
+use lps_stats_engine::query::{
+    self, Filter, Graph, Group, HandRow, ReportRow, TournamentRow, TournamentTotals,
+};
 use lps_stats_engine::{compile_all, compile_stat, CompiledStat, StatDef, StatsFile};
 use serde::Serialize;
 use tauri::State;
@@ -14,7 +16,9 @@ use crate::state::AppState;
 type Res<T> = Result<T, CommandError>;
 
 fn svc(s: &AppState) -> Res<&ImportService> {
-    s.import.as_deref().ok_or_else(|| CommandError::from("database unavailable".to_string()))
+    s.import
+        .as_deref()
+        .ok_or_else(|| CommandError::from("database unavailable".to_string()))
 }
 
 fn sql_err(e: rusqlite::Error) -> lps_db::DbError {
@@ -53,11 +57,17 @@ pub fn load_stats(s: &AppState) -> (Vec<CompiledStat>, Vec<StatMeta>, Vec<StatPr
     let mut metas = Vec::new();
     let mut problems = Vec::new();
     for file in s.store.list("stats") {
-        let Some(v) = s.store.get("stats", &file) else { continue };
+        let Some(v) = s.store.get("stats", &file) else {
+            continue;
+        };
         let parsed: StatsFile = match serde_json::from_value(v) {
             Ok(p) => p,
             Err(e) => {
-                problems.push(StatProblem { id: String::new(), file: file.clone(), message: e.to_string() });
+                problems.push(StatProblem {
+                    id: String::new(),
+                    file: file.clone(),
+                    message: e.to_string(),
+                });
                 continue;
             }
         };
@@ -75,7 +85,11 @@ pub fn load_stats(s: &AppState) -> (Vec<CompiledStat>, Vec<StatMeta>, Vec<StatPr
             compiled.push(c);
         }
         for (id, e) in errs {
-            problems.push(StatProblem { id, file: file.clone(), message: e.to_string() });
+            problems.push(StatProblem {
+                id,
+                file: file.clone(),
+                message: e.to_string(),
+            });
         }
     }
     (compiled, metas, problems)
@@ -95,12 +109,18 @@ pub fn tracker_report(s: State<'_, AppState>, filter: Filter, group: Group) -> R
     let rows = svc(&s)?
         .with_reader(|c| query::report(c, &filter, &compiled, group).map_err(sql_err))
         .map_err(err)?;
-    Ok(ReportResponse { rows, stats, problems })
+    Ok(ReportResponse {
+        rows,
+        stats,
+        problems,
+    })
 }
 
 #[tauri::command]
 pub fn tracker_graph(s: State<'_, AppState>, filter: Filter) -> Res<Graph> {
-    svc(&s)?.with_reader(|c| query::graph(c, &filter, 2000).map_err(sql_err)).map_err(err)
+    svc(&s)?
+        .with_reader(|c| query::graph(c, &filter, 2000).map_err(sql_err))
+        .map_err(err)
 }
 
 #[derive(Debug, Serialize)]
@@ -112,7 +132,9 @@ pub struct TournamentsResponse {
 
 #[tauri::command]
 pub fn tracker_tournaments(s: State<'_, AppState>, filter: Filter) -> Res<TournamentsResponse> {
-    let (rows, totals) = svc(&s)?.with_reader(|c| query::tournaments(c, &filter).map_err(sql_err)).map_err(err)?;
+    let (rows, totals) = svc(&s)?
+        .with_reader(|c| query::tournaments(c, &filter).map_err(sql_err))
+        .map_err(err)?;
     Ok(TournamentsResponse { rows, totals })
 }
 
@@ -124,22 +146,33 @@ pub struct HandsResponse {
 }
 
 #[tauri::command]
-pub fn tracker_hands(s: State<'_, AppState>, filter: Filter, limit: i64, offset: i64) -> Res<HandsResponse> {
+pub fn tracker_hands(
+    s: State<'_, AppState>,
+    filter: Filter,
+    limit: i64,
+    offset: i64,
+) -> Res<HandsResponse> {
     let (rows, total) = svc(&s)?
-        .with_reader(|c| query::hands(c, &filter, limit.clamp(1, 1000), offset.max(0)).map_err(sql_err))
+        .with_reader(|c| {
+            query::hands(c, &filter, limit.clamp(1, 1000), offset.max(0)).map_err(sql_err)
+        })
         .map_err(err)?;
     Ok(HandsResponse { rows, total })
 }
 
 #[tauri::command]
 pub fn tracker_accounts(s: State<'_, AppState>) -> Res<Vec<String>> {
-    svc(&s)?.with_reader(|c| query::hero_accounts(c).map_err(sql_err)).map_err(err)
+    svc(&s)?
+        .with_reader(|c| query::hero_accounts(c).map_err(sql_err))
+        .map_err(err)
 }
 
 /// One stored hand, for the replayer.
 #[tauri::command]
 pub fn hand_get(s: State<'_, AppState>, hand_id: i64) -> Res<Hand> {
-    svc(&s)?.with_reader(|c| lps_db::load::load_hand(c, hand_id).map(|(h, _)| h)).map_err(err)
+    svc(&s)?
+        .with_reader(|c| lps_db::load::load_hand(c, hand_id).map(|(h, _)| h))
+        .map_err(err)
 }
 
 #[derive(Debug, Serialize)]
@@ -155,7 +188,9 @@ pub struct Preview {
 pub fn stat_preview(s: State<'_, AppState>, def: StatDef, filter: Filter) -> Res<Preview> {
     let st = compile_stat("preview", &def).map_err(|e| CommandError::from(e.to_string()))?;
     let rows = svc(&s)?
-        .with_reader(|c| query::report(c, &filter, std::slice::from_ref(&st), Group::None).map_err(sql_err))
+        .with_reader(|c| {
+            query::report(c, &filter, std::slice::from_ref(&st), Group::None).map_err(sql_err)
+        })
         .map_err(err)?;
     let row = rows.first();
     Ok(Preview {
@@ -173,7 +208,9 @@ use lps_stats_engine::review::{Session, SessionReview};
 
 #[tauri::command]
 pub fn tracker_sessions(s: State<'_, AppState>, filter: Filter) -> Res<Vec<Session>> {
-    svc(&s)?.with_reader(|c| lps_stats_engine::review::sessions(c, &filter).map_err(sql_err)).map_err(err)
+    svc(&s)?
+        .with_reader(|c| lps_stats_engine::review::sessions(c, &filter).map_err(sql_err))
+        .map_err(err)
 }
 
 /// Post-session review: rules of thumb on the finished hands of a session.
@@ -189,7 +226,9 @@ pub fn session_review(
     if hud.play_mode.load(std::sync::atomic::Ordering::SeqCst) {
         return Err(CommandError::from("play_mode".to_string()));
     }
-    svc(&s)?.with_reader(|c| lps_stats_engine::review::review_session(c, &filter, start, end)).map_err(err)
+    svc(&s)?
+        .with_reader(|c| lps_stats_engine::review::review_session(c, &filter, start, end))
+        .map_err(err)
 }
 
 #[derive(Debug, Serialize)]
@@ -211,44 +250,70 @@ pub fn tracker_leaks(s: State<'_, AppState>, filter: Filter) -> Res<LeaksRespons
         }
     }
     let rows = svc(&s)?
-        .with_reader(|c| lps_stats_engine::leaks::find(c, &filter, &compiled, &targets).map_err(sql_err))
+        .with_reader(|c| {
+            lps_stats_engine::leaks::find(c, &filter, &compiled, &targets).map_err(sql_err)
+        })
         .map_err(err)?;
     Ok(LeaksResponse { rows, stats })
 }
 
 #[tauri::command]
 pub fn tracker_grid(s: State<'_, AppState>, filter: Filter) -> Res<Vec<Cell>> {
-    svc(&s)?.with_reader(|c| lps_stats_engine::grid::grid(c, &filter).map_err(sql_err)).map_err(err)
+    svc(&s)?
+        .with_reader(|c| lps_stats_engine::grid::grid(c, &filter).map_err(sql_err))
+        .map_err(err)
 }
 
 // ---- Notes ----
 
 #[tauri::command]
-pub fn notes_get(s: State<'_, AppState>, room: String, name: String) -> Res<lps_db::user::PlayerNotes> {
-    svc(&s)?.with_reader(|c| lps_db::user::notes(c, &room, &name)).map_err(err)
+pub fn notes_get(
+    s: State<'_, AppState>,
+    room: String,
+    name: String,
+) -> Res<lps_db::user::PlayerNotes> {
+    svc(&s)?
+        .with_reader(|c| lps_db::user::notes(c, &room, &name))
+        .map_err(err)
 }
 
 #[tauri::command]
 pub fn note_add(s: State<'_, AppState>, room: String, name: String, text: String) -> Res<i64> {
-    let now = std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).map(|d| d.as_secs() as i64).unwrap_or(0);
-    svc(&s)?.with_reader(|c| lps_db::user::add_note(c, &room, &name, &text, now)).map_err(err)
+    let now = std::time::SystemTime::now()
+        .duration_since(std::time::UNIX_EPOCH)
+        .map(|d| d.as_secs() as i64)
+        .unwrap_or(0);
+    svc(&s)?
+        .with_reader(|c| lps_db::user::add_note(c, &room, &name, &text, now))
+        .map_err(err)
 }
 
 #[tauri::command]
 pub fn note_delete(s: State<'_, AppState>, id: i64) -> Res<()> {
-    svc(&s)?.with_reader(|c| lps_db::user::delete_note(c, id)).map_err(err)
+    svc(&s)?
+        .with_reader(|c| lps_db::user::delete_note(c, id))
+        .map_err(err)
 }
 
 #[tauri::command]
-pub fn player_colour(s: State<'_, AppState>, room: String, name: String, colour: Option<String>) -> Res<()> {
-    svc(&s)?.with_reader(|c| lps_db::user::set_colour(c, &room, &name, colour.as_deref())).map_err(err)
+pub fn player_colour(
+    s: State<'_, AppState>,
+    room: String,
+    name: String,
+    colour: Option<String>,
+) -> Res<()> {
+    svc(&s)?
+        .with_reader(|c| lps_db::user::set_colour(c, &room, &name, colour.as_deref()))
+        .map_err(err)
 }
 
 // ---- Bankroll ----
 
 #[tauri::command]
 pub fn bankroll_get(s: State<'_, AppState>) -> Res<lps_stats_engine::bankroll::Bankroll> {
-    svc(&s)?.with_reader(lps_stats_engine::bankroll::bankroll).map_err(err)
+    svc(&s)?
+        .with_reader(lps_stats_engine::bankroll::bankroll)
+        .map_err(err)
 }
 
 #[tauri::command]
@@ -258,12 +323,16 @@ pub fn bankroll_tx_list(s: State<'_, AppState>) -> Res<Vec<lps_db::user::Tx>> {
 
 #[tauri::command]
 pub fn bankroll_tx_add(s: State<'_, AppState>, tx: lps_db::user::Tx) -> Res<i64> {
-    svc(&s)?.with_reader(|c| lps_db::user::add_tx(c, &tx)).map_err(err)
+    svc(&s)?
+        .with_reader(|c| lps_db::user::add_tx(c, &tx))
+        .map_err(err)
 }
 
 #[tauri::command]
 pub fn bankroll_tx_delete(s: State<'_, AppState>, id: i64) -> Res<()> {
-    svc(&s)?.with_reader(|c| lps_db::user::delete_tx(c, id)).map_err(err)
+    svc(&s)?
+        .with_reader(|c| lps_db::user::delete_tx(c, id))
+        .map_err(err)
 }
 
 // ---- CSV export ----
@@ -289,8 +358,21 @@ pub fn to_csv(rows: &[Vec<String>]) -> String {
 /// Writes `<data>/exports/<name>-<time>.csv`; returns its path.
 #[tauri::command]
 pub fn export_csv(s: State<'_, AppState>, name: String, rows: Vec<Vec<String>>) -> Res<String> {
-    let safe: String = name.chars().map(|c| if c.is_ascii_alphanumeric() || c == '-' { c } else { '_' }).take(40).collect();
-    let now = std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).map(|d| d.as_secs()).unwrap_or(0);
+    let safe: String = name
+        .chars()
+        .map(|c| {
+            if c.is_ascii_alphanumeric() || c == '-' {
+                c
+            } else {
+                '_'
+            }
+        })
+        .take(40)
+        .collect();
+    let now = std::time::SystemTime::now()
+        .duration_since(std::time::UNIX_EPOCH)
+        .map(|d| d.as_secs())
+        .unwrap_or(0);
     let dir = s.data_dir.path.join("exports");
     std::fs::create_dir_all(&dir).map_err(|e| CommandError::from(e.to_string()))?;
     let path = dir.join(format!("{safe}-{now}.csv"));
@@ -302,7 +384,11 @@ pub fn export_csv(s: State<'_, AppState>, name: String, rows: Vec<Vec<String>>) 
 mod tests {
     #[test]
     fn csv_is_excel_friendly() {
-        let csv = super::to_csv(&[vec!["Position".into(), "VPIP".into()], vec!["BTN".into(), "31,2 %".into()], vec!["a;b".into(), "say \"hi\"".into()]]);
+        let csv = super::to_csv(&[
+            vec!["Position".into(), "VPIP".into()],
+            vec!["BTN".into(), "31,2 %".into()],
+            vec!["a;b".into(), "say \"hi\"".into()],
+        ]);
         assert!(csv.starts_with('\u{feff}'));
         assert!(csv.contains("BTN;31,2 %\r\n"));
         assert!(csv.contains("\"a;b\";\"say \"\"hi\"\"\""));
@@ -321,13 +407,33 @@ pub struct OpponentsResponse {
 }
 
 #[tauri::command]
-pub fn tracker_opponents(s: State<'_, AppState>, filter: Filter, min_hands: i64, limit: i64) -> Res<OpponentsResponse> {
+pub fn tracker_opponents(
+    s: State<'_, AppState>,
+    filter: Filter,
+    min_hands: i64,
+    limit: i64,
+) -> Res<OpponentsResponse> {
     let (compiled, stats, _) = load_stats(&s);
-    let f = Filter { who: Some("opponents".into()), player: None, ..filter };
+    let f = Filter {
+        who: Some("opponents".into()),
+        player: None,
+        ..filter
+    };
     let (rows, pool) = svc(&s)?
         .with_reader(|c| {
-            let rows = query::report_limited(c, &f, &compiled, Group::Player, min_hands.max(1), limit.clamp(1, 5000)).map_err(sql_err)?;
-            let pool = query::report(c, &f, &compiled, Group::None).map_err(sql_err)?.into_iter().next();
+            let rows = query::report_limited(
+                c,
+                &f,
+                &compiled,
+                Group::Player,
+                min_hands.max(1),
+                limit.clamp(1, 5000),
+            )
+            .map_err(sql_err)?;
+            let pool = query::report(c, &f, &compiled, Group::None)
+                .map_err(sql_err)?
+                .into_iter()
+                .next();
             Ok((rows, pool))
         })
         .map_err(err)?;
@@ -336,7 +442,9 @@ pub fn tracker_opponents(s: State<'_, AppState>, filter: Filter, min_hands: i64,
 
 /// Re-evaluates the auto-note rules (`notes/*.toml`) on every opponent.
 pub fn run_autonotes(s: &AppState) -> Result<usize, String> {
-    let Some(svc) = s.import.as_deref() else { return Ok(0) };
+    let Some(svc) = s.import.as_deref() else {
+        return Ok(0);
+    };
     let (compiled, _, _) = load_stats(s);
     let mut rules = lps_stats_engine::autonotes::RulesFile::default();
     for id in s.store.list("notes") {
@@ -351,17 +459,24 @@ pub fn run_autonotes(s: &AppState) -> Result<usize, String> {
         .get("settings", "settings")
         .and_then(|v| v["general"]["language"].as_str().map(str::to_string))
         .unwrap_or_else(|| "fr".into());
-    let now = std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).map(|d| d.as_secs() as i64).unwrap_or(0);
+    let now = std::time::SystemTime::now()
+        .duration_since(std::time::UNIX_EPOCH)
+        .map(|d| d.as_secs() as i64)
+        .unwrap_or(0);
     let mut conn = lps_db::open_reader(&svc.db_path).map_err(|e| e.to_string())?;
     let rooms: Vec<String> = {
-        let mut st = conn.prepare("SELECT DISTINCT room FROM players").map_err(|e| e.to_string())?;
+        let mut st = conn
+            .prepare("SELECT DISTINCT room FROM players")
+            .map_err(|e| e.to_string())?;
         let rows = st.query_map([], |r| r.get(0)).map_err(|e| e.to_string())?;
         rows.collect::<Result<_, _>>().map_err(|e| e.to_string())?
     };
     let mut total = 0;
     for room in rooms {
-        let notes = lps_stats_engine::autonotes::evaluate(&conn, &room, &compiled, &rules, &lang).map_err(|e| e.to_string())?;
-        total += lps_stats_engine::autonotes::apply(&mut conn, &room, &notes, now).map_err(|e| e.to_string())?;
+        let notes = lps_stats_engine::autonotes::evaluate(&conn, &room, &compiled, &rules, &lang)
+            .map_err(|e| e.to_string())?;
+        total += lps_stats_engine::autonotes::apply(&mut conn, &room, &notes, now)
+            .map_err(|e| e.to_string())?;
     }
     Ok(total)
 }

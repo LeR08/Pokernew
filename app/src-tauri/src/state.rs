@@ -27,7 +27,8 @@ impl AppState {
     /// Resolves the data folder, installs missing defaults, loads every
     /// config file and starts hot reload.
     pub fn init(input: &ResolveInput, started: Instant) -> Result<Self, String> {
-        let data_dir = paths::resolve(input).ok_or("cannot determine a data folder (use --data-dir)")?;
+        let data_dir =
+            paths::resolve(input).ok_or("cannot determine a data folder (use --data-dir)")?;
         Self::init_at(data_dir, started)
     }
 
@@ -37,9 +38,16 @@ impl AppState {
         for p in &report.created {
             log::info!("created default {}", p.display());
         }
-        let store = Arc::new(ConfigStore::open(&data_dir.path).map_err(|e: ConfigError| e.to_string())?);
+        let store =
+            Arc::new(ConfigStore::open(&data_dir.path).map_err(|e: ConfigError| e.to_string())?);
         for issue in store.issues() {
-            log::warn!("config issue {}/{}{}: {}", issue.family, issue.id, issue.pointer, issue.message);
+            log::warn!(
+                "config issue {}/{}{}: {}",
+                issue.family,
+                issue.id,
+                issue.pointer,
+                issue.message
+            );
         }
         let bus = EventBus::default();
         let bus2 = bus.clone();

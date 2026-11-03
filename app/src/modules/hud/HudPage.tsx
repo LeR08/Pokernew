@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { ClipboardCopy, Eye, EyeOff, Lock, MonitorPlay, Move, Trash2 } from "lucide-react";
+import { ClipboardCopy, Eye, EyeOff, Lock, Move } from "lucide-react";
 import { getBackend } from "@/lib/backend";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -27,7 +27,6 @@ export function HudPage({ manifest }: { manifest: ModuleManifest }) {
   useEffect(() => {
     if (layout) setHeroOn(layout.show_hero ?? false);
   }, [layout]);
-  const [msg, setMsg] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   useEffect(() => {
     let off: (() => void) | undefined;
@@ -111,54 +110,45 @@ export function HudPage({ manifest }: { manifest: ModuleManifest }) {
       </div>
       <p className="text-xs text-muted">{t("hud.hotkeys_help")}</p>
 
-      <Card className="flex flex-col gap-d3 p-d4">
-        <h2 className="flex items-center gap-d2 font-semibold">
-          <MonitorPlay className="h-5 w-5 text-primary" aria-hidden />
-          {t("hud.simulate_title")}
-        </h2>
-        <p className="text-sm text-muted">{t("hud.simulate_help")}</p>
-        <div className="flex flex-wrap gap-d2">
-          {[2, 3, 6, 9].map((n) => (
-            <Button
-              key={n}
-              variant="outline"
-              size="sm"
-              data-testid={`simulate-${n}`}
-              onClick={() =>
-                void getBackend()
-                  .then((b) => b.hudSimulate(n))
-                  .then((name) => setMsg(t("hud.simulated", { name })))
-                  .catch((e: Error) => setMsg(e.message))
-                  .then(refresh)
-              }
-            >
-              {t("hud.simulate_n", { n })}
-            </Button>
-          ))}
-          <Button variant="ghost" size="sm" onClick={() => void getBackend().then((b) => b.hudClearSimulated()).then(refresh)}>
-            <Trash2 className="h-4 w-4" />
-            {t("hud.clear_simulated")}
-          </Button>
-        </div>
-        {msg && <p className="text-sm" data-testid="hud-msg">{msg}</p>}
-      </Card>
-
       <Card className="flex flex-col gap-d2 p-d4">
         <h2 className="font-semibold">{t("hud.detected")}</h2>
         {status.tables.length === 0 ? (
           <p className="text-sm text-muted">{t("hud.none")}</p>
         ) : (
           <ul className="flex flex-col gap-1 text-sm" data-testid="hud-tables">
-            {status.tables.map((m) => (
-              <li key={m.window.id} className="flex flex-wrap items-center gap-d2 rounded border border-border px-d3 py-d2">
-                <span className="font-medium">{m.table.tableName}</span>
-                <span className="text-xs text-muted">
-                  {t("hud.max", { n: m.table.maxSeats })} · {m.window.client.w}×{m.window.client.h}
-                  {m.window.simulated && ` · ${t("hud.simulation")}`}
-                </span>
-                <code className="ml-auto max-w-80 truncate text-xs text-muted">{m.window.title}</code>
-              </li>
-            ))}
+            {status.tables.map((m) => {
+              const editing = status.editTable === m.window.id || status.edit;
+              const hidden = status.hidden.includes(m.window.id);
+              return (
+                <li key={m.window.id} className="flex flex-wrap items-center gap-d2 rounded border border-border px-d3 py-d2" data-testid="hud-table">
+                  <span className="font-medium">{m.table.tableName}</span>
+                  <span className="text-xs text-muted">
+                    {t("hud.max", { n: m.table.maxSeats })} · {m.window.client.w}×{m.window.client.h}
+                  </span>
+                  <span className="ml-auto flex gap-d2">
+                    <Button
+                      variant={editing ? "default" : "outline"}
+                      size="sm"
+                      data-testid="hud-table-edit"
+                      onClick={() => void getBackend().then((b) => b.hudSetEditTable(editing ? null : m.window.id)).then(refresh)}
+                    >
+                      <Move className="h-4 w-4" />
+                      {editing ? t("hud.table_done") : t("hud.table_edit")}
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      data-testid="hud-table-hide"
+                      onClick={() => void getBackend().then((b) => b.hudSetTableHidden(m.window.id, !hidden)).then(refresh)}
+                    >
+                      {hidden ? <Eye className="h-4 w-4" /> : <EyeOff className="h-4 w-4" />}
+                      {hidden ? t("hud.table_show") : t("hud.table_hide")}
+                    </Button>
+                  </span>
+                  <code className="w-full truncate text-xs text-muted">{m.window.title}</code>
+                </li>
+              );
+            })}
           </ul>
         )}
       </Card>

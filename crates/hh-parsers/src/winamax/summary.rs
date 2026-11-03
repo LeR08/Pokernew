@@ -39,11 +39,14 @@ use super::ROOM;
 use crate::util::{parse_cents, parse_utc, strip_bom};
 use crate::ParseError;
 
-static TITLE: LazyLock<Regex> =
-    LazyLock::new(|| Regex::new(r"^Winamax Poker - Tournament summary : (?P<name>.*)\((?P<id>\d+)\)(?P<late> - Late Registration)?$").unwrap());
-static FINISHED: LazyLock<Regex> = LazyLock::new(|| Regex::new(r"^You finished in (?P<pos>\d+)(?:st|nd|rd|th) place$").unwrap());
-static PLAYED: LazyLock<Regex> =
-    LazyLock::new(|| Regex::new(r"^You played (?:(?P<h>\d+)h ?)?(?:(?P<m>\d+)min ?)?(?:(?P<s>\d+)s)?$").unwrap());
+static TITLE: LazyLock<Regex> = LazyLock::new(|| {
+    Regex::new(r"^Winamax Poker - Tournament summary : (?P<name>.*)\((?P<id>\d+)\)(?P<late> - Late Registration)?$").unwrap()
+});
+static FINISHED: LazyLock<Regex> =
+    LazyLock::new(|| Regex::new(r"^You finished in (?P<pos>\d+)(?:st|nd|rd|th) place$").unwrap());
+static PLAYED: LazyLock<Regex> = LazyLock::new(|| {
+    Regex::new(r"^You played (?:(?P<h>\d+)h ?)?(?:(?P<m>\d+)min ?)?(?:(?P<s>\d+)s)?$").unwrap()
+});
 
 fn euros(n: usize, line: &str, s: &str) -> Result<i64, ParseError> {
     s.trim()
@@ -57,7 +60,11 @@ const TITLE_PREFIX: &str = "Winamax Poker - Tournament summary : ";
 /// Every summary of a file, in file order (one per entry).
 pub fn parse_all(text: &str) -> Result<Vec<TournamentSummary>, ParseError> {
     let text = strip_bom(text);
-    let mut starts: Vec<usize> = text.match_indices(TITLE_PREFIX).map(|(i, _)| i).filter(|&i| i == 0 || text.as_bytes()[i - 1] == b'\n').collect();
+    let mut starts: Vec<usize> = text
+        .match_indices(TITLE_PREFIX)
+        .map(|(i, _)| i)
+        .filter(|&i| i == 0 || text.as_bytes()[i - 1] == b'\n')
+        .collect();
     if starts.is_empty() {
         starts.push(0);
     }
@@ -68,16 +75,26 @@ pub fn parse_all(text: &str) -> Result<Vec<TournamentSummary>, ParseError> {
     }
     if let Some(first) = out.first() {
         if out.iter().any(|x| x.id != first.id) {
-            return Err(ParseError::whole("summaries of different tournaments in one file"));
+            return Err(ParseError::whole(
+                "summaries of different tournaments in one file",
+            ));
         }
     }
     Ok(out)
 }
 
 pub fn parse(text: &str) -> Result<TournamentSummary, ParseError> {
-    let mut lines = strip_bom(text).lines().map(|l| l.trim_end_matches('\r')).enumerate().map(|(i, l)| (i + 1, l));
-    let (n, first) = lines.next().ok_or_else(|| ParseError::whole("empty summary"))?;
-    let t = TITLE.captures(first).ok_or_else(|| ParseError::new(n, first, "unrecognised summary title"))?;
+    let mut lines = strip_bom(text)
+        .lines()
+        .map(|l| l.trim_end_matches('\r'))
+        .enumerate()
+        .map(|(i, l)| (i + 1, l));
+    let (n, first) = lines
+        .next()
+        .ok_or_else(|| ParseError::whole("empty summary"))?;
+    let t = TITLE
+        .captures(first)
+        .ok_or_else(|| ParseError::new(n, first, "unrecognised summary title"))?;
     let mut s = TournamentSummary {
         room: ROOM.into(),
         id: t["id"].to_string(),
@@ -109,7 +126,10 @@ pub fn parse(text: &str) -> Result<TournamentSummary, ParseError> {
                 "Player" => s.hero = value.to_string(),
                 "Buy-In" => {
                     let parts: Vec<&str> = value.split(" + ").collect();
-                    let cents: Vec<i64> = parts.iter().map(|p| euros(n, line, p)).collect::<Result<_, _>>()?;
+                    let cents: Vec<i64> = parts
+                        .iter()
+                        .map(|p| euros(n, line, p))
+                        .collect::<Result<_, _>>()?;
                     match cents.as_slice() {
                         [prize, bounty, fee] => {
                             s.buy_in_prize_cents = *prize;
@@ -124,19 +144,36 @@ pub fn parse(text: &str) -> Result<TournamentSummary, ParseError> {
                     }
                 }
                 "Registered players" => {
-                    s.registered_players = Some(value.parse().map_err(|_| ParseError::new(n, line, "bad number"))?)
+                    s.registered_players = Some(
+                        value
+                            .parse()
+                            .map_err(|_| ParseError::new(n, line, "bad number"))?,
+                    )
                 }
                 "Mode" => s.mode = Some(value.to_string()),
                 "Type" => s.kind = Some(value.to_string()),
                 "Speed" => s.speed = Some(value.to_string()),
                 "Prizepool" => s.prize_pool_cents = Some(euros(n, line, value)?),
                 "Flight ID" | "Levels" => {}
-                _ => return Err(ParseError::new(n, line, format!("unknown summary key '{key}'"))),
+                _ => {
+                    return Err(ParseError::new(
+                        n,
+                        line,
+                        format!("unknown summary key '{key}'"),
+                    ))
+                }
             }
-        } else if let Some(d) = line.strip_prefix("Tournament started ").and_then(|d| d.strip_suffix(" UTC")) {
+        } else if let Some(d) = line
+            .strip_prefix("Tournament started ")
+            .and_then(|d| d.strip_suffix(" UTC"))
+        {
             s.started_at = Some(parse_utc(d).ok_or_else(|| ParseError::new(n, line, "bad date"))?);
         } else if let Some(c) = PLAYED.captures(line.trim_end()) {
-            let g = |k: &str| c.name(k).and_then(|m| m.as_str().parse::<i64>().ok()).unwrap_or(0);
+            let g = |k: &str| {
+                c.name(k)
+                    .and_then(|m| m.as_str().parse::<i64>().ok())
+                    .unwrap_or(0)
+            };
             s.duration_secs = Some(g("h") * 3600 + g("m") * 60 + g("s"));
         } else if let Some(c) = FINISHED.captures(line) {
             s.finish_position = c["pos"].parse().ok();

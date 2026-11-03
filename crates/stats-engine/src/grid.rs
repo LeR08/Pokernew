@@ -44,13 +44,23 @@ pub fn grid(conn: &Connection, filter: &Filter) -> rusqlite::Result<Vec<Cell>> {
     let mut acc: HashMap<String, Cell> = HashMap::new();
     let mut st = conn.prepare(&sql)?;
     let rows = st.query_map(params_from_iter(w.params), |r| {
-        Ok((r.get::<_, String>(0)?, r.get::<_, f64>(1)?, r.get::<_, i64>(2)?, r.get::<_, i64>(3)?))
+        Ok((
+            r.get::<_, String>(0)?,
+            r.get::<_, f64>(1)?,
+            r.get::<_, i64>(2)?,
+            r.get::<_, i64>(3)?,
+        ))
     })?;
     for row in rows {
         let (cards, bb, vpip, pfr) = row?;
         let spaced = format!("{} {}", &cards[..2], &cards[2..]);
-        let Some(class) = parse_cards(&spaced).ok().and_then(|c| hand_class(&c)) else { continue };
-        let cell = acc.entry(class.clone()).or_insert_with(|| Cell { class, ..Default::default() });
+        let Some(class) = parse_cards(&spaced).ok().and_then(|c| hand_class(&c)) else {
+            continue;
+        };
+        let cell = acc.entry(class.clone()).or_insert_with(|| Cell {
+            class,
+            ..Default::default()
+        });
         cell.hands += 1;
         cell.net_bb += bb;
         cell.vpip += vpip;
@@ -60,7 +70,10 @@ pub fn grid(conn: &Connection, filter: &Filter) -> rusqlite::Result<Vec<Cell>> {
     for row in 0..13 {
         for col in 0..13 {
             let class = class_at(row, col);
-            out.push(acc.remove(&class).unwrap_or(Cell { class, ..Default::default() }));
+            out.push(acc.remove(&class).unwrap_or(Cell {
+                class,
+                ..Default::default()
+            }));
         }
     }
     Ok(out)
