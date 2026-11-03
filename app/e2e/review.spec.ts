@@ -28,7 +28,10 @@ test("13x13 grid has 169 cells", async ({ page }) => {
 
 test("bankroll: add a deposit, the balance follows", async ({ page }) => {
   await page.goto("/#/m/bankroll");
+  // Wait for the first render with data, otherwise React can reset the input.
+  await expect(page.getByTestId("bankroll-balance")).toBeVisible();
   await page.getByTestId("tx-amount").fill("50");
+  await expect(page.getByTestId("tx-add")).toBeEnabled();
   await page.getByTestId("tx-add").click();
   await expect(page.getByTestId("tx-list")).toContainText("Dépôt");
   await expect(page.getByTestId("bankroll-balance")).toContainText("50,03");
