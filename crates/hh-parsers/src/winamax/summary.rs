@@ -19,6 +19,11 @@
 //! You won 0.52€ + Bounty 0.51€          (absent when nothing was won)
 //! ```
 //!
+//! **Re-entries** (seen on the user's PC, Oct. 2026): a file then holds one
+//! summary per entry. An entry that busted during late registration has the
+//! title suffix ` - Late Registration`. When only a bounty was won the line
+//! reads `You won Bounty 1.07€`.
+//!
 //! A two-part buy-in (`prize + fee`, no bounty) has not been seen yet; it is
 //! accepted because the meaning of the parts is unambiguous.
 
@@ -32,9 +37,9 @@ use crate::util::{parse_cents, parse_utc, strip_bom};
 use crate::ParseError;
 
 static TITLE: LazyLock<Regex> =
-    LazyLock::new(|| Regex::new(r"^Winamax Poker - Tournament summary : (?P<name>.*)\((?P<id>\d+)\)$").unwrap());
+    LazyLock::new(|| Regex::new(r"^Winamax Poker - Tournament summary : (?P<name>.*)\((?P<id>\d+)\)(?P<late> - Late Registration)?$").unwrap());
 static WON: LazyLock<Regex> =
-    LazyLock::new(|| Regex::new(r"^You won (?P<won>[0-9.]+)€(?: \+ Bounty (?P<bounty>[0-9.]+)€)?$").unwrap());
+    LazyLock::new(|| Regex::new(r"^You won (?:(?P<won>[0-9.]+)€)?(?:(?: \+ )?Bounty (?P<bounty>[0-9.]+)€)?$").unwrap());
 static FINISHED: LazyLock<Regex> = LazyLock::new(|| Regex::new(r"^You finished in (?P<pos>\d+)(?:st|nd|rd|th) place$").unwrap());
 static PLAYED: LazyLock<Regex> =
     LazyLock::new(|| Regex::new(r"^You played (?:(?P<h>\d+)h ?)?(?:(?P<m>\d+)min ?)?(?:(?P<s>\d+)s)?$").unwrap());
@@ -44,6 +49,28 @@ fn euros(n: usize, line: &str, s: &str) -> Result<i64, ParseError> {
         .strip_suffix('€')
         .and_then(parse_cents)
         .ok_or_else(|| ParseError::new(n, line, format!("bad amount '{s}'")))
+}
+
+const TITLE_PREFIX: &str = "Winamax Poker - Tournament summary : ";
+
+/// Every summary of a file, in file order (one per entry).
+pub fn parse_all(text: &str) -> Result<Vec<TournamentSummary>, ParseError> {
+    let text = strip_bom(text);
+    let mut starts: Vec<usize> = text.match_indices(TITLE_PREFIX).map(|(i, _)| i).filter(|&i| i == 0 || text.as_bytes()[i - 1] == b'\n').collect();
+    if starts.is_empty() {
+        starts.push(0);
+    }
+    let mut out = Vec::with_capacity(starts.len());
+    for (k, &s) in starts.iter().enumerate() {
+        let e = starts.get(k + 1).copied().unwrap_or(text.len());
+        out.push(parse(&text[s..e])?);
+    }
+    if let Some(first) = out.first() {
+        if out.iter().any(|x| x.id != first.id) {
+            return Err(ParseError::whole("summaries of different tournaments in one file"));
+        }
+    }
+    Ok(out)
 }
 
 pub fn parse(text: &str) -> Result<TournamentSummary, ParseError> {
@@ -68,9 +95,11 @@ pub fn parse(text: &str) -> Result<TournamentSummary, ParseError> {
         finish_position: None,
         won_cents: 0,
         bounty_won_cents: 0,
+        late_registration: t.name("late").is_some(),
     };
     for (n, line) in lines {
-        if line.trim().is_empty() {
+        let line = line.trim_end();
+        if line.is_empty() {
             continue;
         }
         if let Some((key, value)) = line.split_once(" : ") {
@@ -109,8 +138,10 @@ pub fn parse(text: &str) -> Result<TournamentSummary, ParseError> {
             s.duration_secs = Some(g("h") * 3600 + g("m") * 60 + g("s"));
         } else if let Some(c) = FINISHED.captures(line) {
             s.finish_position = c["pos"].parse().ok();
-        } else if let Some(c) = WON.captures(line) {
-            s.won_cents = parse_cents(&c["won"]).ok_or_else(|| ParseError::new(n, line, "bad amount"))?;
+        } else if let Some(c) = WON.captures(line).filter(|c| c.name("won").is_some() || c.name("bounty").is_some()) {
+            if let Some(w) = c.name("won") {
+                s.won_cents = parse_cents(w.as_str()).ok_or_else(|| ParseError::new(n, line, "bad amount"))?;
+            }
             if let Some(b) = c.name("bounty") {
                 s.bounty_won_cents = parse_cents(b.as_str()).ok_or_else(|| ParseError::new(n, line, "bad amount"))?;
             }

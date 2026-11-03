@@ -63,7 +63,8 @@ pub trait HandHistoryParser: Send + Sync {
     fn sniff_summary(&self, _first_bytes: &[u8]) -> Confidence {
         Confidence::No
     }
-    fn parse_summary(&self, _text: &str) -> Result<TournamentSummary, ParseError> {
+    /// One summary per entry: a file may hold several (re-entries).
+    fn parse_summaries(&self, _text: &str) -> Result<Vec<TournamentSummary>, ParseError> {
         Err(ParseError::whole("this room has no summary format"))
     }
 }

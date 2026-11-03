@@ -37,6 +37,8 @@ test("manual import, error log with copy-as-test-case, backups", async ({ page, 
   await page.getByRole("button", { name: "Copier comme cas de test" }).click();
   const clip = await page.evaluate(() => navigator.clipboard.readText());
   expect(clip).toContain("# line 17: unknown action");
+  await page.getByTestId("export-errors").click();
+  await expect(page.getByTestId("exported-path")).toContainText("import-errors.txt");
   await page.getByTestId("backup-now").click();
   await expect(page.getByTestId("backups").locator("li")).toHaveCount(1);
 });

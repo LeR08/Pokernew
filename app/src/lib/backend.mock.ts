@@ -226,6 +226,10 @@ export function createMockBackend(opts: MockOptions = defaultOptions()): Backend
     async importErrors() {
       return [...errors];
     },
+    async importErrorsExport() {
+      return "(browser mock)/logs/import-errors.txt";
+    },
+    async revealPath() {},
     async importRetryErrors() {
       const n = errors.length;
       errors.length = 0;

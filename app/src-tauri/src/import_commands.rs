@@ -59,6 +59,19 @@ pub fn import_retry_errors(s: State<'_, AppState>) -> Res<usize> {
     Ok(n)
 }
 
+/// Writes all errors to `<data>/logs/import-errors-<time>.txt`; returns the path.
+#[tauri::command]
+pub fn import_errors_export(s: State<'_, AppState>) -> Res<String> {
+    let svc = svc(&s)?;
+    let now = std::time::SystemTime::now()
+        .duration_since(std::time::UNIX_EPOCH)
+        .map(|d| d.as_secs())
+        .unwrap_or(0);
+    let path = svc.data_dir.join("logs").join(format!("import-errors-{now}.txt"));
+    svc.with_reader(|c| lps_db::import::export_errors(c, &path)).map_err(err)?;
+    Ok(path.display().to_string())
+}
+
 pub fn base_dirs() -> BaseDirs {
     BaseDirs { app_data: dirs::config_dir(), local_app_data: dirs::data_local_dir(), documents: dirs::document_dir() }
 }
@@ -137,7 +150,7 @@ mod tests {
         }
         assert_eq!(inserted, 288);
         let stats = svc.with_reader(lps_db::stats).unwrap();
-        assert_eq!((stats.hands, stats.tournaments, stats.errors), (288, 3, 0));
+        assert_eq!((stats.hands, stats.tournaments, stats.errors), (288, 4, 0));
         assert_eq!(svc.status().folders.len(), 1);
         assert!(tmp.path().join("data/database.sqlite").is_file());
     }

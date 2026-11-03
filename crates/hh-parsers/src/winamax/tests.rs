@@ -192,3 +192,41 @@ fn summaries() {
     assert_eq!(tri.duration_secs, Some(31 * 60 + 18));
     assert_eq!(tri.speed.as_deref(), Some("turbo"));
 }
+
+#[test]
+fn re_entry_summary_with_late_registration_and_bounty_only_win() {
+    let all = summary::parse_all(&read("20261015_TRIDENT SPACE KO(1185497705)_real_holdem_no-limit_summary.txt")).unwrap();
+    assert_eq!(all.len(), 2);
+    assert!(all[0].late_registration && !all[1].late_registration);
+    assert_eq!((all[0].finish_position, all[0].won_cents, all[0].bounty_won_cents), (Some(646), 0, 0));
+    assert_eq!((all[1].finish_position, all[1].won_cents, all[1].bounty_won_cents), (Some(241), 0, 107));
+    assert_eq!(all[0].duration_secs, Some(142));
+    assert_eq!((all[1].buy_in_prize_cents, all[1].buy_in_bounty_cents, all[1].fee_cents), (40, 50, 10));
+    assert_eq!(all[1].name, "TRIDENT SPACE KO");
+}
+
+#[test]
+fn won_line_variants() {
+    let base = read("20261102_SPACE_KO1195603616_real_holdem_no-limit_summary.txt");
+    for (line, won, bounty) in [("You won 0.52€ + Bounty 0.51€", 52, 51), ("You won 3€", 300, 0), ("You won Bounty 1.07€", 0, 107)] {
+        let text = base.replace("You won 0.52€ + Bounty 0.51€", line);
+        let s = summary::parse(&text).unwrap();
+        assert_eq!((s.won_cents, s.bounty_won_cents), (won, bounty), "{line}");
+    }
+    assert!(summary::parse(&base.replace("You won 0.52€ + Bounty 0.51€", "You won")).is_err());
+}
+
+#[test]
+fn windows_1252_file_parses_like_utf8() {
+    let utf8 = read(FILES[2]);
+    let bytes: Vec<u8> = utf8.chars().map(|c| if c == '€' { 0x80 } else { c as u8 }).collect();
+    assert!(utf8.chars().all(|c| c == '€' || c.is_ascii()));
+    let d = crate::util::Decoded::new(bytes.clone());
+    assert!(d.was_reencoded());
+    let raws = Winamax.split(&d.text);
+    assert_eq!(raws.len(), 24);
+    for r in &raws {
+        Winamax.parse(r).unwrap();
+    }
+    assert_eq!(d.byte_offset(raws.last().unwrap().end), bytes.len());
+}

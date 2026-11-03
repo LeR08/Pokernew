@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useQueryClient } from "@tanstack/react-query";
-import { AlertTriangle, ClipboardCopy, Database, FileUp, FolderOpen, FolderSearch, RotateCcw, Save } from "lucide-react";
+import { AlertTriangle, ClipboardCopy, Database, FileDown, FileUp, FolderOpen, FolderSearch, RotateCcw, Save } from "lucide-react";
 import { getBackend } from "@/lib/backend";
 import {
   formatDate,
@@ -54,6 +54,7 @@ export function ImportPage({ manifest }: { manifest: ModuleManifest }) {
   const backups = useBackups().data ?? [];
   const [copied, setCopied] = useState<number | null>(null);
   const [restoreAsked, setRestoreAsked] = useState<string | null>(null);
+  const [exported, setExported] = useState<string | null>(null);
 
   const pick = async (directory: boolean) => {
     const b = await getBackend();
@@ -169,6 +170,22 @@ export function ImportPage({ manifest }: { manifest: ModuleManifest }) {
         icon={AlertTriangle}
         actions={
           errors.length > 0 && (
+            <>
+            <Button
+              variant="outline"
+              size="sm"
+              data-testid="export-errors"
+              onClick={() =>
+                void getBackend().then(async (b) => {
+                  const p = await b.importErrorsExport();
+                  setExported(p);
+                  await b.revealPath(p).catch(() => undefined);
+                })
+              }
+            >
+              <FileDown className="h-4 w-4" />
+              {t("import.export_errors")}
+            </Button>
             <Button
               variant="outline"
               size="sm"
@@ -181,9 +198,15 @@ export function ImportPage({ manifest }: { manifest: ModuleManifest }) {
               <RotateCcw className="h-4 w-4" />
               {t("import.retry")}
             </Button>
+            </>
           )
         }
       >
+        {exported && (
+          <p className="text-sm text-success" data-testid="exported-path">
+            {t("import.exported", { path: exported })}
+          </p>
+        )}
         {errors.length === 0 ? (
           <p className="text-sm text-success">{t("import.no_errors")}</p>
         ) : (

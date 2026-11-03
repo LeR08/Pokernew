@@ -25,9 +25,9 @@ fn imports_all_fixtures_without_errors_and_no_duplicates_on_reimport() {
     let tmp = tempfile::tempdir().unwrap();
     let mut imp = importer(&tmp.path().join("db.sqlite"));
     let r = imp.import_path(&fixtures()).unwrap();
-    assert_eq!((r.hands_inserted, r.errors, r.summaries), (288, 0, 2), "{r:?}");
+    assert_eq!((r.hands_inserted, r.errors, r.summaries), (288, 0, 3), "{r:?}");
     let s = stats(imp.conn()).unwrap();
-    assert_eq!((s.hands, s.hero_hands, s.tournaments), (288, 288, 3));
+    assert_eq!((s.hands, s.hero_hands, s.tournaments), (288, 288, 4));
 
     // Same folder again: files unchanged -> nothing read.
     let r2 = imp.import_path(&fixtures()).unwrap();
@@ -296,4 +296,47 @@ fn bench_100k_hands() {
     );
     assert_eq!(r.errors, 0);
     assert!(r.hands_inserted >= 100_000);
+}
+
+#[test]
+fn re_entries_make_one_tournament_with_two_entries() {
+    let mut imp = Importer::new(open_in_memory().unwrap(), 1).unwrap();
+    imp.import_path(&fixtures()).unwrap();
+    let row: (i64, i64, i64, i64, i64) = imp
+        .conn()
+        .query_row(
+            "SELECT entries, finish_position, won_cents, bounty_won_cents, duration_secs FROM tournaments
+             WHERE room_tournament_id = '1185497705'",
+            [],
+            |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?, r.get(3)?, r.get(4)?)),
+        )
+        .unwrap();
+    assert_eq!(row, (2, 241, 0, 107, 142 + 35 * 60 + 9));
+}
+
+/// Regression (user's PC, 3 Nov. 2026): a file with non-UTF-8 bytes was
+/// re-read from the start at every launch, because the stored offset was a
+/// position in the decoded text (longer than the file).
+#[test]
+fn non_utf8_file_is_not_reimported_at_every_scan() {
+    let tmp = tempfile::tempdir().unwrap();
+    let file = tmp.path().join("cp1252.txt");
+    let utf8 = std::fs::read_to_string(fixtures().join(TRIDENT)).unwrap();
+    let bytes: Vec<u8> = utf8.chars().map(|c| if c == '€' { 0x80 } else { c as u8 }).collect();
+    std::fs::write(&file, &bytes).unwrap();
+    let mut imp = Importer::new(open_in_memory().unwrap(), 1).unwrap();
+    let r = imp.import_file(&file).unwrap();
+    assert_eq!((r.hands_inserted, r.errors), (24, 0));
+    assert_eq!(import::file_offset(imp.conn(), &file.to_string_lossy()).unwrap(), Some(bytes.len() as i64));
+    let r2 = imp.import_file(&file).unwrap();
+    assert_eq!(r2.hands_parsed, 0);
+    // Appending one more (Windows-1252) hand reads only that hand.
+    let last = utf8.trim_end().rsplit("\n\n\n").next().unwrap().replace("-56-1793645123", "-57-1793645200");
+    let mut more = bytes.clone();
+    more.extend(b"\n\n\n");
+    more.extend(last.chars().map(|c| if c == '€' { 0x80u8 } else { c as u8 }));
+    more.extend(b"\n\n\n");
+    std::fs::write(&file, &more).unwrap();
+    let r3 = imp.import_file(&file).unwrap();
+    assert_eq!((r3.hands_parsed, r3.hands_inserted, r3.errors), (1, 1, 0));
 }

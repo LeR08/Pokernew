@@ -169,6 +169,14 @@ CREATE TABLE notes (
     created_at INTEGER NOT NULL
 );
 "#,
+    // v2 — re-entries: one tournament row, `entries` buy-ins.
+    r#"
+ALTER TABLE tournaments ADD COLUMN entries INTEGER NOT NULL DEFAULT 1;
+-- The parser learned new formats: files that had errors are parsed again.
+UPDATE import_files SET offset = 0, size = -1, errors = 0
+    WHERE id IN (SELECT DISTINCT file_id FROM import_errors);
+DELETE FROM import_errors;
+"#,
 ];
 
 /// Connection pragmas: WAL so the UI can read while the importer writes.

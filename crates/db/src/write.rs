@@ -172,20 +172,26 @@ pub fn write_counters(tx: &Transaction<'_>, hand_id: i64, player_ids: &[i64], ha
     Ok(())
 }
 
-/// Inserts or completes a tournament from its summary file.
-pub fn upsert_summary(tx: &Transaction<'_>, s: &TournamentSummary) -> Result<(), DbError> {
+/// Inserts or completes a tournament from its summary file. `entries` holds
+/// one summary per entry (re-entries): the last one gives the final result,
+/// winnings and bounties are summed, and `entries` buy-ins were paid.
+pub fn upsert_summary(tx: &Transaction<'_>, entries: &[TournamentSummary]) -> Result<(), DbError> {
+    let Some(s) = entries.last() else { return Ok(()) };
+    let won: i64 = entries.iter().map(|e| e.won_cents).sum();
+    let bounty_won: i64 = entries.iter().map(|e| e.bounty_won_cents).sum();
+    let duration: Option<i64> = entries.iter().map(|e| e.duration_secs).sum();
     tx.execute(
         "INSERT INTO tournaments (room, room_tournament_id, name, game_type, currency, buy_in_cents, bounty_cents, fee_cents,
             registered_players, mode, kind, speed, prize_pool_cents, started_at, duration_secs, finish_position,
-            won_cents, bounty_won_cents, has_summary)
-         VALUES (?1, ?2, ?3, 'mtt', 'EUR', ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15, ?16, 1)
+            won_cents, bounty_won_cents, has_summary, entries)
+         VALUES (?1, ?2, ?3, 'mtt', 'EUR', ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15, ?16, 1, ?17)
          ON CONFLICT (room, room_tournament_id) DO UPDATE SET
             name = excluded.name, buy_in_cents = excluded.buy_in_cents, bounty_cents = excluded.bounty_cents,
             fee_cents = excluded.fee_cents, registered_players = excluded.registered_players, mode = excluded.mode,
             kind = excluded.kind, speed = excluded.speed, prize_pool_cents = excluded.prize_pool_cents,
             started_at = excluded.started_at, duration_secs = excluded.duration_secs,
             finish_position = excluded.finish_position, won_cents = excluded.won_cents,
-            bounty_won_cents = excluded.bounty_won_cents, has_summary = 1",
+            bounty_won_cents = excluded.bounty_won_cents, has_summary = 1, entries = excluded.entries",
         params![
             s.room,
             s.id,
@@ -198,11 +204,12 @@ pub fn upsert_summary(tx: &Transaction<'_>, s: &TournamentSummary) -> Result<(),
             s.kind,
             s.speed,
             s.prize_pool_cents,
-            s.started_at,
-            s.duration_secs,
+            entries.first().and_then(|e| e.started_at),
+            duration,
             s.finish_position,
-            s.won_cents,
-            s.bounty_won_cents,
+            won,
+            bounty_won,
+            entries.len() as i64,
         ],
     )?;
     Ok(())

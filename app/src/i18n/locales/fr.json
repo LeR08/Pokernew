@@ -269,6 +269,8 @@
     },
     "range": "Du {{from}} au {{to}}",
     "toast_one": "{{count}} nouvelle main importée ({{dups}} doublons, {{errors}} erreurs).",
-    "toast_other": "{{count}} nouvelles mains importées ({{dups}} doublons, {{errors}} erreurs)."
+    "toast_other": "{{count}} nouvelles mains importées ({{dups}} doublons, {{errors}} erreurs).",
+    "export_errors": "Exporter toutes les erreurs",
+    "exported": "Erreurs exportées dans {{path}}"
   }
 }

@@ -64,6 +64,11 @@ export function createTauriBackend(): Backend {
     importPaths: (paths) => call("import_paths", { paths }),
     importErrors: (limit) => call<ImportErrorRow[]>("import_errors", { limit }),
     importRetryErrors: () => call<number>("import_retry_errors"),
+    importErrorsExport: () => call<string>("import_errors_export"),
+    async revealPath(path) {
+      const { revealItemInDir } = await import("@tauri-apps/plugin-opener");
+      await revealItemInDir(path);
+    },
     detectRooms: () => call<FoundAccount[]>("detect_rooms"),
     backupList: () => call<BackupInfo[]>("backup_list"),
     backupNow: () => call<string>("backup_now"),

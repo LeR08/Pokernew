@@ -111,7 +111,7 @@ Stats héros sur ces 288 mains, calculées par la vraie app : VPIP 23,6 %, PFR 1
 Non fait dans cette phase :
 - EV all-in ajustée : la colonne `allin_ev` existe, elle sera remplie en phase 4 avec l'évaluateur.
 - Sessions auto-groupées : prévu avec le module Bankroll en phase 2.
-- Démarrage : les lancements suivant le premier sont encore à mesurer sur ton PC (2,77 s au premier).
+- Démarrage : 0,79 s au deuxième lancement sur ton PC ✅.
 
 ## Décision du 3 nov. 2026 — salles
 
@@ -121,3 +121,19 @@ Non fait dans cette phase :
   Le mécanisme existe déjà (`crates/hh-parsers/src/install.rs`, utilisé par l'assistant). Il s'étendra
   salle par salle quand chaque parseur arrivera avec ses fichiers d'exemple, et il faudra lui ajouter
   un bouton « Rechercher des historiques » dans l'écran Import. Planifié au plus tard en phase 9.
+
+## Premier test sur le PC de l'utilisateur (3 nov. 2026)
+
+- Comptes détectés automatiquement : `Tantaculejen` et `GTOverBet`.
+- Import : **7 108 mains, 97 tournois, 1 502 joueurs**, du 24/12/2024 au 02/11/2026.
+- 285 erreurs, puis 1 884 mains relues (en doublon) à chaque lancement. Corrigé :
+  - **Résumés avec recave** : un fichier contient un résumé par entrée, la première suffixée
+    ` - Late Registration`, et la ligne `You won Bounty 1.07€` n'a pas de gain hors bounty.
+    Un tournoi = une ligne avec `entries` (nombre de buy-ins) ; les gains et bounties sont additionnés.
+  - **Fichiers pas en UTF-8** : les octets invalides sont décodés en Windows-1252, et les offsets
+    stockés redeviennent des positions dans le fichier. Avant, l'offset était une position dans le
+    texte décodé, plus long que le fichier, donc le fichier était relu depuis le début à chaque scan.
+  - La migration v2 remet en file les fichiers qui avaient des erreurs : ils sont réimportés
+    automatiquement avec le nouveau parseur.
+  - Nouveau bouton « Exporter toutes les erreurs » : un fichier texte dans `logs/`, à envoyer pour
+    corriger les cas restants.

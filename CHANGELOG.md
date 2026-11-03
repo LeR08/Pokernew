@@ -16,6 +16,10 @@ Format: [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/). Versions follo
 - Sauvegardes SQLite planifiées (24 h, 7 gardées) et restauration en un clic.
 
 ### Corrigé / Fixed
+- Winamax : résumés de tournoi avec recave (plusieurs entrées, « Late Registration ») et gains en bounty seul.
+- Fichiers pas en UTF-8 : décodés en Windows-1252, offsets en octets du fichier ; ils ne sont plus relus à chaque lancement.
+- Les fichiers en erreur sont réimportés automatiquement après la mise à jour (migration v2).
+- Nouveau : « Exporter toutes les erreurs » dans le module Import.
 - Front : deux appels simultanés à `getBackend()` pouvaient créer deux backends, dont les événements ne se voyaient pas.
 
 ## Phase 0 : Shell

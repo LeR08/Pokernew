@@ -269,6 +269,8 @@
     },
     "range": "From {{from}} to {{to}}",
     "toast_one": "{{count}} new hand imported ({{dups}} duplicates, {{errors}} errors).",
-    "toast_other": "{{count}} new hands imported ({{dups}} duplicates, {{errors}} errors)."
+    "toast_other": "{{count}} new hands imported ({{dups}} duplicates, {{errors}} errors).",
+    "export_errors": "Export all errors",
+    "exported": "Errors exported to {{path}}"
   }
 }

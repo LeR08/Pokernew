@@ -64,3 +64,112 @@ mod tests {
         assert_eq!(parse_utc("2024/02/29 12:00:00"), Some(1_709_208_000));
     }
 }
+
+/// Text decoded from a file, with a way back to byte offsets in the file.
+///
+/// Files are expected in UTF-8. Any byte sequence that is not valid UTF-8
+/// is decoded as Windows-1252 (the usual encoding of older French Windows
+/// files: `€` = 0x80, `é` = 0xE9), so nothing is lost. Because that changes
+/// lengths, offsets in `text` are mapped back to file offsets with
+/// [`Decoded::byte_offset`] — import offsets must always be file offsets.
+pub struct Decoded {
+    pub text: String,
+    /// `map[i]` = file offset of text byte `i` (only when the file was not pure UTF-8).
+    map: Option<Vec<u32>>,
+    len: usize,
+}
+
+const CP1252_80_9F: [char; 32] = [
+    '€', '\u{81}', '‚', 'ƒ', '„', '…', '†', '‡', 'ˆ', '‰', 'Š', '‹', 'Œ', '\u{8d}', 'Ž', '\u{8f}', '\u{90}', '‘', '’', '“',
+    '”', '•', '–', '—', '˜', '™', 'š', '›', 'œ', '\u{9d}', 'ž', 'Ÿ',
+];
+
+fn cp1252(b: u8) -> char {
+    match b {
+        0x80..=0x9f => CP1252_80_9F[(b - 0x80) as usize],
+        _ => b as char,
+    }
+}
+
+impl Decoded {
+    pub fn new(bytes: Vec<u8>) -> Self {
+        let len = bytes.len();
+        match String::from_utf8(bytes) {
+            Ok(text) => Decoded { text, map: None, len },
+            Err(e) => {
+                let bytes = e.into_bytes();
+                let mut text = String::with_capacity(len + len / 8);
+                let mut map: Vec<u32> = Vec::with_capacity(len + len / 8);
+                let mut i = 0;
+                while i < bytes.len() {
+                    match std::str::from_utf8(&bytes[i..]) {
+                        Ok(s) => {
+                            push_mapped(&mut text, &mut map, s, i);
+                            break;
+                        }
+                        Err(err) => {
+                            let good = err.valid_up_to();
+                            // Safe: validated just above.
+                            let s = std::str::from_utf8(&bytes[i..i + good]).unwrap_or_default();
+                            push_mapped(&mut text, &mut map, s, i);
+                            i += good;
+                            let bad = err.error_len().unwrap_or(bytes.len() - i);
+                            for k in 0..bad {
+                                let c = cp1252(bytes[i + k]);
+                                for _ in 0..c.len_utf8() {
+                                    map.push((i + k) as u32);
+                                }
+                                text.push(c);
+                            }
+                            i += bad;
+                        }
+                    }
+                }
+                Decoded { text, map: Some(map), len }
+            }
+        }
+    }
+
+    /// True when some bytes were not UTF-8.
+    pub fn was_reencoded(&self) -> bool {
+        self.map.is_some()
+    }
+
+    /// File offset of a text offset (a char boundary, or `text.len()`).
+    pub fn byte_offset(&self, text_offset: usize) -> usize {
+        match &self.map {
+            None => text_offset,
+            Some(m) => m.get(text_offset).map(|&b| b as usize).unwrap_or(self.len),
+        }
+    }
+}
+
+fn push_mapped(text: &mut String, map: &mut Vec<u32>, s: &str, base: usize) {
+    text.push_str(s);
+    map.extend((0..s.len()).map(|k| (base + k) as u32));
+}
+
+#[cfg(test)]
+mod decode_tests {
+    use super::*;
+
+    #[test]
+    fn utf8_is_untouched() {
+        let d = Decoded::new("buyIn: 0.45€".as_bytes().to_vec());
+        assert!(!d.was_reencoded());
+        assert_eq!(d.byte_offset(d.text.len()), "buyIn: 0.45€".len());
+    }
+
+    #[test]
+    fn windows_1252_bytes_are_decoded_and_offsets_map_back() {
+        // "0.45€ é\nX" in Windows-1252, then valid UTF-8 "€".
+        let mut bytes = b"0.45\x80 \xe9\nX".to_vec();
+        bytes.extend("€".as_bytes());
+        let d = Decoded::new(bytes.clone());
+        assert!(d.was_reencoded());
+        assert_eq!(d.text, "0.45€ é\nX€");
+        let x = d.text.find('X').unwrap();
+        assert_eq!(d.byte_offset(x), 8);
+        assert_eq!(d.byte_offset(d.text.len()), bytes.len());
+    }
+}

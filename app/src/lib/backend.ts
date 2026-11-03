@@ -122,6 +122,10 @@ export interface Backend {
   importPaths(paths: string[]): Promise<void>;
   importErrors(limit?: number): Promise<ImportErrorRow[]>;
   importRetryErrors(): Promise<number>;
+  /** Writes all errors to a text file; returns its path. */
+  importErrorsExport(): Promise<string>;
+  /** Shows a file in the system file manager. */
+  revealPath(path: string): Promise<void>;
   detectRooms(): Promise<FoundAccount[]>;
   backupList(): Promise<BackupInfo[]>;
   backupNow(): Promise<string>;

@@ -88,8 +88,8 @@ impl HandHistoryParser for Winamax {
         }
     }
 
-    fn parse_summary(&self, text: &str) -> Result<lps_core_model::TournamentSummary, ParseError> {
-        summary::parse(text)
+    fn parse_summaries(&self, text: &str) -> Result<Vec<lps_core_model::TournamentSummary>, ParseError> {
+        summary::parse_all(text)
     }
 
     fn split<'a>(&self, text: &'a str) -> Vec<RawHand<'a>> {

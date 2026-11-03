@@ -213,10 +213,11 @@ impl Importer {
         // Shrunk or replaced: start over (duplicates are ignored anyway).
         let offset = if size < row.offset { 0 } else { row.offset };
         let bytes = read_from(offset as u64)?;
-        let text = match String::from_utf8(bytes) {
-            Ok(t) => t,
-            Err(e) => String::from_utf8_lossy(e.as_bytes()).into_owned(),
-        };
+        // Offsets stored in the database are *file* offsets: when a file is
+        // not pure UTF-8, decoding changes lengths, so map back (see Decoded).
+        let decoded = lps_hh_parsers::util::Decoded::new(bytes);
+        let to_file = |text_off: usize| offset + decoded.byte_offset(text_off) as i64;
+        let text = &decoded.text;
 
         let detected: Option<(&'static dyn HandHistoryParser, &'static str)> = match (&row.room, &row.kind) {
             (Some(room), Some(kind)) if offset > 0 && kind != "unknown" => {
@@ -239,20 +240,20 @@ impl Importer {
 
         let new_offset = if kind == "summary" {
             let tx = self.conn.transaction()?;
-            match parser.parse_summary(&text) {
-                Ok(s) => {
-                    upsert_summary(&tx, &s)?;
+            match parser.parse_summaries(text) {
+                Ok(entries) => {
+                    upsert_summary(&tx, &entries)?;
                     report.summaries = 1;
                 }
                 Err(e) => {
-                    store_error(&tx, row.id, offset, &e, &text)?;
+                    store_error(&tx, row.id, offset, &e, text)?;
                     report.errors = 1;
                 }
             }
             tx.commit()?;
             size
         } else {
-            let raws = parser.split(&text);
+            let raws = parser.split(text);
             let mut take: Vec<RawHand<'_>> = Vec::with_capacity(raws.len());
             for r in &raws {
                 let tail_ok = settled && r.text.contains("*** SUMMARY ***");
@@ -262,7 +263,7 @@ impl Importer {
                     break;
                 }
             }
-            let consumed = take.last().map(|r| r.end).unwrap_or(0) as i64;
+            let consumed_end = take.last().map(|r| r.end).unwrap_or(0);
             let parsed: Vec<Result<lps_core_model::Hand, ParseError>> =
                 self.pool.install(|| take.par_iter().map(|r| parser.parse(r)).collect());
             report.hands_parsed = parsed.len();
@@ -278,14 +279,22 @@ impl Importer {
                             }
                         }
                         Err(e) => {
-                            store_error(&tx, row.id, offset + raw.start as i64, e, raw.text)?;
+                            store_error(&tx, row.id, to_file(raw.start), e, raw.text)?;
                             report.errors += 1;
                         }
                     }
                 }
                 tx.commit()?;
             }
-            offset + consumed
+            to_file(consumed_end)
+        };
+        // Never store an offset past the end of the file (it would make the
+        // next pass restart from zero).
+        let new_offset = if new_offset > size {
+            log::warn!("{key}: offset {new_offset} > size {size}, clamped");
+            size
+        } else {
+            new_offset
         };
 
         self.conn.execute(
@@ -375,4 +384,25 @@ pub fn retry_errors(conn: &Connection) -> Result<usize, DbError> {
 
 pub fn file_offset(conn: &Connection, key: &str) -> Result<Option<i64>, DbError> {
     Ok(conn.query_row("SELECT offset FROM import_files WHERE path = ?", [key], |r| r.get(0)).optional()?)
+}
+
+/// Writes every stored error, as test cases, to one text file.
+pub fn export_errors(conn: &Connection, path: &Path) -> Result<usize, DbError> {
+    use std::io::Write;
+    let errors = list_errors(conn, i64::MAX)?;
+    if let Some(dir) = path.parent() {
+        std::fs::create_dir_all(dir)?;
+    }
+    let mut f = std::io::BufWriter::new(std::fs::File::create(path)?);
+    for e in &errors {
+        writeln!(f, "# Import error — {}", e.file)?;
+        writeln!(f, "# line {}: {}", e.line_no, e.message)?;
+        writeln!(f, "# offending line: {}", e.line)?;
+        writeln!(f)?;
+        writeln!(f, "{}", e.raw)?;
+        writeln!(f)?;
+        writeln!(f)?;
+    }
+    f.flush()?;
+    Ok(errors.len())
 }

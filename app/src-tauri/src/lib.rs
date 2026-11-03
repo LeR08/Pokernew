@@ -32,6 +32,7 @@ pub fn run(started: Instant) {
 
     tauri::Builder::default()
         .plugin(tauri_plugin_dialog::init())
+        .plugin(tauri_plugin_opener::init())
         .manage(state)
         .setup(|app| {
             // Forward the internal bus to every window.
@@ -92,6 +93,7 @@ pub fn run(started: Instant) {
             import_commands::import_paths,
             import_commands::import_errors,
             import_commands::import_retry_errors,
+            import_commands::import_errors_export,
             import_commands::detect_rooms,
             import_commands::backup_list,
             import_commands::backup_now,
