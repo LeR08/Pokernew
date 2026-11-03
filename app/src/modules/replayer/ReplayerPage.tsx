@@ -60,6 +60,7 @@ function Replayer({ hand }: { hand: Hand }) {
   const st = stateAt(hand, step);
   // Fair play: no equity link while a table is open.
   const playMode = usePlayMode((x) => x.on);
+  const { handId } = useParams();
 
   useEffect(() => {
     setStep(0);
@@ -189,6 +190,11 @@ function Replayer({ hand }: { hand: Hand }) {
           {!playMode && hand.players[heroIdx]?.hole_cards.length === 2 && (
             <Link className="ml-d3 text-sm text-primary underline" to={equityLink(hand, heroIdx, hand.board, stateAt(hand, last).seats)} data-testid="to-equity">
               {t("replayer.to_equity")}
+            </Link>
+          )}
+          {!playMode && hand.game_type !== "cash" && (
+            <Link className="ml-d3 text-sm text-primary underline" to={`/m/icm/review?hand=${handId}`} data-testid="to-icm">
+              {t("replayer.to_icm")}
             </Link>
           )}
         </div>

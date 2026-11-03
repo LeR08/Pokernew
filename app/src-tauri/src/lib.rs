@@ -6,6 +6,7 @@ pub mod commands;
 pub mod equity_commands;
 pub mod hud;
 pub mod hud_commands;
+pub mod icm_commands;
 pub mod import_commands;
 pub mod import_service;
 pub mod state;
@@ -220,6 +221,10 @@ pub fn run(started: Instant) {
             equity_commands::range_load,
             equity_commands::range_save,
             equity_commands::range_delete,
+            icm_commands::icm_calc,
+            icm_commands::pushfold_solve,
+            icm_commands::icm_review_hand,
+            icm_commands::icm_review_tournament,
         ])
         .run(tauri::generate_context!())
         .expect("error while running Local Poker Suite");

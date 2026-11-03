@@ -21,6 +21,7 @@ import { BackendError } from "./backend";
 import type { JSONSchema } from "./schema";
 import { mockTracker } from "./backend.mock.tracker";
 import { mockEquity } from "./backend.mock.equity";
+import { mockIcm } from "./backend.mock.icm";
 import type { StatMeta } from "./tracker";
 
 const rawDefaults = import.meta.glob("../../../config/defaults/**/*.toml", {
@@ -44,6 +45,7 @@ const SCHEMA_OF: Record<Family, string> = {
   leaks: "leaks",
   notes: "notes",
   hud: "hud",
+  payouts: "payouts",
 };
 
 /** "../../../config/defaults/themes/dark.toml" -> ["themes", "dark"] */
@@ -54,7 +56,7 @@ function keyOf(path: string): [Family, string] | null {
   if (parts.length === 1 && (parts[0] === "settings" || parts[0] === "hotkeys")) {
     return [parts[0], parts[0]];
   }
-  if (parts.length === 2 && (parts[0] === "themes" || parts[0] === "profiles" || ["rooms", "stats", "leaks", "notes", "hud"].includes(parts[0]))) {
+  if (parts.length === 2 && (parts[0] === "themes" || parts[0] === "profiles" || ["rooms", "stats", "leaks", "notes", "hud", "payouts"].includes(parts[0]))) {
     return [parts[0] as Family, parts[1]];
   }
   return null;
@@ -167,6 +169,7 @@ export function createMockBackend(opts: MockOptions = defaultOptions()): Backend
   const backend: Backend = {
     ...mockTracker(statsMeta),
     ...mockEquity(),
+    ...mockIcm(),
     async appInfo() {
       return {
         version: "0.1.0-dev",

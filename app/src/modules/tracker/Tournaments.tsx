@@ -4,10 +4,12 @@ import { Card } from "@/components/ui/card";
 import { formatDate } from "@/lib/importApi";
 import { bb, euros, formatStat, int, resultClass } from "@/lib/format";
 import { useFilter, useTournaments } from "./api";
+import { usePlayMode } from "@/stores/playMode";
 
 export function Tournaments() {
   const { t, i18n } = useTranslation();
   const lang = i18n.language;
+  const playMode = usePlayMode((x) => x.on);
   const data = useTournaments(useFilter()).data;
   if (!data) return null;
   const tot = data.totals;
@@ -50,6 +52,11 @@ export function Tournaments() {
                 <td className="whitespace-nowrap px-d3 py-d2">
                   {r.name}
                   {r.gameType === "spin" && <span className="ml-d2 rounded bg-surface-alt px-1 text-xs">{t("tracker.format.spin")}</span>}
+                  {!playMode && (
+                    <Link className="ml-d2 text-xs text-primary underline" to={`/m/icm/review?tournament=${r.id}`} data-testid="tournament-icm">
+                      {t("tracker.icm_review")}
+                    </Link>
+                  )}
                 </td>
                 <td className="whitespace-nowrap px-d3 py-d2 text-right">{r.entries}</td>
                 <td className="whitespace-nowrap px-d3 py-d2 text-right">{euros(r.costCents, lang, false)}</td>

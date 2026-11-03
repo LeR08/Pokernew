@@ -221,6 +221,15 @@
       "rows": "Rows",
       "popup": "Popup",
       "seats": "Positions"
+    },
+    "payouts": {
+      "title": "Payout structures",
+      "description": "A tournament's prizes per place, entered by you.",
+      "name": "Name",
+      "players": "Number of players",
+      "unit": "Unit",
+      "prize_pool": "Prize pool",
+      "places": "Prize per place (1st, 2nd…)"
     }
   },
   "enum": {
@@ -421,7 +430,8 @@
     "export_csv": "Export as CSV",
     "export_csv_hands": "Export up to 1,000 hands as CSV",
     "exported": "Exported: {{path}}",
-    "csv": "CSV"
+    "csv": "CSV",
+    "icm_review": "Push/fold review"
   },
   "replayer": {
     "level": "level {{n}}",
@@ -455,7 +465,8 @@
     "result": "Result",
     "pick_other": "Pick another hand",
     "pick": "Pick a hand to replay.",
-    "to_equity": "Open in Equity Lab"
+    "to_equity": "Open in Equity Lab",
+    "to_icm": "ICM review"
   },
   "review": {
     "title": "Session review",
@@ -822,6 +833,128 @@
       "first": "first {{n}} shown",
       "flop": "Flop",
       "weight": "Actual flops"
+    }
+  },
+  "icm": {
+    "tabs": {
+      "pushfold": "Push/fold",
+      "calc": "ICM calculator",
+      "review": "Hand review",
+      "quiz": "Quiz",
+      "payouts": "Payout structures"
+    },
+    "prizes": "Prize per place (€)",
+    "from_saved": "From a saved structure…",
+    "bad_prizes": "Invalid prizes: write amounts separated by commas, e.g. 50, 30, 20.",
+    "player": "Player",
+    "player_n": "Player {{n}}",
+    "stack": "Stack",
+    "chips_pct": "% of chips",
+    "icm_ev": "ICM $EV",
+    "chip_ev": "Chip EV",
+    "diff": "Difference",
+    "total": "Total",
+    "add_player": "Add a player",
+    "remove_player": "Remove this player",
+    "bubble_title": "Bubble factors",
+    "bubble_help": "Row against column: what you lose by losing an all-in against that player, divided by what you win by winning it. 1 = chips are worth their weight in €. Hover a cell for the risk premium.",
+    "vs": "against",
+    "risk_tip": "Risk premium: +{{p}} % equity needed",
+    "pf": {
+      "players": "Players",
+      "ante": "Ante (bb)",
+      "bb_ante": "Big blind ante",
+      "model": "Model",
+      "chips": "Chip EV",
+      "icm": "ICM (Malmuth-Harville)",
+      "fgs": "FGS",
+      "fgs_off": "No FGS",
+      "fgs_n": "FGS over {{n}} hand(s)",
+      "others": "Stacks at other tables (bb, optional)",
+      "others_chips": "Stacks at other tables (chips, optional)",
+      "position": "Position",
+      "stack_bb": "Stack (bb)",
+      "what_if": "What if…",
+      "bounty": "Bounty (€ collected)",
+      "model_help": "Model: shove or fold, then the first caller goes to showdown. Blinds 0.5 / 1 bb. Preflop equities are exact, with card removal.",
+      "push_node": "{{pos}}: shove",
+      "call_node": "{{pos}}: calls {{vs}}'s shove",
+      "share": "{{p}} % of hands played",
+      "status": "{{it}} iterations, exploitability {{e}}",
+      "lock": "Fix this range (exploitative mode)",
+      "unlock": "Remove",
+      "lock_title": "{{node}}: fixed range",
+      "lock_help": "Enter the villain's real range (e.g. from his stats): the solver computes the other players' best response.",
+      "push": "Shove",
+      "call": "Call",
+      "ev_line": "{{hand}}: {{act}} {{f}} % · EV {{act}} {{a}} · EV fold {{b}} · difference {{d}}"
+    },
+    "review": {
+      "tournament": "Tournament",
+      "pick": "Pick a tournament…",
+      "one_hand": "Hand #{{id}}",
+      "hands": "hands",
+      "bounties": "Count bounties (KO)",
+      "share": "Cash share (%)",
+      "run": "Analyse",
+      "running": "Analysing…",
+      "help": "Review of shove/fold decisions at 20 bb or less. Without prizes: chip EV only. ICM only knows the players at the table; add the other tables' stacks if you know them.",
+      "good": "Good decision: {{c}}.",
+      "bad": "You chose \"{{c}}\"; the best option was \"{{b}}\".",
+      "choice": {
+        "push": "shove",
+        "call": "call",
+        "fold": "fold"
+      },
+      "chips": "Chips",
+      "money": "Money (ICM)",
+      "loss": "Loss",
+      "chips_only": "Without a payout structure, the review is in chip EV.",
+      "bb": "{{n}} bb",
+      "shoves": "shoves",
+      "eff": "Effective stack: {{n}} bb",
+      "replay": "Open in the replayer",
+      "batch_total": "{{n}} push/fold decisions, {{bad}} to review",
+      "level": "Level",
+      "hand": "Hand",
+      "stack": "Stack",
+      "played": "Played",
+      "best": "Best",
+      "open": "Details"
+    },
+    "quiz": {
+      "help": "Random spots (chip EV, 2 to 6 players, 3 to 15 bb): choose shove or fold, scored by the equilibrium. Full drills come in phase 8.",
+      "score": "Score: {{good}} / {{total}} · {{lost}} bb lost",
+      "start": "Start",
+      "next": "Next spot",
+      "you": "you",
+      "folds": "folds",
+      "ante": "Ante {{a}} bb",
+      "no_ante": "No ante",
+      "right": "Well played.",
+      "wrong": "Not the best option.",
+      "detail": "{{hand}}: EV of acting {{a}} bb, EV of folding {{f}} bb."
+    },
+    "payouts": {
+      "new": "New structure",
+      "none": "No structure yet. Enter one from a tournament lobby (\"Prizes\" tab).",
+      "help": "Enter the prizes per place as shown in the Winamax lobby (they depend on the number of entrants). You can also paste a \"place;prize\" CSV.",
+      "places_n": "{{n}} paid places",
+      "money": "Amounts (€)",
+      "percent": "Percentages",
+      "place": "Place",
+      "place_n": "Prize for place {{n}}",
+      "prize": "Prize (€)",
+      "remove": "Remove",
+      "add": "Add a place",
+      "total": "Total",
+      "not_100": "The total is not 100 %.",
+      "import": "Paste a CSV",
+      "csv_apply": "Replace the places",
+      "csv_error": "Unreadable CSV: one line per place, \"place;prize\" or amounts separated by commas.",
+      "save": "Save",
+      "delete": "Delete",
+      "saved": "\"{{name}}\" saved"
     }
   }
 }

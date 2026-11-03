@@ -6,6 +6,7 @@
 pub mod breakdown;
 pub mod calc;
 pub mod combo;
+pub mod preflop;
 pub mod range;
 pub mod ranking;
 pub mod texture;

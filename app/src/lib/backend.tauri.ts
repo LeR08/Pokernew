@@ -15,6 +15,7 @@ import type {
 import { BackendError } from "./backend";
 import type { JSONSchema } from "./schema";
 import type { Breakdown, EquityResult, TextureReport } from "./equity";
+import type { BatchRow, IcmResult, Review, Solution } from "./icm";
 import type {
   HudStatus,
   OverlayData,
@@ -147,6 +148,11 @@ export function createTauriBackend(): Backend {
     rangeLoad: (name) => call<string>("range_load", { name }),
     rangeSave: (name, text) => call("range_save", { name, text }),
     rangeDelete: (name) => call("range_delete", { name }),
+    icmCalc: (stacks, payouts) => call<IcmResult>("icm_calc", { stacks, payouts }),
+    pushfoldSolve: (spot, options) =>
+      call<Solution>("pushfold_solve", { spot, options: { maxIterations: 0, target: 0, locks: [], ...options } }),
+    icmReviewHand: (handId, req) => call<Review>("icm_review_hand", { handId, req }),
+    icmReviewTournament: (tournamentId, req) => call<BatchRow[]>("icm_review_tournament", { tournamentId, req }),
     markReady() {
       void invoke("frontend_ready").catch(() => undefined);
     },

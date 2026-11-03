@@ -6,6 +6,7 @@
  */
 import type { JSONSchema } from "./schema";
 import type { Breakdown, CalcRequest, EquityResult, FlopFilter, TextureReport } from "./equity";
+import type { BatchRow, IcmResult, Review, ReviewRequest, Solution, SolveOptions, Spot } from "./icm";
 import type {
   HudStatus,
   OverlayData,
@@ -31,7 +32,7 @@ import type {
 export type JsonValue = null | boolean | number | string | JsonValue[] | { [k: string]: JsonValue };
 export type JsonObject = { [k: string]: JsonValue };
 
-export type Family = "settings" | "hotkeys" | "themes" | "profiles" | "rooms" | "stats" | "leaks" | "notes" | "hud";
+export type Family = "settings" | "hotkeys" | "themes" | "profiles" | "rooms" | "stats" | "leaks" | "notes" | "hud" | "payouts";
 
 export interface Issue {
   family: string;
@@ -207,6 +208,12 @@ export interface Backend {
   rangeLoad(name: string): Promise<string>;
   rangeSave(name: string, text: string): Promise<void>;
   rangeDelete(name: string): Promise<void>;
+
+  // ---- ICM & push/fold (phase 5; refused in play mode) ----
+  icmCalc(stacks: number[], payouts: number[]): Promise<IcmResult>;
+  pushfoldSolve(spot: Spot, options: SolveOptions): Promise<Solution>;
+  icmReviewHand(handId: number, req: ReviewRequest): Promise<Review>;
+  icmReviewTournament(tournamentId: number, req: ReviewRequest): Promise<BatchRow[]>;
 }
 
 export const isTauri = (): boolean =>

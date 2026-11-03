@@ -9,3 +9,12 @@ publish = false
 name = "lps_icm"
 
 [dependencies]
+lps-equity = { path = "../equity" }
+lps-core-model = { path = "../core-model" }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+rayon = "1"
+
+[dev-dependencies]
+lps-hh-parsers = { path = "../hh-parsers" }

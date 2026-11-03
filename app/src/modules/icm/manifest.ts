@@ -1,6 +1,6 @@
 import { Trophy } from "lucide-react";
-import { ComingSoon } from "../ComingSoon";
 import type { ModuleManifest } from "../types";
+import { IcmPage } from "./IcmPage";
 
 export const manifest: ModuleManifest = {
   id: "icm",
@@ -9,6 +9,9 @@ export const manifest: ModuleManifest = {
   icon: Trophy,
   phase: 5,
   replaces: ["ICMIZER", "HRC"],
-  routes: [{ path: "", component: ComingSoon }],
+  routes: [
+    { path: "", component: IcmPage },
+    { path: ":tab", component: IcmPage },
+  ],
   studyOnly: true,
 };

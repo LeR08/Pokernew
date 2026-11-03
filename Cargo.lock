@@ -2425,6 +2425,7 @@ dependencies = [
  "lps-evaluator",
  "lps-hh-parsers",
  "lps-hud-overlay",
+ "lps-icm",
  "lps-stats-engine",
  "regex",
  "rusqlite",
@@ -2537,6 +2538,15 @@ dependencies = [
 [[package]]
 name = "lps-icm"
 version = "0.1.0"
+dependencies = [
+ "lps-core-model",
+ "lps-equity",
+ "lps-hh-parsers",
+ "rayon",
+ "serde",
+ "serde_json",
+ "thiserror 2.0.21",
+]
 
 [[package]]
 name = "lps-preflop"

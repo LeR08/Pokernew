@@ -1,15 +1,9 @@
-//! ICM models (Malmuth-Harville, FGS) and the push/fold solver.
-//!
-//! Placeholder created in phase 0 to fix the workspace layout.
-//! Implementation lands in phase 5 (see `docs/phase-5.md`).
+//! ICM and push/fold: Malmuth-Harville, chip EV, bubble factors, FGS, and the
+//! push/fold equilibrium solver. See `docs/icm.md`.
 
-/// Phase in which this crate gets its implementation.
-pub const IMPLEMENTED_IN_PHASE: u8 = 5;
+pub mod model;
+pub mod pushfold;
+pub mod review;
 
-#[cfg(test)]
-mod tests {
-    #[test]
-    fn placeholder_phase_is_set() {
-        assert_eq!(super::IMPLEMENTED_IN_PHASE, 5);
-    }
-}
+pub use model::{bubble_factor, chip_ev, icm, risk_premium};
+pub use pushfold::{solve, Decision, Options, Solution, SolveError, Spot};

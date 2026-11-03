@@ -4,9 +4,9 @@ test("tiles and sidebar come from the module manifests", async ({ page }) => {
   await page.goto("/");
   await expect(page.getByTestId("module-tile")).toHaveCount(10);
   await expect(page.getByTestId("sidebar-modules").getByRole("link")).toHaveCount(10);
-  await page.getByTestId("module-tile").filter({ hasText: "ICM" }).click();
-  await expect(page).toHaveURL(/#\/m\/icm$/);
-  await expect(page.getByTestId("coming-soon")).toContainText("phase 5");
+  await page.getByTestId("module-tile").filter({ hasText: "Solveur postflop" }).click();
+  await expect(page).toHaveURL(/#\/m\/solver$/);
+  await expect(page.getByTestId("coming-soon")).toContainText("phase 6");
 });
 
 test("settings form changes theme, language and module visibility live", async ({ page }) => {

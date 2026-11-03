@@ -221,6 +221,15 @@
       "rows": "Lignes",
       "popup": "Popup",
       "seats": "Positions"
+    },
+    "payouts": {
+      "title": "Structures de gains",
+      "description": "Les gains par place d'un tournoi, saisis par toi.",
+      "name": "Nom",
+      "players": "Nombre de joueurs",
+      "unit": "Unité",
+      "prize_pool": "Prize pool",
+      "places": "Gains par place (1ʳᵉ, 2ᵉ…)"
     }
   },
   "enum": {
@@ -421,7 +430,8 @@
     "export_csv": "Exporter en CSV",
     "export_csv_hands": "Exporter jusqu'à 1 000 mains en CSV",
     "exported": "Exporté : {{path}}",
-    "csv": "CSV"
+    "csv": "CSV",
+    "icm_review": "Revue push/fold"
   },
   "replayer": {
     "level": "niveau {{n}}",
@@ -455,7 +465,8 @@
     "result": "Résultat",
     "pick_other": "Choisir une autre main",
     "pick": "Choisis une main à rejouer.",
-    "to_equity": "Ouvrir dans Equity Lab"
+    "to_equity": "Ouvrir dans Equity Lab",
+    "to_icm": "Revue ICM"
   },
   "review": {
     "title": "Bilan de la session",
@@ -822,6 +833,128 @@
       "first": "{{n}} premiers affichés",
       "flop": "Flop",
       "weight": "Flops réels"
+    }
+  },
+  "icm": {
+    "tabs": {
+      "pushfold": "Push/fold",
+      "calc": "Calculateur ICM",
+      "review": "Revue de mains",
+      "quiz": "Quiz",
+      "payouts": "Structures de gains"
+    },
+    "prizes": "Gains par place (€)",
+    "from_saved": "Depuis une structure enregistrée…",
+    "bad_prizes": "Gains invalides : écris des montants séparés par des virgules, par ex. 50, 30, 20.",
+    "player": "Joueur",
+    "player_n": "Joueur {{n}}",
+    "stack": "Tapis",
+    "chips_pct": "% des jetons",
+    "icm_ev": "$EV ICM",
+    "chip_ev": "Chip EV",
+    "diff": "Écart",
+    "total": "Total",
+    "add_player": "Ajouter un joueur",
+    "remove_player": "Retirer ce joueur",
+    "bubble_title": "Bubble factors",
+    "bubble_help": "Ligne contre colonne : ce que tu perds en perdant un tapis contre ce joueur, divisé par ce que tu gagnes en le gagnant. 1 = les jetons valent leur poids en €. Survole une case pour la prime de risque.",
+    "vs": "contre",
+    "risk_tip": "Prime de risque : +{{p}} % d'équité nécessaire",
+    "pf": {
+      "players": "Joueurs",
+      "ante": "Ante (bb)",
+      "bb_ante": "Ante payée par la BB",
+      "model": "Modèle",
+      "chips": "Chip EV",
+      "icm": "ICM (Malmuth-Harville)",
+      "fgs": "FGS",
+      "fgs_off": "Sans FGS",
+      "fgs_n": "FGS sur {{n}} main(s)",
+      "others": "Tapis aux autres tables (bb, optionnel)",
+      "others_chips": "Tapis aux autres tables (jetons, optionnel)",
+      "position": "Position",
+      "stack_bb": "Tapis (bb)",
+      "what_if": "Et si…",
+      "bounty": "Bounty (€ encaissés)",
+      "model_help": "Modèle : on fait tapis ou on se couche, puis le premier qui paie va à l'abattage. Blinds 0,5 / 1 bb. Les équités préflop sont exactes, avec les cartes bloquées.",
+      "push_node": "{{pos}} : tapis",
+      "call_node": "{{pos}} : paie le tapis de {{vs}}",
+      "share": "{{p}} % des mains jouées",
+      "status": "{{it}} itérations, exploitabilité {{e}}",
+      "lock": "Fixer cette range (mode exploitant)",
+      "unlock": "Retirer",
+      "lock_title": "{{node}} : range fixée",
+      "lock_help": "Entre la range réelle de l'adversaire (par ex. tirée de ses stats) : le solveur calcule la meilleure réponse des autres joueurs.",
+      "push": "Tapis",
+      "call": "Payer",
+      "ev_line": "{{hand}} : {{act}} {{f}} % · EV {{act}} {{a}} · EV fold {{b}} · écart {{d}}"
+    },
+    "review": {
+      "tournament": "Tournoi",
+      "pick": "Choisis un tournoi…",
+      "one_hand": "Main n° {{id}}",
+      "hands": "mains",
+      "bounties": "Compter les bounties (KO)",
+      "share": "Part encaissée (%)",
+      "run": "Analyser",
+      "running": "Analyse…",
+      "help": "Revue des décisions tapis ou fold à 20 bb ou moins. Sans gains : chip EV seulement. L'ICM ne connaît que les joueurs de la table ; ajoute les tapis des autres tables si tu les connais.",
+      "good": "Bonne décision : {{c}}.",
+      "bad": "Tu as choisi « {{c}} », la meilleure option était « {{b}} ».",
+      "choice": {
+        "push": "tapis",
+        "call": "payer",
+        "fold": "se coucher"
+      },
+      "chips": "Jetons",
+      "money": "Argent (ICM)",
+      "loss": "Perte",
+      "chips_only": "Sans structure de gains, la revue est en chip EV.",
+      "bb": "{{n}} bb",
+      "shoves": "fait tapis",
+      "eff": "Tapis effectif : {{n}} bb",
+      "replay": "Voir dans le replayer",
+      "batch_total": "{{n}} décisions push/fold, dont {{bad}} à revoir",
+      "level": "Niveau",
+      "hand": "Main",
+      "stack": "Tapis",
+      "played": "Joué",
+      "best": "Meilleur",
+      "open": "Détail"
+    },
+    "quiz": {
+      "help": "Des spots au hasard (chip EV, de 2 à 6 joueurs, 3 à 15 bb) : choisis tapis ou fold, la solution d'équilibre te note. Les exercices complets arriveront en phase 8.",
+      "score": "Score : {{good}} / {{total}} · {{lost}} bb perdus",
+      "start": "Commencer",
+      "next": "Spot suivant",
+      "you": "toi",
+      "folds": "se couche",
+      "ante": "Ante {{a}} bb",
+      "no_ante": "Sans ante",
+      "right": "Bien joué.",
+      "wrong": "Pas la meilleure option.",
+      "detail": "{{hand}} : EV de l'action {{a}} bb, EV du fold {{f}} bb."
+    },
+    "payouts": {
+      "new": "Nouvelle structure",
+      "none": "Aucune structure. Saisis celle d'un tournoi (onglet « Gains » du lobby).",
+      "help": "Saisis les gains par place tels qu'affichés dans le lobby Winamax (ils changent selon le nombre d'inscrits). Tu peux aussi coller un CSV « place;gain ».",
+      "places_n": "{{n}} places payées",
+      "money": "Montants (€)",
+      "percent": "Pourcentages",
+      "place": "Place",
+      "place_n": "Gain de la place {{n}}",
+      "prize": "Gain (€)",
+      "remove": "Retirer",
+      "add": "Ajouter une place",
+      "total": "Total",
+      "not_100": "Le total ne fait pas 100 %.",
+      "import": "Coller un CSV",
+      "csv_apply": "Remplacer les places",
+      "csv_error": "CSV illisible : une ligne par place, « place;gain » ou des montants séparés par des virgules.",
+      "save": "Enregistrer",
+      "delete": "Supprimer",
+      "saved": "« {{name}} » enregistrée"
     }
   }
 }
