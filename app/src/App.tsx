@@ -8,6 +8,7 @@ import { AppShell, WindowShell } from "@/shell/AppShell";
 import { Launcher } from "@/shell/Launcher";
 import { ModulePage } from "@/shell/ModulePage";
 import { SettingsCentre } from "@/settings/SettingsCentre";
+import { Welcome } from "@/shell/Welcome";
 
 let readySent = false;
 
@@ -32,6 +33,7 @@ function Root() {
             <Route path="m/:id/*" element={<ModulePage />} />
             <Route path="settings/:tab?" element={<SettingsCentre />} />
           </Route>
+          <Route path="welcome" element={<Welcome />} />
           <Route path="window/:id/*" element={<WindowShell />}>
             <Route path="*" element={<ModulePage />} />
           </Route>

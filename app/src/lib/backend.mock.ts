@@ -5,7 +5,18 @@
  */
 import Ajv2020 from "ajv/dist/2020";
 import { parse as parseToml, stringify as stringifyToml } from "smol-toml";
-import type { Backend, ConfigEvent, Family, Issue, JsonObject } from "./backend";
+import type {
+  Backend,
+  BackupInfo,
+  ConfigEvent,
+  DbStats,
+  Family,
+  ImportErrorRow,
+  ImportEvent,
+  ImportStatus,
+  Issue,
+  JsonObject,
+} from "./backend";
 import { BackendError } from "./backend";
 import type { JSONSchema } from "./schema";
 
@@ -25,6 +36,7 @@ const SCHEMA_OF: Record<Family, string> = {
   hotkeys: "hotkeys",
   themes: "theme",
   profiles: "profile",
+  rooms: "room",
 };
 
 /** "../../../config/defaults/themes/dark.toml" -> ["themes", "dark"] */
@@ -35,18 +47,60 @@ function keyOf(path: string): [Family, string] | null {
   if (parts.length === 1 && (parts[0] === "settings" || parts[0] === "hotkeys")) {
     return [parts[0], parts[0]];
   }
-  if (parts.length === 2 && (parts[0] === "themes" || parts[0] === "profiles")) {
+  if (parts.length === 2 && (parts[0] === "themes" || parts[0] === "profiles" || parts[0] === "rooms")) {
     return [parts[0], parts[1]];
   }
   return null;
 }
 
-export function createMockBackend(): Backend {
+export interface MockOptions {
+  /** Start as a fresh install (first-run wizard shown). Default: false. */
+  firstRun?: boolean;
+}
+
+/** In the browser, `?firstrun` in the URL starts the mock as a fresh install. */
+function defaultOptions(): MockOptions {
+  if (typeof window === "undefined") return {};
+  return { firstRun: new URLSearchParams(window.location.search).has("firstrun") };
+}
+
+export function createMockBackend(opts: MockOptions = defaultOptions()): Backend {
   const files = new Map<string, string>();
   for (const [path, text] of Object.entries(rawDefaults)) {
     const k = keyOf(path);
     if (k) files.set(`${k[0]}/${k[1]}`, text);
   }
+  if (!opts.firstRun) {
+    files.set("settings/settings", files.get("settings/settings")!.replace("first_run_done = false", "first_run_done = true"));
+  }
+  // Simulated database.
+  const stats: DbStats = { hands: 0, heroHands: 0, players: 0, tournaments: 0, files: 0, errors: 0, firstHandAt: null, lastHandAt: null };
+  const history: ImportStatus["history"] = [];
+  const errors: ImportErrorRow[] = [];
+  const backups: BackupInfo[] = [];
+  const importListeners = new Set<(e: ImportEvent) => void>();
+  const fakeImport = (trigger: ImportEvent["trigger"], hands: number) => {
+    const report = {
+      files_seen: 3,
+      files_imported: 3,
+      hands_parsed: hands,
+      hands_inserted: hands,
+      duplicates: 0,
+      errors: 0,
+      summaries: 2,
+      elapsed_ms: 90,
+    };
+    stats.hands += hands;
+    stats.heroHands += hands;
+    stats.players += hands ? 41 : 0;
+    stats.tournaments += hands ? 3 : 0;
+    stats.files += 5;
+    stats.firstHandAt ??= 1793474056;
+    stats.lastHandAt = 1793648730;
+    history.unshift({ at: Math.floor(Date.now() / 1000), trigger, report });
+    const e = { report, trigger };
+    setTimeout(() => importListeners.forEach((l) => l(e)), 50);
+  };
   const ajv = new Ajv2020({ strict: false, allErrors: true });
   const schemas = new Map<string, JSONSchema>();
   for (const [path, schema] of Object.entries(rawSchemas)) {
@@ -139,6 +193,82 @@ export function createMockBackend(): Backend {
       return () => listeners.delete(cb);
     },
     markReady() {},
+    async dbStats() {
+      return { ...stats };
+    },
+    async importStatus() {
+      const room = parseToml(files.get("rooms/winamax") ?? "") as { folders?: string[] };
+      return {
+        folders: (room.folders ?? []).map((path) => ({ room: "winamax", path, exists: true })),
+        watching: true,
+        history: [...history],
+        dbPath: "(browser mock)/database.sqlite",
+      };
+    },
+    async importPaths(paths) {
+      for (const p of paths) {
+        if (p.includes("bad")) {
+          errors.unshift({
+            id: errors.length + 1,
+            file: p,
+            byte_offset: 0,
+            line_no: 17,
+            line: "Tantaculejen dances",
+            message: "unknown action",
+            raw: "Winamax Poker - Tournament \"SPACE KO\" …\nTantaculejen dances",
+            created_at: Math.floor(Date.now() / 1000),
+          });
+          stats.errors = errors.length;
+        }
+      }
+      fakeImport("manual", 288);
+    },
+    async importErrors() {
+      return [...errors];
+    },
+    async importRetryErrors() {
+      const n = errors.length;
+      errors.length = 0;
+      stats.errors = 0;
+      return n;
+    },
+    async detectRooms() {
+      return [
+        {
+          room: "winamax",
+          account: "Tantaculejen",
+          folder: "C:\\Users\\DELL 5590\\AppData\\Roaming\\winamax\\documents\\accounts\\Tantaculejen\\history",
+          files: 5,
+        },
+      ];
+    },
+    async backupList() {
+      return [...backups];
+    },
+    async backupNow() {
+      const name = `database-${new Date().toISOString().replace(/\D/g, "").slice(0, 8)}-${String(backups.length).padStart(6, "0")}.sqlite`;
+      backups.unshift({ name, size: 1_234_567, created_at: Math.floor(Date.now() / 1000) });
+      return name;
+    },
+    async backupRestore() {},
+    async appRestart() {
+      window.location.reload();
+    },
+    async pickPaths({ title }) {
+      const p = window.prompt(title);
+      return p ? [p] : null;
+    },
+    onImportEvent(cb) {
+      importListeners.add(cb);
+      return () => importListeners.delete(cb);
+    },
   };
+  // Configuring a room folder triggers the start-up scan, as in the app.
+  backend.onConfigEvent((e) => {
+    if (e.kind === "changed" && e.family === "rooms") {
+      const room = parseToml(files.get(`rooms/${e.id}`) ?? "") as { folders?: string[] };
+      if ((room.folders ?? []).length && stats.hands === 0) fakeImport("scan", 288);
+    }
+  });
   return backend;
 }

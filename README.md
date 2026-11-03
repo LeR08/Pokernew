@@ -5,7 +5,7 @@
 Suite poker 100 % locale (tracker + HUD, solveur, équité, ICM) pour un seul joueur sur un seul PC.
 Aucun compte, aucune télémétrie, aucun appel réseau.
 
-> État : **phase 0 (shell)**, voir [`docs/phase-0.md`](docs/phase-0.md) et [`CHANGELOG.md`](CHANGELOG.md).
+> État : **phase 1 (import Winamax + base de données)**, voir [`docs/phase-0.md`](docs/phase-0.md) et [`CHANGELOG.md`](CHANGELOG.md).
 
 ## Installer sans compiler
 
@@ -62,12 +62,26 @@ Tout se trouve dans le dossier de données, en TOML commenté :
 | `hotkeys.toml` | raccourcis de l'application |
 | `themes/*.toml` | thèmes (tokens de couleur) |
 | `profiles/*.toml` | profils (HUD + filtres + thème) |
+| `rooms/*.toml` | salles : dossiers d'historiques surveillés, pseudos, HUD autorisé |
+| `database.sqlite` | la base de mains (SQLite, mode WAL) |
+| `backups/` | sauvegardes automatiques de la base |
 | `schemas/*.schema.json` | schémas de validation (régénérés à chaque lancement) |
 | `logs/startup.log` | temps de démarrage mesurés |
 
 - Les fichiers sont **rechargés à chaud** : édite-les dans n'importe quel éditeur et l'application se met à jour.
 - Un fichier invalide est ignoré : la dernière version valide reste active et l'erreur s'affiche.
 - Le centre de réglages propose un formulaire (généré depuis le schéma) et un éditeur texte brut. Les commentaires sont conservés quand tu enregistres depuis le formulaire.
+
+## Salles supportées
+
+| Salle | Formats | État |
+|---|---|---|
+| Winamax | MTT, knockout (6-max, 3-max) + résumés de tournoi | ✅ |
+| Winamax | cash, Expresso, Go Fast | ⏳ en attente de fichiers d'exemple |
+| Autres salles | — | phase 9, une salle = un fichier dans `crates/hh-parsers/src/` |
+
+Un parseur n'est écrit qu'à partir de vrais fichiers : une ligne inconnue apparaît dans
+le journal d'erreurs du module Import, avec un bouton « copier comme cas de test ».
 
 ## Développement
 
@@ -112,7 +126,7 @@ AGPL-3.0-or-later. Le solveur s'appuiera sur `postflop-solver`, qui est sous AGP
 100 % local poker suite (tracker + HUD, solver, equity, ICM) for one player on one PC.
 No account, no telemetry, no network calls.
 
-> Status: **phase 0 (shell)**, see [`docs/phase-0.md`](docs/phase-0.md) and [`CHANGELOG.md`](CHANGELOG.md).
+> Status: **phase 1 (Winamax import + database)**, see [`docs/phase-0.md`](docs/phase-0.md) and [`CHANGELOG.md`](CHANGELOG.md).
 
 ### Build and run on Windows 10/11
 

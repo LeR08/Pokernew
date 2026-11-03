@@ -1,6 +1,6 @@
 import { Database } from "lucide-react";
-import { ComingSoon } from "../ComingSoon";
 import type { ModuleManifest } from "../types";
+import { ImportPage } from "./ImportPage";
 
 export const manifest: ModuleManifest = {
   id: "import",
@@ -9,5 +9,5 @@ export const manifest: ModuleManifest = {
   icon: Database,
   phase: 1,
   replaces: ["PokerTracker 4", "Holdem Manager 3"],
-  routes: [{ path: "", component: ComingSoon }],
+  routes: [{ path: "", component: ImportPage }],
 };

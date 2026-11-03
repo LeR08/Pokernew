@@ -4,8 +4,11 @@ version.workspace = true
 edition.workspace = true
 license.workspace = true
 publish = false
+description = "Cards, hands, actions, positions and game types shared by every crate."
 
 [lib]
 name = "lps_core_model"
 
 [dependencies]
+serde.workspace = true
+thiserror.workspace = true

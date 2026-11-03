@@ -1,6 +1,12 @@
 {
-  "app": { "title": "Local Poker Suite" },
-  "nav": { "home": "Home", "settings": "Settings", "toggle_sidebar": "Show/hide sidebar" },
+  "app": {
+    "title": "Local Poker Suite"
+  },
+  "nav": {
+    "home": "Home",
+    "settings": "Settings",
+    "toggle_sidebar": "Show/hide sidebar"
+  },
   "launcher": {
     "title": "Modules",
     "subtitle": "Drag a tile to reorder. Right-click or ⧉ to open it in its own window.",
@@ -15,21 +21,62 @@
     "study_only": "Study only"
   },
   "modules": {
-    "import": { "name": "Import & database", "description": "Hand-history import, folder watching, local database." },
-    "tracker": { "name": "Tracker", "description": "Reports, graphs, filters and leak finder." },
-    "replayer": { "name": "Replayer & notes", "description": "Replay hands, manual and automatic notes." },
-    "bankroll": { "name": "Bankroll & sessions", "description": "Deposits, withdrawals, sessions, journal and tournament ledger." },
-    "hud": { "name": "HUD", "description": "Historical stats displayed on the tables." },
-    "equity": { "name": "Equity Lab", "description": "Range vs range equity, range analysis on a board." },
-    "icm": { "name": "ICM & push/fold", "description": "ICM calculator, Nash push/fold ranges, tournament hand review." },
-    "solver": { "name": "Postflop solver", "description": "Heads-up postflop equilibria, local solution cache." },
-    "preflop": { "name": "Preflop ranges & solver", "description": "Preflop range library and preflop solver." },
-    "trainer": { "name": "Trainer & analysis", "description": "Drills from the solution cache, analysis of played hands." }
+    "import": {
+      "name": "Import & database",
+      "description": "Hand-history import, folder watching, local database."
+    },
+    "tracker": {
+      "name": "Tracker",
+      "description": "Reports, graphs, filters and leak finder."
+    },
+    "replayer": {
+      "name": "Replayer & notes",
+      "description": "Replay hands, manual and automatic notes."
+    },
+    "bankroll": {
+      "name": "Bankroll & sessions",
+      "description": "Deposits, withdrawals, sessions, journal and tournament ledger."
+    },
+    "hud": {
+      "name": "HUD",
+      "description": "Historical stats displayed on the tables."
+    },
+    "equity": {
+      "name": "Equity Lab",
+      "description": "Range vs range equity, range analysis on a board."
+    },
+    "icm": {
+      "name": "ICM & push/fold",
+      "description": "ICM calculator, Nash push/fold ranges, tournament hand review."
+    },
+    "solver": {
+      "name": "Postflop solver",
+      "description": "Heads-up postflop equilibria, local solution cache."
+    },
+    "preflop": {
+      "name": "Preflop ranges & solver",
+      "description": "Preflop range library and preflop solver."
+    },
+    "trainer": {
+      "name": "Trainer & analysis",
+      "description": "Drills from the solution cache, analysis of played hands."
+    }
   },
   "settings": {
     "title": "Settings centre",
-    "tabs": { "general": "General", "hotkeys": "Hotkeys", "themes": "Themes", "profiles": "Profiles", "modules": "Modules", "about": "About" },
-    "mode": { "form": "Form", "raw": "Raw text" },
+    "tabs": {
+      "general": "General",
+      "hotkeys": "Hotkeys",
+      "themes": "Themes",
+      "profiles": "Profiles",
+      "modules": "Modules",
+      "about": "About",
+      "rooms": "Rooms"
+    },
+    "mode": {
+      "form": "Form",
+      "raw": "Raw text"
+    },
     "save": "Save",
     "saved": "Saved",
     "revert": "Discard changes",
@@ -45,7 +92,10 @@
     "no_module_settings": "No module has its own settings yet.",
     "external_change": "The file changed on disk and was reloaded."
   },
-  "profile": { "label": "Profile", "switch": "Switch profile" },
+  "profile": {
+    "label": "Profile",
+    "switch": "Switch profile"
+  },
   "about": {
     "version": "Version",
     "data_dir": "Data folder",
@@ -66,7 +116,9 @@
     "enabled": "Enabled",
     "move_up": "Move up",
     "move_down": "Move down",
-    "none": "(none)"
+    "none": "(none)",
+    "remove": "Remove",
+    "add_folder": "Add a folder…"
   },
   "hotkey": {
     "go_home": "Go to home",
@@ -75,25 +127,148 @@
     "next_profile": "Next profile"
   },
   "color": {
-    "background": "Background", "surface": "Surface", "surface_alt": "Secondary surface", "border": "Border",
-    "text": "Text", "text_muted": "Muted text", "primary": "Primary", "primary_text": "Text on primary",
-    "accent": "Accent", "success": "Success", "warning": "Warning", "danger": "Danger"
+    "background": "Background",
+    "surface": "Surface",
+    "surface_alt": "Secondary surface",
+    "border": "Border",
+    "text": "Text",
+    "text_muted": "Muted text",
+    "primary": "Primary",
+    "primary_text": "Text on primary",
+    "accent": "Accent",
+    "success": "Success",
+    "warning": "Warning",
+    "danger": "Danger"
   },
   "schema": {
     "settings": {
-      "title": "General settings", "general": "General", "language": "Language", "profile": "Active profile",
-      "appearance": "Appearance", "theme": "Theme", "density": "Density", "font_scale": "Text size",
-      "modules": "Modules", "modules_order": "Module order", "modules_disabled": "Visible modules",
-      "performance": "Performance", "worker_threads": "Worker threads",
+      "title": "General settings",
+      "general": "General",
+      "language": "Language",
+      "profile": "Active profile",
+      "appearance": "Appearance",
+      "theme": "Theme",
+      "density": "Density",
+      "font_scale": "Text size",
+      "modules": "Modules",
+      "modules_order": "Module order",
+      "modules_disabled": "Visible modules",
+      "performance": "Performance",
+      "worker_threads": "Worker threads",
       "worker_threads_help": "0 = all threads. Keep 2 free for the poker client and the HUD.",
-      "ram_cap_mb": "Solver memory cap (MB)", "module_settings": "Module settings"
+      "ram_cap_mb": "Solver memory cap (MB)",
+      "module_settings": "Module settings",
+      "first_run_done": "Wizard done",
+      "backup": "Database backup",
+      "backup_enabled": "Automatic backup",
+      "backup_every_hours": "Every (hours)",
+      "backup_keep": "Backups kept"
     },
-    "hotkeys": { "title": "Hotkeys", "actions": "Actions" },
-    "theme": { "title": "Theme", "name": "Name", "base": "Base", "colors": "Colours" },
-    "profile": { "title": "Profile", "name": "Name", "description": "Description", "theme": "Forced theme" }
+    "hotkeys": {
+      "title": "Hotkeys",
+      "actions": "Actions"
+    },
+    "theme": {
+      "title": "Theme",
+      "name": "Name",
+      "base": "Base",
+      "colors": "Colours"
+    },
+    "profile": {
+      "title": "Profile",
+      "name": "Name",
+      "description": "Description",
+      "theme": "Forced theme"
+    },
+    "room": {
+      "title": "Room",
+      "name": "Name",
+      "enabled": "Enabled",
+      "folders": "Hand-history folders",
+      "folders_help": "Watched continuously: new hands are imported within a second.",
+      "hud_allowed": "HUD allowed on this room",
+      "hud_allowed_help": "Set according to the room's terms of use. Hands are imported either way.",
+      "hero_names": "My screen names"
+    }
   },
   "enum": {
-    "fr": "Français", "en": "English", "compact": "Compact", "comfortable": "Comfortable",
-    "light": "Light", "dark": "Dark"
+    "fr": "Français",
+    "en": "English",
+    "compact": "Compact",
+    "comfortable": "Comfortable",
+    "light": "Light",
+    "dark": "Dark"
+  },
+  "welcome": {
+    "title": "Welcome to Local Poker Suite",
+    "later": "Set up later",
+    "back": "Back",
+    "next": "Next",
+    "finish": "Finish",
+    "step": {
+      "language": "Language",
+      "rooms": "Rooms",
+      "profile": "Profile",
+      "import": "Import"
+    },
+    "language_intro": "Pick the interface language (you can change it later in the settings).",
+    "rooms_intro": "These accounts were found on this PC. Their hand-history folders will be watched and imported automatically.",
+    "searching": "Looking for installed rooms…",
+    "none_found": "No account found automatically. Add your hand-history folder by hand.",
+    "files_one": "{{count}} file",
+    "files_other": "{{count}} files",
+    "add_folder": "Add a folder…",
+    "hud_allowed": "Winamax allows HUDs",
+    "hud_allowed_help": "The HUD (phase 3) only shows if this is on. Check the room's terms; you can change it later.",
+    "profile_intro": "Pick your default profile (HUD, filters and theme for your format).",
+    "import_intro": "The import is running in the background. You can also import other hand histories (archives, old PokerTracker / Holdem Manager folders).",
+    "hands_so_far_one": "{{count}} hand imported",
+    "hands_so_far_other": "{{count}} hands imported",
+    "import_other": "Import another folder…"
+  },
+  "import": {
+    "folders": "Watched folders",
+    "pick_folder": "Import a folder…",
+    "pick_files": "Import files…",
+    "no_folders": "No folder configured.",
+    "configure_rooms": "Set up rooms",
+    "watching": "watched",
+    "missing": "not found",
+    "history": "Recent imports",
+    "no_history": "No import yet.",
+    "col": {
+      "when": "When",
+      "trigger": "Source",
+      "new": "New",
+      "dups": "Duplicates",
+      "errors": "Errors",
+      "speed": "Hands/s"
+    },
+    "trigger": {
+      "scan": "start-up",
+      "watch": "watcher",
+      "manual": "manual"
+    },
+    "errors": "Import errors",
+    "no_errors": "No errors.",
+    "retry": "Retry",
+    "line": "line {{n}}",
+    "copy_test_case": "Copy as test case",
+    "copied": "Copied",
+    "backups": "Backups",
+    "backup_now": "Back up now",
+    "no_backups": "No backup yet.",
+    "restore": "Restore",
+    "restore_confirm": "Confirm and restart",
+    "db_path": "Database: {{path}}",
+    "stats": {
+      "hands": "Hands",
+      "tournaments": "Tournaments",
+      "players": "Players",
+      "errors": "Errors"
+    },
+    "range": "From {{from}} to {{to}}",
+    "toast_one": "{{count}} new hand imported ({{dups}} duplicates, {{errors}} errors).",
+    "toast_other": "{{count}} new hands imported ({{dups}} duplicates, {{errors}} errors)."
   }
 }

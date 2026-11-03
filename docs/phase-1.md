@@ -1,6 +1,6 @@
 # Phase 1 — Import & base de données
 
-Statut : **plan — en attente des fichiers Winamax** · Salle prioritaire : **Winamax** · Joueur : `Tantaculejen`
+Statut : **implémentée pour Winamax MTT — en attente de ta validation** (cash et Expresso : en attente de fichiers) · Salle prioritaire : **Winamax** · Joueur : `Tantaculejen`
 
 ## Critères d'acceptation (spec)
 
@@ -82,3 +82,33 @@ Statut : **plan — en attente des fichiers Winamax** · Salle prioritaire : **W
 - Reprise du watcher : on ajoute une main à un fichier existant, on redémarre, seule cette main est lue.
 - Positions calculées pour des tables de 2 à 10 joueurs.
 - UI : assistant de premier lancement et écran d'import (Playwright, backend simulé).
+
+## Résultats (3 nov. 2026)
+
+Fixtures reçues : 3 historiques de MTT KO Winamax (288 mains, 6-max et 3-max) et 2 résumés de tournoi.
+Les 40 adversaires sont anonymisés (`Player01…`), ton pseudo est conservé.
+
+| Critère | Résultat |
+|---|---|
+| Fixtures Winamax MTT, 0 erreur | ✅ 288/288 mains, plus les 2 résumés. Chaque main passe les contrôles de cohérence : argent conservé, pot total = somme des mises, aucune carte en double, positions attribuées |
+| Fixtures Winamax cash / Expresso | ⏳ aucun fichier reçu ; ces en-têtes sont refusés avec un message clair, jamais devinés |
+| PokerStars | ⏳ pas de réponse sur PokerStars : reporté à la phase 9 tant qu'il n'y a pas de fichiers |
+| 100 000 mains à ≥ 3 000 mains/s | ✅ **≈ 4 000 mains/s** (100 224 mains en 24,8 s, conteneur à 4 vCPU, build release). Commande : `cargo test -p lps-db --release -- --ignored --nocapture bench` |
+| Ré-import : 0 doublon | ✅ fichier inchangé = 0 octet relu ; mêmes mains sous un autre nom = 288 doublons ignorés, 0 inséré |
+| Reprise du watcher après redémarrage | ✅ test : après redémarrage, seule la main ajoutée au fichier est lue (offset stocké par fichier) |
+| Nouvelle main → base de données | ✅ **264 ms** mesurés dans la vraie app (cible < 1 s) |
+| Assistant de premier lancement | ✅ déroulé dans la vraie app Tauri (Linux) : compte `Tantaculejen` détecté, dossier et pseudo écrits dans `rooms/winamax.toml`, profil MTT, 288 mains importées |
+| Sauvegarde SQLite planifiée + restauration | ✅ tests + vue dans l'app (première sauvegarde 60 s après le lancement, puis toutes les 24 h ; 7 gardées) |
+| `cargo test`, `clippy -D warnings`, `pnpm test`, `pnpm e2e` | ✅ 68 tests Rust, 20 Vitest, 9 Playwright |
+
+Particularités Winamax découvertes dans tes fichiers, et gérées :
+- **Petite blinde morte** quand un joueur vient de sauter : les positions sont déduites des blindes réellement postées.
+- **Pas de ligne « Uncalled bet »** : la mise non suivie revient dans `collected`, parfois sous forme de *side pot*.
+- **Joueur assis mais pas servi** (il vient d'arriver à la table) : il est exclu de la main.
+
+Stats héros sur ces 288 mains, calculées par la vraie app : VPIP 23,6 %, PFR 17,4 %, 3-bet 5,4 %, WTSD 40,8 %.
+
+Non fait dans cette phase :
+- EV all-in ajustée : la colonne `allin_ev` existe, elle sera remplie en phase 4 avec l'évaluateur.
+- Sessions auto-groupées : prévu avec le module Bankroll en phase 2.
+- Démarrage : les lancements suivant le premier sont encore à mesurer sur ton PC (2,77 s au premier).

@@ -13,7 +13,7 @@ import { FileEditor, useFormContext } from "./FileEditor";
 import { SchemaForm } from "./SchemaForm";
 import { isValidId } from "./ids";
 
-const TABS = ["general", "hotkeys", "themes", "profiles", "modules", "about"] as const;
+const TABS = ["general", "rooms", "hotkeys", "themes", "profiles", "modules", "about"] as const;
 type Tab = (typeof TABS)[number];
 
 /** Editor for a folder family (themes, profiles): pick a file, copy, delete. */
@@ -137,6 +137,7 @@ export function SettingsCentre() {
         ))}
       </nav>
       {current === "general" && <FileEditor family="settings" id="settings" />}
+      {current === "rooms" && <FolderEditor family="rooms" />}
       {current === "hotkeys" && <FileEditor family="hotkeys" id="hotkeys" />}
       {current === "themes" && <FolderEditor family="themes" />}
       {current === "profiles" && <FolderEditor family="profiles" />}

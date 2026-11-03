@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 import type { Issue, JsonValue } from "@/lib/backend";
 import { resolveRef, type JSONSchema } from "@/lib/schema";
 import { Input, Select, Switch } from "@/components/ui/input";
-import { ColorWidget, HotkeyWidget, ModuleOrderWidget, ModuleTogglesWidget } from "./widgets";
+import { ColorWidget, FolderListWidget, HotkeyWidget, ModuleOrderWidget, ModuleTogglesWidget } from "./widgets";
 
 export interface FormContext {
   /** Ids available for `x-ref-family` selects. */
@@ -68,6 +68,8 @@ function Field(props: FieldProps) {
     control = <ModuleOrderWidget value={(value as string[]) ?? []} onChange={onChange} />;
   } else if (widget === "module-toggles") {
     control = <ModuleTogglesWidget value={(value as string[]) ?? []} onChange={onChange} />;
+  } else if (widget === "folder-list") {
+    control = <FolderListWidget value={(value as string[]) ?? []} onChange={onChange} />;
   } else if (widget === "color") {
     control = <ColorWidget id={id} value={String(value ?? "")} onChange={onChange} />;
   } else if (widget === "hotkey") {

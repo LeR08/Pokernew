@@ -1,0 +1,613 @@
+---
+source: crates/hh-parsers/src/winamax/tests.rs
+expression: render(&hands)
+---
+5193417103624896579-18-1793474056 L1 60/250/500 btn1 pot107970 [7h9s6d5dTs] SD
+  s1 BTN  Player19       53515 net     -60
+  s2 SB   Player22      143339 net    -310
+  s3 BB   Tantaculejen   50000 net    -560 HERO [9d5c]
+  s4 UTG  Player13       23650 net     -60
+  s5 HJ   Player20       53490 net  +54480 [9hAd] sd
+  s6 CO   Player03      316229 net  -53490 [Jh6h] sd
+5193417103624896579-19-1793474100 L1 60/250/500 btn2 pot12880 [7cQsAh7s6d]
+  s1 CO   Player19       53455 net     -60
+  s2 BTN  Player22      143029 net     -60
+  s3 SB   Tantaculejen   49440 net   -3130 HERO [3dTd]
+  s4 BB   Player13       23590 net   +3310
+  s6 HJ   Player03      262739 net     -60
+5193417103624896579-20-1793474139 L1 60/250/500 btn3 pot54540 [4c9hThJd7c] SD
+  s1 HJ   Player19       53395 net     -60
+  s2 CO   Player22      142969 net     -60
+  s3 BTN  Tantaculejen   46310 net     -60 HERO [5c8h]
+  s4 SB   Player13       26900 net  +27640 [9dAc] sd
+  s5 BB   Player28       50000 net    -560
+  s6 UTG  Player03      262679 net  -26900 [6s6d] sd
+5193417103624896579-21-1793474182 L1 60/250/500 btn4 pot5790 [KsQdAc4cQc]
+  s1 UTG  Player19       53335 net   +2300
+  s2 HJ   Player22      142909 net     -60
+  s3 CO   Tantaculejen   46250 net     -60 HERO [Ts2c]
+  s4 BTN  Player13       54540 net     -60
+  s5 SB   Player28       49440 net   -1560
+  s6 BB   Player03      235779 net    -560
+5193417103624896579-22-1793474227 L1 60/250/500 btn5 pot2360
+  s1 BB   Player19       55635 net    -560
+  s2 UTG  Player22      142849 net   +1050
+  s3 HJ   Tantaculejen   46190 net     -60 HERO [Tc6d]
+  s4 CO   Player13       54480 net     -60
+  s5 BTN  Player28       47880 net     -60
+  s6 SB   Player03      235219 net    -310
+5193417103624896579-23-1793474237 L1 60/250/500 btn6 pot4874 [As8d5h]
+  s1 SB   Player19       55075 net    -310
+  s2 BB   Player22      143899 net    -560
+  s3 UTG  Tantaculejen   46130 net   +2300 HERO [QhQd]
+  s4 HJ   Player13       54420 net     -60
+  s5 CO   Player28       47820 net     -60
+  s6 BTN  Player03      234909 net   -1310
+5193417103624896579-24-1793474266 L1 60/250/500 btn1 pot2110 [3d2h5s8h8s] SD
+  s1 BTN  Player19       54765 net   +1550 [3cAc] sd
+  s2 SB   Player22      143339 net    -310
+  s3 BB   Tantaculejen   48430 net    -560 HERO [Qc4c] sd
+  s4 UTG  Player13       54360 net    -560 [Tc7h] sd
+  s5 HJ   Player28       47760 net     -60
+  s6 CO   Player03      233599 net     -60
+5193417103624896579-25-1793474300 L1 60/250/500 btn2 pot4665 [4sAc8c]
+  s1 CO   Player19       56315 net     -60
+  s2 BTN  Player22      143029 net     -60
+  s3 SB   Tantaculejen   47870 net    -310 HERO [3h5c]
+  s4 BB   Player13       53800 net   -1310
+  s5 UTG  Player28       47700 net     -60
+  s6 HJ   Player03      233539 net   +1800
+5193417103624896579-26-1793474327 L1 60/250/500 btn3 pot10080 [5c4s6c8s9s] SD
+  s1 HJ   Player19       56255 net     -60
+  s2 CO   Player22      142969 net     -60
+  s3 BTN  Tantaculejen   47560 net   -4670 HERO [KdQh] sd
+  s4 SB   Player13       52490 net   +5410 [AhQd] sd
+  s5 BB   Player28       47640 net    -560
+  s6 UTG  Player03      235339 net     -60
+5193417103624896579-27-1793474356 L1 60/250/500 btn4 pot4536 [6c9c9sJh]
+  s1 UTG  Player19       56195 net     -60
+  s2 HJ   Player22      142909 net     -60
+  s3 CO   Tantaculejen   42890 net     -60 HERO [9d4d]
+  s4 BTN  Player13       57900 net   -1310
+  s5 SB   Player28       47080 net   +2050
+  s6 BB   Player03      235279 net    -560
+5193417103624896579-28-1793474386 L1 60/250/500 btn5 pot2110 [QcJh8s]
+  s1 BB   Player19       56135 net   +1050
+  s2 UTG  Player22      142849 net    -560
+  s3 HJ   Tantaculejen   42830 net     -60 HERO [9h6s]
+  s4 CO   Player13       56590 net     -60
+  s5 BTN  Player28       49130 net     -60
+  s6 SB   Player03      234719 net    -310
+5193417103624896579-29-1793474417 L1 60/250/500 btn6 pot126525 [AhQhJs8c2d] SD
+  s1 SB   Player19       57185 net    -310
+  s2 BB   Player22      142289 net    -560
+  s3 UTG  Tantaculejen   42770 net     -60 HERO [3dJc]
+  s4 HJ   Player13       56530 net  +66200 [Ts9h] sd
+  s5 CO   Player28       49070 net   -8740
+  s6 BTN  Player03      234409 net  -56530 [8s8h] sd
+5193417103624896579-30-1793474486 L1 60/250/500 btn1 pot4874 [9s2c2s]
+  s1 BTN  Player19       56875 net     -60
+  s2 SB   Player22      141729 net    -310
+  s3 BB   Tantaculejen   42710 net   -1060 HERO [3cAs]
+  s4 UTG  Player13      122730 net     -60
+  s5 HJ   Player28       40330 net   +2550
+  s6 CO   Player03      177879 net   -1060
+5193417103624896579-31-1793474508 L1 60/250/500 btn2 pot11110 [Kc3h6h4c8c] SD
+  s1 CO   Player19       56815 net     -60
+  s2 BTN  Player22      141419 net   +5800 [Kd7d] sd
+  s3 SB   Tantaculejen   41650 net    -310 HERO [Qd4d]
+  s4 BB   Player13      122670 net   -5310 [AhQh] sd
+  s5 UTG  Player28       42880 net     -60
+  s6 HJ   Player03      176819 net     -60
+5193417103624896579-32-1793474545 L1 60/250/500 btn3 pot9257 [TcKsKhAsQs]
+  s1 HJ   Player19       56755 net   -1560
+  s2 CO   Player22      147219 net   -1560
+  s3 BTN  Tantaculejen   41340 net   +4050 HERO [8cJc]
+  s4 SB   Player13      117360 net    -310
+  s5 BB   Player28       42820 net    -560
+  s6 UTG  Player03      176759 net     -60
+5193417103624896579-33-1793474624 L1 60/250/500 btn4 pot54046 [3cQdKc8dTs] SD
+  s1 UTG  Player19       55195 net     -60
+  s2 HJ   Player22      145659 net  -25903 [5dKd] sd
+  s3 CO   Tantaculejen   45390 net  +28143 HERO [AhJs] sd
+  s4 BTN  Player13      117050 net   -1310
+  s5 SB   Player28       42260 net    -310
+  s6 BB   Player03      176699 net    -560
+5193417103624896579-34-1793474706 L1 60/250/500 btn5 pot90006 [Jh4cAd9c6s] SD
+  s1 BB   Player19       55135 net    -560
+  s2 UTG  Player22      119756 net   -1310
+  s3 HJ   Tantaculejen   73533 net     -60 HERO [2h8h]
+  s4 CO   Player13      115740 net   -4176
+  s5 BTN  Player28       41950 net  +48056 [AhAc] sd
+  s6 SB   Player03      176139 net  -41950 [6hAs] sd
+5193417103624896579-35-1793474807 L1 60/250/500 btn6 pot2360
+  s1 SB   Player19       54575 net    -560
+  s2 BB   Player22      118446 net    +800
+  s3 UTG  Tantaculejen   73473 net     -60 HERO [5d7d]
+  s4 HJ   Player13      111564 net     -60
+  s5 CO   Player28       90006 net     -60
+  s6 BTN  Player03      134189 net     -60
+5193417103624896579-36-1793474841 L1 60/250/500 btn1 pot20599 [4cJh5h9hAc]
+  s1 BTN  Player19       54015 net    -560
+  s2 SB   Player22      119246 net    -560
+  s3 BB   Tantaculejen   73413 net   +6862 HERO [8sJc]
+  s4 UTG  Player13      111504 net   -5622
+  s5 HJ   Player28       89946 net     -60
+  s6 CO   Player03      134129 net     -60
+5193417103624896579-37-1793474889 L1 60/250/500 btn2 pot8019 [9hThKs]
+  s1 CO   Player19       53455 net     -60
+  s2 BTN  Player22      118686 net   -2060
+  s3 SB   Tantaculejen   80275 net   +2800 HERO [QdKc]
+  s4 BB   Player13      105882 net    -560
+  s5 UTG  Player28       89886 net     -60
+  s6 HJ   Player03      134069 net     -60
+5193417103624896579-38-1793474925 L1 60/250/500 btn3 pot3360 [JhThTs8cTd] SD
+  s1 HJ   Player19       53395 net     -60
+  s2 CO   Player22      116626 net     -60
+  s3 BTN  Tantaculejen   83075 net   +2050 HERO [AsQc] sd
+  s4 SB   Player13      105322 net   -1310 [7cAh] sd
+  s5 BB   Player28       89826 net    -560
+  s6 UTG  Player03      134009 net     -60
+5193417103624896579-39-1793474982 L1 60/250/500 btn4 pot18676 [Ah7s5sAc4s]
+  s1 UTG  Player19       53335 net     -60
+  s2 HJ   Player22      116566 net   +4914
+  s3 CO   Tantaculejen   85125 net     -60 HERO [3h9h]
+  s4 BTN  Player13      104012 net   -1310
+  s5 SB   Player28       89266 net   -2924
+  s6 BB   Player03      133949 net    -560
+5193417103624896579-40-1793475047 L2 70/300/600 btn5 pot1320
+  s1 BB   Player19       53275 net    +650
+  s2 UTG  Player22      121480 net     -70
+  s3 HJ   Tantaculejen   85065 net     -70 HERO [7c4s]
+  s4 CO   Player13      102702 net     -70
+  s5 BTN  Player28       86342 net     -70
+  s6 SB   Player03      133389 net    -370
+5193417103624896579-41-1793475064 L2 70/300/600 btn6 pot6660 [TsJhAh7hKd] SD
+  s1 SB   Player19       53925 net   +3770 [8hQc] sd
+  s2 BB   Player22      121410 net    -670
+  s3 UTG  Tantaculejen   84995 net     -70 HERO [4dTh]
+  s4 HJ   Player13      102632 net   -2890 [3s8s] sd
+  s5 CO   Player28       86272 net     -70
+  s6 BTN  Player03      133019 net     -70
+5193417103624896579-42-1793475106 L2 70/300/600 btn1 pot4158 [2s2c8c]
+  s1 BTN  Player19       57695 net     -70
+  s2 SB   Player22      120740 net    -370
+  s3 BB   Tantaculejen   84925 net    -670 HERO [Js5c]
+  s4 UTG  Player13       99742 net    -670
+  s5 HJ   Player28       86202 net   +1850
+  s6 CO   Player03      132949 net     -70
+5193417103624896579-43-1793475150 L2 70/300/600 btn2 pot47084 [KdTcQhJc]
+  s1 CO   Player19       57625 net     -70
+  s2 BTN  Player22      120370 net     -70
+  s3 SB   Tantaculejen   84255 net  +19094 HERO [AhJh]
+  s4 BB   Player13       99072 net   -9442
+  s5 UTG  Player28       88052 net     -70
+  s6 HJ   Player03      132879 net   -9442
+5193417103624896579-44-1793475209 L2 70/300/600 btn3 pot5220 [QcJh4c7h9c] SD
+  s1 HJ   Player19       57555 net   -1570 [7sAs] sd
+  s2 CO   Player22      120300 net     -70
+  s3 BTN  Tantaculejen  103349 net   -1570 HERO [AhKd] sd
+  s4 SB   Player13       89630 net    -370
+  s5 BB   Player28       87982 net   +3650 [Ac9h] sd
+  s6 UTG  Player03      123437 net     -70
+5193417103624896579-45-1793475239 L2 70/300/600 btn4 pot2220 [5h2sJc9dJd] SD
+  s1 UTG  Player06       50000 net     -70
+  s2 HJ   Player22      120230 net   +1550 [Ah9s] sd
+  s3 CO   Tantaculejen  101779 net     -70 HERO [7c4s]
+  s4 BTN  Player13       89260 net     -70
+  s5 SB   Player28       91632 net    -670 [6cQs] sd
+  s6 BB   Player03      123367 net    -670 [7hKs] sd
+5193417103624896579-46-1793475310 L2 70/300/600 btn5 pot7548 [AsJs3c9c6d] SD
+  s1 BB   Player06       49930 net   -3334 [Jd8h] sd
+  s2 UTG  Player22      121780 net     -70
+  s3 HJ   Tantaculejen  101709 net     -70 HERO [4hKh]
+  s4 CO   Player13       89190 net   +4214 [6s9s] sd
+  s5 BTN  Player28       90962 net     -70
+  s6 SB   Player03      122697 net    -670
+5193417103624896579-47-1793475383 L3 80/350/700 btn6 pot124877
+  s1 SB   Player06       46596 net    -430
+  s2 BB   Player22      121710 net    -780
+  s3 UTG  Tantaculejen  101639 net     -80 HERO [4hKd]
+  s4 HJ   Player13       93404 net   -1480
+  s5 CO   Player28       90892 net     -80
+  s6 BTN  Player03      122027 net   +2850
+5193417103624896579-48-1793475418 L3 80/350/700 btn1 pot4428 [Js7sKh]
+  s1 BTN  Player06       46166 net   +2500
+  s2 SB   Player22      120930 net    -780
+  s3 BB   Tantaculejen  101559 net    -780 HERO [5s3d]
+  s4 UTG  Player13       91924 net    -780
+  s5 HJ   Player28       90812 net     -80
+  s6 CO   Player03      124877 net     -80
+5193417103624896579-49-1793475481 L3 80/350/700 btn2 pot170886 [Kh6d6h4s6c] SD
+  s1 CO   Player06       48666 net   +1035 [TsKc] sd
+  s2 BTN  Player22      120150 net   +1035 [AcKs] sd
+  s3 SB   Tantaculejen  100779 net    -430 HERO [2dJs]
+  s4 BB   Player13       91144 net   -1480
+  s5 UTG  Player28       90732 net     -80
+  s6 HJ   Player03      124797 net     -80
+5193417103624896579-50-1793475599 L3 80/350/700 btn3 pot3483 [TcJh4h]
+  s1 HJ   Player06       49701 net     -80
+  s2 CO   Player22      121185 net   +1800
+  s3 BTN  Tantaculejen  100349 net     -80 HERO [8c3d]
+  s4 SB   Player13       89664 net    -780
+  s5 BB   Player28       90652 net    -780
+  s6 UTG  Player03      124717 net     -80
+5193417103624896579-51-1793475656 L3 80/350/700 btn4 pot130735 [3d2c8d]
+  s1 UTG  Player06       49621 net     -80
+  s2 HJ   Player22      122985 net   +7750
+  s3 CO   Tantaculejen  100269 net   -6380 HERO [5s5c]
+  s4 BTN  Player13       88884 net     -80
+  s5 SB   Player28       89872 net    -430
+  s6 BB   Player03      124637 net    -780
+5193417103624896579-52-1793475692 L3 80/350/700 btn5 pot5846 [5dQd6d]
+  s1 BB   Player06       49541 net    -780
+  s2 UTG  Player22      130735 net     -80
+  s3 HJ   Tantaculejen   93889 net     -80 HERO [6c8s]
+  s4 CO   Player13       88804 net   -1480
+  s5 BTN  Player28       89442 net   +2850
+  s6 SB   Player03      123857 net    -430
+5193417103624896579-53-1793475712 L3 80/350/700 btn6 pot85660 [QcThAcJh7h] SD
+  s1 SB   Player06       48761 net    -430
+  s2 BB   Player22      130655 net   -1830
+  s3 UTG  Tantaculejen   93809 net   -1830 HERO [5h8h]
+  s4 HJ   Player13       87324 net  -40745 [3dKd] sd
+  s5 CO   Player28       92292 net     -80
+  s6 BTN  Player03      123427 net  +44915 [Ah6h] sd
+5193417103624896579-54-1793475781 L4 100/400/800 btn1 pot12580 [4s6s8cQs9d] SD
+  s1 BTN  Player06       48331 net    -100
+  s2 SB   Player22      128825 net   -2100
+  s3 BB   Tantaculejen   91979 net    -900 HERO [2s9s]
+  s4 UTG  Player13       46579 net   -4690 [Ad9h] sd
+  s5 HJ   Player28       92212 net   +7890 [QcJs] sd
+  s6 CO   Player03      168342 net    -100
+5193417103624896579-55-1793475829 L4 100/400/800 btn2 pot3400
+  s1 CO   Player06       48231 net    -100
+  s2 BTN  Player22      126725 net    -100
+  s3 SB   Tantaculejen   91079 net   +1300 HERO [7cAs]
+  s4 BB   Player13       41889 net    -900
+  s5 UTG  Player28      100102 net    -100
+  s6 HJ   Player03      168242 net    -100
+5193417103624896579-56-1793475856 L4 100/400/800 btn3 pot14800 [3h4h4s5c]
+  s1 HJ   Player06       48131 net    -100
+  s2 CO   Player22      126625 net    -900
+  s3 BTN  Tantaculejen   92379 net   -2100 HERO [QsJd]
+  s4 SB   Player13       40989 net   +5300
+  s5 BB   Player28      100002 net   -2100
+  s6 UTG  Player03      168142 net    -100
+5193417103624896579-57-1793475916 L4 100/400/800 btn4 pot97662 [8h3hJs7cJc] SD
+  s1 UTG  Player06       48031 net  +49631 [4sAs] sd
+  s2 HJ   Player22      125725 net    -100
+  s3 CO   Tantaculejen   90279 net  -48031 HERO [9sQs] sd
+  s4 BTN  Player13       46289 net    -100
+  s5 SB   Player28       97902 net    -500
+  s6 BB   Player03      168042 net    -900
+5193417103624896579-58-1793475976 L4 100/400/800 btn5 pot16762 [3sKc2h4c9c] SD
+  s1 BB   Player06       97662 net   -7181 [4hAh] sd
+  s2 UTG  Player22      125625 net   -1700
+  s3 HJ   Tantaculejen   42248 net    -100 HERO [7d6c]
+  s4 CO   Player13       46189 net    -100
+  s5 BTN  Player28       97402 net   +9581 [Ad9h] sd
+  s6 SB   Player03      167142 net    -500
+5193417103624896579-59-1793476054 L4 100/400/800 btn6 pot20757 [6h3s9cKs]
+  s1 SB   Player06       90481 net    -500
+  s2 BB   Player22      123925 net   -5890
+  s3 UTG  Tantaculejen   42148 net   +6690 HERO [JhAh]
+  s4 HJ   Player13       46089 net    -100
+  s5 CO   Player28      106983 net    -100
+  s6 BTN  Player03      166642 net    -100
+5193417103624896579-60-1793476111 L5 120/500/1000 btn1 pot2220
+  s1 BTN  Player06       89981 net    -120
+  s2 SB   Player22      118035 net    -620
+  s3 BB   Tantaculejen   48838 net   +1100 HERO [6h2s]
+  s4 UTG  Player13       45989 net    -120
+  s5 HJ   Player28      106883 net    -120
+  s6 CO   Player03      166542 net    -120
+5193417103624896579-61-1793476152 L5 120/500/1000 btn2 pot97218 [4c2dQcKcKs] SD
+  s1 CO   Player06       89861 net  -45869 [ThTc] sd
+  s2 BTN  Player22      117415 net   -2620
+  s3 SB   Tantaculejen   49938 net   -2620 HERO [3d3s]
+  s4 BB   Player13       45869 net  +51349 [5sQh] sd
+  s5 UTG  Player28      106763 net    -120
+  s6 HJ   Player03      166422 net    -120
+5193417103624896579-62-1793476213 L5 120/500/1000 btn3 pot160767 [8hAc4s4dJh] SD
+  s1 HJ   Player06       43992 net  +45972 [TdTh] sd
+  s2 CO   Player22      114795 net  -43992 [9h9d] sd
+  s3 BTN  Tantaculejen   47318 net    -120 HERO [Kh6s]
+  s4 SB   Player13       97218 net    -620
+  s5 BB   Player28      106643 net   -1120
+  s6 UTG  Player03      166302 net    -120
+5193417103624896579-63-1793476264 L5 120/500/1000 btn4 pot34947 [6d3sTc]
+  s1 UTG  Player06       89964 net    -120
+  s2 HJ   Player22       70803 net    -120
+  s3 CO   Tantaculejen   47198 net  +15604 HERO [KsTh]
+  s4 BTN  Player13       96598 net   -2620
+  s5 SB   Player28      105523 net   -6372
+  s6 BB   Player03      166182 net   -6372
+5193417103624896579-64-1793476324 L5 120/500/1000 btn5 pot5220
+  s1 BB   Player06       89844 net   -1120
+  s2 UTG  Player22       70683 net    -120
+  s3 HJ   Tantaculejen   62802 net    -120 HERO [Jd6d]
+  s4 CO   Player13       93978 net   +2100
+  s5 BTN  Player28       99151 net    -120
+  s6 SB   Player03      159810 net    -620
+5193417103624896579-65-1793476340 L5 120/500/1000 btn6 pot6138 [9hKhAd7d]
+  s1 SB   Player06       88724 net   +2600
+  s2 BB   Player22       70563 net   -1120
+  s3 UTG  Tantaculejen   62682 net    -120 HERO [6h2s]
+  s4 HJ   Player13       96078 net   -1120
+  s5 CO   Player28       99031 net    -120
+  s6 BTN  Player03      159190 net    -120
+5193417103624896579-66-1793476384 L5 120/500/1000 btn1 pot74043 [4s6sAsAd7c]
+  s1 BTN  Player06       91324 net    -120
+  s2 SB   Player22       69443 net   +4600
+  s3 BB   Tantaculejen   62562 net   -1120 HERO [5s8h]
+  s4 UTG  Player13       94958 net   -3120
+  s5 HJ   Player28       98911 net    -120
+  s6 CO   Player03      159070 net    -120
+5193417103624896579-67-1793476427 L5 120/500/1000 btn2 pot5720 [7d8s7s8h2c] SD
+  s1 CO   Player06       91204 net    -120
+  s2 BTN  Player22       74043 net    -120
+  s3 SB   Tantaculejen   61442 net   -2620 HERO [6d6c] sd
+  s4 BB   Player13       91838 net   +3100 [7h9c] sd
+  s5 UTG  Player28       98791 net    -120
+  s6 HJ   Player03      158950 net    -120
+5193417103624896579-68-1793476470 L6 140/600/1200 btn3 pot191636 [6d5d5c9hTh] SD
+  s1 HJ   Player06       91084 net    -140
+  s2 CO   Player22       73923 net    -140
+  s3 BTN  Tantaculejen   58822 net    -140 HERO [3h8c]
+  s4 SB   Player13       94938 net  +96698 [Ah6s] sd
+  s5 BB   Player28       98671 net   -1340
+  s6 UTG  Player03      158830 net  -94938 [KcAd] sd
+5193417103624896579-69-1793476860 L6 140/600/1200 btn4 pot5040
+  s1 UTG  Player06       90944 net    -140
+  s2 HJ   Player22       73783 net    -140
+  s3 CO   Tantaculejen   58682 net    -140 HERO [JdAc]
+  s4 BTN  Player13      191636 net   +2500
+  s5 SB   Player28       97331 net    -740
+  s6 BB   Player03       63892 net   -1340
+5193417103624896579-70-1793476951 L6 140/600/1200 btn5 pot126864 [8hJsKh4s2s] SD
+  s1 BB   Player06       90804 net  +64312 [QcKc] sd
+  s2 UTG  Player22       73643 net    -140
+  s3 HJ   Tantaculejen   58542 net    -140 HERO [2d9d]
+  s4 CO   Player13      194136 net   -1340
+  s5 BTN  Player28       96591 net    -140
+  s6 SB   Player03       62552 net  -62552 [TsQh] sd
+5193417103624896579-71-1793476992 L6 140/600/1200 btn6 pot8085 [4dJdQc]
+  s1 SB   Player06      155116 net    -740
+  s2 BB   Player22       73503 net   -1340
+  s3 UTG  Tantaculejen   58402 net    -140 HERO [QdKd]
+  s4 HJ   Player13      192796 net   +3560
+  s5 CO   Player28       96451 net   -1340
+5193417103624896579-72-1793477035 L6 140/600/1200 btn1 pot5040
+  s1 BTN  Player06      154376 net   +2500
+  s2 SB   Player22       72163 net    -740
+  s3 BB   Tantaculejen   58262 net   -1340 HERO [2sAs]
+  s4 UTG  Player13      196356 net    -140
+  s5 HJ   Player28       95111 net    -140
+  s6 CO   Player12       50000 net    -140
+5193417103624896579-73-1793477059 L6 140/600/1200 btn2 pot2640
+  s1 CO   Player06      156876 net    -140
+  s2 BTN  Player22       71423 net    -140
+  s3 SB   Tantaculejen   56922 net    -740 HERO [3cKc]
+  s4 BB   Player13      196216 net   +1300
+  s5 UTG  Player28       94971 net    -140
+  s6 HJ   Player12       49860 net    -140
+5193417103624896579-74-1793477074 L6 140/600/1200 btn3 pot15246 [Ts7hKd]
+  s1 HJ   Player06      156736 net    -140
+  s2 CO   Player22       71283 net   +5500
+  s3 BTN  Tantaculejen   56182 net    -140 HERO [2cQc]
+  s4 SB   Player13      197516 net   -3740
+  s5 BB   Player28       94831 net   -1340
+  s6 UTG  Player12       49720 net    -140
+5193417103624896579-75-1793477105 L6 140/600/1200 btn4 pot149160 [4d7c5d9h8d] SD
+  s1 UTG  Player06      156596 net    -140
+  s2 HJ   Player22       76783 net    -140
+  s3 CO   Tantaculejen   56042 net    -140 HERO [TsQc]
+  s4 BTN  Player13      193776 net  +25000 [6cJc] sd
+  s5 SB   Player28       93491 net  +25000 [6sQh] sd
+  s6 BB   Player12       49580 net  -49580 [4sAd] sd
+5193417103624896579-76-1793477188 L7 160/700/1400 btn5 pot5700
+  s1 BB   Player06      156456 net   +2040
+  s2 UTG  Player22       76643 net    -160
+  s3 HJ   Tantaculejen   55902 net    -160 HERO [2c2d]
+  s4 CO   Player13      218776 net   -1560
+  s5 BTN  Player28      118491 net    -160
+5193417103624896579-77-1793477209 L7 160/700/1400 btn6 pot98118 [8c9c4sJs]
+  s1 SB   Player06      158496 net    -860
+  s2 BB   Player22       76483 net  +21635
+  s3 UTG  Tantaculejen   55742 net    -160 HERO [2d9s]
+  s4 HJ   Player13      217216 net  -20455
+  s5 CO   Player28      118331 net    -160
+5193417103624896579-78-1793477243 L7 160/700/1400 btn1 pot13560 [7c9d3h8h9c] SD
+  s1 BTN  Player06      157636 net    -160
+  s2 SB   Player22       98118 net    -860
+  s3 BB   Tantaculejen   55582 net   -1560 HERO [Kh6d]
+  s4 UTG  Player13      196761 net   -3660 [Ac4s] sd
+  s5 HJ   Player28      118171 net   +9900 [AhJc] sd
+  s6 CO   Player37       50000 net   -3660 [QcJd] sd
+5193417103624896579-79-1793477284 L7 160/700/1400 btn2 pot84916 [5dKd8s7hAs] SD
+  s1 CO   Player06      157476 net  -41788 [Ad4h] sd
+  s2 BTN  Player22       97258 net    -160
+  s3 SB   Tantaculejen   54022 net    -860 HERO [7s8d]
+  s4 BB   Player13      193101 net  +43128 [QhAh] sd
+  s5 UTG  Player28      128071 net    -160
+  s6 HJ   Player37       46340 net    -160
+5193417103624896579-80-1793477334 L7 160/700/1400 btn3 pot7260
+  s1 HJ   Player06      115688 net    -160
+  s2 CO   Player22       97098 net   +2900
+  s3 BTN  Tantaculejen   53162 net    -160 HERO [3d7d]
+  s4 SB   Player13      236229 net    -860
+  s5 BB   Player28      127911 net   -1560
+  s6 UTG  Player37       46180 net    -160
+5193417103624896579-81-1793477357 L7 160/700/1400 btn4 pot8856 [3hJsJd]
+  s1 UTG  Player06      115528 net    -160
+  s2 HJ   Player22       99998 net   -1560
+  s3 CO   Tantaculejen   53002 net    -160 HERO [8d2c]
+  s4 BTN  Player13      235369 net   -1560
+  s5 SB   Player28      126351 net   -1560
+  s6 BB   Player37       46020 net   +5000
+5193417103624896579-82-1793477407 L7 160/700/1400 btn5 pot70970 [5hQs7hAsQd] SD
+  s1 BB   Player06      115368 net  -34465 [6h9h] sd
+  s2 UTG  Player22       98438 net  +36505 [5d7d] sd
+  s3 HJ   Tantaculejen   52842 net    -160 HERO [9sKs]
+  s4 CO   Player13      233809 net    -160
+  s5 BTN  Player28      124791 net    -160
+  s6 SB   Player37       51020 net   -1560
+5193417103624896579-83-1793477451 L7 160/700/1400 btn6 pot169706 [3c3dQd5c7c] SD
+  s1 SB   Player06       80903 net  +88803 [2c2d] sd
+  s2 BB   Player22      134943 net   -1560
+  s3 UTG  Tantaculejen   52682 net    -160 HERO [JhAc]
+  s4 HJ   Player13      233649 net  -80903 [KdAs] sd
+  s5 CO   Player28      124631 net   -6020
+  s6 BTN  Player37       49460 net    -160
+5193417103624896579-84-1793477476 L7 160/700/1400 btn1 pot30012 [9c9sJsQs]
+  s1 BTN  Player06      169706 net    -160
+  s2 SB   Player22      133383 net   -1560
+  s3 BB   Tantaculejen   52522 net   -1560 HERO [8c8d]
+  s4 UTG  Player13      152746 net    -160
+  s5 HJ   Player28      118611 net   -8284
+  s6 CO   Player37       49300 net  +11724
+5193417103624896579-85-1793477539 L7 160/700/1400 btn2 pot6690 [Kc2d4sAc]
+  s1 CO   Player06      169546 net    -160
+  s2 BTN  Player22      131823 net    -160
+  s3 SB   Tantaculejen   50962 net    -860 HERO [5d2h]
+  s4 BB   Player13      152586 net   -1560
+  s5 UTG  Player28      110327 net    -160
+  s6 HJ   Player37       61024 net   +2900
+5193417103624896579-86-1793477590 L8 200/800/1600 btn3 pot24800
+  s1 HJ   Player06      169386 net   -3400
+  s2 CO   Player22      131663 net   -3400
+  s3 BTN  Tantaculejen   50102 net    -200 HERO [6sTh]
+  s4 SB   Player13      151026 net   +9000
+  s5 BB   Player28      110167 net   -1800
+  s6 UTG  Player37       63924 net    -200
+5193417103624896579-87-1793477619 L8 200/800/1600 btn4 pot37338 [9hQsAsKc6d] SD
+  s1 UTG  Player06      165986 net    -200
+  s2 HJ   Player22      128263 net    -200
+  s3 CO   Tantaculejen   49902 net    -200 HERO [KdJh]
+  s4 BTN  Player13      160026 net    -200
+  s5 SB   Player28      108367 net  -18269 [TdKs] sd
+  s6 BB   Player37       63724 net  +19069 [AcJs] sd
+5193417103624896579-88-1793477645 L8 200/800/1600 btn5 pot3600
+  s1 BB   Player06      165786 net   +1800
+  s2 UTG  Player22      128063 net    -200
+  s3 HJ   Tantaculejen   49702 net    -200 HERO [4h8c]
+  s4 CO   Player13      159826 net    -200
+  s5 BTN  Player28       90098 net    -200
+  s6 SB   Player37       82793 net   -1000
+5193417103624896579-89-1793477656 L8 200/800/1600 btn6 pot331212 [Th8d8c6sAh] SD
+  s1 SB   Player06      167586 net +163626 [JcJh] sd
+  s2 BB   Player22      127863 net   -1800
+  s3 UTG  Tantaculejen   49502 net    -200 HERO [9c5c]
+  s4 HJ   Player13      159626 net -159626 [QsTs] sd
+  s5 CO   Player28       89898 net    -200
+  s6 BTN  Player37       81793 net   -1800
+5193417103624896579-90-1793477707 L8 200/800/1600 btn1 pot4200 [6h2hKhQsKd] SD
+  s1 BTN  Player06      331212 net    -200
+  s2 SB   Player22      126063 net   -1800 [As6c] sd
+  s3 BB   Tantaculejen   49302 net   +2400 HERO [TdKs] sd
+  s5 HJ   Player28       89698 net    -200
+  s6 CO   Player37       79993 net    -200
+5193417103624896579-91-1793477762 L8 200/800/1600 btn2 pot3600
+  s1 CO   Player06      331012 net    -200
+  s2 BTN  Player22      124263 net    -200
+  s3 SB   Tantaculejen   51702 net   -1000 HERO [Ks2d]
+  s4 BB   Player21       50000 net   +1800
+  s5 UTG  Player28       89498 net    -200
+  s6 HJ   Player37       79793 net    -200
+5193417103624896579-92-1793477779 L8 200/800/1600 btn3 pot140383 [8h5s6d]
+  s1 HJ   Player06      330812 net   -7460
+  s2 CO   Player22      124063 net  +16320
+  s3 BTN  Tantaculejen   50702 net    -200 HERO [Qh6s]
+  s4 SB   Player21       51800 net   -1000
+  s5 BB   Player28       89298 net   -7460
+  s6 UTG  Player37       79593 net    -200
+5193417103624896579-93-1793477811 L8 200/800/1600 btn4 pot3600
+  s1 UTG  Player06      323352 net    -200
+  s2 HJ   Player22      140383 net    -200
+  s3 CO   Tantaculejen   50502 net    -200 HERO [5s8s]
+  s4 BTN  Player21       50800 net    -200
+  s5 SB   Player28       81838 net   -1000
+  s6 BB   Player37       79393 net   +1800
+5193417103624896579-94-1793477825 L8 200/800/1600 btn5 pot31878 [Jh3s2hThAh]
+  s1 BB   Player06      323152 net   -8860
+  s2 UTG  Player22      140183 net    -200
+  s3 HJ   Tantaculejen   50302 net    -200 HERO [8c2s]
+  s4 CO   Player21       50600 net    -200
+  s5 BTN  Player28       80838 net  +10460
+  s6 SB   Player37       81193 net   -1000
+5193417103624896579-95-1793477879 L8 200/800/1600 btn6 pot15660 [5h6s4sKs]
+  s1 SB   Player06      314292 net   -1000
+  s2 BB   Player22      139983 net   -3400
+  s3 UTG  Tantaculejen   50102 net    -200 HERO [Qc7h]
+  s4 HJ   Player21       50400 net    -200
+  s5 CO   Player28       91298 net   +8200
+  s6 BTN  Player37       80193 net   -3400
+5193417103624896579-96-1793477928 L9 250/1000/2000 btn1 pot8500
+  s1 BTN  Player06      313292 net    -250
+  s2 SB   Player22      136583 net   -1250
+  s3 BB   Tantaculejen   49902 net   -2250 HERO [7s9c]
+  s4 UTG  Player21       50200 net    -250
+  s5 HJ   Player28       99498 net   +4250
+  s6 CO   Player37       76793 net    -250
+5193417103624896579-97-1793477940 L9 250/1000/2000 btn2 pot14175 [2s7hKd4d]
+  s1 CO   Player06      313042 net   +6250
+  s2 BTN  Player22      135333 net    -250
+  s3 SB   Tantaculejen   47652 net   -1250 HERO [8c4h]
+  s4 BB   Player21       49950 net   -4250
+  s5 UTG  Player28      103748 net    -250
+  s6 HJ   Player37       76543 net    -250
+5193417103624896579-98-1793477979 L9 250/1000/2000 btn3 pot424790 [8cJh4dQc7d] SD
+  s1 HJ   Player06      319292 net +105498 [JcTc] sd
+  s2 CO   Player22      135083 net    -250
+  s3 BTN  Tantaculejen   46402 net    -250 HERO [3dAs]
+  s4 SB   Player21       45700 net   -1250
+  s5 BB   Player28      103498 net -103498 [6d6c] sd
+  s6 UTG  Player37       76293 net    -250
+5193417103624896579-99-1793478039 L9 250/1000/2000 btn4 pot3250
+  s1 UTG  Player06      424790 net    -250
+  s2 HJ   Player22      134833 net    -250
+  s3 CO   Tantaculejen   46152 net    -250 HERO [5c4s]
+  s4 BTN  Player21       44450 net    -250
+  s6 BB   Player37       76043 net   +1000
+5193417103624896579-100-1793478062 L9 250/1000/2000 btn5 pot8250 [Jh5s9s]
+  s1 BB   Player06      424540 net   -2250
+  s2 UTG  Player22      134583 net   +4000
+  s3 HJ   Tantaculejen   45902 net    -250 HERO [Ac8s]
+  s4 CO   Player21       44200 net    -250
+  s6 SB   Player37       77043 net   -1250
+5193417103624896579-101-1793478098 L9 250/1000/2000 btn6 pot425540
+  s1 SB   Player06      422290 net   +3250
+  s2 BB   Player22      138583 net   -2250
+  s3 UTG  Tantaculejen   45652 net    -250 HERO [8dTs]
+  s4 HJ   Player21       43950 net    -250
+  s5 CO   Player33       50000 net    -250
+  s6 BTN  Player37       75793 net    -250
+5193417103624896579-102-1793478125 L9 250/1000/2000 btn1 pot42500 [TsJc7dThKs] SD
+  s1 BTN  Player06      425540 net  -19250 [Ac2h] sd
+  s2 SB   Player22      136333 net   -1250
+  s3 BB   Tantaculejen   45402 net   -2250 HERO [5c8s]
+  s4 UTG  Player21       43700 net    -250
+  s5 HJ   Player33       49750 net    -250
+  s6 CO   Player37       75543 net  +23250 [Qc7c] sd
+5193417103624896579-103-1793478155 L9 250/1000/2000 btn2 pot274166 [8cTdQcQh5s] SD
+  s1 CO   Player06      406290 net -135083 [9cAc] sd
+  s2 BTN  Player22      135083 net +139083 [7s7h] sd
+  s3 SB   Tantaculejen   43152 net   -1250 HERO [Ts5h]
+  s4 BB   Player21       43450 net   -2250
+  s5 UTG  Player33       49500 net    -250
+  s6 HJ   Player37       98793 net    -250
+5193417103624896579-104-1793478192 L9 250/1000/2000 btn3 pot103500 [Tc9sQdJc6d] SD
+  s1 HJ   Player06      271207 net    -250
+  s2 CO   Player22      274166 net   +2500 [JdAd] sd
+  s3 BTN  Tantaculejen   41902 net    -250 HERO [3s5d]
+  s4 SB   Player21       41200 net   -2250
+  s5 BB   Player33       49250 net   +2500 [AhJh] sd
+  s6 UTG  Player37       98543 net   -2250
+5193417103624896579-105-1793478243 L9 250/1000/2000 btn4 pot10125 [8d9dJd]
+  s1 UTG  Player06      270957 net    -250
+  s2 HJ   Player22      276666 net    -250
+  s3 CO   Tantaculejen   41652 net    -250 HERO [5d9s]
+  s4 BTN  Player21       38950 net   -2250
+  s5 SB   Player33       51750 net   -2250
+  s6 BB   Player37       96293 net   +5250

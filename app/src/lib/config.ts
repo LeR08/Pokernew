@@ -114,10 +114,11 @@ export function useSaveText(family: Family) {
 
 /** Typed view of settings.toml. */
 export interface Settings {
-  general: { language: "fr" | "en"; profile: string };
+  general: { language: "fr" | "en"; profile: string; first_run_done?: boolean };
   appearance: { theme: string; density: "compact" | "comfortable"; font_scale: number };
   modules: { order: string[]; disabled: string[] };
   performance: { worker_threads: number; ram_cap_mb: number };
+  backup?: { enabled: boolean; every_hours: number; keep: number };
   module_settings?: Record<string, Record<string, unknown>>;
 }
 

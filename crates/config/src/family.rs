@@ -30,6 +30,7 @@ pub const FAMILIES: &[Family] = &[
     Family { name: "hotkeys", layout: Layout::Single("hotkeys.toml"), schema: "hotkeys" },
     Family { name: "themes", layout: Layout::Dir("themes"), schema: "theme" },
     Family { name: "profiles", layout: Layout::Dir("profiles"), schema: "profile" },
+    Family { name: "rooms", layout: Layout::Dir("rooms"), schema: "room" },
 ];
 
 /// Looks a family up by name.

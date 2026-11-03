@@ -1,0 +1,112 @@
+# Compteurs calculés à l'import, une valeur par joueur et par main.
+# Counters computed at import time, one value per player per hand.
+#
+# FR : chaque stat (VPIP, PFR, 3-bet…) est un rapport de deux compteurs, par
+#      exemple VPIP = cnt_vpip / cnt_hands. Cette liste est compilée dans
+#      l'application (crates/db/src/counters.rs) : la modifier ici n'a pas
+#      d'effet sans recompiler. Ajouter un compteur déclenche un recalcul
+#      de toute la base au lancement suivant.
+# EN : every stat is a ratio of two counters. This list is compiled into the
+#      app; adding a counter triggers a recompute of the whole database.
+#
+# Définitions précises : docs/counters.md / exact definitions: docs/counters.md
+
+[[counter]]
+id = "cnt_hands"
+description = "1 pour chaque main jouée / 1 for every hand dealt in"
+
+[[counter]]
+id = "cnt_vpip"
+description = "A mis de l'argent volontairement préflop (call, bet, raise) / voluntarily put money in preflop"
+
+[[counter]]
+id = "cnt_pfr"
+description = "A relancé préflop / raised preflop"
+
+[[counter]]
+id = "cnt_limp"
+description = "Première action volontaire = call sans relance avant (limp, y compris SB qui complète) / limped"
+
+[[counter]]
+id = "opp_3bet"
+description = "A eu l'occasion de 3-bet (face à exactement une relance d'un autre joueur) / faced exactly one raise"
+
+[[counter]]
+id = "cnt_3bet"
+description = "A 3-bet dans cette situation / 3-bet"
+
+[[counter]]
+id = "opp_fold_to_3bet"
+description = "A ouvert (premier relanceur) puis a fait face à une 3-bet / opened then faced a 3-bet"
+
+[[counter]]
+id = "cnt_fold_to_3bet"
+description = "S'est couché face à cette 3-bet / folded to it"
+
+[[counter]]
+id = "opp_steal"
+description = "En CO/BTN/SB, tout le monde s'est couché avant lui / in CO, BTN or SB with everyone folded to him"
+
+[[counter]]
+id = "cnt_steal"
+description = "A relancé dans cette situation (ATS) / raised (attempt to steal)"
+
+[[counter]]
+id = "opp_fold_to_steal"
+description = "En SB/BB face à une tentative de vol / in the blinds facing a steal attempt"
+
+[[counter]]
+id = "cnt_fold_to_steal"
+description = "S'est couché face au vol / folded to the steal"
+
+[[counter]]
+id = "cnt_saw_flop"
+description = "A vu le flop / saw the flop"
+
+[[counter]]
+id = "opp_cbet_flop"
+description = "Dernier agresseur préflop, premier à pouvoir miser au flop / preflop aggressor, flop checked to him"
+
+[[counter]]
+id = "cnt_cbet_flop"
+description = "A misé (continuation bet) / bet the flop"
+
+[[counter]]
+id = "opp_fold_to_cbet_flop"
+description = "A fait face à un c-bet au flop / faced a flop c-bet"
+
+[[counter]]
+id = "cnt_fold_to_cbet_flop"
+description = "S'est couché face au c-bet / folded to it"
+
+[[counter]]
+id = "cnt_wtsd"
+description = "A vu le flop et est allé à l'abattage / saw flop and went to showdown"
+
+[[counter]]
+id = "cnt_wsd"
+description = "Est allé à l'abattage et a gagné de l'argent / went to showdown and won money"
+
+[[counter]]
+id = "cnt_wwsf"
+description = "A vu le flop et a gagné de l'argent / saw flop and won money"
+
+[[counter]]
+id = "cnt_postflop_bets_raises"
+description = "Nombre de bets + raises après le flop / number of postflop bets and raises"
+
+[[counter]]
+id = "cnt_postflop_calls"
+description = "Nombre de calls après le flop / number of postflop calls"
+
+[[counter]]
+id = "cnt_postflop_folds"
+description = "Nombre de folds après le flop / number of postflop folds"
+
+[[counter]]
+id = "cnt_allin_preflop"
+description = "A fait tapis préflop / went all-in preflop"
+
+[[counter]]
+id = "cnt_won_hand"
+description = "A gagné de l'argent sur la main / won money in the hand"

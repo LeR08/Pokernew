@@ -14,6 +14,9 @@ language = "fr"
 # Profil actif = nom d'un fichier de profiles/ sans .toml
 # Active profile = a file name from profiles/ without .toml
 profile = "cash-6max"
+# Passe à true à la fin de l'assistant de premier lancement.
+# Set to true when the first-run wizard is finished.
+first_run_done = false
 
 [appearance]
 # Thème = nom d'un fichier de themes/ sans .toml (un profil peut le surcharger)
@@ -41,6 +44,14 @@ disabled = []
 worker_threads = 6
 # Plafond mémoire du solveur en Mo / solver memory cap in MB
 ram_cap_mb = 8192
+
+[backup]
+# Sauvegarde automatique de la base / automatic database backup
+enabled = true
+# Toutes les N heures / every N hours
+every_hours = 24
+# Nombre de sauvegardes gardées / number of backups kept
+keep = 7
 
 # Réglages propres à chaque module, rendus depuis le settingsSchema de son manifest.
 # Per-module settings, rendered from the module manifest's settingsSchema.

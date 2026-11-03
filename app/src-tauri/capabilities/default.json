@@ -1,7 +1,13 @@
 {
   "$schema": "../gen/schemas/desktop-schema.json",
   "identifier": "default",
-  "description": "Core events for the main window and module windows. No network, no shell, no fs plugin: every file access goes through our own commands.",
-  "windows": ["main", "module-*"],
-  "permissions": ["core:default"]
+  "description": "Core events for the main window and module windows, plus the native open-file dialog for manual import. No network, no shell, no fs plugin: every file access goes through our own commands.",
+  "windows": [
+    "main",
+    "module-*"
+  ],
+  "permissions": [
+    "core:default",
+    "dialog:allow-open"
+  ]
 }
