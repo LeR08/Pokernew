@@ -1,6 +1,6 @@
 # Phase 0 — Shell (launcher, modules, configuration)
 
-Statut : **implémentée — en attente de ta validation sur Windows** · Spec : *Local Poker Suite — Specification* (3 nov. 2026)
+Statut : **validée par l'utilisateur le 3 nov. 2026** (installeur CI testé sur son PC Windows) · Spec : *Local Poker Suite — Specification* (3 nov. 2026)
 
 ## Critères d'acceptation (rappel de la spec)
 
@@ -126,7 +126,7 @@ Statut : **implémentée — en attente de ta validation sur Windows** · Spec :
 | Formulaires depuis les JSON Schemas | ✅ settings, hotkeys, thèmes, profils, réglages de module ; widgets couleur, raccourci, ordre/activation des modules |
 | Hot reload d'un TOML | ✅ test Rust (< 1 s) + vérifié dans l'app Tauri réelle (Linux) : thème et langue changent sans redémarrage, fichier cassé → bandeau d'erreur et dernière version valide gardée |
 | Mode portable | ✅ testé (Rust) + vérifié avec le binaire réel (`portable.flag` → `data/` créé à côté) |
-| Démarrage < 2 s | ✅ build release, conteneur Linux sans GPU (4 vCPU) : **0,84 – 0,96 s** jusqu'au premier écran (cœur prêt en 3–4 ms) ; binaire 11 Mo. À confirmer sur ton PC via `logs/startup.log` |
+| Démarrage < 2 s | ✅ build release, conteneur Linux sans GPU (4 vCPU) : **0,84 – 0,96 s** jusqu'au premier écran (cœur prêt en 3–4 ms) ; binaire 11 Mo. ⚠️ Sur le PC de l'utilisateur (installeur, **premier** lancement) : **2,77 s** (cœur 35 ms). Le premier lancement inclut la création du profil WebView2 ; à re-mesurer sur les lancements suivants, optimisation prévue en phase 1 si > 2 s |
 | `cargo test`, `clippy -D warnings`, `pnpm test`, `pnpm e2e` | ✅ 33 tests Rust, 20 Vitest, 5 Playwright |
 | Build Windows | CI GitHub Actions `windows-latest` (tests + installeur NSIS/MSI + zip portable) |
 

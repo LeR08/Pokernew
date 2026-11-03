@@ -7,6 +7,10 @@ Aucun compte, aucune télémétrie, aucun appel réseau.
 
 > État : **phase 0 (shell)**, voir [`docs/phase-0.md`](docs/phase-0.md) et [`CHANGELOG.md`](CHANGELOG.md).
 
+## Installer sans compiler
+
+Chaque push construit l'installeur sur GitHub Actions : ouvre l'onglet *Actions*, choisis le dernier run vert, puis télécharge l'artefact **windows**. Il contient l'installeur `…_x64-setup.exe`, le `.msi` et `LocalPokerSuite-portable.zip`. SmartScreen peut avertir, car l'app n'est pas signée : choisis *Informations complémentaires*, puis *Exécuter quand même*.
+
 ## Compiler et lancer sous Windows 10/11
 
 Prérequis, à installer une seule fois :
