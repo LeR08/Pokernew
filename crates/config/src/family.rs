@@ -76,6 +76,11 @@ pub const FAMILIES: &[Family] = &[
         layout: Layout::Dir("payouts"),
         schema: "payouts",
     },
+    Family {
+        name: "solver_trees",
+        layout: Layout::Dir("solver_trees"),
+        schema: "solver_tree",
+    },
 ];
 
 /// Looks a family up by name.

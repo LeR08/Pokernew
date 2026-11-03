@@ -230,6 +230,14 @@
       "unit": "Unité",
       "prize_pool": "Prize pool",
       "places": "Gains par place (1ʳᵉ, 2ᵉ…)"
+    },
+    "solver_tree": {
+      "title": "Arbres du solveur",
+      "description": "Tailles de mise par street et par joueur pour le solveur postflop.",
+      "name": "Nom",
+      "pot": "Pot (bb)",
+      "stack": "Tapis effectif (bb)",
+      "tree": "Arbre"
     }
   },
   "enum": {
@@ -955,6 +963,116 @@
       "save": "Enregistrer",
       "delete": "Supprimer",
       "saved": "« {{name}} » enregistrée"
+    }
+  },
+  "solver": {
+    "tabs": {
+      "new": "Nouveau calcul",
+      "viewer": "Visionneuse",
+      "library": "Bibliothèque",
+      "compare": "Comparer"
+    },
+    "oop_range": "Range OOP (hors position)",
+    "ip_range": "Range IP (en position)",
+    "board": "Board",
+    "pot": "Pot (bb)",
+    "stack": "Tapis effectif (bb)",
+    "rake": "Rake (%)",
+    "rake_cap": "Plafond (bb)",
+    "tree": {
+      "title": "Arbre de mises",
+      "preset": "Charger un arbre enregistré…",
+      "oop": "OOP : mises · relances",
+      "ip": "IP : mises · relances",
+      "donk": "Donk (OOP)",
+      "bet": "Mises {{who}}",
+      "raise": "Relances {{who}}",
+      "max_raises": "Relances max par street",
+      "add_allin": "Ajouter tapis si mise ≤ N pots",
+      "force_allin": "Forcer tapis si SPR ≤",
+      "help": "Tailles : « 33% » du pot, « 3x » la dernière mise, « e » géométrique, « a » tapis, plusieurs séparées par des virgules. Le donk vide = mêmes tailles que les mises. Les arbres se règlent aussi dans Réglages > Arbres du solveur."
+    },
+    "target": "Cible (% du pot)",
+    "max_iterations": "Itérations max",
+    "threads": "Threads (0 = tous)",
+    "memory_cap": "Plafond mémoire (Mo)",
+    "compression": "Compression 16 bits (moitié de la mémoire)",
+    "name": "Nom de la solution",
+    "estimate": "{{nodes}} nœuds de décision, {{oop}} mains OOP contre {{ip}} IP, environ {{mb}} Mo de mémoire.",
+    "over_cap": "Au-dessus du plafond : active la compression, simplifie l'arbre ou monte le plafond.",
+    "with_locks": "{{n}} nœud(s) verrouillé(s) seront appliqués au prochain calcul.",
+    "start": "Lancer le calcul",
+    "pause": "Pause",
+    "resume": "Reprendre",
+    "cancel": "Annuler",
+    "resolve": "Relancer avec les verrous",
+    "clear_locks": "Retirer les verrous",
+    "state": {
+      "building": "Préparation",
+      "solving": "Calcul",
+      "paused": "En pause",
+      "done": "Terminé",
+      "cancelled": "Annulé",
+      "failed": "Échec"
+    },
+    "progress": "itération {{it}} / {{max}}, exploitabilité {{e}} % du pot, {{s}} s",
+    "chart": "Exploitabilité au fil des itérations (échelle log)",
+    "action": {
+      "fold": "Fold",
+      "check": "Check",
+      "call": "Call",
+      "bet": "Mise",
+      "raise": "Relance",
+      "allin": "Tapis",
+      "chance": "Carte",
+      "bet_n": "Mise {{n}}",
+      "raise_n": "Relance {{n}}",
+      "allin_n": "Tapis {{n}}",
+      "call_n": "Call",
+      "fold_n": "Fold",
+      "check_n": "Check",
+      "chance_n": "Carte"
+    },
+    "viewer": {
+      "none": "Aucune solution chargée : lance un calcul ou ouvre une solution de la bibliothèque.",
+      "root": "Début",
+      "pot": "Pot {{pot}} bb",
+      "to_act": "À {{who}} de jouer",
+      "locked": "Nœud verrouillé",
+      "terminal": "Fin de la main à ce nœud.",
+      "pick_card": "Choisis la carte suivante :",
+      "equity": "Équité",
+      "combo": "Combo",
+      "not_in_range": "Pas dans la range à ce nœud.",
+      "breakdown": "Décomposer la range",
+      "lock": "Verrouiller ce nœud",
+      "export": "Exporter {{f}}",
+      "exported": "Exporté : {{path}}",
+      "lock_title": "Verrouiller la stratégie de ce nœud",
+      "lock_help": "Fixe la fréquence de chaque action pour toute la range (par ex. « mise 100 % »), puis relance le calcul : le reste de l'arbre s'adapte.",
+      "lock_added": "Verrou ajouté : relance le calcul pour l'appliquer.",
+      "ev_bb": "EV (bb)",
+      "eqr": "EQR",
+      "ev": "EV"
+    },
+    "library": {
+      "filter": "Filtrer (nom, board)…",
+      "empty": "Aucune solution en cache.",
+      "name": "Nom",
+      "spot": "Pot / tapis",
+      "expl": "Exploitabilité",
+      "size": "Taille",
+      "date": "Date",
+      "open": "Ouvrir",
+      "compare": "Comparer",
+      "rename": "Renommer",
+      "delete": "Supprimer",
+      "locked": "{{n}} verrou(s)"
+    },
+    "compare": {
+      "a": "Solution A",
+      "b": "Solution B (choisie avec « Comparer » dans la bibliothèque)",
+      "help": "Ouvre une solution avec « Ouvrir » (A) et une autre avec « Comparer » (B), par exemple deux arbres de mises sur le même spot."
     }
   }
 }

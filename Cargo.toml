@@ -1,6 +1,6 @@
 [workspace]
 resolver = "2"
-members = ["crates/*", "app/src-tauri"]
+members = ["crates/*", "crates/solver/engine", "app/src-tauri"]
 
 [workspace.package]
 version = "0.1.0"
@@ -37,4 +37,10 @@ opt-level = 3
 opt-level = 3
 
 [profile.dev.package.lps-icm]
+opt-level = 3
+
+[profile.dev.package.postflop-solver]
+opt-level = 3
+
+[profile.dev.package.lps-solver]
 opt-level = 3

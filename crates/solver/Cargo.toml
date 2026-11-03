@@ -9,3 +9,13 @@ publish = false
 name = "lps_solver"
 
 [dependencies]
+postflop-solver = { path = "engine" }
+lps-equity = { path = "../equity" }
+lps-evaluator = { path = "../evaluator" }
+rayon = "1"
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+
+[dev-dependencies]
+tempfile = { workspace = true }

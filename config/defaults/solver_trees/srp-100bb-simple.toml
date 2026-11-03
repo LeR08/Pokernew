@@ -1,0 +1,23 @@
+# Pot simplement relancé, 100 bb, arbre simple : une taille, relance à tapis. Rapide.
+# Single-raised pot, 100 bb, simple tree: one size, all-in raises. Fast.
+name = "SRP 100bb · simple"
+pot = 5.5
+stack = 97.5
+
+[tree]
+add_allin_threshold = 1.5
+force_allin_threshold = 0.15
+merging_threshold = 0.1
+max_raises = 1
+
+[tree.flop]
+oop = { bet = "50%", raise = "a" }
+ip = { bet = "50%", raise = "a" }
+
+[tree.turn]
+oop = { bet = "66%", raise = "a" }
+ip = { bet = "66%", raise = "a" }
+
+[tree.river]
+oop = { bet = "75%", raise = "a" }
+ip = { bet = "75%", raise = "a" }

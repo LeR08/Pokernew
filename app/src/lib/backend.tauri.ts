@@ -16,6 +16,7 @@ import { BackendError } from "./backend";
 import type { JSONSchema } from "./schema";
 import type { Breakdown, EquityResult, TextureReport } from "./equity";
 import type { BatchRow, IcmResult, Review, Solution } from "./icm";
+import type { CacheEntry, Estimate, NodeView, Progress, SpotConfig } from "./solver";
 import type {
   HudStatus,
   OverlayData,
@@ -153,6 +154,19 @@ export function createTauriBackend(): Backend {
       call<Solution>("pushfold_solve", { spot, options: { maxIterations: 0, target: 0, locks: [], ...options } }),
     icmReviewHand: (handId, req) => call<Review>("icm_review_hand", { handId, req }),
     icmReviewTournament: (tournamentId, req) => call<BatchRow[]>("icm_review_tournament", { tournamentId, req }),
+    solverEstimate: (spot) => call<Estimate>("solver_estimate", { spot }),
+    solverStart: (spot, params, locks, name) => call("solver_start", { spot, params, locks, name }),
+    solverProgress: () => call<Progress | null>("solver_progress"),
+    solverControl: (action) => call("solver_control", { action }),
+    solverFinish: () => call<CacheEntry>("solver_finish"),
+    solverCacheList: () => call<CacheEntry[]>("solver_cache_list"),
+    solverCacheLoad: (hash, slot) => call<SpotConfig>("solver_cache_load", { hash, slot }),
+    solverCacheDelete: (hash) => call("solver_cache_delete", { hash }),
+    solverCacheRename: (hash, name) => call("solver_cache_rename", { hash, name }),
+    solverView: (slot, path) => call<NodeView>("solver_view", { slot, path }),
+    solverBreakdown: (slot, path, player) => call<Breakdown>("solver_breakdown", { slot, path, player }),
+    solverExport: (slot, path, format) => call<string>("solver_export", { slot, path, format }),
+    solverLoadedSpot: (slot) => call<[string, SpotConfig] | null>("solver_loaded_spot", { slot }),
     markReady() {
       void invoke("frontend_ready").catch(() => undefined);
     },

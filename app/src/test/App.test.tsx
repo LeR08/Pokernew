@@ -21,7 +21,7 @@ describe("fair-play lock", () => {
     render(<App />);
     usePlayMode.getState().set(true);
     // usePlayModeSync sets it back from the backend (false) on mount; force it again after.
-    await waitFor(() => expect(screen.getAllByTestId("coming-soon").length + 0).toBeGreaterThanOrEqual(0));
+    await waitFor(() => expect(screen.getAllByRole("heading").length).toBeGreaterThan(0));
     usePlayMode.getState().set(true);
     await waitFor(() => expect(screen.getByTestId("study-lock")).toBeTruthy());
     usePlayMode.getState().set(false);

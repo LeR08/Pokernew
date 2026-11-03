@@ -1,0 +1,24 @@
+# Pot simplement relancé, 100 bb : deux tailles de mise par street, une relance par street.
+# Single-raised pot, 100 bb: two bet sizes per street, one raise per street.
+# Syntaxe des tailles / size syntax: "33%" du pot, "3x" la dernière mise, "e" géométrique, "a" tapis.
+name = "SRP 100bb · 2 tailles"
+pot = 5.5
+stack = 97.5
+
+[tree]
+add_allin_threshold = 1.5     # ajoute le tapis si la plus grosse mise fait au plus 1,5 pot
+force_allin_threshold = 0.15  # force le tapis si le SPR après call tombe sous 0,15
+merging_threshold = 0.1       # fusionne les tailles à moins de 10 % du pot l'une de l'autre
+max_raises = 1                # relances autorisées après la première mise de la street
+
+[tree.flop]
+oop = { bet = "33%, 75%", raise = "3x" }
+ip = { bet = "33%, 75%", raise = "3x" }
+
+[tree.turn]
+oop = { bet = "33%, 75%", raise = "3x" }
+ip = { bet = "33%, 75%", raise = "3x" }
+
+[tree.river]
+oop = { bet = "33%, 75%", raise = "3x" }
+ip = { bet = "33%, 75%", raise = "3x" }

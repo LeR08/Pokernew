@@ -9,6 +9,7 @@ pub mod hud_commands;
 pub mod icm_commands;
 pub mod import_commands;
 pub mod import_service;
+pub mod solver_commands;
 pub mod state;
 pub mod tracker_commands;
 
@@ -40,6 +41,7 @@ pub fn run(started: Instant) {
         .plugin(tauri_plugin_opener::init())
         .manage(state)
         .manage(equity_commands::EquityJobs::default())
+        .manage(solver_commands::SolverState::default())
         .setup(|app| {
             // HUD: window tracking, overlays, play mode, global hotkeys.
             let hud = hud::HudService::start(app.handle().clone());
@@ -225,6 +227,19 @@ pub fn run(started: Instant) {
             icm_commands::pushfold_solve,
             icm_commands::icm_review_hand,
             icm_commands::icm_review_tournament,
+            solver_commands::solver_estimate,
+            solver_commands::solver_start,
+            solver_commands::solver_progress,
+            solver_commands::solver_control,
+            solver_commands::solver_finish,
+            solver_commands::solver_cache_list,
+            solver_commands::solver_cache_load,
+            solver_commands::solver_cache_delete,
+            solver_commands::solver_cache_rename,
+            solver_commands::solver_view,
+            solver_commands::solver_breakdown,
+            solver_commands::solver_export,
+            solver_commands::solver_loaded_spot,
         ])
         .run(tauri::generate_context!())
         .expect("error while running Local Poker Suite");

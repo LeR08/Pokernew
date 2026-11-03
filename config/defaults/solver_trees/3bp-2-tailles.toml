@@ -1,0 +1,23 @@
+# Pot 3-bet, environ 100 bb au départ : deux tailles, relance à tapis.
+# 3-bet pot, about 100 bb deep: two sizes, all-in raises.
+name = "3BP · 2 tailles"
+pot = 20.0
+stack = 90.0
+
+[tree]
+add_allin_threshold = 1.5
+force_allin_threshold = 0.15
+merging_threshold = 0.1
+max_raises = 1
+
+[tree.flop]
+oop = { bet = "25%, 50%", raise = "a" }
+ip = { bet = "25%, 50%", raise = "a" }
+
+[tree.turn]
+oop = { bet = "50%, 100%", raise = "a" }
+ip = { bet = "50%, 100%", raise = "a" }
+
+[tree.river]
+oop = { bet = "50%, 100%", raise = "a" }
+ip = { bet = "50%, 100%", raise = "a" }

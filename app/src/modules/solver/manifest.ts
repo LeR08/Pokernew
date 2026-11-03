@@ -1,6 +1,6 @@
 import { Brain } from "lucide-react";
-import { ComingSoon } from "../ComingSoon";
 import type { ModuleManifest } from "../types";
+import { SolverPage } from "./SolverPage";
 
 export const manifest: ModuleManifest = {
   id: "solver",
@@ -9,6 +9,9 @@ export const manifest: ModuleManifest = {
   icon: Brain,
   phase: 6,
   replaces: ["PioSOLVER", "GTO+", "TexasSolver"],
-  routes: [{ path: "", component: ComingSoon }],
+  routes: [
+    { path: "", component: SolverPage },
+    { path: ":tab", component: SolverPage },
+  ],
   studyOnly: true,
 };

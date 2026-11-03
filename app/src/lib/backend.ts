@@ -7,6 +7,7 @@
 import type { JSONSchema } from "./schema";
 import type { Breakdown, CalcRequest, EquityResult, FlopFilter, TextureReport } from "./equity";
 import type { BatchRow, IcmResult, Review, ReviewRequest, Solution, SolveOptions, Spot } from "./icm";
+import type { CacheEntry, Estimate, Lock, NodeView, Progress, SolveParams, SpotConfig } from "./solver";
 import type {
   HudStatus,
   OverlayData,
@@ -32,7 +33,7 @@ import type {
 export type JsonValue = null | boolean | number | string | JsonValue[] | { [k: string]: JsonValue };
 export type JsonObject = { [k: string]: JsonValue };
 
-export type Family = "settings" | "hotkeys" | "themes" | "profiles" | "rooms" | "stats" | "leaks" | "notes" | "hud" | "payouts";
+export type Family = "settings" | "hotkeys" | "themes" | "profiles" | "rooms" | "stats" | "leaks" | "notes" | "hud" | "payouts" | "solver_trees";
 
 export interface Issue {
   family: string;
@@ -214,6 +215,23 @@ export interface Backend {
   pushfoldSolve(spot: Spot, options: SolveOptions): Promise<Solution>;
   icmReviewHand(handId: number, req: ReviewRequest): Promise<Review>;
   icmReviewTournament(tournamentId: number, req: ReviewRequest): Promise<BatchRow[]>;
+
+  // ---- Postflop solver (phase 6; refused in play mode) ----
+  solverEstimate(spot: SpotConfig): Promise<Estimate>;
+  solverStart(spot: SpotConfig, params: SolveParams, locks: Lock[], name: string): Promise<void>;
+  solverProgress(): Promise<Progress | null>;
+  solverControl(action: "pause" | "resume" | "cancel"): Promise<void>;
+  /** Saves the finished solve to the cache and loads it in slot 0. */
+  solverFinish(): Promise<CacheEntry>;
+  solverCacheList(): Promise<CacheEntry[]>;
+  solverCacheLoad(hash: string, slot: 0 | 1): Promise<SpotConfig>;
+  solverCacheDelete(hash: string): Promise<void>;
+  solverCacheRename(hash: string, name: string): Promise<void>;
+  solverView(slot: 0 | 1, path: number[]): Promise<NodeView>;
+  solverBreakdown(slot: 0 | 1, path: number[], player: 0 | 1): Promise<Breakdown>;
+  /** Writes the node's strategy to <data>/exports; returns the file. */
+  solverExport(slot: 0 | 1, path: number[], format: "csv" | "json"): Promise<string>;
+  solverLoadedSpot(slot: 0 | 1): Promise<[string, SpotConfig] | null>;
 }
 
 export const isTauri = (): boolean =>

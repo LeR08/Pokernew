@@ -230,6 +230,14 @@
       "unit": "Unit",
       "prize_pool": "Prize pool",
       "places": "Prize per place (1st, 2nd…)"
+    },
+    "solver_tree": {
+      "title": "Solver trees",
+      "description": "Bet sizes per street and per player for the postflop solver.",
+      "name": "Name",
+      "pot": "Pot (bb)",
+      "stack": "Effective stack (bb)",
+      "tree": "Tree"
     }
   },
   "enum": {
@@ -955,6 +963,116 @@
       "save": "Save",
       "delete": "Delete",
       "saved": "\"{{name}}\" saved"
+    }
+  },
+  "solver": {
+    "tabs": {
+      "new": "New solve",
+      "viewer": "Viewer",
+      "library": "Library",
+      "compare": "Compare"
+    },
+    "oop_range": "OOP range (out of position)",
+    "ip_range": "IP range (in position)",
+    "board": "Board",
+    "pot": "Pot (bb)",
+    "stack": "Effective stack (bb)",
+    "rake": "Rake (%)",
+    "rake_cap": "Cap (bb)",
+    "tree": {
+      "title": "Bet tree",
+      "preset": "Load a saved tree…",
+      "oop": "OOP: bets · raises",
+      "ip": "IP: bets · raises",
+      "donk": "Donk (OOP)",
+      "bet": "{{who}} bets",
+      "raise": "{{who}} raises",
+      "max_raises": "Max raises per street",
+      "add_allin": "Add all-in if bet ≤ N pots",
+      "force_allin": "Force all-in if SPR ≤",
+      "help": "Sizes: \"33%\" of the pot, \"3x\" the last bet, \"e\" geometric, \"a\" all-in, several separated by commas. Empty donk = same sizes as bets. Trees can also be edited in Settings > Solver trees."
+    },
+    "target": "Target (% of pot)",
+    "max_iterations": "Max iterations",
+    "threads": "Threads (0 = all)",
+    "memory_cap": "Memory cap (MB)",
+    "compression": "16-bit compression (half the memory)",
+    "name": "Solution name",
+    "estimate": "{{nodes}} decision nodes, {{oop}} OOP hands vs {{ip}} IP, about {{mb}} MB of memory.",
+    "over_cap": "Above the cap: enable compression, simplify the tree or raise the cap.",
+    "with_locks": "{{n}} locked node(s) will be applied to the next solve.",
+    "start": "Start solving",
+    "pause": "Pause",
+    "resume": "Resume",
+    "cancel": "Cancel",
+    "resolve": "Re-solve with the locks",
+    "clear_locks": "Remove the locks",
+    "state": {
+      "building": "Preparing",
+      "solving": "Solving",
+      "paused": "Paused",
+      "done": "Done",
+      "cancelled": "Cancelled",
+      "failed": "Failed"
+    },
+    "progress": "iteration {{it}} / {{max}}, exploitability {{e}} % of pot, {{s}} s",
+    "chart": "Exploitability over iterations (log scale)",
+    "action": {
+      "fold": "Fold",
+      "check": "Check",
+      "call": "Call",
+      "bet": "Bet",
+      "raise": "Raise",
+      "allin": "All-in",
+      "chance": "Card",
+      "bet_n": "Bet {{n}}",
+      "raise_n": "Raise {{n}}",
+      "allin_n": "All-in {{n}}",
+      "call_n": "Call",
+      "fold_n": "Fold",
+      "check_n": "Check",
+      "chance_n": "Card"
+    },
+    "viewer": {
+      "none": "No solution loaded: start a solve or open one from the library.",
+      "root": "Start",
+      "pot": "Pot {{pot}} bb",
+      "to_act": "{{who}} to act",
+      "locked": "Locked node",
+      "terminal": "The hand ends here.",
+      "pick_card": "Pick the next card:",
+      "equity": "Equity",
+      "combo": "Combo",
+      "not_in_range": "Not in the range at this node.",
+      "breakdown": "Break the range down",
+      "lock": "Lock this node",
+      "export": "Export {{f}}",
+      "exported": "Exported: {{path}}",
+      "lock_title": "Lock this node's strategy",
+      "lock_help": "Fix each action's frequency for the whole range (e.g. \"bet 100 %\"), then re-solve: the rest of the tree adapts.",
+      "lock_added": "Lock added: re-solve to apply it.",
+      "ev_bb": "EV (bb)",
+      "eqr": "EQR",
+      "ev": "EV"
+    },
+    "library": {
+      "filter": "Filter (name, board)…",
+      "empty": "No cached solution.",
+      "name": "Name",
+      "spot": "Pot / stack",
+      "expl": "Exploitability",
+      "size": "Size",
+      "date": "Date",
+      "open": "Open",
+      "compare": "Compare",
+      "rename": "Rename",
+      "delete": "Delete",
+      "locked": "{{n}} lock(s)"
+    },
+    "compare": {
+      "a": "Solution A",
+      "b": "Solution B (picked with \"Compare\" in the library)",
+      "help": "Open one solution with \"Open\" (A) and another with \"Compare\" (B), e.g. two bet trees on the same spot."
     }
   }
 }

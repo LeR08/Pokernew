@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lps://schemas/solver_tree",
+  "title": "schema.solver_tree.title",
+  "description": "schema.solver_tree.description",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "name",
+    "tree"
+  ],
+  "$defs": {
+    "sizes": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "bet": {
+          "type": "string"
+        },
+        "raise": {
+          "type": "string"
+        }
+      }
+    },
+    "street": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "oop": {
+          "$ref": "#/$defs/sizes"
+        },
+        "ip": {
+          "$ref": "#/$defs/sizes"
+        },
+        "donk": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "properties": {
+    "name": {
+      "title": "schema.solver_tree.name",
+      "type": "string",
+      "minLength": 1
+    },
+    "pot": {
+      "title": "schema.solver_tree.pot",
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "stack": {
+      "title": "schema.solver_tree.stack",
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "tree": {
+      "title": "schema.solver_tree.tree",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "flop": {
+          "$ref": "#/$defs/street"
+        },
+        "turn": {
+          "$ref": "#/$defs/street"
+        },
+        "river": {
+          "$ref": "#/$defs/street"
+        },
+        "add_allin_threshold": {
+          "type": "number",
+          "minimum": 0
+        },
+        "force_allin_threshold": {
+          "type": "number",
+          "minimum": 0
+        },
+        "merging_threshold": {
+          "type": "number",
+          "minimum": 0
+        },
+        "max_raises": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    }
+  }
+}

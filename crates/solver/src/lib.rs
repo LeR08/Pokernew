@@ -1,15 +1,16 @@
-//! Postflop CFR solver wrapper, tree builder and solution cache.
+//! Postflop solver: our layer around the vendored `postflop-solver` engine
+//! (`crates/solver/engine`, AGPL-3.0, Discounted CFR).
 //!
-//! Placeholder created in phase 0 to fix the workspace layout.
-//! Implementation lands in phase 6 (see `docs/phase-6.md`).
+//! * [`spot`]: ranges, board, pot, stacks, rake and bet tree → engine game;
+//! * [`job`]: background solve with progress, pause/resume, cancel, node locks;
+//! * [`view`]: strategy, EV, equity and 13×13 grids at any node;
+//! * [`cache`]: compressed solutions on disk, reloaded without solving.
 
-/// Phase in which this crate gets its implementation.
-pub const IMPLEMENTED_IN_PHASE: u8 = 6;
+pub mod cache;
+pub mod job;
+pub mod spot;
+pub mod view;
 
-#[cfg(test)]
-mod tests {
-    #[test]
-    fn placeholder_phase_is_set() {
-        assert_eq!(super::IMPLEMENTED_IN_PHASE, 6);
-    }
-}
+pub use job::{Job, Lock, Progress, SolveParams, State};
+pub use spot::{estimate, Estimate, Sizes, SpotConfig, SpotError, StreetSizes, Tree};
+pub use view::{view, NodeView};
