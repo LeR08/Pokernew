@@ -8,6 +8,7 @@
 //! for tournaments. Big-blind units are derived (`amount / big_blind`).
 
 pub mod card;
+pub mod derived;
 pub mod hand;
 pub mod position;
 pub mod preflop;

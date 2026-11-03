@@ -197,6 +197,10 @@
     "leaks": {
       "title": "Repères des fuites",
       "target": "Repères"
+    },
+    "notes": {
+      "title": "Auto-notes",
+      "rule": "Règles"
     }
   },
   "enum": {
@@ -368,7 +372,8 @@
       "stats": "Mes stats",
       "sessions": "Sessions & bilan",
       "leaks": "Fuites",
-      "grid": "Grille des mains"
+      "grid": "Grille des mains",
+      "opponents": "Adversaires"
     },
     "editor": {
       "new": "Nouvelle stat",
@@ -571,6 +576,68 @@
       "green": "Vert",
       "blue": "Bleu",
       "violet": "Violet"
-    }
+    },
+    "auto": "auto"
+  },
+  "filters": {
+    "more": "Plus de filtres",
+    "who": "Joueurs",
+    "who_hero": "Moi",
+    "who_opponents": "Tous les adversaires (population)",
+    "reset": "Effacer les filtres",
+    "cards": "Mes cartes",
+    "classes_count": "{{n}} combinaisons sélectionnées",
+    "groups": {
+      "pairs": "paires",
+      "suited": "assorties",
+      "offsuit": "dépareillées",
+      "broadway": "broadways",
+      "ace": "As-x",
+      "suited_connectors": "connecteurs assortis"
+    },
+    "pot": "Type de pot",
+    "pots": {
+      "limped": "Non relancé (limp)",
+      "srp": "Une relance",
+      "3bet": "3-bet",
+      "4bet": "4-bet et plus"
+    },
+    "stack": "Tapis au début de la main",
+    "buy_in": "Buy-in du tournoi",
+    "street": "La main va jusqu'au",
+    "streets": {
+      "flop": "flop",
+      "turn": "turn",
+      "river": "river"
+    },
+    "texture": "Texture du flop",
+    "texture_help": "Toutes les cases cochées doivent être vraies.",
+    "textures": {
+      "paired": "pairé",
+      "monotone": "monocolore",
+      "two_tone": "deux couleurs",
+      "rainbow": "arc-en-ciel",
+      "connected": "connecté",
+      "high": "As ou Roi",
+      "low": "9 ou moins"
+    },
+    "other": "Autres",
+    "showdown": "Abattage",
+    "allin_pre": "Tapis préflop",
+    "any": "Peu importe",
+    "yes": "Oui",
+    "no": "Non",
+    "bb": "bb",
+    "eur": "€"
+  },
+  "opponents": {
+    "min_hands": "Au moins",
+    "player": "Joueur",
+    "pool": "Population (tous les adversaires)",
+    "run_autonotes": "Recalculer les auto-notes",
+    "autonotes_done_one": "{{count}} auto-note écrite",
+    "autonotes_done_other": "{{count}} auto-notes écrites",
+    "help": "Entre parenthèses : l'écart en points avec la population quand il dépasse 5 points. Clique sur un joueur pour voir et ajouter des notes. Les auto-notes se règlent dans le fichier notes/auto.toml.",
+    "pick": "Clique sur un adversaire pour voir ses notes."
   }
 }

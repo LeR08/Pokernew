@@ -8,7 +8,8 @@ export function useFilter(): Filter {
   const period = useTracker((s) => s.period);
   const gameType = useTracker((s) => s.gameType);
   const account = useTracker((s) => s.account);
-  return toFilter({ period, gameType, account });
+  const adv = useTracker((s) => s.adv);
+  return toFilter({ period, gameType, account, adv });
 }
 
 // Keys start with "db" so import events refresh them (see lib/importApi.ts).
@@ -46,3 +47,9 @@ export async function exportCsv(name: string, rows: string[][]): Promise<string>
   await b.revealPath(path).catch(() => undefined);
   return path;
 }
+
+export const useOpponents = (filter: Filter, minHands: number) =>
+  useQuery({
+    queryKey: ["db", "opponents", filter, minHands],
+    queryFn: async () => (await getBackend()).trackerOpponents(filter, minHands, 500),
+  });

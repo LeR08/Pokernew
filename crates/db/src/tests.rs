@@ -372,3 +372,38 @@ fn files_with_errors_are_retried_when_parsers_change() {
     let r = imp.import_file(&file).unwrap();
     assert_eq!((r.hands_inserted, r.duplicates, r.errors), (1, 23, 0));
 }
+
+#[test]
+fn derived_columns_are_filled_and_backfilled() {
+    let tmp = tempfile::tempdir().unwrap();
+    let db = tmp.path().join("db.sqlite");
+    {
+        let mut imp = importer(&db);
+        imp.import_file(&fixtures().join(TRIDENT)).unwrap();
+        // First hand: SB raises, BTN calls -> single-raised pot, 2 players on a two-tone ace-high flop.
+        let (r, pf, tex): (i64, i64, i64) = imp
+            .conn()
+            .query_row("SELECT pf_raises, players_flop, flop_texture FROM hands WHERE hand_no = '5135071836924543030-33-1793644483'", [], |r| {
+                Ok((r.get(0)?, r.get(1)?, r.get(2)?))
+            })
+            .unwrap();
+        assert_eq!((r, pf), (1, 2));
+        use lps_core_model::derived::texture::*;
+        assert_eq!(tex, TWO_TONE | HIGH);
+        let class: String = imp
+            .conn()
+            .query_row(
+                "SELECT hp.hand_class FROM hand_players hp JOIN hands h ON h.id = hp.hand_id
+                 WHERE h.hand_no = '5135071836924543030-33-1793644483' AND hp.is_hero = 1",
+                [],
+                |r| r.get(0),
+            )
+            .unwrap();
+        assert_eq!(class, "Q8o");
+        imp.conn().execute("UPDATE hands SET pf_raises = NULL", []).unwrap();
+        imp.conn().execute("UPDATE hand_players SET hand_class = NULL", []).unwrap();
+    }
+    let conn = open(&db).unwrap();
+    assert_eq!(count(&conn, "SELECT COUNT(*) FROM hands WHERE pf_raises IS NULL"), 0);
+    assert_eq!(count(&conn, "SELECT COUNT(*) FROM hand_players WHERE is_hero = 1 AND hand_class IS NULL"), 0);
+}

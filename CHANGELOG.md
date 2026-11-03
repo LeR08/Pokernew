@@ -2,7 +2,7 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/). Versions follow the roadmap phases.
 
-## [Unreleased] — Phase 2 : Tracker (première partie)
+## [Unreleased] — Phase 2 : Tracker
 
 ### Ajouté / Added
 - `stats-engine` : langage de formules (`+ - * /`, comparaisons, `and/or/not`, `if()`) compilé en SQL avec paramètres liés ; stats en TOML (`stats/*.toml`, rechargées à chaud).
@@ -12,6 +12,7 @@ Format: [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/). Versions follo
 - Référence indépendante pour les stats (`tools/reference_stats.py`).
 - Sessions (regroupées par trous de 30 min) et **bilan de session** : mains à revoir et bons coups, expliqués, avec un lien vers le replayer ; alerte de tilt.
 - Détecteur de fuites (`leaks/targets.toml`, intervalle de Wilson 95 %, résultat dans le spot).
+- Filtres avancés (cartes, type de pot, tapis, rue, texture du flop, abattage, tapis préflop, buy-in), population et onglet Adversaires, auto-notes (`notes/auto.toml`).
 - Grille 13×13 des mains de départ, bankroll (dépôts/retraits, courbe, règle des 30 buy-ins), notes et couleurs par joueur, export CSV.
 
 ## Phase 1 : Import & base de données

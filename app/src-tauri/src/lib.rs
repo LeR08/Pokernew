@@ -42,6 +42,8 @@ pub fn run(started: Instant) {
             let st = app.state::<state::AppState>();
             let import = st.import.clone();
             let store = st.store.clone();
+            let app_handle = app.handle().clone();
+            let last_autonotes = std::sync::Arc::new(std::sync::Mutex::new(std::time::Instant::now() - std::time::Duration::from_secs(3600)));
             tauri::async_runtime::spawn(async move {
                 loop {
                     match rx.recv().await {
@@ -59,6 +61,29 @@ pub fn run(started: Instant) {
                                             }
                                         });
                                     }
+                                }
+                            }
+                            // New hands: refresh the auto-notes, at most once a minute.
+                            if let bus::AppEvent::HandsImported(w) = &ev {
+                                let due = last_autonotes
+                                    .lock()
+                                    .map(|mut t| {
+                                        let due = t.elapsed() >= std::time::Duration::from_secs(60);
+                                        if due {
+                                            *t = std::time::Instant::now();
+                                        }
+                                        due
+                                    })
+                                    .unwrap_or(false);
+                                if w.report.hands_inserted > 0 && due {
+                                    let h = app_handle.clone();
+                                    tauri::async_runtime::spawn_blocking(move || {
+                                        let st = h.state::<state::AppState>();
+                                        match tracker_commands::run_autonotes(&st) {
+                                            Ok(n) => log::info!("auto-notes: {n}"),
+                                            Err(e) => log::warn!("auto-notes failed: {e}"),
+                                        }
+                                    });
                                 }
                             }
                             let payload = match &ev {
@@ -120,6 +145,8 @@ pub fn run(started: Instant) {
             tracker_commands::bankroll_tx_add,
             tracker_commands::bankroll_tx_delete,
             tracker_commands::export_csv,
+            tracker_commands::tracker_opponents,
+            tracker_commands::autonotes_run,
         ])
         .run(tauri::generate_context!())
         .expect("error while running Local Poker Suite");

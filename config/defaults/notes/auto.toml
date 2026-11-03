@@ -1,0 +1,38 @@
+# Auto-notes : notes ajoutées automatiquement sur les adversaires
+# Auto-notes: notes added automatically on opponents
+#
+# FR : `when` est une condition sur les stats du joueur (identifiants de stats/*.toml).
+#      La règle ne s'applique que si chaque stat utilisée a au moins `min_sample`
+#      occasions. `{id}` dans le texte est remplacé par la valeur. Les auto-notes sont
+#      recalculées après chaque import (les notes manuelles ne sont jamais touchées).
+# EN : `when` is a condition on the player's stats; `{id}` in the text is replaced by the value.
+
+[rule.fish]
+text = { fr = "Joue beaucoup de mains en suivant (VPIP {vpip}, PFR {pfr})", en = "Plays many hands passively (VPIP {vpip}, PFR {pfr})" }
+when = "vpip >= 0.40 and vpip - pfr >= 0.20"
+min_sample = 50
+
+[rule.nit]
+text = { fr = "Très serré (VPIP {vpip})", en = "Very tight (VPIP {vpip})" }
+when = "vpip <= 0.12"
+min_sample = 80
+
+[rule.overfold_3bet]
+text = { fr = "Se couche trop face aux 3-bets ({fold_to_3bet})", en = "Over-folds to 3-bets ({fold_to_3bet})" }
+when = "fold_to_3bet >= 0.70"
+min_sample = 20
+
+[rule.blind_giver]
+text = { fr = "Abandonne souvent ses blindes face au vol ({fold_to_steal})", en = "Often gives up the blinds to steals ({fold_to_steal})" }
+when = "fold_to_steal >= 0.80"
+min_sample = 20
+
+[rule.calling_station]
+text = { fr = "Va souvent à l'abattage (WTSD {wtsd}) : bluffe-le peu, mise fin pour la valeur", en = "Goes to showdown a lot (WTSD {wtsd}): bluff less, value bet thin" }
+when = "wtsd >= 0.40"
+min_sample = 30
+
+[rule.aggro]
+text = { fr = "Très agressif après le flop (AF {af})", en = "Very aggressive postflop (AF {af})" }
+when = "af >= 4"
+min_sample = 30

@@ -259,3 +259,73 @@ fn bankroll_adds_movements_cash_and_tournaments() {
     assert_eq!(b.tournaments_cents, all);
     assert!(b.avg_buy_in_cents.is_some());
 }
+
+#[test]
+fn advanced_filters() {
+    let conn = db();
+    let stats = core();
+    let n = |f: Filter| query::report(&conn, &f, &stats, Group::None).unwrap().first().map(|r| r.hands).unwrap_or(0);
+    let all = n(Filter::default());
+    let pots: i64 = ["limped", "srp", "3bet", "4bet"].iter().map(|p| n(Filter { pot_types: vec![p.to_string()], ..Default::default() })).sum();
+    assert_eq!(pots, all, "pot types partition the hands");
+    let short = n(Filter { stack_max: Some(20.0), ..Default::default() });
+    let deep = n(Filter { stack_min: Some(20.000001), ..Default::default() });
+    assert_eq!(short + deep, all);
+    let flop = n(Filter { street: Some("flop".into()), ..Default::default() });
+    let river = n(Filter { street: Some("river".into()), ..Default::default() });
+    assert!(flop >= river && river > 0);
+    let pairs: Vec<String> = "AKQJT98765432".chars().map(|c| format!("{c}{c}")).collect();
+    let pp = n(Filter { hand_classes: pairs, ..Default::default() });
+    assert!(pp > 0 && pp < all);
+    use lps_core_model::derived::texture::*;
+    let mono = n(Filter { texture: Some(MONOTONE), ..Default::default() });
+    let paired_mono = n(Filter { texture: Some(MONOTONE | PAIRED), ..Default::default() });
+    assert!(mono >= paired_mono);
+    let sd = n(Filter { showdown: Some(true), ..Default::default() });
+    let nsd = n(Filter { showdown: Some(false), ..Default::default() });
+    assert_eq!(sd + nsd, all);
+    let cheap = n(Filter { buy_in_max: Some(50), ..Default::default() });
+    assert!(cheap > 0 && cheap < all);
+}
+
+#[test]
+fn population_and_players() {
+    let conn = db();
+    let stats = core();
+    let pop = query::report(&conn, &Filter { who: Some("opponents".into()), ..Default::default() }, &stats, Group::None).unwrap();
+    let total_rows: i64 = conn.query_row("SELECT COUNT(*) FROM hand_players WHERE is_hero = 0", [], |r| r.get(0)).unwrap();
+    assert_eq!(pop[0].hands, total_rows);
+    let players = query::report_limited(&conn, &Filter { who: Some("opponents".into()), ..Default::default() }, &stats, Group::Player, 30, 10).unwrap();
+    assert!(!players.is_empty() && players.len() <= 10);
+    assert!(players.iter().all(|p| p.hands >= 30));
+    assert!(players.windows(2).all(|w| w[0].hands >= w[1].hands));
+    let one = query::report(&conn, &Filter { player: Some(players[0].key.clone()), ..Default::default() }, &stats, Group::None).unwrap();
+    assert_eq!(one[0].hands, players[0].hands);
+}
+
+#[test]
+fn auto_notes_follow_rules_and_replace_previous_ones() {
+    let mut conn = db();
+    let rules: crate::autonotes::RulesFile = toml::from_str(include_str!("../../../config/defaults/notes/auto.toml")).unwrap();
+    // A rule that matches everybody with enough hands, to check the mechanics.
+    let mut all = rules.clone();
+    all.rule.insert(
+        "any".into(),
+        crate::autonotes::Rule { text: defs::Text::Plain("VPIP {vpip}".into()), when: "vpip >= 0".into(), min_sample: 30 },
+    );
+    let notes = crate::autonotes::evaluate(&conn, "winamax", &core(), &all, "fr").unwrap();
+    let any: Vec<_> = notes.iter().filter(|n| n.rule == "any").collect();
+    assert!(!any.is_empty());
+    assert!(any[0].text.starts_with("VPIP ") && any[0].text.ends_with('%'));
+    let n = crate::autonotes::apply(&mut conn, "winamax", &notes, 1).unwrap();
+    let stored: i64 = conn.query_row("SELECT COUNT(*) FROM notes WHERE auto = 1", [], |r| r.get(0)).unwrap();
+    assert_eq!(stored as usize, n);
+    // Manual notes survive a re-run; auto ones are replaced.
+    conn.execute("INSERT INTO notes (player_id, text, auto, created_at) SELECT id, 'manuelle', 0, 1 FROM players WHERE is_hero = 0 LIMIT 1", [])
+        .unwrap();
+    crate::autonotes::apply(&mut conn, "winamax", &[], 2).unwrap();
+    assert_eq!(conn.query_row::<i64, _, _>("SELECT COUNT(*) FROM notes WHERE auto = 1", [], |r| r.get(0)).unwrap(), 0);
+    assert_eq!(conn.query_row::<i64, _, _>("SELECT COUNT(*) FROM notes WHERE auto = 0", [], |r| r.get(0)).unwrap(), 1);
+    // The hero never gets auto-notes.
+    assert!(notes.iter().all(|n| n.player != "Tantaculejen" && n.player != "GTOverBet"));
+}

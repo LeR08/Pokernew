@@ -55,6 +55,8 @@ export function mockTracker(statsMeta: () => StatMeta[]): Pick<
   | "bankrollTxAdd"
   | "bankrollTxDelete"
   | "exportCsv"
+  | "trackerOpponents"
+  | "autonotesRun"
 > {
   const notes = new Map<string, Note[]>();
   const colours = new Map<string, string | null>();
@@ -219,6 +221,16 @@ export function mockTracker(statsMeta: () => StatMeta[]): Pick<
     async bankrollTxDelete(id) {
       const i = txs.findIndex((t) => t.id === id);
       if (i >= 0) txs.splice(i, 1);
+    },
+    async trackerOpponents() {
+      const stats = statsMeta();
+      const mk = (key: string, hands: number, k: number) => ({ ...row(key, hands, k), key });
+      return { stats, pool: mk("pool", 40000, 0.9), rows: [mk("Player10", 412, 1.4), mk("Player34", 288, 0.6), mk("Player27", 150, 1.1)] };
+    },
+    async autonotesRun() {
+      const k = "winamax/Player10";
+      notes.set(k, [{ id: nextId++, text: "Joue beaucoup de mains en suivant (VPIP 42 %, PFR 12 %)", auto: true, createdAt: Math.floor(Date.now() / 1000) }, ...(notes.get(k) ?? []).filter((n) => !n.auto)]);
+      return 1;
     },
     async exportCsv(name) {
       return `(browser mock)/exports/${name}.csv`;

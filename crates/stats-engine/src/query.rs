@@ -27,13 +27,42 @@ pub struct Filter {
     pub positions: Vec<String>,
     /// Restrict to one tournament (database id).
     pub tournament: Option<i64>,
+    // ---- Advanced filters ----
+    /// Whose hands: "hero" (default), "opponents" (population), or one `player` name.
+    pub who: Option<String>,
+    pub player: Option<String>,
+    /// Starting-hand classes: "AKs", "TT", "72o"…
+    pub hand_classes: Vec<String>,
+    /// "limped" (no raise), "srp" (1 raise), "3bet", "4bet" (4-bet or more).
+    pub pot_types: Vec<String>,
+    /// Starting stack in big blinds.
+    pub stack_min: Option<f64>,
+    pub stack_max: Option<f64>,
+    /// Street the hand reached: "flop", "turn" or "river".
+    pub street: Option<String>,
+    /// Flop texture flags that must all be present (see core-model `derived::texture`).
+    pub texture: Option<i64>,
+    /// Only hands where the player reached showdown (true) or not (false).
+    pub showdown: Option<bool>,
+    pub allin_preflop: Option<bool>,
+    /// Tournament total buy-in (buy-in + fee), cents.
+    pub buy_in_min: Option<i64>,
+    pub buy_in_max: Option<i64>,
 }
 
 impl Filter {
     /// `WHERE …` for hero rows (aliases `hp`, `h`, `p` = players).
     pub fn to_sql(&self) -> Sql {
-        let mut parts: Vec<String> = vec!["hp.is_hero = 1".into()];
+        let mut parts: Vec<String> = Vec::new();
         let mut params: Vec<Value> = Vec::new();
+        match (self.player.as_deref(), self.who.as_deref()) {
+            (Some(name), _) => {
+                parts.push("p.name = ?".into());
+                params.push(Value::Text(name.to_string()));
+            }
+            (None, Some("opponents")) => parts.push("hp.is_hero = 0".into()),
+            _ => parts.push("hp.is_hero = 1".into()),
+        }
         if let Some(f) = self.from {
             parts.push("h.played_at >= ?".into());
             params.push(Value::Integer(f));
@@ -56,6 +85,58 @@ impl Filter {
             parts.push("h.tournament_id = ?".into());
             params.push(Value::Integer(t));
         }
+        if !self.hand_classes.is_empty() {
+            parts.push(format!("hp.hand_class IN ({})", vec!["?"; self.hand_classes.len()].join(", ")));
+            params.extend(self.hand_classes.iter().map(|v| Value::Text(v.clone())));
+        }
+        if !self.pot_types.is_empty() {
+            let conds: Vec<&str> = self
+                .pot_types
+                .iter()
+                .filter_map(|p| match p.as_str() {
+                    "limped" => Some("h.pf_raises = 0"),
+                    "srp" => Some("h.pf_raises = 1"),
+                    "3bet" => Some("h.pf_raises = 2"),
+                    "4bet" => Some("h.pf_raises >= 3"),
+                    _ => None,
+                })
+                .collect();
+            if !conds.is_empty() {
+                parts.push(format!("({})", conds.join(" OR ")));
+            }
+        }
+        if let Some(v) = self.stack_min {
+            parts.push("hp.stack_bb >= ?".into());
+            params.push(Value::Real(v));
+        }
+        if let Some(v) = self.stack_max {
+            parts.push("hp.stack_bb <= ?".into());
+            params.push(Value::Real(v));
+        }
+        match self.street.as_deref() {
+            Some("flop") => parts.push("length(h.board) >= 6".into()),
+            Some("turn") => parts.push("length(h.board) >= 8".into()),
+            Some("river") => parts.push("length(h.board) >= 10".into()),
+            _ => {}
+        }
+        if let Some(mask) = self.texture.filter(|m| *m > 0) {
+            parts.push("(h.flop_texture & ?) = ?".into());
+            params.push(Value::Integer(mask));
+            params.push(Value::Integer(mask));
+        }
+        if let Some(sd) = self.showdown {
+            parts.push(format!("hp.went_to_showdown = {}", i64::from(sd)));
+        }
+        if let Some(a) = self.allin_preflop {
+            parts.push(format!("s.cnt_allin_preflop = {}", i64::from(a)));
+        }
+        if self.buy_in_min.is_some() || self.buy_in_max.is_some() {
+            parts.push(
+                "h.tournament_id IN (SELECT id FROM tournaments WHERE buy_in_cents + fee_cents BETWEEN ? AND ?)".into(),
+            );
+            params.push(Value::Integer(self.buy_in_min.unwrap_or(0)));
+            params.push(Value::Integer(self.buy_in_max.unwrap_or(i64::MAX)));
+        }
         Sql { text: parts.join(" AND "), params }
     }
 }
@@ -74,6 +155,8 @@ pub enum Group {
     GameType,
     Month,
     Account,
+    /// One row per player (opponents list).
+    Player,
     /// Game type + big blind (cash stakes; tournament levels are too many).
     Stake,
 }
@@ -85,7 +168,7 @@ impl Group {
             Group::Position => "COALESCE(hp.position, '?')",
             Group::GameType => "h.game_type",
             Group::Month => "strftime('%Y-%m', h.played_at, 'unixepoch')",
-            Group::Account => "p.name",
+            Group::Account | Group::Player => "p.name",
             Group::Stake => "CASE WHEN h.game_type = 'cash' THEN 'cash:' || h.big_blind ELSE h.game_type END",
         }
     }
@@ -95,6 +178,7 @@ impl Group {
                 "CASE k WHEN 'UTG' THEN 1 WHEN 'UTG1' THEN 2 WHEN 'UTG2' THEN 3 WHEN 'MP' THEN 4 WHEN 'LJ' THEN 5
                  WHEN 'HJ' THEN 6 WHEN 'CO' THEN 7 WHEN 'BTN' THEN 8 WHEN 'SB' THEN 9 WHEN 'BB' THEN 10 ELSE 11 END"
             }
+            Group::Player => "2 DESC",
             _ => "k",
         }
     }
@@ -123,6 +207,18 @@ pub struct ReportRow {
 
 /// One row per group with every stat.
 pub fn report(conn: &Connection, filter: &Filter, stats: &[CompiledStat], group: Group) -> rusqlite::Result<Vec<ReportRow>> {
+    report_limited(conn, filter, stats, group, 0, i64::MAX)
+}
+
+/// Like [`report`], keeping only groups with at least `min_hands` hands, at most `limit` rows.
+pub fn report_limited(
+    conn: &Connection,
+    filter: &Filter,
+    stats: &[CompiledStat],
+    group: Group,
+    min_hands: i64,
+    limit: i64,
+) -> rusqlite::Result<Vec<ReportRow>> {
     let w = filter.to_sql();
     let mut select = format!(
         "SELECT {} AS k, COUNT(*), SUM(hp.net_won_bb), SUM(CASE WHEN h.unit = 'cents' THEN hp.net_won ELSE 0 END)",
@@ -137,8 +233,10 @@ pub fn report(conn: &Connection, filter: &Filter, stats: &[CompiledStat], group:
         select.push_str(&st.sample.text);
         params.extend(st.sample.params.iter().cloned());
     }
-    let sql = format!("{select} {FROM} WHERE {} GROUP BY k ORDER BY {}", w.text, group.order());
+    let sql = format!("{select} {FROM} WHERE {} GROUP BY k HAVING COUNT(*) >= ? ORDER BY {} LIMIT ?", w.text, group.order());
     params.extend(w.params);
+    params.push(Value::Integer(min_hands));
+    params.push(Value::Integer(limit));
     let mut stmt = conn.prepare(&sql)?;
     let rows = stmt.query_map(params_from_iter(params), |r| {
         let hands: i64 = r.get(1)?;

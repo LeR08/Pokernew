@@ -63,6 +63,7 @@ pub fn open(path: &Path) -> Result<Connection, DbError> {
     schema::configure(&conn)?;
     let added = schema::migrate(&mut conn)?;
     requeue_errors_if_parsers_changed(&conn)?;
+    backfill_derived(&mut conn)?;
     if !added.is_empty() {
         log::info!("new counters {added:?}: recomputing");
         recompute_counters(&mut conn)?;
@@ -82,6 +83,27 @@ pub fn open_in_memory() -> Result<Connection, DbError> {
     schema::configure(&conn)?;
     schema::migrate(&mut conn)?;
     Ok(conn)
+}
+
+/// Fills the derived columns of hands imported before they existed (v5).
+pub fn backfill_derived(conn: &mut Connection) -> Result<usize, DbError> {
+    let ids: Vec<i64> = {
+        let mut st = conn.prepare("SELECT id FROM hands WHERE pf_raises IS NULL ORDER BY id")?;
+        let rows = st.query_map([], |r| r.get(0))?;
+        rows.collect::<Result<_, _>>()?
+    };
+    if !ids.is_empty() {
+        log::info!("computing filter data for {} hands", ids.len());
+    }
+    for chunk in ids.chunks(import::BATCH) {
+        let tx = conn.transaction()?;
+        for &id in chunk {
+            let (hand, pids) = load::load_hand(&tx, id)?;
+            write::write_derived(&tx, id, &pids, &hand)?;
+        }
+        tx.commit()?;
+    }
+    Ok(ids.len())
 }
 
 /// Recomputes every counter of every hand from the stored actions.

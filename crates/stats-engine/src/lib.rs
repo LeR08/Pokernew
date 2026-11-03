@@ -1,6 +1,7 @@
 //! Stats engine: user-editable stat definitions, an expression language
 //! compiled to SQL, and the report queries of the tracker.
 
+pub mod autonotes;
 pub mod bankroll;
 pub mod compile;
 pub mod defs;

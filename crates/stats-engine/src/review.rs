@@ -292,7 +292,9 @@ pub fn review_session(conn: &Connection, filter: &Filter, start: i64, end: i64) 
     let session = sessions(conn, &f)?.into_iter().next();
     let w = f.to_sql();
     let sql = format!(
-        "SELECT h.id, hp.net_won_bb FROM hand_players hp JOIN hands h ON h.id = hp.hand_id JOIN players p ON p.id = hp.player_id
+        "SELECT h.id, hp.net_won_bb FROM hand_player_stats s
+         JOIN hand_players hp ON hp.hand_id = s.hand_id AND hp.player_id = s.player_id
+         JOIN hands h ON h.id = hp.hand_id JOIN players p ON p.id = hp.player_id
          WHERE {} ORDER BY h.played_at, h.id",
         w.text
     );

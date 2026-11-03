@@ -197,6 +197,10 @@
     "leaks": {
       "title": "Leak targets",
       "target": "Targets"
+    },
+    "notes": {
+      "title": "Auto-notes",
+      "rule": "Rules"
     }
   },
   "enum": {
@@ -368,7 +372,8 @@
       "stats": "My stats",
       "sessions": "Sessions & review",
       "leaks": "Leaks",
-      "grid": "Hand grid"
+      "grid": "Hand grid",
+      "opponents": "Opponents"
     },
     "editor": {
       "new": "New stat",
@@ -571,6 +576,68 @@
       "green": "Green",
       "blue": "Blue",
       "violet": "Violet"
-    }
+    },
+    "auto": "auto"
+  },
+  "filters": {
+    "more": "More filters",
+    "who": "Players",
+    "who_hero": "Me",
+    "who_opponents": "All opponents (population)",
+    "reset": "Clear filters",
+    "cards": "My cards",
+    "classes_count": "{{n}} hands selected",
+    "groups": {
+      "pairs": "pairs",
+      "suited": "suited",
+      "offsuit": "offsuit",
+      "broadway": "broadways",
+      "ace": "Ax",
+      "suited_connectors": "suited connectors"
+    },
+    "pot": "Pot type",
+    "pots": {
+      "limped": "Unraised (limped)",
+      "srp": "Single raised",
+      "3bet": "3-bet",
+      "4bet": "4-bet or more"
+    },
+    "stack": "Stack at the start of the hand",
+    "buy_in": "Tournament buy-in",
+    "street": "The hand reaches the",
+    "streets": {
+      "flop": "flop",
+      "turn": "turn",
+      "river": "river"
+    },
+    "texture": "Flop texture",
+    "texture_help": "Every selected box must be true.",
+    "textures": {
+      "paired": "paired",
+      "monotone": "monotone",
+      "two_tone": "two-tone",
+      "rainbow": "rainbow",
+      "connected": "connected",
+      "high": "Ace or King",
+      "low": "9 or lower"
+    },
+    "other": "Other",
+    "showdown": "Showdown",
+    "allin_pre": "All-in preflop",
+    "any": "Any",
+    "yes": "Yes",
+    "no": "No",
+    "bb": "bb",
+    "eur": "€"
+  },
+  "opponents": {
+    "min_hands": "At least",
+    "player": "Player",
+    "pool": "Population (all opponents)",
+    "run_autonotes": "Recompute auto-notes",
+    "autonotes_done_one": "{{count}} auto-note written",
+    "autonotes_done_other": "{{count}} auto-notes written",
+    "help": "In brackets: the gap in points to the population when it exceeds 5 points. Click a player to see and add notes. Auto-notes are set in notes/auto.toml.",
+    "pick": "Click an opponent to see their notes."
   }
 }

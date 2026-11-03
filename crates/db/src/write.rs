@@ -155,6 +155,7 @@ pub fn insert_hand(tx: &Transaction<'_>, cache: &mut IdCache, hand: &Hand, file_
         }
     }
     write_counters(tx, hand_id, &ids, hand)?;
+    write_derived(tx, hand_id, &ids, hand)?;
     Ok(true)
 }
 
@@ -168,6 +169,18 @@ pub fn write_counters(tx: &Transaction<'_>, hand_id: i64, player_ids: &[i64], ha
         values.push(*pid);
         values.extend(c.values());
         st.execute(rusqlite::params_from_iter(values))?;
+    }
+    Ok(())
+}
+
+/// Derived columns used by the advanced filters.
+pub fn write_derived(tx: &Transaction<'_>, hand_id: i64, player_ids: &[i64], hand: &Hand) -> Result<(), DbError> {
+    let d = lps_core_model::derived::derive(hand);
+    tx.prepare_cached("UPDATE hands SET pf_raises = ?, players_flop = ?, flop_texture = ? WHERE id = ?")?
+        .execute(params![d.pf_raises, d.players_flop, d.flop_texture, hand_id])?;
+    let mut st = tx.prepare_cached("UPDATE hand_players SET hand_class = ? WHERE hand_id = ? AND player_id = ?")?;
+    for (pid, p) in player_ids.iter().zip(&hand.players) {
+        st.execute(params![lps_core_model::preflop::hand_class(&p.hole_cards), hand_id, pid])?;
     }
     Ok(())
 }

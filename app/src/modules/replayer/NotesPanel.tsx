@@ -69,7 +69,10 @@ export function NotesPanel({ room, name }: { room: string; name: string }) {
       <ul className="flex flex-col gap-1" data-testid="notes-list">
         {data?.notes.map((n) => (
           <li key={n.id} className="flex items-start gap-d2 rounded bg-surface-alt px-d2 py-1">
-            <span className="flex-1 whitespace-pre-wrap">{n.text}</span>
+            <span className="flex-1 whitespace-pre-wrap">
+              {n.auto && <span className="mr-1 rounded bg-primary px-1 text-[10px] text-primary-fg">{t("notes.auto")}</span>}
+              {n.text}
+            </span>
             <span className="text-xs text-muted">{formatDate(n.createdAt, i18n.language)}</span>
             <Button
               variant="ghost"

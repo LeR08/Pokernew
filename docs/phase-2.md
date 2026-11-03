@@ -1,6 +1,6 @@
 # Phase 2 — Tracker (stats, rapports, graphiques, replayer)
 
-Statut : **deuxième partie livrée — en attente de ton test** (première partie validée le 3 nov. 2026) · Choix de l'utilisateur (3 nov. 2026) :
+Statut : **terminée — en attente de ta validation** (parties 1 et 2 validées le 3 nov. 2026) · Choix de l'utilisateur (3 nov. 2026) :
 - stats **simples**, chacune avec une explication en clair dans l'app ;
 - objectif : **être en bénéfice** → le gain est la première chose affichée partout ;
 - gains en **jetons / big blinds** par défaut, case à cocher **« Afficher en € »**.
@@ -104,6 +104,27 @@ L'analyse par solveur, avec la perte d'EV main par main, arrive en phases 6 et 8
 Tests : 107 Rust (règles vérifiées sur des mains réelles lues à la main, sessions, Wilson, grille, bankroll),
 23 Vitest, 19 Playwright. Vérifié dans la vraie app : sessions, bilan et fuites sur une base réelle.
 
-Reste avant de clore la phase 2 :
-- filtres avancés (cartes, texture du board, séquence d'actions, profondeur, type de pot) ;
-- auto-notes, analyse de population, constructeur de rapports.
+## Résultats — troisième partie (3 nov. 2026)
+
+| Fonction | Détail |
+|---|---|
+| **Filtres avancés** | Cartes (classes « AKs, QQ » ou groupes : paires, assorties, broadways, As-x, connecteurs assortis), type de pot (limp, 1 relance, 3-bet, 4-bet+), tapis min/max en bb, rue atteinte, texture du flop (pairé, monocolore, deux couleurs, arc-en-ciel, connecté, As/Roi, 9 ou moins), abattage, tapis préflop, buy-in du tournoi. Données dérivées calculées à l'import (migration v5, recalculées automatiquement pour les mains déjà en base) |
+| **Population** | Filtre « Moi / tous les adversaires » sur tous les rapports ; onglet **Adversaires** avec l'écart à la population en points |
+| **Auto-notes** | Règles dans `notes/auto.toml`, écrites dans le langage des stats (`vpip >= 0.40 and vpip - pfr >= 0.20`), avec un échantillon minimum ; recalculées après les imports (au plus une fois par minute) ou à la demande ; les notes manuelles ne sont jamais touchées |
+
+Vérifié dans la vraie app : la migration recalcule les 496 mains existantes ; les auto-notes donnent 6 notes
+cohérentes avec les stats affichées (ex. Player11 : VPIP 60 %, PFR 19 % → « joue beaucoup de mains en suivant »).
+Tests : 113 Rust, 23 Vitest, 20 Playwright.
+
+## Bilan de la phase 2
+
+Les 4 critères d'acceptation de la spec sont remplis. Le dernier, « la stat apparaît dans le HUD », sera vérifié
+quand le HUD existera, en phase 3.
+
+Gardé pour plus tard, parce que ça dépend d'autres phases ou que c'est peu utile tant que tu joues surtout en MTT :
+- filtre par séquence d'actions (« BTN ouvre, BB 3-bet, je suis ») et par étape ICM (bulle, ITM, table finale) :
+  en phase 5, avec l'ICM ;
+- constructeur de rapports par glisser-déposer : les rapports sont déjà des regroupements combinés aux filtres et aux
+  stats personnalisées ;
+- courbe « EV all-in » : en phase 4, avec l'évaluateur d'équité ;
+- journal de session (humeur, concentration) : à ajouter si tu le veux.

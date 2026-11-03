@@ -33,6 +33,7 @@ pub const FAMILIES: &[Family] = &[
     Family { name: "rooms", layout: Layout::Dir("rooms"), schema: "room" },
     Family { name: "stats", layout: Layout::Dir("stats"), schema: "stats" },
     Family { name: "leaks", layout: Layout::Dir("leaks"), schema: "leaks" },
+    Family { name: "notes", layout: Layout::Dir("notes"), schema: "notes" },
 ];
 
 /// Looks a family up by name.

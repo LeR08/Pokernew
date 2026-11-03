@@ -15,6 +15,7 @@ import type {
 import { BackendError } from "./backend";
 import type { JSONSchema } from "./schema";
 import type {
+  OpponentsResponse,
   Bankroll,
   Graph,
   GridCell,
@@ -115,6 +116,8 @@ export function createTauriBackend(): Backend {
     bankrollTxAdd: (tx) => call<number>("bankroll_tx_add", { tx: { ...tx, id: tx.id ?? 0 } }),
     bankrollTxDelete: (id) => call("bankroll_tx_delete", { id }),
     exportCsv: (name, rows) => call<string>("export_csv", { name, rows }),
+    trackerOpponents: (filter, minHands, limit) => call<OpponentsResponse>("tracker_opponents", { filter, minHands, limit }),
+    autonotesRun: () => call<number>("autonotes_run"),
     markReady() {
       void invoke("frontend_ready").catch(() => undefined);
     },

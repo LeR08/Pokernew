@@ -6,6 +6,7 @@
  */
 import type { JSONSchema } from "./schema";
 import type {
+  OpponentsResponse,
   Bankroll,
   GridCell,
   LeaksResponse,
@@ -173,6 +174,8 @@ export interface Backend {
   bankrollTxList(): Promise<Tx[]>;
   bankrollTxAdd(tx: Tx): Promise<number>;
   bankrollTxDelete(id: number): Promise<void>;
+  trackerOpponents(filter: Filter, minHands: number, limit: number): Promise<OpponentsResponse>;
+  autonotesRun(): Promise<number>;
   /** Writes a CSV file in <data>/exports; returns its path. */
   exportCsv(name: string, rows: string[][]): Promise<string>;
 }

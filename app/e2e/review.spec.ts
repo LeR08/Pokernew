@@ -51,3 +51,23 @@ test("report CSV export", async ({ page }) => {
   await page.getByTestId("export-report").click();
   await expect(page.getByText("Exporté :")).toBeVisible();
 });
+
+test("advanced filters panel and opponents with auto-notes", async ({ page }) => {
+  await page.goto("/#/m/tracker/report");
+  await page.getByTestId("more-filters").click();
+  await expect(page.getByTestId("advanced-panel")).toBeVisible();
+  await page.getByTestId("pot-3bet").check();
+  await expect(page.getByTestId("more-filters")).toContainText("1");
+  await page.getByRole("button", { name: "+ paires" }).click();
+  await expect(page.getByTestId("advanced-panel")).toContainText("13 combinaisons");
+  await page.getByRole("button", { name: "Effacer les filtres" }).click();
+  await expect(page.getByTestId("more-filters")).not.toContainText("1");
+
+  await page.goto("/#/m/tracker/opponents");
+  await expect(page.getByTestId("opponents-table")).toContainText("Population");
+  await expect(page.getByTestId("opponent-row")).toHaveCount(3);
+  await page.getByTestId("run-autonotes").click();
+  await page.getByTestId("opponent-row").filter({ hasText: "Player10" }).click();
+  await expect(page.getByTestId("notes-list")).toContainText("Joue beaucoup de mains");
+  await expect(page.getByTestId("notes-list")).toContainText("auto");
+});

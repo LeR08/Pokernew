@@ -11,6 +11,18 @@ export interface Filter {
   accounts?: string[];
   positions?: string[];
   tournament?: number | null;
+  who?: "hero" | "opponents";
+  player?: string | null;
+  handClasses?: string[];
+  potTypes?: string[];
+  stackMin?: number | null;
+  stackMax?: number | null;
+  street?: "flop" | "turn" | "river" | null;
+  texture?: number | null;
+  showdown?: boolean | null;
+  allinPreflop?: boolean | null;
+  buyInMin?: number | null;
+  buyInMax?: number | null;
 }
 
 export interface StatValue {
@@ -289,4 +301,40 @@ export interface Bankroll {
   tournamentsCents: number;
   balanceCents: number;
   avgBuyInCents: number | null;
+}
+
+export interface OpponentsResponse {
+  rows: ReportRow[];
+  pool: ReportRow | null;
+  stats: StatMeta[];
+}
+
+/** Flop texture flags (crates/core-model/src/derived.rs). */
+export const TEXTURE = { paired: 1, monotone: 2, two_tone: 4, rainbow: 8, connected: 16, high: 32, low: 64 } as const;
+
+const RANKS = "AKQJT98765432";
+/** All 169 classes. */
+export const ALL_CLASSES: string[] = (() => {
+  const out: string[] = [];
+  for (let i = 0; i < 13; i++)
+    for (let j = 0; j < 13; j++) out.push(i === j ? RANKS[i] + RANKS[i] : i < j ? `${RANKS[i]}${RANKS[j]}s` : `${RANKS[j]}${RANKS[i]}o`);
+  return out;
+})();
+
+export const HAND_GROUPS: Record<string, (c: string) => boolean> = {
+  pairs: (c) => c.length === 2,
+  suited: (c) => c.endsWith("s"),
+  offsuit: (c) => c.endsWith("o"),
+  broadway: (c) => "AKQJT".includes(c[0]) && "AKQJT".includes(c[1]),
+  ace: (c) => c[0] === "A",
+  suited_connectors: (c) => c.endsWith("s") && RANKS.indexOf(c[1]) - RANKS.indexOf(c[0]) === 1,
+};
+
+/** Parses "AKs, QQ, 72o" into valid classes (unknown entries ignored). */
+export function parseClasses(text: string): string[] {
+  const set = new Set(ALL_CLASSES);
+  return text
+    .split(/[\s,;]+/)
+    .map((x) => (x.length === 3 ? x.slice(0, 2).toUpperCase() + x[2].toLowerCase() : x.toUpperCase()))
+    .filter((x) => set.has(x));
 }

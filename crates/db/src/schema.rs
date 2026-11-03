@@ -193,6 +193,15 @@ CREATE TABLE bankroll_tx (
 );
 CREATE INDEX bankroll_tx_at ON bankroll_tx (at);
 "#,
+    // v5 — derived facts for advanced filters (filled at import, backfilled on open).
+    r#"
+ALTER TABLE hand_players ADD COLUMN hand_class TEXT;
+ALTER TABLE hands ADD COLUMN pf_raises INTEGER;
+ALTER TABLE hands ADD COLUMN players_flop INTEGER;
+ALTER TABLE hands ADD COLUMN flop_texture INTEGER;
+CREATE INDEX hand_players_class ON hand_players (hand_class);
+ALTER TABLE notes ADD COLUMN rule TEXT;
+"#,
 ];
 
 /// Connection pragmas: WAL so the UI can read while the importer writes.

@@ -298,3 +298,65 @@ mod tests {
         assert!(csv.contains("\"a;b\";\"say \"\"hi\"\"\""));
     }
 }
+
+// ---- Population & auto-notes ----
+
+#[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct OpponentsResponse {
+    pub rows: Vec<ReportRow>,
+    /// All opponents together (the "pool"), for deviation columns.
+    pub pool: Option<ReportRow>,
+    pub stats: Vec<StatMeta>,
+}
+
+#[tauri::command]
+pub fn tracker_opponents(s: State<'_, AppState>, filter: Filter, min_hands: i64, limit: i64) -> Res<OpponentsResponse> {
+    let (compiled, stats, _) = load_stats(&s);
+    let f = Filter { who: Some("opponents".into()), player: None, ..filter };
+    let (rows, pool) = svc(&s)?
+        .with_reader(|c| {
+            let rows = query::report_limited(c, &f, &compiled, Group::Player, min_hands.max(1), limit.clamp(1, 5000)).map_err(sql_err)?;
+            let pool = query::report(c, &f, &compiled, Group::None).map_err(sql_err)?.into_iter().next();
+            Ok((rows, pool))
+        })
+        .map_err(err)?;
+    Ok(OpponentsResponse { rows, pool, stats })
+}
+
+/// Re-evaluates the auto-note rules (`notes/*.toml`) on every opponent.
+pub fn run_autonotes(s: &AppState) -> Result<usize, String> {
+    let Some(svc) = s.import.as_deref() else { return Ok(0) };
+    let (compiled, _, _) = load_stats(s);
+    let mut rules = lps_stats_engine::autonotes::RulesFile::default();
+    for id in s.store.list("notes") {
+        if let Some(v) = s.store.get("notes", &id) {
+            if let Ok(r) = serde_json::from_value::<lps_stats_engine::autonotes::RulesFile>(v) {
+                rules.rule.extend(r.rule);
+            }
+        }
+    }
+    let lang = s
+        .store
+        .get("settings", "settings")
+        .and_then(|v| v["general"]["language"].as_str().map(str::to_string))
+        .unwrap_or_else(|| "fr".into());
+    let now = std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).map(|d| d.as_secs() as i64).unwrap_or(0);
+    let mut conn = lps_db::open_reader(&svc.db_path).map_err(|e| e.to_string())?;
+    let rooms: Vec<String> = {
+        let mut st = conn.prepare("SELECT DISTINCT room FROM players").map_err(|e| e.to_string())?;
+        let rows = st.query_map([], |r| r.get(0)).map_err(|e| e.to_string())?;
+        rows.collect::<Result<_, _>>().map_err(|e| e.to_string())?
+    };
+    let mut total = 0;
+    for room in rooms {
+        let notes = lps_stats_engine::autonotes::evaluate(&conn, &room, &compiled, &rules, &lang).map_err(|e| e.to_string())?;
+        total += lps_stats_engine::autonotes::apply(&mut conn, &room, &notes, now).map_err(|e| e.to_string())?;
+    }
+    Ok(total)
+}
+
+#[tauri::command]
+pub fn autonotes_run(s: State<'_, AppState>) -> Res<usize> {
+    run_autonotes(&s).map_err(CommandError::from)
+}

@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { Select } from "@/components/ui/input";
 import { useTracker, type Period } from "@/stores/tracker";
 import { useAccounts } from "./api";
+import { AdvancedFilters } from "./AdvancedFilters";
 
 /** One row of filters above every tracker view. */
 export function FilterBar() {
@@ -9,6 +10,7 @@ export function FilterBar() {
   const s = useTracker();
   const accounts = useAccounts().data ?? [];
   return (
+    <div className="flex flex-col gap-d2">
     <div className="flex flex-wrap items-center gap-d3 rounded-lg border border-border bg-surface p-d3 text-sm" data-testid="filter-bar">
       <label className="flex items-center gap-d2">
         {t("tracker.filter.period")}
@@ -51,6 +53,8 @@ export function FilterBar() {
         <input type="checkbox" checked={s.euros} onChange={(e) => s.setEuros(e.target.checked)} data-testid="toggle-euros" />
         {t("tracker.show_euros")}
       </label>
+    </div>
+    <AdvancedFilters />
     </div>
   );
 }
