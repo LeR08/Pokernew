@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lps://schemas/profile",
+  "title": "schema.profile.title",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["name"],
+  "properties": {
+    "name": { "title": "schema.profile.name", "type": "string", "minLength": 1 },
+    "description": { "title": "schema.profile.description", "type": "string" },
+    "theme": { "title": "schema.profile.theme", "type": "string", "minLength": 1, "x-ref-family": "themes" }
+  }
+}

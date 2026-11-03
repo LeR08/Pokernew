@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Fallback tokens until the theme file is loaded (same values as themes/dark.toml). */
+:root {
+  --c-background: #0f1115;
+  --c-surface: #171a21;
+  --c-surface_alt: #1f2330;
+  --c-border: #2a2f3d;
+  --c-text: #e6e8ee;
+  --c-text_muted: #8b93a7;
+  --c-primary: #3b82f6;
+  --c-primary_text: #ffffff;
+  --c-accent: #14b8a6;
+  --c-success: #22c55e;
+  --c-warning: #f59e0b;
+  --c-danger: #ef4444;
+  --density: 1;
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--c-background);
+  color: var(--c-text);
+  font-family: system-ui, "Segoe UI", Roboto, sans-serif;
+}
+
+.cm-editor {
+  max-height: 60vh;
+}
+.cm-editor .cm-gutters {
+  background: var(--c-surface_alt);
+  color: var(--c-text_muted);
+  border-right: 1px solid var(--c-border);
+}
+.cm-editor .cm-activeLine,
+.cm-editor .cm-activeLineGutter {
+  background: color-mix(in srgb, var(--c-primary) 10%, transparent);
+}

@@ -1,0 +1,47 @@
+# Local Poker Suite — réglages généraux / general settings
+#
+# FR : ce fichier est rechargé à chaud : enregistre-le et l'application
+#      se met à jour sans redémarrer. Un fichier invalide est ignoré et
+#      l'erreur s'affiche dans le centre de réglages.
+# EN : this file is hot-reloaded: save it and the app updates without a
+#      restart. An invalid file is ignored and the error is shown in the
+#      settings centre.
+# Schéma / schema: schemas/settings.schema.json
+
+[general]
+# Langue de l'interface / UI language: "fr" | "en"
+language = "fr"
+# Profil actif = nom d'un fichier de profiles/ sans .toml
+# Active profile = a file name from profiles/ without .toml
+profile = "cash-6max"
+
+[appearance]
+# Thème = nom d'un fichier de themes/ sans .toml (un profil peut le surcharger)
+# Theme = a file name from themes/ without .toml (a profile may override it)
+theme = "dark"
+# Densité / density: "compact" | "comfortable"
+density = "comfortable"
+# Échelle de police / font scale: 0.8 – 1.5
+font_scale = 1.0
+
+[modules]
+# Ordre des tuiles et de la barre latérale / order of tiles and sidebar
+order = [
+  "import", "tracker", "replayer", "hud", "bankroll",
+  "equity", "icm", "solver", "preflop", "trainer",
+]
+# Modules masqués / hidden modules
+disabled = []
+
+[performance]
+# Valeurs calibrées pour un i7-8650U (4 cœurs / 8 threads) avec 16 Go.
+# Defaults sized for an i7-8650U (4 cores / 8 threads) with 16 GB.
+# Threads de calcul (équité, solveur, import). 0 = tous.
+# Worker threads (equity, solver, import). 0 = all.
+worker_threads = 6
+# Plafond mémoire du solveur en Mo / solver memory cap in MB
+ram_cap_mb = 8192
+
+# Réglages propres à chaque module, rendus depuis le settingsSchema de son manifest.
+# Per-module settings, rendered from the module manifest's settingsSchema.
+[module_settings]

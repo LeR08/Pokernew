@@ -1,0 +1,17 @@
+# Thème clair par défaut / default light theme
+name = "Clair / Light"
+base = "light"
+
+[colors]
+background = "#f6f7f9"
+surface = "#ffffff"
+surface_alt = "#eef0f4"
+border = "#d9dde5"
+text = "#161a22"
+text_muted = "#5b6478"
+primary = "#2563eb"
+primary_text = "#ffffff"
+accent = "#0d9488"
+success = "#16a34a"
+warning = "#d97706"
+danger = "#dc2626"

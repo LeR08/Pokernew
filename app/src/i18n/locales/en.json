@@ -1,0 +1,99 @@
+{
+  "app": { "title": "Local Poker Suite" },
+  "nav": { "home": "Home", "settings": "Settings", "toggle_sidebar": "Show/hide sidebar" },
+  "launcher": {
+    "title": "Modules",
+    "subtitle": "Drag a tile to reorder. Right-click or ⧉ to open it in its own window.",
+    "open_window": "Open in a window",
+    "phase": "Phase {{phase}}"
+  },
+  "module": {
+    "coming_soon": "This module arrives in phase {{phase}} of the roadmap.",
+    "replaces": "Replaces: {{tools}}",
+    "not_found": "Module not found: {{id}}",
+    "disabled": "This module is disabled in the settings.",
+    "study_only": "Study only"
+  },
+  "modules": {
+    "import": { "name": "Import & database", "description": "Hand-history import, folder watching, local database." },
+    "tracker": { "name": "Tracker", "description": "Reports, graphs, filters and leak finder." },
+    "replayer": { "name": "Replayer & notes", "description": "Replay hands, manual and automatic notes." },
+    "bankroll": { "name": "Bankroll & sessions", "description": "Deposits, withdrawals, sessions, journal and tournament ledger." },
+    "hud": { "name": "HUD", "description": "Historical stats displayed on the tables." },
+    "equity": { "name": "Equity Lab", "description": "Range vs range equity, range analysis on a board." },
+    "icm": { "name": "ICM & push/fold", "description": "ICM calculator, Nash push/fold ranges, tournament hand review." },
+    "solver": { "name": "Postflop solver", "description": "Heads-up postflop equilibria, local solution cache." },
+    "preflop": { "name": "Preflop ranges & solver", "description": "Preflop range library and preflop solver." },
+    "trainer": { "name": "Trainer & analysis", "description": "Drills from the solution cache, analysis of played hands." }
+  },
+  "settings": {
+    "title": "Settings centre",
+    "tabs": { "general": "General", "hotkeys": "Hotkeys", "themes": "Themes", "profiles": "Profiles", "modules": "Modules", "about": "About" },
+    "mode": { "form": "Form", "raw": "Raw text" },
+    "save": "Save",
+    "saved": "Saved",
+    "revert": "Discard changes",
+    "invalid": "Invalid file — the last valid version stays active.",
+    "raw_valid": "Valid file",
+    "issues_title": "Configuration problems",
+    "new_file": "New (copy of “{{id}}”)",
+    "new_file_prompt": "Id of the new file (letters, digits, - and _):",
+    "delete": "Delete",
+    "delete_confirm": "Delete “{{id}}”?",
+    "file": "File",
+    "file_path": "Location: {{path}}",
+    "no_module_settings": "No module has its own settings yet.",
+    "external_change": "The file changed on disk and was reloaded."
+  },
+  "profile": { "label": "Profile", "switch": "Switch profile" },
+  "about": {
+    "version": "Version",
+    "data_dir": "Data folder",
+    "source": "Source",
+    "sources": {
+      "command_line": "command line (--data-dir)",
+      "environment": "LPS_DATA_DIR variable",
+      "portable": "portable mode (portable.flag next to the executable)",
+      "default": "default folder"
+    },
+    "startup": "Core start-up: {{ms}} ms",
+    "mock": "Browser mode (simulated backend)",
+    "offline": "100 % local: no network connection, no telemetry."
+  },
+  "widget": {
+    "hotkey_press": "Press the key combination…",
+    "hotkey_record": "Change",
+    "enabled": "Enabled",
+    "move_up": "Move up",
+    "move_down": "Move down",
+    "none": "(none)"
+  },
+  "hotkey": {
+    "go_home": "Go to home",
+    "open_settings": "Open settings",
+    "toggle_sidebar": "Show/hide sidebar",
+    "next_profile": "Next profile"
+  },
+  "color": {
+    "background": "Background", "surface": "Surface", "surface_alt": "Secondary surface", "border": "Border",
+    "text": "Text", "text_muted": "Muted text", "primary": "Primary", "primary_text": "Text on primary",
+    "accent": "Accent", "success": "Success", "warning": "Warning", "danger": "Danger"
+  },
+  "schema": {
+    "settings": {
+      "title": "General settings", "general": "General", "language": "Language", "profile": "Active profile",
+      "appearance": "Appearance", "theme": "Theme", "density": "Density", "font_scale": "Text size",
+      "modules": "Modules", "modules_order": "Module order", "modules_disabled": "Visible modules",
+      "performance": "Performance", "worker_threads": "Worker threads",
+      "worker_threads_help": "0 = all threads. Keep 2 free for the poker client and the HUD.",
+      "ram_cap_mb": "Solver memory cap (MB)", "module_settings": "Module settings"
+    },
+    "hotkeys": { "title": "Hotkeys", "actions": "Actions" },
+    "theme": { "title": "Theme", "name": "Name", "base": "Base", "colors": "Colours" },
+    "profile": { "title": "Profile", "name": "Name", "description": "Description", "theme": "Forced theme" }
+  },
+  "enum": {
+    "fr": "Français", "en": "English", "compact": "Compact", "comfortable": "Comfortable",
+    "light": "Light", "dark": "Dark"
+  }
+}

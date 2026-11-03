@@ -1,0 +1,11 @@
+[package]
+name = "lps-hud-overlay"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish = false
+
+[lib]
+name = "lps_hud_overlay"
+
+[dependencies]

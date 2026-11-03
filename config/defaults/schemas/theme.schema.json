@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lps://schemas/theme",
+  "title": "schema.theme.title",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["name", "base", "colors"],
+  "properties": {
+    "name": { "title": "schema.theme.name", "type": "string", "minLength": 1 },
+    "base": { "title": "schema.theme.base", "type": "string", "enum": ["light", "dark"] },
+    "colors": {
+      "title": "schema.theme.colors",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["background", "surface", "surface_alt", "border", "text", "text_muted", "primary", "primary_text", "accent", "success", "warning", "danger"],
+      "properties": {
+        "background": { "$ref": "#/$defs/color", "title": "color.background" },
+        "surface": { "$ref": "#/$defs/color", "title": "color.surface" },
+        "surface_alt": { "$ref": "#/$defs/color", "title": "color.surface_alt" },
+        "border": { "$ref": "#/$defs/color", "title": "color.border" },
+        "text": { "$ref": "#/$defs/color", "title": "color.text" },
+        "text_muted": { "$ref": "#/$defs/color", "title": "color.text_muted" },
+        "primary": { "$ref": "#/$defs/color", "title": "color.primary" },
+        "primary_text": { "$ref": "#/$defs/color", "title": "color.primary_text" },
+        "accent": { "$ref": "#/$defs/color", "title": "color.accent" },
+        "success": { "$ref": "#/$defs/color", "title": "color.success" },
+        "warning": { "$ref": "#/$defs/color", "title": "color.warning" },
+        "danger": { "$ref": "#/$defs/color", "title": "color.danger" }
+      }
+    }
+  },
+  "$defs": {
+    "color": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$", "x-widget": "color" }
+  }
+}

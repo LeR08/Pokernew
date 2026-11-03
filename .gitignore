@@ -1,0 +1,10 @@
+/target
+node_modules/
+/app/dist
+/app/src-tauri/gen
+/app/test-results
+/app/playwright-report
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+.DS_Store

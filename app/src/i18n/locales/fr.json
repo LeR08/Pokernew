@@ -1,0 +1,99 @@
+{
+  "app": { "title": "Local Poker Suite" },
+  "nav": { "home": "Accueil", "settings": "Réglages", "toggle_sidebar": "Afficher/masquer la barre latérale" },
+  "launcher": {
+    "title": "Modules",
+    "subtitle": "Glisse une tuile pour réordonner. Clic droit ou ⧉ pour ouvrir dans une fenêtre.",
+    "open_window": "Ouvrir dans une fenêtre",
+    "phase": "Phase {{phase}}"
+  },
+  "module": {
+    "coming_soon": "Ce module arrive en phase {{phase}} de la feuille de route.",
+    "replaces": "Remplace : {{tools}}",
+    "not_found": "Module introuvable : {{id}}",
+    "disabled": "Ce module est désactivé dans les réglages.",
+    "study_only": "Étude uniquement"
+  },
+  "modules": {
+    "import": { "name": "Import & base de données", "description": "Import des historiques de mains, surveillance des dossiers, base locale." },
+    "tracker": { "name": "Tracker", "description": "Rapports, graphiques, filtres et détecteur de fuites." },
+    "replayer": { "name": "Replayer & notes", "description": "Rejouer les mains, notes manuelles et automatiques." },
+    "bankroll": { "name": "Bankroll & sessions", "description": "Dépôts, retraits, sessions, journal et grand livre des tournois." },
+    "hud": { "name": "HUD", "description": "Statistiques historiques affichées sur les tables." },
+    "equity": { "name": "Equity Lab", "description": "Équité range contre range, analyse de range sur un board." },
+    "icm": { "name": "ICM & push/fold", "description": "Calcul ICM, ranges push/fold Nash, revue de mains de tournoi." },
+    "solver": { "name": "Solveur postflop", "description": "Équilibres heads-up postflop, cache local de solutions." },
+    "preflop": { "name": "Ranges & solveur préflop", "description": "Bibliothèque de ranges préflop et solveur préflop." },
+    "trainer": { "name": "Entraîneur & analyse", "description": "Exercices sur le cache de solutions, analyse des mains jouées." }
+  },
+  "settings": {
+    "title": "Centre de réglages",
+    "tabs": { "general": "Général", "hotkeys": "Raccourcis", "themes": "Thèmes", "profiles": "Profils", "modules": "Modules", "about": "À propos" },
+    "mode": { "form": "Formulaire", "raw": "Texte brut" },
+    "save": "Enregistrer",
+    "saved": "Enregistré",
+    "revert": "Annuler les modifications",
+    "invalid": "Fichier invalide — la dernière version valide reste active.",
+    "raw_valid": "Fichier valide",
+    "issues_title": "Problèmes de configuration",
+    "new_file": "Nouveau (copie de « {{id}} »)",
+    "new_file_prompt": "Identifiant du nouveau fichier (lettres, chiffres, - et _) :",
+    "delete": "Supprimer",
+    "delete_confirm": "Supprimer « {{id}} » ?",
+    "file": "Fichier",
+    "file_path": "Emplacement : {{path}}",
+    "no_module_settings": "Aucun module n'a de réglages propres pour l'instant.",
+    "external_change": "Le fichier a été modifié sur le disque et rechargé."
+  },
+  "profile": { "label": "Profil", "switch": "Changer de profil" },
+  "about": {
+    "version": "Version",
+    "data_dir": "Dossier de données",
+    "source": "Origine",
+    "sources": {
+      "command_line": "ligne de commande (--data-dir)",
+      "environment": "variable LPS_DATA_DIR",
+      "portable": "mode portable (portable.flag à côté de l'exécutable)",
+      "default": "dossier par défaut"
+    },
+    "startup": "Démarrage du cœur : {{ms}} ms",
+    "mock": "Mode navigateur (backend simulé)",
+    "offline": "100 % local : aucune connexion réseau, aucune télémétrie."
+  },
+  "widget": {
+    "hotkey_press": "Appuie sur la combinaison…",
+    "hotkey_record": "Modifier",
+    "enabled": "Activé",
+    "move_up": "Monter",
+    "move_down": "Descendre",
+    "none": "(aucun)"
+  },
+  "hotkey": {
+    "go_home": "Aller à l'accueil",
+    "open_settings": "Ouvrir les réglages",
+    "toggle_sidebar": "Afficher/masquer la barre latérale",
+    "next_profile": "Profil suivant"
+  },
+  "color": {
+    "background": "Fond", "surface": "Surface", "surface_alt": "Surface secondaire", "border": "Bordure",
+    "text": "Texte", "text_muted": "Texte atténué", "primary": "Primaire", "primary_text": "Texte sur primaire",
+    "accent": "Accent", "success": "Succès", "warning": "Avertissement", "danger": "Danger"
+  },
+  "schema": {
+    "settings": {
+      "title": "Réglages généraux", "general": "Général", "language": "Langue", "profile": "Profil actif",
+      "appearance": "Apparence", "theme": "Thème", "density": "Densité", "font_scale": "Taille du texte",
+      "modules": "Modules", "modules_order": "Ordre des modules", "modules_disabled": "Modules affichés",
+      "performance": "Performances", "worker_threads": "Threads de calcul",
+      "worker_threads_help": "0 = tous les threads. Laisse-en 2 libres pour le client de poker et le HUD.",
+      "ram_cap_mb": "Plafond mémoire du solveur (Mo)", "module_settings": "Réglages des modules"
+    },
+    "hotkeys": { "title": "Raccourcis", "actions": "Actions" },
+    "theme": { "title": "Thème", "name": "Nom", "base": "Base", "colors": "Couleurs" },
+    "profile": { "title": "Profil", "name": "Nom", "description": "Description", "theme": "Thème imposé" }
+  },
+  "enum": {
+    "fr": "Français", "en": "English", "compact": "Compacte", "comfortable": "Confortable",
+    "light": "Clair", "dark": "Sombre"
+  }
+}

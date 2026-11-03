@@ -1,0 +1,11 @@
+# Raccourcis clavier de l'application / in-app keyboard shortcuts
+# Format : modificateurs (Ctrl, Alt, Shift, Meta) + touche, séparés par "+".
+# Format: modifiers (Ctrl, Alt, Shift, Meta) + key, joined with "+".
+# Les raccourcis globaux (hors application) arrivent avec le HUD (phase 3).
+# Global (system-wide) hotkeys arrive with the HUD (phase 3).
+
+[actions]
+go_home = "Ctrl+H"
+open_settings = "Ctrl+,"
+toggle_sidebar = "Ctrl+B"
+next_profile = "Ctrl+P"

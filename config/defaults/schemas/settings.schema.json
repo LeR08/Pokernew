@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lps://schemas/settings",
+  "title": "schema.settings.title",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["general", "appearance", "modules", "performance"],
+  "properties": {
+    "general": {
+      "title": "schema.settings.general",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["language", "profile"],
+      "properties": {
+        "language": { "title": "schema.settings.language", "type": "string", "enum": ["fr", "en"] },
+        "profile": { "title": "schema.settings.profile", "type": "string", "minLength": 1, "x-ref-family": "profiles" }
+      }
+    },
+    "appearance": {
+      "title": "schema.settings.appearance",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["theme", "density", "font_scale"],
+      "properties": {
+        "theme": { "title": "schema.settings.theme", "type": "string", "minLength": 1, "x-ref-family": "themes" },
+        "density": { "title": "schema.settings.density", "type": "string", "enum": ["compact", "comfortable"] },
+        "font_scale": { "title": "schema.settings.font_scale", "type": "number", "minimum": 0.8, "maximum": 1.5, "multipleOf": 0.05 }
+      }
+    },
+    "modules": {
+      "title": "schema.settings.modules",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["order", "disabled"],
+      "properties": {
+        "order": { "title": "schema.settings.modules_order", "type": "array", "items": { "type": "string" }, "uniqueItems": true, "x-widget": "module-order" },
+        "disabled": { "title": "schema.settings.modules_disabled", "type": "array", "items": { "type": "string" }, "uniqueItems": true, "x-widget": "module-toggles" }
+      }
+    },
+    "performance": {
+      "title": "schema.settings.performance",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["worker_threads", "ram_cap_mb"],
+      "properties": {
+        "worker_threads": { "title": "schema.settings.worker_threads", "description": "schema.settings.worker_threads_help", "type": "integer", "minimum": 0, "maximum": 256 },
+        "ram_cap_mb": { "title": "schema.settings.ram_cap_mb", "type": "integer", "minimum": 512, "maximum": 1048576 }
+      }
+    },
+    "module_settings": {
+      "title": "schema.settings.module_settings",
+      "type": "object",
+      "additionalProperties": { "type": "object" },
+      "x-widget": "hidden"
+    }
+  }
+}

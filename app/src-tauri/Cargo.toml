@@ -1,0 +1,31 @@
+[package]
+name = "local-poker-suite"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish = false
+description = "Local Poker Suite desktop app (Tauri shell)"
+default-run = "local-poker-suite"
+
+[lib]
+name = "lps_app"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[[bin]]
+name = "local-poker-suite"
+path = "src/main.rs"
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+serde.workspace = true
+serde_json.workspace = true
+log.workspace = true
+env_logger = "0.11"
+tokio = { version = "1", features = ["sync"] }
+lps-config = { path = "../../crates/config" }
+
+[dev-dependencies]
+tempfile.workspace = true

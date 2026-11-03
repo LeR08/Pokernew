@@ -1,0 +1,10 @@
+{
+  "name": "local-poker-suite",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm --filter app dev",
+    "test": "pnpm --filter app test",
+    "e2e": "pnpm --filter app e2e",
+    "tauri": "pnpm --filter app tauri"
+  }
+}

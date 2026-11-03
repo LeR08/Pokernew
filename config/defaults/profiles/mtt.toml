@@ -1,0 +1,10 @@
+# Profil = ensemble HUD + filtres + thème, activable en un clic.
+# Profile = bundle of HUD + filters + theme, switchable in one click.
+# Le HUD (phase 3) et les filtres (phase 2) s'ajouteront ici.
+# HUD (phase 3) and filters (phase 2) will be added here.
+name = "MTT"
+description = "Tournois multi-tables / multi-table tournaments"
+
+# Décommenter pour imposer un thème avec ce profil.
+# Uncomment to force a theme with this profile.
+# theme = "dark"
