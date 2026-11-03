@@ -9,7 +9,7 @@ import type { JSONSchema } from "./schema";
 export type JsonValue = null | boolean | number | string | JsonValue[] | { [k: string]: JsonValue };
 export type JsonObject = { [k: string]: JsonValue };
 
-export type Family = "settings" | "hotkeys" | "themes" | "profiles";
+export type Family = "settings" | "hotkeys" | "themes" | "profiles" | "rooms";
 
 export interface Issue {
   family: string;
@@ -31,6 +31,64 @@ export interface AppInfo {
   /** Milliseconds from process start to backend ready. */
   backendReadyMs: number;
   mock: boolean;
+}
+
+export interface DbStats {
+  hands: number;
+  heroHands: number;
+  players: number;
+  tournaments: number;
+  files: number;
+  errors: number;
+  firstHandAt: number | null;
+  lastHandAt: number | null;
+}
+
+export interface ImportReport {
+  files_seen: number;
+  files_imported: number;
+  hands_parsed: number;
+  hands_inserted: number;
+  duplicates: number;
+  errors: number;
+  summaries: number;
+  elapsed_ms: number;
+}
+
+export interface ImportEvent {
+  report: ImportReport;
+  trigger: "scan" | "watch" | "manual";
+}
+
+export interface ImportStatus {
+  folders: { room: string; path: string; exists: boolean }[];
+  watching: boolean;
+  history: { at: number; trigger: ImportEvent["trigger"]; report: ImportReport }[];
+  dbPath: string;
+}
+
+export interface ImportErrorRow {
+  id: number;
+  file: string;
+  byte_offset: number;
+  line_no: number;
+  line: string;
+  message: string;
+  raw: string;
+  created_at: number;
+}
+
+export interface FoundAccount {
+  room: string;
+  account: string;
+  folder: string;
+  files: number;
+}
+
+export interface BackupInfo {
+  name: string;
+  size: number;
+  created_at: number;
 }
 
 export class BackendError extends Error {
@@ -57,26 +115,41 @@ export interface Backend {
   onConfigEvent(cb: (e: ConfigEvent) => void): () => void;
   /** Tells the backend the first screen is rendered (start-up timing). */
   markReady(): void;
+
+  // ---- Import & database (phase 1) ----
+  dbStats(): Promise<DbStats>;
+  importStatus(): Promise<ImportStatus>;
+  importPaths(paths: string[]): Promise<void>;
+  importErrors(limit?: number): Promise<ImportErrorRow[]>;
+  importRetryErrors(): Promise<number>;
+  detectRooms(): Promise<FoundAccount[]>;
+  backupList(): Promise<BackupInfo[]>;
+  backupNow(): Promise<string>;
+  backupRestore(name: string): Promise<void>;
+  appRestart(): Promise<void>;
+  /** Native file/folder picker; null when cancelled. */
+  pickPaths(opts: { directory: boolean; multiple: boolean; title: string }): Promise<string[] | null>;
+  onImportEvent(cb: (e: ImportEvent) => void): () => void;
 }
 
 export const isTauri = (): boolean =>
   typeof window !== "undefined" && "__TAURI_INTERNALS__" in window;
 
-let instance: Backend | null = null;
+let instance: Promise<Backend> | null = null;
 
-export async function getBackend(): Promise<Backend> {
-  if (instance) return instance;
-  if (isTauri()) {
-    const { createTauriBackend } = await import("./backend.tauri");
-    instance = createTauriBackend();
-  } else {
-    const { createMockBackend } = await import("./backend.mock");
-    instance = createMockBackend();
-  }
+/**
+ * The backend singleton. The promise itself is cached so that concurrent
+ * first calls share one instance (two instances would not see each other's
+ * events).
+ */
+export function getBackend(): Promise<Backend> {
+  instance ??= isTauri()
+    ? import("./backend.tauri").then((m) => m.createTauriBackend())
+    : import("./backend.mock").then((m) => m.createMockBackend());
   return instance;
 }
 
 /** For tests: inject a backend. */
 export function setBackend(b: Backend | null): void {
-  instance = b;
+  instance = b ? Promise.resolve(b) : null;
 }

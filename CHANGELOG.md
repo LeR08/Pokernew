@@ -2,7 +2,23 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/). Versions follow the roadmap phases.
 
-## [Unreleased] — Phase 0 : Shell
+## [Unreleased] — Phase 1 : Import & base de données
+
+### Ajouté / Added
+- `core-model` : cartes, positions (dead small blind et dead button gérés), modèle de main normalisé avec contrôles de cohérence.
+- Parseur **Winamax** (MTT, knockout, 6-max et 3-max) et résumés de tournoi, écrits à partir de vrais fichiers ; une ligne inconnue est une erreur, pas un saut.
+- Base SQLite (WAL) : schéma de la spec, migrations, 25 compteurs calculés à l'import (`docs/counters.md`), recalcul automatique quand un compteur est ajouté.
+- Import incrémental (offset par fichier), parsing parallèle, écriture par lots de 1 000 mains, dédoublonnage, import de dossiers, fichiers et zip.
+- Surveillance des dossiers : une nouvelle main arrive en base en 0,3 s environ.
+- Journal d'erreurs avec la main brute et un bouton « copier comme cas de test » ; bouton « réessayer ».
+- Assistant de premier lancement : langue, détection des comptes Winamax, profil, import.
+- Configuration `rooms/*.toml` (dossiers, pseudos, `hud_allowed`) et onglet « Salles ».
+- Sauvegardes SQLite planifiées (24 h, 7 gardées) et restauration en un clic.
+
+### Corrigé / Fixed
+- Front : deux appels simultanés à `getBackend()` pouvaient créer deux backends, dont les événements ne se voyaient pas.
+
+## Phase 0 : Shell
 
 ### Ajouté / Added
 - Workspace Cargo avec toutes les crates de la spec (squelettes) + crate `config`.

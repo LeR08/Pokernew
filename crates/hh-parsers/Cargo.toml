@@ -4,8 +4,16 @@ version.workspace = true
 edition.workspace = true
 license.workspace = true
 publish = false
+description = "Hand-history parsers, one module per room, plus format autodetection."
 
 [lib]
 name = "lps_hh_parsers"
 
 [dependencies]
+lps-core-model = { path = "../core-model" }
+regex = "1"
+thiserror.workspace = true
+serde.workspace = true
+
+[dev-dependencies]
+insta = "1"

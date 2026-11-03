@@ -16,6 +16,10 @@ pub static DEFAULTS: Dir<'static> = include_dir!("$CARGO_MANIFEST_DIR/../../conf
 /// Name of the schemas sub-folder.
 pub const SCHEMAS_DIR: &str = "schemas";
 
+/// Files of `config/defaults/` that are compiled into the app and not
+/// user-editable, so they are not copied to the data folder.
+pub const NOT_INSTALLED: &[&str] = &["counters.toml"];
+
 /// Returns the embedded JSON Schema text for `name` (e.g. `"settings"`).
 pub fn schema_text(name: &str) -> Option<&'static str> {
     DEFAULTS
@@ -53,6 +57,9 @@ fn copy_dir(dir: &Dir<'_>, root: &Path, report: &mut InstallReport) -> io::Resul
             DirEntry::File(f) => {
                 let target = root.join(f.path());
                 let is_schema = f.path().starts_with(SCHEMAS_DIR);
+                if NOT_INSTALLED.iter().any(|n| f.path() == Path::new(n)) {
+                    continue;
+                }
                 if is_schema {
                     if std::fs::read(&target).ok().as_deref() != Some(f.contents()) {
                         std::fs::write(&target, f.contents())?;

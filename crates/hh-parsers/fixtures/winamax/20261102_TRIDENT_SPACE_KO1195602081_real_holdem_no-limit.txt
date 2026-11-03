@@ -1,0 +1,678 @@
+Winamax Poker - Tournament "TRIDENT SPACE KO" buyIn: 0.45€ + 0.05€ level: 5 - HandId: #5135071836924543030-33-1793644483 - Holdem no limit (5/20/40) - 2026/11/02 18:34:43 UTC
+Table: 'TRIDENT SPACE KO(1195602081)#0053' 3-max (real money) Seat #3 is the button
+Seat 1: Player10 (2611, 0.74€ bounty)
+Seat 2: Tantaculejen (500, 0.25€ bounty)
+Seat 3: Player34 (889, 1€ bounty)
+*** ANTE/BLINDS ***
+Player10 posts ante 5
+Tantaculejen posts ante 5
+Player34 posts ante 5
+Player10 posts small blind 20
+Tantaculejen posts big blind 40
+Dealt to Tantaculejen [8h Qd]
+*** PRE-FLOP *** 
+Player34 calls 40
+Player10 raises 60 to 100
+Tantaculejen folds
+Player34 calls 60
+*** FLOP *** [Ac 4c 8d]
+Player10 bets 166
+Player34 calls 166
+*** TURN *** [Ac 4c 8d][Js]
+Player10 bets 382
+Player34 calls 382
+*** RIVER *** [Ac 4c 8d Js][9d]
+Player10 bets 269
+Player34 calls 236 and is all-in
+*** SHOW DOWN ***
+Player10 shows [9h 9s] (Trips of 9)
+Player34 shows [Tc 7c] (Straight Jack high)
+Player34 collected 1823 from main pot
+Player10 collected 33 from side pot 1
+*** SUMMARY ***
+Total pot 1856 | No rake
+Board: [Ac 4c 8d Js 9d]
+Seat 1: Player10 (small blind) showed [9h 9s] and won 33 with Trips of 9
+Seat 3: Player34 (button) showed [Tc 7c] and won 1823 with Straight Jack high
+
+
+Winamax Poker - Tournament "TRIDENT SPACE KO" buyIn: 0.45€ + 0.05€ level: 6 - HandId: #5135071836924543030-34-1793644523 - Holdem no limit (6/25/50) - 2026/11/02 18:35:23 UTC
+Table: 'TRIDENT SPACE KO(1195602081)#0053' 3-max (real money) Seat #1 is the button
+Seat 1: Player10 (1722, 0.74€ bounty)
+Seat 2: Tantaculejen (455, 0.25€ bounty)
+Seat 3: Player34 (1823, 1€ bounty)
+*** ANTE/BLINDS ***
+Tantaculejen posts ante 6
+Player34 posts ante 6
+Player10 posts ante 6
+Tantaculejen posts small blind 25
+Player34 posts big blind 50
+Dealt to Tantaculejen [Kc 6c]
+*** PRE-FLOP *** 
+Player10 calls 50
+Tantaculejen raises 399 to 449 and is all-in
+Player34 folds
+Player10 calls 399
+*** FLOP *** [3c 7h Jd]
+*** TURN *** [3c 7h Jd][Qc]
+*** RIVER *** [3c 7h Jd Qc][3d]
+*** SHOW DOWN ***
+Player10 shows [4d Td] (One pair : 3)
+Tantaculejen shows [Kc 6c] (One pair : 3)
+Tantaculejen collected 966 from pot
+*** SUMMARY ***
+Total pot 966 | No rake
+Board: [3c 7h Jd Qc 3d]
+Seat 1: Player10 (button) showed [4d Td] and lost with One pair : 3
+Seat 2: Tantaculejen (small blind) showed [Kc 6c] and won 966 with One pair : 3
+
+
+Winamax Poker - Tournament "TRIDENT SPACE KO" buyIn: 0.45€ + 0.05€ level: 6 - HandId: #5135071836924543030-35-1793644560 - Holdem no limit (6/25/50) - 2026/11/02 18:36:00 UTC
+Table: 'TRIDENT SPACE KO(1195602081)#0053' 3-max (real money) Seat #2 is the button
+Seat 1: Player10 (1267, 0.74€ bounty)
+Seat 2: Tantaculejen (966, 0.25€ bounty)
+Seat 3: Player34 (1767, 1€ bounty)
+*** ANTE/BLINDS ***
+Player34 posts ante 6
+Player10 posts ante 6
+Tantaculejen posts ante 6
+Player34 posts small blind 25
+Player10 posts big blind 50
+Dealt to Tantaculejen [9d 5d]
+*** PRE-FLOP *** 
+Tantaculejen folds
+Player34 calls 25
+Player10 raises 1211 to 1261 and is all-in
+Player34 folds
+Player10 collected 1329 from pot
+*** SUMMARY ***
+Total pot 1329 | No rake
+Seat 1: Player10 (big blind) won 1329
+
+
+Winamax Poker - Tournament "TRIDENT SPACE KO" buyIn: 0.45€ + 0.05€ level: 6 - HandId: #5135071836924543030-36-1793644577 - Holdem no limit (6/25/50) - 2026/11/02 18:36:17 UTC
+Table: 'TRIDENT SPACE KO(1195602081)#0053' 3-max (real money) Seat #3 is the button
+Seat 1: Player10 (1329, 0.74€ bounty)
+Seat 2: Tantaculejen (960, 0.25€ bounty)
+Seat 3: Player34 (1711, 1€ bounty)
+*** ANTE/BLINDS ***
+Player10 posts ante 6
+Tantaculejen posts ante 6
+Player34 posts ante 6
+Player10 posts small blind 25
+Tantaculejen posts big blind 50
+Dealt to Tantaculejen [Ah 2d]
+*** PRE-FLOP *** 
+Player34 folds
+Player10 calls 25
+Tantaculejen checks
+*** FLOP *** [Qc Ad 8c]
+Player10 checks
+Tantaculejen checks
+*** TURN *** [Qc Ad 8c][9c]
+Player10 bets 77
+Tantaculejen calls 77
+*** RIVER *** [Qc Ad 8c 9c][3s]
+Player10 bets 272
+Tantaculejen calls 272
+*** SHOW DOWN ***
+Tantaculejen shows [Ah 2d] (One pair : Aces)
+Player10 shows [8s Qd] (Two pairs : Queens and 8)
+Player10 collected 816 from pot
+*** SUMMARY ***
+Total pot 816 | No rake
+Board: [Qc Ad 8c 9c 3s]
+Seat 1: Player10 (small blind) showed [8s Qd] and won 816 with Two pairs : Queens and 8
+Seat 2: Tantaculejen (big blind) showed [Ah 2d] and lost with One pair : Aces
+
+
+Winamax Poker - Tournament "TRIDENT SPACE KO" buyIn: 0.45€ + 0.05€ level: 6 - HandId: #5135071836924543030-37-1793644598 - Holdem no limit (6/25/50) - 2026/11/02 18:36:38 UTC
+Table: 'TRIDENT SPACE KO(1195602081)#0053' 3-max (real money) Seat #1 is the button
+Seat 1: Player10 (1740, 0.74€ bounty)
+Seat 2: Tantaculejen (555, 0.25€ bounty)
+Seat 3: Player34 (1705, 1€ bounty)
+*** ANTE/BLINDS ***
+Tantaculejen posts ante 6
+Player34 posts ante 6
+Player10 posts ante 6
+Tantaculejen posts small blind 25
+Player34 posts big blind 50
+Dealt to Tantaculejen [5h Td]
+*** PRE-FLOP *** 
+Player10 raises 100 to 150
+Tantaculejen folds
+Player34 folds
+Player10 collected 243 from pot
+*** SUMMARY ***
+Total pot 243 | No rake
+Seat 1: Player10 (button) won 243
+
+
+Winamax Poker - Tournament "TRIDENT SPACE KO" buyIn: 0.45€ + 0.05€ level: 6 - HandId: #5135071836924543030-38-1793644609 - Holdem no limit (6/25/50) - 2026/11/02 18:36:49 UTC
+Table: 'TRIDENT SPACE KO(1195602081)#0053' 3-max (real money) Seat #2 is the button
+Seat 1: Player10 (1827, 0.74€ bounty)
+Seat 2: Tantaculejen (524, 0.25€ bounty)
+Seat 3: Player34 (1649, 1€ bounty)
+*** ANTE/BLINDS ***
+Player34 posts ante 6
+Player10 posts ante 6
+Tantaculejen posts ante 6
+Player34 posts small blind 25
+Player10 posts big blind 50
+Dealt to Tantaculejen [2d Ks]
+*** PRE-FLOP *** 
+Tantaculejen folds
+Player34 calls 25
+Player10 checks
+*** FLOP *** [5d 2c 9s]
+Player34 bets 118
+Player10 folds
+Player34 collected 236 from pot
+*** SUMMARY ***
+Total pot 236 | No rake
+Board: [5d 2c 9s]
+Seat 3: Player34 (small blind) won 236
+
+
+Winamax Poker - Tournament "TRIDENT SPACE KO" buyIn: 0.45€ + 0.05€ level: 6 - HandId: #5135071836924543030-39-1793644625 - Holdem no limit (6/25/50) - 2026/11/02 18:37:05 UTC
+Table: 'TRIDENT SPACE KO(1195602081)#0053' 3-max (real money) Seat #3 is the button
+Seat 1: Player10 (1771, 0.74€ bounty)
+Seat 2: Tantaculejen (518, 0.25€ bounty)
+Seat 3: Player34 (1711, 1€ bounty)
+*** ANTE/BLINDS ***
+Player10 posts ante 6
+Tantaculejen posts ante 6
+Player34 posts ante 6
+Player10 posts small blind 25
+Tantaculejen posts big blind 50
+Dealt to Tantaculejen [8s Ac]
+*** PRE-FLOP *** 
+Player34 calls 50
+Player10 calls 25
+Tantaculejen raises 462 to 512 and is all-in
+Player34 calls 462
+Player10 folds
+*** FLOP *** [5d 4h 8h]
+*** TURN *** [5d 4h 8h][Tc]
+*** RIVER *** [5d 4h 8h Tc][Jc]
+*** SHOW DOWN ***
+Player34 shows [As 5h] (One pair : 5)
+Tantaculejen shows [8s Ac] (One pair : 8)
+Tantaculejen collected 1092 from pot
+*** SUMMARY ***
+Total pot 1092 | No rake
+Board: [5d 4h 8h Tc Jc]
+Seat 2: Tantaculejen (big blind) showed [8s Ac] and won 1092 with One pair : 8
+Seat 3: Player34 (button) showed [As 5h] and lost with One pair : 5
+
+
+Winamax Poker - Tournament "TRIDENT SPACE KO" buyIn: 0.45€ + 0.05€ level: 7 - HandId: #5135071836924543030-40-1793644654 - Holdem no limit (7/30/60) - 2026/11/02 18:37:34 UTC
+Table: 'TRIDENT SPACE KO(1195602081)#0053' 3-max (real money) Seat #1 is the button
+Seat 1: Player10 (1715, 0.74€ bounty)
+Seat 2: Tantaculejen (1092, 0.25€ bounty)
+Seat 3: Player34 (1193, 1€ bounty)
+*** ANTE/BLINDS ***
+Tantaculejen posts ante 7
+Player34 posts ante 7
+Player10 posts ante 7
+Tantaculejen posts small blind 30
+Player34 posts big blind 60
+Dealt to Tantaculejen [Jc Ac]
+*** PRE-FLOP *** 
+Player10 folds
+Tantaculejen raises 72 to 132
+Player34 calls 72
+*** FLOP *** [Ah 6s Kc]
+Tantaculejen bets 100
+Player34 folds
+Tantaculejen collected 385 from pot
+*** SUMMARY ***
+Total pot 385 | No rake
+Board: [Ah 6s Kc]
+Seat 2: Tantaculejen (small blind) won 385
+
+
+Winamax Poker - Tournament "TRIDENT SPACE KO" buyIn: 0.45€ + 0.05€ level: 7 - HandId: #5135071836924543030-41-1793644667 - Holdem no limit (7/30/60) - 2026/11/02 18:37:47 UTC
+Table: 'TRIDENT SPACE KO(1195602081)#0053' 3-max (real money) Seat #2 is the button
+Seat 1: Player10 (1708, 0.74€ bounty)
+Seat 2: Tantaculejen (1238, 0.25€ bounty)
+Seat 3: Player34 (1054, 1€ bounty)
+*** ANTE/BLINDS ***
+Player34 posts ante 7
+Player10 posts ante 7
+Tantaculejen posts ante 7
+Player34 posts small blind 30
+Player10 posts big blind 60
+Dealt to Tantaculejen [6d 9d]
+*** PRE-FLOP *** 
+Tantaculejen folds
+Player34 calls 30
+Player10 raises 141 to 201
+Player34 folds
+Player10 collected 282 from pot
+*** SUMMARY ***
+Total pot 282 | No rake
+Seat 1: Player10 (big blind) won 282
+
+
+Winamax Poker - Tournament "TRIDENT SPACE KO" buyIn: 0.45€ + 0.05€ level: 7 - HandId: #5135071836924543030-42-1793644684 - Holdem no limit (7/30/60) - 2026/11/02 18:38:04 UTC
+Table: 'TRIDENT SPACE KO(1195602081)#0053' 3-max (real money) Seat #3 is the button
+Seat 1: Player10 (1782, 0.74€ bounty)
+Seat 2: Tantaculejen (1231, 0.25€ bounty)
+Seat 3: Player34 (987, 1€ bounty)
+*** ANTE/BLINDS ***
+Player10 posts ante 7
+Tantaculejen posts ante 7
+Player34 posts ante 7
+Player10 posts small blind 30
+Tantaculejen posts big blind 60
+Dealt to Tantaculejen [2d 5c]
+*** PRE-FLOP *** 
+Player34 folds
+Player10 folds
+Tantaculejen collected 111 from pot
+*** SUMMARY ***
+Total pot 111 | No rake
+Seat 2: Tantaculejen (big blind) won 111
+
+
+Winamax Poker - Tournament "TRIDENT SPACE KO" buyIn: 0.45€ + 0.05€ level: 7 - HandId: #5135071836924543030-43-1793644691 - Holdem no limit (7/30/60) - 2026/11/02 18:38:11 UTC
+Table: 'TRIDENT SPACE KO(1195602081)#0053' 3-max (real money) Seat #1 is the button
+Seat 1: Player10 (1745, 0.74€ bounty)
+Seat 2: Tantaculejen (1275, 0.25€ bounty)
+Seat 3: Player34 (980, 1€ bounty)
+*** ANTE/BLINDS ***
+Tantaculejen posts ante 7
+Player34 posts ante 7
+Player10 posts ante 7
+Tantaculejen posts small blind 30
+Player34 posts big blind 60
+Dealt to Tantaculejen [Ks 9h]
+*** PRE-FLOP *** 
+Player10 raises 60 to 120
+Tantaculejen calls 90
+Player34 calls 60
+*** FLOP *** [8s 3s 8c]
+Tantaculejen checks
+Player34 checks
+Player10 checks
+*** TURN *** [8s 3s 8c][4c]
+Tantaculejen checks
+Player34 checks
+Player10 bets 133
+Tantaculejen folds
+Player34 folds
+Player10 collected 514 from pot
+*** SUMMARY ***
+Total pot 514 | No rake
+Board: [8s 3s 8c 4c]
+Seat 1: Player10 (button) won 514
+
+
+Winamax Poker - Tournament "TRIDENT SPACE KO" buyIn: 0.45€ + 0.05€ level: 7 - HandId: #5135071836924543030-44-1793644752 - Holdem no limit (7/30/60) - 2026/11/02 18:39:12 UTC
+Table: 'TRIDENT SPACE KO(1195602081)#0053' 3-max (real money) Seat #2 is the button
+Seat 1: Player10 (1999, 0.74€ bounty)
+Seat 2: Tantaculejen (1148, 0.25€ bounty)
+Seat 3: Player34 (853, 1€ bounty)
+*** ANTE/BLINDS ***
+Player34 posts ante 7
+Player10 posts ante 7
+Tantaculejen posts ante 7
+Player34 posts small blind 30
+Player10 posts big blind 60
+Dealt to Tantaculejen [Kd Th]
+*** PRE-FLOP *** 
+Tantaculejen raises 72 to 132
+Player34 folds
+Player10 folds
+Tantaculejen collected 243 from pot
+*** SUMMARY ***
+Total pot 243 | No rake
+Seat 2: Tantaculejen (button) won 243
+
+
+Winamax Poker - Tournament "TRIDENT SPACE KO" buyIn: 0.45€ + 0.05€ level: 7 - HandId: #5135071836924543030-45-1793644777 - Holdem no limit (7/30/60) - 2026/11/02 18:39:37 UTC
+Table: 'TRIDENT SPACE KO(1195602081)#0053' 3-max (real money) Seat #3 is the button
+Seat 1: Player10 (1932, 0.74€ bounty)
+Seat 2: Tantaculejen (1252, 0.25€ bounty)
+Seat 3: Player34 (816, 1€ bounty)
+*** ANTE/BLINDS ***
+Player10 posts ante 7
+Tantaculejen posts ante 7
+Player34 posts ante 7
+Player10 posts small blind 30
+Tantaculejen posts big blind 60
+Dealt to Tantaculejen [2h 6d]
+*** PRE-FLOP *** 
+Player34 folds
+Player10 calls 30
+Tantaculejen checks
+*** FLOP *** [4s 5c Kd]
+Player10 checks
+Tantaculejen checks
+*** TURN *** [4s 5c Kd][Th]
+Player10 bets 92
+Tantaculejen folds
+Player10 collected 233 from pot
+*** SUMMARY ***
+Total pot 233 | No rake
+Board: [4s 5c Kd Th]
+Seat 1: Player10 (small blind) won 233
+
+
+Winamax Poker - Tournament "TRIDENT SPACE KO" buyIn: 0.45€ + 0.05€ level: 8 - HandId: #5135071836924543030-46-1793644804 - Holdem no limit (8/35/70) - 2026/11/02 18:40:04 UTC
+Table: 'TRIDENT SPACE KO(1195602081)#0053' 3-max (real money) Seat #1 is the button
+Seat 1: Player10 (2006, 0.74€ bounty)
+Seat 2: Tantaculejen (1185, 0.25€ bounty)
+Seat 3: Player34 (809, 1€ bounty)
+*** ANTE/BLINDS ***
+Tantaculejen posts ante 8
+Player34 posts ante 8
+Player10 posts ante 8
+Tantaculejen posts small blind 35
+Player34 posts big blind 70
+Dealt to Tantaculejen [9c 7c]
+*** PRE-FLOP *** 
+Player10 calls 70
+Tantaculejen raises 84 to 154
+Player34 folds
+Player10 calls 84
+*** FLOP *** [6c Js 7s]
+Tantaculejen bets 261
+Player10 folds
+Tantaculejen collected 663 from pot
+*** SUMMARY ***
+Total pot 663 | No rake
+Board: [6c Js 7s]
+Seat 2: Tantaculejen (small blind) won 663
+
+
+Winamax Poker - Tournament "TRIDENT SPACE KO" buyIn: 0.45€ + 0.05€ level: 8 - HandId: #5135071836924543030-47-1793644836 - Holdem no limit (8/35/70) - 2026/11/02 18:40:36 UTC
+Table: 'TRIDENT SPACE KO(1195602081)#0053' 3-max (real money) Seat #2 is the button
+Seat 1: Player10 (1844, 0.74€ bounty)
+Seat 2: Tantaculejen (1425, 0.25€ bounty)
+Seat 3: Player34 (731, 1€ bounty)
+*** ANTE/BLINDS ***
+Player34 posts ante 8
+Player10 posts ante 8
+Tantaculejen posts ante 8
+Player34 posts small blind 35
+Player10 posts big blind 70
+Dealt to Tantaculejen [Qd Jc]
+*** PRE-FLOP *** 
+Tantaculejen raises 84 to 154
+Player34 folds
+Player10 calls 84
+*** FLOP *** [Tc Qh Kc]
+Player10 bets 1682 and is all-in
+Tantaculejen calls 1263 and is all-in
+*** TURN *** [Tc Qh Kc][4h]
+*** RIVER *** [Tc Qh Kc 4h][2d]
+*** SHOW DOWN ***
+Player10 shows [Qc 6d] (One pair : Queens)
+Tantaculejen shows [Qd Jc] (One pair : Queens)
+Tantaculejen collected 2893 from main pot
+Player10 collected 419 from side pot 1
+*** SUMMARY ***
+Total pot 3312 | No rake
+Board: [Tc Qh Kc 4h 2d]
+Seat 1: Player10 (big blind) showed [Qc 6d] and won 419 with One pair : Queens
+Seat 2: Tantaculejen (button) showed [Qd Jc] and won 2893 with One pair : Queens
+
+
+Winamax Poker - Tournament "TRIDENT SPACE KO" buyIn: 0.45€ + 0.05€ level: 8 - HandId: #5135071836924543030-48-1793644858 - Holdem no limit (8/35/70) - 2026/11/02 18:40:58 UTC
+Table: 'TRIDENT SPACE KO(1195602081)#0053' 3-max (real money) Seat #3 is the button
+Seat 1: Player10 (419, 0.74€ bounty)
+Seat 2: Tantaculejen (2893, 0.25€ bounty)
+Seat 3: Player34 (688, 1€ bounty)
+*** ANTE/BLINDS ***
+Player10 posts ante 8
+Tantaculejen posts ante 8
+Player34 posts ante 8
+Player10 posts small blind 35
+Tantaculejen posts big blind 70
+Dealt to Tantaculejen [5s Kc]
+*** PRE-FLOP *** 
+Player34 calls 70
+Player10 raises 341 to 411 and is all-in
+Tantaculejen calls 341
+Player34 calls 341
+*** FLOP *** [Ac 3d 5h]
+Tantaculejen bets 280
+Player34 calls 269 and is all-in
+*** TURN *** [Ac 3d 5h][7s]
+*** RIVER *** [Ac 3d 5h 7s][As]
+*** SHOW DOWN ***
+Player10 shows [Ah 9d] (Trips of Aces)
+Tantaculejen shows [5s Kc] (Two pairs : Aces and 5)
+Player34 shows [2s Ad] (Trips of Aces)
+Player34 collected 538 from side pot 1
+Tantaculejen collected 11 from side pot 2
+Player10 collected 1257 from main pot
+*** SUMMARY ***
+Total pot 1806 | No rake
+Board: [Ac 3d 5h 7s As]
+Seat 1: Player10 (small blind) showed [Ah 9d] and won 1257 with Trips of Aces
+Seat 2: Tantaculejen (big blind) showed [5s Kc] and won 11 with Two pairs : Aces and 5
+Seat 3: Player34 (button) showed [2s Ad] and won 538 with Trips of Aces
+
+
+Winamax Poker - Tournament "TRIDENT SPACE KO" buyIn: 0.45€ + 0.05€ level: 8 - HandId: #5135071836924543030-49-1793644883 - Holdem no limit (8/35/70) - 2026/11/02 18:41:23 UTC
+Table: 'TRIDENT SPACE KO(1195602081)#0053' 3-max (real money) Seat #1 is the button
+Seat 1: Player10 (1257, 0.74€ bounty)
+Seat 2: Tantaculejen (2205, 0.25€ bounty)
+Seat 3: Player34 (538, 1€ bounty)
+*** ANTE/BLINDS ***
+Tantaculejen posts ante 8
+Player34 posts ante 8
+Player10 posts ante 8
+Tantaculejen posts small blind 35
+Player34 posts big blind 70
+Dealt to Tantaculejen [Jd Td]
+*** PRE-FLOP *** 
+Player10 raises 1179 to 1249 and is all-in
+Tantaculejen calls 1214
+Player34 folds
+*** FLOP *** [6h 8d Ah]
+*** TURN *** [6h 8d Ah][3d]
+*** RIVER *** [6h 8d Ah 3d][Th]
+*** SHOW DOWN ***
+Tantaculejen shows [Jd Td] (One pair : Tens)
+Player10 shows [7c As] (One pair : Aces)
+Player10 collected 2592 from pot
+*** SUMMARY ***
+Total pot 2592 | No rake
+Board: [6h 8d Ah 3d Th]
+Seat 1: Player10 (button) showed [7c As] and won 2592 with One pair : Aces
+Seat 2: Tantaculejen (small blind) showed [Jd Td] and lost with One pair : Tens
+
+
+Winamax Poker - Tournament "TRIDENT SPACE KO" buyIn: 0.45€ + 0.05€ level: 8 - HandId: #5135071836924543030-50-1793644909 - Holdem no limit (8/35/70) - 2026/11/02 18:41:49 UTC
+Table: 'TRIDENT SPACE KO(1195602081)#0053' 3-max (real money) Seat #2 is the button
+Seat 1: Player10 (2592, 0.74€ bounty)
+Seat 2: Tantaculejen (948, 0.25€ bounty)
+Seat 3: Player34 (460, 1€ bounty)
+*** ANTE/BLINDS ***
+Player34 posts ante 8
+Player10 posts ante 8
+Tantaculejen posts ante 8
+Player34 posts small blind 35
+Player10 posts big blind 70
+Dealt to Tantaculejen [5c 4c]
+*** PRE-FLOP *** 
+Tantaculejen folds
+Player34 calls 35
+Player10 raises 164 to 234
+Player34 folds
+Player10 collected 328 from pot
+*** SUMMARY ***
+Total pot 328 | No rake
+Seat 1: Player10 (big blind) won 328
+
+
+Winamax Poker - Tournament "TRIDENT SPACE KO" buyIn: 0.45€ + 0.05€ level: 8 - HandId: #5135071836924543030-51-1793644926 - Holdem no limit (8/35/70) - 2026/11/02 18:42:06 UTC
+Table: 'TRIDENT SPACE KO(1195602081)#0053' 3-max (real money) Seat #3 is the button
+Seat 1: Player10 (2678, 0.74€ bounty)
+Seat 2: Tantaculejen (940, 0.25€ bounty)
+Seat 3: Player34 (382, 1€ bounty)
+*** ANTE/BLINDS ***
+Player10 posts ante 8
+Tantaculejen posts ante 8
+Player34 posts ante 8
+Player10 posts small blind 35
+Tantaculejen posts big blind 70
+Dealt to Tantaculejen [2c 5c]
+*** PRE-FLOP *** 
+Player34 folds
+Player10 raises 140 to 210
+Tantaculejen folds
+Player10 collected 304 from pot
+*** SUMMARY ***
+Total pot 304 | No rake
+Seat 1: Player10 (small blind) won 304
+
+
+Winamax Poker - Tournament "TRIDENT SPACE KO" buyIn: 0.45€ + 0.05€ level: 8 - HandId: #5135071836924543030-52-1793644946 - Holdem no limit (8/35/70) - 2026/11/02 18:42:26 UTC
+Table: 'TRIDENT SPACE KO(1195602081)#0053' 3-max (real money) Seat #1 is the button
+Seat 1: Player10 (2764, 0.74€ bounty)
+Seat 2: Tantaculejen (862, 0.25€ bounty)
+Seat 3: Player34 (374, 1€ bounty)
+*** ANTE/BLINDS ***
+Tantaculejen posts ante 8
+Player34 posts ante 8
+Player10 posts ante 8
+Tantaculejen posts small blind 35
+Player34 posts big blind 70
+Dealt to Tantaculejen [9s Jc]
+*** PRE-FLOP *** 
+Player10 raises 140 to 210
+Tantaculejen folds
+Player34 folds
+Player10 collected 339 from pot
+*** SUMMARY ***
+Total pot 339 | No rake
+Seat 1: Player10 (button) won 339
+
+
+Winamax Poker - Tournament "TRIDENT SPACE KO" buyIn: 0.45€ + 0.05€ level: 9 - HandId: #5135071836924543030-53-1793644965 - Holdem no limit (10/40/80) - 2026/11/02 18:42:45 UTC
+Table: 'TRIDENT SPACE KO(1195602081)#0053' 3-max (real money) Seat #2 is the button
+Seat 1: Player10 (2885, 0.74€ bounty)
+Seat 2: Tantaculejen (819, 0.25€ bounty)
+Seat 3: Player34 (296, 1€ bounty)
+*** ANTE/BLINDS ***
+Player34 posts ante 10
+Player10 posts ante 10
+Tantaculejen posts ante 10
+Player34 posts small blind 40
+Player10 posts big blind 80
+Dealt to Tantaculejen [Kh 4s]
+*** PRE-FLOP *** 
+Tantaculejen folds
+Player34 calls 40
+Player10 checks
+*** FLOP *** [6d 7h 9h]
+Player34 bets 206 and is all-in
+Player10 folds
+Player34 collected 396 from pot
+*** SUMMARY ***
+Total pot 396 | No rake
+Board: [6d 7h 9h]
+Seat 3: Player34 (small blind) won 396
+
+
+Winamax Poker - Tournament "TRIDENT SPACE KO" buyIn: 0.45€ + 0.05€ level: 9 - HandId: #5135071836924543030-54-1793645005 - Holdem no limit (10/40/80) - 2026/11/02 18:43:25 UTC
+Table: 'TRIDENT SPACE KO(1195602081)#0053' 3-max (real money) Seat #3 is the button
+Seat 1: Player10 (2795, 0.74€ bounty)
+Seat 2: Tantaculejen (809, 0.25€ bounty)
+Seat 3: Player34 (396, 1€ bounty)
+*** ANTE/BLINDS ***
+Player10 posts ante 10
+Tantaculejen posts ante 10
+Player34 posts ante 10
+Player10 posts small blind 40
+Tantaculejen posts big blind 80
+Dealt to Tantaculejen [7d 9s]
+*** PRE-FLOP *** 
+Player34 folds
+Player10 calls 40
+Tantaculejen checks
+*** FLOP *** [Kd Ac 2h]
+Player10 bets 80
+Tantaculejen folds
+Player10 collected 270 from pot
+*** SUMMARY ***
+Total pot 270 | No rake
+Board: [Kd Ac 2h]
+Seat 1: Player10 (small blind) won 270
+
+
+Winamax Poker - Tournament "TRIDENT SPACE KO" buyIn: 0.45€ + 0.05€ level: 9 - HandId: #5135071836924543030-55-1793645028 - Holdem no limit (10/40/80) - 2026/11/02 18:43:48 UTC
+Table: 'TRIDENT SPACE KO(1195602081)#0053' 3-max (real money) Seat #1 is the button
+Seat 1: Player10 (2895, 0.74€ bounty)
+Seat 2: Tantaculejen (719, 0.25€ bounty)
+Seat 3: Player34 (386, 1€ bounty)
+*** ANTE/BLINDS ***
+Tantaculejen posts ante 10
+Player34 posts ante 10
+Player10 posts ante 10
+Tantaculejen posts small blind 40
+Player34 posts big blind 80
+Dealt to Tantaculejen [5h 8h]
+*** PRE-FLOP *** 
+Player10 calls 80
+Tantaculejen folds
+Player34 checks
+*** FLOP *** [3s Js 9s]
+Player34 checks
+Player10 checks
+*** TURN *** [3s Js 9s][Ac]
+Player34 checks
+Player10 bets 150
+Player34 calls 150
+*** RIVER *** [3s Js 9s Ac][Tc]
+Player34 checks
+Player10 checks
+*** SHOW DOWN ***
+Player34 shows [Kh 2s] (High card : Ace)
+Player10 shows [7d 3d] (One pair : 3)
+Player10 collected 530 from pot
+*** SUMMARY ***
+Total pot 530 | No rake
+Board: [3s Js 9s Ac Tc]
+Seat 1: Player10 (button) showed [7d 3d] and won 530 with One pair : 3
+Seat 3: Player34 (big blind) showed [Kh 2s] and lost with High card : Ace
+
+
+Winamax Poker - Tournament "TRIDENT SPACE KO" buyIn: 0.45€ + 0.05€ level: 10 - HandId: #5135071836924543030-56-1793645123 - Holdem no limit (12/50/100) - 2026/11/02 18:45:23 UTC
+Table: 'TRIDENT SPACE KO(1195602081)#0053' 3-max (real money) Seat #2 is the button
+Seat 1: Player10 (3185, 0.74€ bounty)
+Seat 2: Tantaculejen (669, 0.25€ bounty)
+Seat 3: Player34 (146, 1€ bounty)
+*** ANTE/BLINDS ***
+Player34 posts ante 12
+Player10 posts ante 12
+Tantaculejen posts ante 12
+Player34 posts small blind 50
+Player10 posts big blind 100
+Dealt to Tantaculejen [Tc Kh]
+*** PRE-FLOP *** 
+Tantaculejen raises 557 to 657 and is all-in
+Player34 calls 84 and is all-in
+Player10 calls 557
+*** FLOP *** [6s 3h 6d]
+*** TURN *** [6s 3h 6d][2s]
+*** RIVER *** [6s 3h 6d 2s][7c]
+*** SHOW DOWN ***
+Tantaculejen shows [Tc Kh] (One pair : 6)
+Player10 shows [2h Qd] (Two pairs : 6 and 2)
+Player34 shows [3s 8s] (Two pairs : 6 and 3)
+Player34 collected 438 from main pot
+Player10 collected 1046 from side pot 1
+*** SUMMARY ***
+Total pot 1484 | No rake
+Board: [6s 3h 6d 2s 7c]
+Seat 1: Player10 (big blind) showed [2h Qd] and won 1046 with Two pairs : 6 and 2
+Seat 2: Tantaculejen (button) showed [Tc Kh] and lost with One pair : 6
+Seat 3: Player34 (small blind) showed [3s 8s] and won 438 with Two pairs : 6 and 3
+
+

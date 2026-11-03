@@ -1,6 +1,17 @@
 import { invoke } from "@tauri-apps/api/core";
 import { listen } from "@tauri-apps/api/event";
-import type { Backend, ConfigEvent, Issue, JsonObject } from "./backend";
+import type {
+  Backend,
+  BackupInfo,
+  ConfigEvent,
+  DbStats,
+  FoundAccount,
+  ImportErrorRow,
+  ImportEvent,
+  ImportStatus,
+  Issue,
+  JsonObject,
+} from "./backend";
 import { BackendError } from "./backend";
 import type { JSONSchema } from "./schema";
 
@@ -20,6 +31,19 @@ async function call<T>(cmd: string, args?: Record<string, unknown>): Promise<T> 
   }
 }
 
+function subscribe<T>(channel: string, cb: (payload: T) => void): () => void {
+  let unlisten: (() => void) | null = null;
+  let cancelled = false;
+  void listen<T>(channel, (e) => cb(e.payload)).then((u) => {
+    if (cancelled) u();
+    else unlisten = u;
+  });
+  return () => {
+    cancelled = true;
+    unlisten?.();
+  };
+}
+
 export function createTauriBackend(): Backend {
   return {
     appInfo: () => call("app_info"),
@@ -33,17 +57,23 @@ export function createTauriBackend(): Backend {
     configIssues: () => call<Issue[]>("config_issues"),
     schemaGet: (family) => call<JSONSchema>("schema_get", { family }),
     openModuleWindow: (moduleId) => call("open_module_window", { moduleId }),
-    onConfigEvent(cb) {
-      let unlisten: (() => void) | null = null;
-      let cancelled = false;
-      void listen<ConfigEvent>("config://event", (e) => cb(e.payload)).then((u) => {
-        if (cancelled) u();
-        else unlisten = u;
-      });
-      return () => {
-        cancelled = true;
-        unlisten?.();
-      };
+    onConfigEvent: (cb) => subscribe<ConfigEvent>("config://event", cb),
+    onImportEvent: (cb) => subscribe<ImportEvent>("import://event", cb),
+    dbStats: () => call<DbStats>("db_stats"),
+    importStatus: () => call<ImportStatus>("import_status"),
+    importPaths: (paths) => call("import_paths", { paths }),
+    importErrors: (limit) => call<ImportErrorRow[]>("import_errors", { limit }),
+    importRetryErrors: () => call<number>("import_retry_errors"),
+    detectRooms: () => call<FoundAccount[]>("detect_rooms"),
+    backupList: () => call<BackupInfo[]>("backup_list"),
+    backupNow: () => call<string>("backup_now"),
+    backupRestore: (name) => call("backup_restore", { name }),
+    appRestart: () => call("app_restart"),
+    async pickPaths({ directory, multiple, title }) {
+      const { open } = await import("@tauri-apps/plugin-dialog");
+      const r = await open({ directory, multiple, title });
+      if (r === null) return null;
+      return Array.isArray(r) ? r : [r];
     },
     markReady() {
       void invoke("frontend_ready").catch(() => undefined);

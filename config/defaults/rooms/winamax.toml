@@ -1,0 +1,21 @@
+# Winamax — configuration de la salle / room configuration
+#
+# FR : l'assistant de premier lancement remplit `folders` et `hero_names`
+#      à partir des comptes trouvés sur le disque. Tu peux ajouter d'autres
+#      dossiers (sauvegardes, ancien PC…) : ils sont surveillés en continu.
+# EN : the first-run wizard fills `folders` and `hero_names` from the
+#      accounts found on disk. Extra folders are watched too.
+
+name = "Winamax"
+enabled = true
+
+# Dossiers d'historiques surveillés / watched hand-history folders
+# Exemple / example: 'C:\Users\Moi\AppData\Roaming\winamax\documents\accounts\Pseudo\history'
+folders = []
+
+# Pseudo(s) du joueur sur cette salle / your screen name(s) on this room
+hero_names = []
+
+# HUD autorisé par les conditions de la salle (utilisé à partir de la phase 3).
+# À confirmer dans l'assistant. / HUD allowed by the room's terms (phase 3).
+hud_allowed = true

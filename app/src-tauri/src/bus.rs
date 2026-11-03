@@ -3,6 +3,7 @@
 //! add variants (hands_imported, tables_changed, play_mode_changed…).
 
 use lps_config::ConfigEvent;
+use lps_db::watch::WatchEvent;
 use serde::Serialize;
 use tokio::sync::broadcast;
 
@@ -11,6 +12,8 @@ use tokio::sync::broadcast;
 #[serde(tag = "topic", content = "payload", rename_all = "snake_case")]
 pub enum AppEvent {
     Config(ConfigEvent),
+    /// Hands were imported (watcher, start-up scan or manual import).
+    HandsImported(WatchEvent),
 }
 
 impl AppEvent {
@@ -18,6 +21,7 @@ impl AppEvent {
     pub fn channel(&self) -> &'static str {
         match self {
             AppEvent::Config(_) => "config://event",
+            AppEvent::HandsImported(_) => "import://event",
         }
     }
 }

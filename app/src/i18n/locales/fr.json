@@ -1,6 +1,12 @@
 {
-  "app": { "title": "Local Poker Suite" },
-  "nav": { "home": "Accueil", "settings": "Réglages", "toggle_sidebar": "Afficher/masquer la barre latérale" },
+  "app": {
+    "title": "Local Poker Suite"
+  },
+  "nav": {
+    "home": "Accueil",
+    "settings": "Réglages",
+    "toggle_sidebar": "Afficher/masquer la barre latérale"
+  },
   "launcher": {
     "title": "Modules",
     "subtitle": "Glisse une tuile pour réordonner. Clic droit ou ⧉ pour ouvrir dans une fenêtre.",
@@ -15,21 +21,62 @@
     "study_only": "Étude uniquement"
   },
   "modules": {
-    "import": { "name": "Import & base de données", "description": "Import des historiques de mains, surveillance des dossiers, base locale." },
-    "tracker": { "name": "Tracker", "description": "Rapports, graphiques, filtres et détecteur de fuites." },
-    "replayer": { "name": "Replayer & notes", "description": "Rejouer les mains, notes manuelles et automatiques." },
-    "bankroll": { "name": "Bankroll & sessions", "description": "Dépôts, retraits, sessions, journal et grand livre des tournois." },
-    "hud": { "name": "HUD", "description": "Statistiques historiques affichées sur les tables." },
-    "equity": { "name": "Equity Lab", "description": "Équité range contre range, analyse de range sur un board." },
-    "icm": { "name": "ICM & push/fold", "description": "Calcul ICM, ranges push/fold Nash, revue de mains de tournoi." },
-    "solver": { "name": "Solveur postflop", "description": "Équilibres heads-up postflop, cache local de solutions." },
-    "preflop": { "name": "Ranges & solveur préflop", "description": "Bibliothèque de ranges préflop et solveur préflop." },
-    "trainer": { "name": "Entraîneur & analyse", "description": "Exercices sur le cache de solutions, analyse des mains jouées." }
+    "import": {
+      "name": "Import & base de données",
+      "description": "Import des historiques de mains, surveillance des dossiers, base locale."
+    },
+    "tracker": {
+      "name": "Tracker",
+      "description": "Rapports, graphiques, filtres et détecteur de fuites."
+    },
+    "replayer": {
+      "name": "Replayer & notes",
+      "description": "Rejouer les mains, notes manuelles et automatiques."
+    },
+    "bankroll": {
+      "name": "Bankroll & sessions",
+      "description": "Dépôts, retraits, sessions, journal et grand livre des tournois."
+    },
+    "hud": {
+      "name": "HUD",
+      "description": "Statistiques historiques affichées sur les tables."
+    },
+    "equity": {
+      "name": "Equity Lab",
+      "description": "Équité range contre range, analyse de range sur un board."
+    },
+    "icm": {
+      "name": "ICM & push/fold",
+      "description": "Calcul ICM, ranges push/fold Nash, revue de mains de tournoi."
+    },
+    "solver": {
+      "name": "Solveur postflop",
+      "description": "Équilibres heads-up postflop, cache local de solutions."
+    },
+    "preflop": {
+      "name": "Ranges & solveur préflop",
+      "description": "Bibliothèque de ranges préflop et solveur préflop."
+    },
+    "trainer": {
+      "name": "Entraîneur & analyse",
+      "description": "Exercices sur le cache de solutions, analyse des mains jouées."
+    }
   },
   "settings": {
     "title": "Centre de réglages",
-    "tabs": { "general": "Général", "hotkeys": "Raccourcis", "themes": "Thèmes", "profiles": "Profils", "modules": "Modules", "about": "À propos" },
-    "mode": { "form": "Formulaire", "raw": "Texte brut" },
+    "tabs": {
+      "general": "Général",
+      "hotkeys": "Raccourcis",
+      "themes": "Thèmes",
+      "profiles": "Profils",
+      "modules": "Modules",
+      "about": "À propos",
+      "rooms": "Salles"
+    },
+    "mode": {
+      "form": "Formulaire",
+      "raw": "Texte brut"
+    },
     "save": "Enregistrer",
     "saved": "Enregistré",
     "revert": "Annuler les modifications",
@@ -45,7 +92,10 @@
     "no_module_settings": "Aucun module n'a de réglages propres pour l'instant.",
     "external_change": "Le fichier a été modifié sur le disque et rechargé."
   },
-  "profile": { "label": "Profil", "switch": "Changer de profil" },
+  "profile": {
+    "label": "Profil",
+    "switch": "Changer de profil"
+  },
   "about": {
     "version": "Version",
     "data_dir": "Dossier de données",
@@ -66,7 +116,9 @@
     "enabled": "Activé",
     "move_up": "Monter",
     "move_down": "Descendre",
-    "none": "(aucun)"
+    "none": "(aucun)",
+    "remove": "Retirer",
+    "add_folder": "Ajouter un dossier…"
   },
   "hotkey": {
     "go_home": "Aller à l'accueil",
@@ -75,25 +127,148 @@
     "next_profile": "Profil suivant"
   },
   "color": {
-    "background": "Fond", "surface": "Surface", "surface_alt": "Surface secondaire", "border": "Bordure",
-    "text": "Texte", "text_muted": "Texte atténué", "primary": "Primaire", "primary_text": "Texte sur primaire",
-    "accent": "Accent", "success": "Succès", "warning": "Avertissement", "danger": "Danger"
+    "background": "Fond",
+    "surface": "Surface",
+    "surface_alt": "Surface secondaire",
+    "border": "Bordure",
+    "text": "Texte",
+    "text_muted": "Texte atténué",
+    "primary": "Primaire",
+    "primary_text": "Texte sur primaire",
+    "accent": "Accent",
+    "success": "Succès",
+    "warning": "Avertissement",
+    "danger": "Danger"
   },
   "schema": {
     "settings": {
-      "title": "Réglages généraux", "general": "Général", "language": "Langue", "profile": "Profil actif",
-      "appearance": "Apparence", "theme": "Thème", "density": "Densité", "font_scale": "Taille du texte",
-      "modules": "Modules", "modules_order": "Ordre des modules", "modules_disabled": "Modules affichés",
-      "performance": "Performances", "worker_threads": "Threads de calcul",
+      "title": "Réglages généraux",
+      "general": "Général",
+      "language": "Langue",
+      "profile": "Profil actif",
+      "appearance": "Apparence",
+      "theme": "Thème",
+      "density": "Densité",
+      "font_scale": "Taille du texte",
+      "modules": "Modules",
+      "modules_order": "Ordre des modules",
+      "modules_disabled": "Modules affichés",
+      "performance": "Performances",
+      "worker_threads": "Threads de calcul",
       "worker_threads_help": "0 = tous les threads. Laisse-en 2 libres pour le client de poker et le HUD.",
-      "ram_cap_mb": "Plafond mémoire du solveur (Mo)", "module_settings": "Réglages des modules"
+      "ram_cap_mb": "Plafond mémoire du solveur (Mo)",
+      "module_settings": "Réglages des modules",
+      "first_run_done": "Assistant terminé",
+      "backup": "Sauvegarde de la base",
+      "backup_enabled": "Sauvegarde automatique",
+      "backup_every_hours": "Toutes les (heures)",
+      "backup_keep": "Sauvegardes gardées"
     },
-    "hotkeys": { "title": "Raccourcis", "actions": "Actions" },
-    "theme": { "title": "Thème", "name": "Nom", "base": "Base", "colors": "Couleurs" },
-    "profile": { "title": "Profil", "name": "Nom", "description": "Description", "theme": "Thème imposé" }
+    "hotkeys": {
+      "title": "Raccourcis",
+      "actions": "Actions"
+    },
+    "theme": {
+      "title": "Thème",
+      "name": "Nom",
+      "base": "Base",
+      "colors": "Couleurs"
+    },
+    "profile": {
+      "title": "Profil",
+      "name": "Nom",
+      "description": "Description",
+      "theme": "Thème imposé"
+    },
+    "room": {
+      "title": "Salle",
+      "name": "Nom",
+      "enabled": "Activée",
+      "folders": "Dossiers d'historiques",
+      "folders_help": "Surveillés en continu : les nouvelles mains sont importées en moins d'une seconde.",
+      "hero_names": "Mes pseudos",
+      "hud_allowed": "HUD autorisé sur cette salle",
+      "hud_allowed_help": "À régler selon les conditions d'utilisation de la salle. Le tracker importe les mains dans tous les cas."
+    }
   },
   "enum": {
-    "fr": "Français", "en": "English", "compact": "Compacte", "comfortable": "Confortable",
-    "light": "Clair", "dark": "Sombre"
+    "fr": "Français",
+    "en": "English",
+    "compact": "Compacte",
+    "comfortable": "Confortable",
+    "light": "Clair",
+    "dark": "Sombre"
+  },
+  "welcome": {
+    "title": "Bienvenue dans Local Poker Suite",
+    "later": "Configurer plus tard",
+    "back": "Retour",
+    "next": "Suivant",
+    "finish": "Terminer",
+    "step": {
+      "language": "Langue",
+      "rooms": "Salles",
+      "profile": "Profil",
+      "import": "Import"
+    },
+    "language_intro": "Choisis la langue de l'interface (modifiable ensuite dans les réglages).",
+    "rooms_intro": "Voici les comptes trouvés sur ce PC. Leurs dossiers d'historiques seront surveillés et importés automatiquement.",
+    "searching": "Recherche des salles installées…",
+    "none_found": "Aucun compte trouvé automatiquement. Ajoute ton dossier d'historiques à la main.",
+    "files_one": "{{count}} fichier",
+    "files_other": "{{count}} fichiers",
+    "add_folder": "Ajouter un dossier…",
+    "hud_allowed": "Winamax autorise les HUD",
+    "hud_allowed_help": "Le HUD (phase 3) ne s'affichera que si c'est activé. Vérifie les conditions de la salle ; tu pourras changer ce réglage plus tard.",
+    "profile_intro": "Choisis ton profil par défaut (HUD, filtres et thème adaptés à ton format).",
+    "import_intro": "L'import a démarré en arrière-plan. Tu peux aussi importer d'autres historiques (archives, anciens dossiers PokerTracker / Holdem Manager).",
+    "hands_so_far_one": "{{count}} main importée",
+    "hands_so_far_other": "{{count}} mains importées",
+    "import_other": "Importer un autre dossier…"
+  },
+  "import": {
+    "folders": "Dossiers surveillés",
+    "pick_folder": "Importer un dossier…",
+    "pick_files": "Importer des fichiers…",
+    "no_folders": "Aucun dossier configuré.",
+    "configure_rooms": "Configurer les salles",
+    "watching": "surveillé",
+    "missing": "introuvable",
+    "history": "Derniers imports",
+    "no_history": "Aucun import pour l'instant.",
+    "col": {
+      "when": "Quand",
+      "trigger": "Origine",
+      "new": "Nouvelles",
+      "dups": "Doublons",
+      "errors": "Erreurs",
+      "speed": "Mains/s"
+    },
+    "trigger": {
+      "scan": "démarrage",
+      "watch": "surveillance",
+      "manual": "manuel"
+    },
+    "errors": "Erreurs d'import",
+    "no_errors": "Aucune erreur.",
+    "retry": "Réessayer",
+    "line": "ligne {{n}}",
+    "copy_test_case": "Copier comme cas de test",
+    "copied": "Copié",
+    "backups": "Sauvegardes",
+    "backup_now": "Sauvegarder maintenant",
+    "no_backups": "Aucune sauvegarde pour l'instant.",
+    "restore": "Restaurer",
+    "restore_confirm": "Confirmer et redémarrer",
+    "db_path": "Base : {{path}}",
+    "stats": {
+      "hands": "Mains",
+      "tournaments": "Tournois",
+      "players": "Joueurs",
+      "errors": "Erreurs"
+    },
+    "range": "Du {{from}} au {{to}}",
+    "toast_one": "{{count}} nouvelle main importée ({{dups}} doublons, {{errors}} erreurs).",
+    "toast_other": "{{count}} nouvelles mains importées ({{dups}} doublons, {{errors}} erreurs)."
   }
 }

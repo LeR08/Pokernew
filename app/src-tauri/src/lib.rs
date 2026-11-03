@@ -3,6 +3,8 @@
 
 pub mod bus;
 pub mod commands;
+pub mod import_commands;
+pub mod import_service;
 pub mod state;
 
 use std::time::Instant;
@@ -29,17 +31,37 @@ pub fn run(started: Instant) {
     );
 
     tauri::Builder::default()
+        .plugin(tauri_plugin_dialog::init())
         .manage(state)
         .setup(|app| {
             // Forward the internal bus to every window.
             let handle = app.handle().clone();
             let mut rx = app.state::<state::AppState>().bus.subscribe();
+            let st = app.state::<state::AppState>();
+            let import = st.import.clone();
+            let store = st.store.clone();
             tauri::async_runtime::spawn(async move {
                 loop {
                     match rx.recv().await {
                         Ok(ev) => {
+                            // Room folders changed: restart the watcher on the new list.
+                            if let bus::AppEvent::Config(lps_config::ConfigEvent::Changed { family, .. }
+                            | lps_config::ConfigEvent::Removed { family, .. }) = &ev
+                            {
+                                if family == "rooms" || family == "settings" {
+                                    if let Some(svc) = import.clone() {
+                                        let store = store.clone();
+                                        tauri::async_runtime::spawn_blocking(move || {
+                                            if let Err(e) = svc.restart_watcher(&store) {
+                                                log::warn!("watcher restart failed: {e}");
+                                            }
+                                        });
+                                    }
+                                }
+                            }
                             let payload = match &ev {
                                 bus::AppEvent::Config(c) => serde_json::to_value(c).unwrap_or_default(),
+                                bus::AppEvent::HandsImported(w) => serde_json::to_value(w).unwrap_or_default(),
                             };
                             let _ = handle.emit(ev.channel(), payload);
                         }
@@ -65,6 +87,16 @@ pub fn run(started: Instant) {
             commands::schema_get,
             commands::frontend_ready,
             commands::open_module_window,
+            import_commands::db_stats,
+            import_commands::import_status,
+            import_commands::import_paths,
+            import_commands::import_errors,
+            import_commands::import_retry_errors,
+            import_commands::detect_rooms,
+            import_commands::backup_list,
+            import_commands::backup_now,
+            import_commands::backup_restore,
+            import_commands::app_restart,
         ])
         .run(tauri::generate_context!())
         .expect("error while running Local Poker Suite");

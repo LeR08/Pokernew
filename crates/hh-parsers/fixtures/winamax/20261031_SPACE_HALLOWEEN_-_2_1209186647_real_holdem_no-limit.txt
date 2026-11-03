@@ -1,0 +1,3539 @@
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 1 - HandId: #5193417103624896579-18-1793474056 - Holdem no limit (60/250/500) - 2026/10/31 19:14:16 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #1 is the button
+Seat 1: Player19 (53515, 1€ bounty)
+Seat 2: Player22 (143339, 2.50€ bounty)
+Seat 3: Tantaculejen (50000, 1€ bounty)
+Seat 4: Player13 (23650, 1€ bounty)
+Seat 5: Player20 (53490, 1€ bounty)
+Seat 6: Player03 (316229, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Player22 posts ante 60
+Tantaculejen posts ante 60
+Player19 posts ante 60
+Player13 posts ante 60
+Player20 posts ante 60
+Player03 posts ante 60
+Player22 posts small blind 250
+Tantaculejen posts big blind 500
+Dealt to Tantaculejen [9d 5c]
+*** PRE-FLOP *** 
+Player13 folds
+Player20 raises 625 to 1125
+Player03 calls 1125
+Player19 folds
+Player22 folds
+Tantaculejen folds
+*** FLOP *** [7h 9s 6d]
+Player20 bets 1680
+Player03 calls 1680
+*** TURN *** [7h 9s 6d][5d]
+Player20 bets 50625 and is all-in
+Player03 calls 50625
+*** RIVER *** [7h 9s 6d 5d][Ts]
+*** SHOW DOWN ***
+Player03 shows [Jh 6h] (One pair : 6)
+Player20 shows [9h Ad] (One pair : 9)
+Player20 collected 107970 from pot
+*** SUMMARY ***
+Total pot 107970 | No rake
+Board: [7h 9s 6d 5d Ts]
+Seat 5: Player20 showed [9h Ad] and won 107970 with One pair : 9
+Seat 6: Player03 showed [Jh 6h] and lost with One pair : 6
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 1 - HandId: #5193417103624896579-19-1793474100 - Holdem no limit (60/250/500) - 2026/10/31 19:15:00 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #2 is the button
+Seat 1: Player19 (53455, 1€ bounty)
+Seat 2: Player22 (143029, 2.50€ bounty)
+Seat 3: Tantaculejen (49440, 1€ bounty)
+Seat 4: Player13 (23590, 1€ bounty)
+Seat 6: Player03 (262739, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Tantaculejen posts ante 60
+Player13 posts ante 60
+Player19 posts ante 60
+Player22 posts ante 60
+Player03 posts ante 60
+Tantaculejen posts small blind 250
+Player13 posts big blind 500
+Dealt to Tantaculejen [3d Td]
+*** PRE-FLOP *** 
+Player03 folds
+Player19 folds
+Player22 folds
+Tantaculejen raises 750 to 1250
+Player13 calls 750
+*** FLOP *** [7c Qs Ah]
+Tantaculejen bets 1820
+Player13 calls 1820
+*** TURN *** [7c Qs Ah][7s]
+Tantaculejen checks
+Player13 checks
+*** RIVER *** [7c Qs Ah 7s][6d]
+Tantaculejen checks
+Player13 bets 6440
+Tantaculejen folds
+Player13 collected 12880 from pot
+*** SUMMARY ***
+Total pot 12880 | No rake
+Board: [7c Qs Ah 7s 6d]
+Seat 4: Player13 (big blind) won 12880
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 1 - HandId: #5193417103624896579-20-1793474139 - Holdem no limit (60/250/500) - 2026/10/31 19:15:39 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #3 is the button
+Seat 1: Player19 (53395, 1€ bounty)
+Seat 2: Player22 (142969, 2.50€ bounty)
+Seat 3: Tantaculejen (46310, 1€ bounty)
+Seat 4: Player13 (26900, 1€ bounty)
+Seat 5: Player28 (50000, 1€ bounty)
+Seat 6: Player03 (262679, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Player13 posts ante 60
+Player28 posts ante 60
+Player19 posts ante 60
+Player22 posts ante 60
+Tantaculejen posts ante 60
+Player03 posts ante 60
+Player13 posts small blind 250
+Player28 posts big blind 500
+Dealt to Tantaculejen [5c 8h]
+*** PRE-FLOP *** 
+Player03 raises 750 to 1250
+Player19 folds
+Player22 folds
+Tantaculejen folds
+Player13 calls 1000
+Player28 folds
+*** FLOP *** [4c 9h Th]
+Player13 checks
+Player03 bets 2184
+Player13 raises 23406 to 25590 and is all-in
+Player03 calls 23406
+*** TURN *** [4c 9h Th][Jd]
+*** RIVER *** [4c 9h Th Jd][7c]
+*** SHOW DOWN ***
+Player03 shows [6s 6d] (One pair : 6)
+Player13 shows [9d Ac] (One pair : 9)
+Player13 collected 54540 from pot
+*** SUMMARY ***
+Total pot 54540 | No rake
+Board: [4c 9h Th Jd 7c]
+Seat 4: Player13 (small blind) showed [9d Ac] and won 54540 with One pair : 9
+Seat 6: Player03 showed [6s 6d] and lost with One pair : 6
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 1 - HandId: #5193417103624896579-21-1793474182 - Holdem no limit (60/250/500) - 2026/10/31 19:16:22 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #4 is the button
+Seat 1: Player19 (53335, 1€ bounty)
+Seat 2: Player22 (142909, 2.50€ bounty)
+Seat 3: Tantaculejen (46250, 1€ bounty)
+Seat 4: Player13 (54540, 1€ bounty)
+Seat 5: Player28 (49440, 1€ bounty)
+Seat 6: Player03 (235779, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Player28 posts ante 60
+Player03 posts ante 60
+Player19 posts ante 60
+Player22 posts ante 60
+Tantaculejen posts ante 60
+Player13 posts ante 60
+Player28 posts small blind 250
+Player03 posts big blind 500
+Dealt to Tantaculejen [Ts 2c]
+*** PRE-FLOP *** 
+Player19 calls 500
+Player22 folds
+Tantaculejen folds
+Player13 folds
+Player28 calls 250
+Player03 checks
+*** FLOP *** [Ks Qd Ac]
+Player28 checks
+Player03 checks
+Player19 bets 500
+Player28 calls 500
+Player03 folds
+*** TURN *** [Ks Qd Ac][4c]
+Player28 checks
+Player19 bets 500
+Player28 calls 500
+*** RIVER *** [Ks Qd Ac 4c][Qc]
+Player28 checks
+Player19 bets 1930
+Player28 folds
+Player19 collected 5790 from pot
+*** SUMMARY ***
+Total pot 5790 | No rake
+Board: [Ks Qd Ac 4c Qc]
+Seat 1: Player19 won 5790
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 1 - HandId: #5193417103624896579-22-1793474227 - Holdem no limit (60/250/500) - 2026/10/31 19:17:07 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #5 is the button
+Seat 1: Player19 (55635, 1€ bounty)
+Seat 2: Player22 (142849, 2.50€ bounty)
+Seat 3: Tantaculejen (46190, 1€ bounty)
+Seat 4: Player13 (54480, 1€ bounty)
+Seat 5: Player28 (47880, 1€ bounty)
+Seat 6: Player03 (235219, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Player03 posts ante 60
+Player19 posts ante 60
+Player22 posts ante 60
+Tantaculejen posts ante 60
+Player13 posts ante 60
+Player28 posts ante 60
+Player03 posts small blind 250
+Player19 posts big blind 500
+Dealt to Tantaculejen [Tc 6d]
+*** PRE-FLOP *** 
+Player22 raises 750 to 1250
+Tantaculejen folds
+Player13 folds
+Player28 folds
+Player03 folds
+Player19 folds
+Player22 collected 2360 from pot
+*** SUMMARY ***
+Total pot 2360 | No rake
+Seat 2: Player22 won 2360
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 1 - HandId: #5193417103624896579-23-1793474237 - Holdem no limit (60/250/500) - 2026/10/31 19:17:17 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #6 is the button
+Seat 1: Player19 (55075, 1€ bounty)
+Seat 2: Player22 (143899, 2.50€ bounty)
+Seat 3: Tantaculejen (46130, 1€ bounty)
+Seat 4: Player13 (54420, 1€ bounty)
+Seat 5: Player28 (47820, 1€ bounty)
+Seat 6: Player03 (234909, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Player19 posts ante 60
+Player22 posts ante 60
+Tantaculejen posts ante 60
+Player13 posts ante 60
+Player28 posts ante 60
+Player03 posts ante 60
+Player19 posts small blind 250
+Player22 posts big blind 500
+Dealt to Tantaculejen [Qh Qd]
+*** PRE-FLOP *** 
+Tantaculejen raises 750 to 1250
+Player13 folds
+Player28 folds
+Player03 calls 1250
+Player19 folds
+Player22 folds
+*** FLOP *** [As 8d 5h]
+Tantaculejen bets 1264
+Player03 folds
+Tantaculejen collected 4874 from pot
+*** SUMMARY ***
+Total pot 4874 | No rake
+Board: [As 8d 5h]
+Seat 3: Tantaculejen won 4874
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 1 - HandId: #5193417103624896579-24-1793474266 - Holdem no limit (60/250/500) - 2026/10/31 19:17:46 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #1 is the button
+Seat 1: Player19 (54765, 1€ bounty)
+Seat 2: Player22 (143339, 2.50€ bounty)
+Seat 3: Tantaculejen (48430, 1€ bounty)
+Seat 4: Player13 (54360, 1€ bounty)
+Seat 5: Player28 (47760, 1€ bounty)
+Seat 6: Player03 (233599, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Player22 posts ante 60
+Tantaculejen posts ante 60
+Player19 posts ante 60
+Player13 posts ante 60
+Player28 posts ante 60
+Player03 posts ante 60
+Player22 posts small blind 250
+Tantaculejen posts big blind 500
+Dealt to Tantaculejen [Qc 4c]
+*** PRE-FLOP *** 
+Player13 calls 500
+Player28 folds
+Player03 folds
+Player19 calls 500
+Player22 folds
+Tantaculejen checks
+*** FLOP *** [3d 2h 5s]
+Tantaculejen checks
+Player13 checks
+Player19 checks
+*** TURN *** [3d 2h 5s][8h]
+Tantaculejen checks
+Player13 checks
+Player19 checks
+*** RIVER *** [3d 2h 5s 8h][8s]
+Tantaculejen checks
+Player13 checks
+Player19 checks
+*** SHOW DOWN ***
+Tantaculejen shows [Qc 4c] (One pair : 8)
+Player13 shows [Tc 7h] (One pair : 8)
+Player19 shows [3c Ac] (Two pairs : 8 and 3)
+Player19 collected 2110 from pot
+*** SUMMARY ***
+Total pot 2110 | No rake
+Board: [3d 2h 5s 8h 8s]
+Seat 1: Player19 (button) showed [3c Ac] and won 2110 with Two pairs : 8 and 3
+Seat 3: Tantaculejen (big blind) showed [Qc 4c] and lost with One pair : 8
+Seat 4: Player13 showed [Tc 7h] and lost with One pair : 8
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 1 - HandId: #5193417103624896579-25-1793474300 - Holdem no limit (60/250/500) - 2026/10/31 19:18:20 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #2 is the button
+Seat 1: Player19 (56315, 1€ bounty)
+Seat 2: Player22 (143029, 2.50€ bounty)
+Seat 3: Tantaculejen (47870, 1€ bounty)
+Seat 4: Player13 (53800, 1€ bounty)
+Seat 5: Player28 (47700, 1€ bounty)
+Seat 6: Player03 (233539, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Tantaculejen posts ante 60
+Player13 posts ante 60
+Player19 posts ante 60
+Player22 posts ante 60
+Player28 posts ante 60
+Player03 posts ante 60
+Tantaculejen posts small blind 250
+Player13 posts big blind 500
+Dealt to Tantaculejen [3h 5c]
+*** PRE-FLOP *** 
+Player28 folds
+Player03 raises 750 to 1250
+Player19 folds
+Player22 folds
+Tantaculejen folds
+Player13 calls 750
+*** FLOP *** [4s Ac 8c]
+Player13 checks
+Player03 bets 1555
+Player13 folds
+Player03 collected 4665 from pot
+*** SUMMARY ***
+Total pot 4665 | No rake
+Board: [4s Ac 8c]
+Seat 6: Player03 won 4665
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 1 - HandId: #5193417103624896579-26-1793474327 - Holdem no limit (60/250/500) - 2026/10/31 19:18:47 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #3 is the button
+Seat 1: Player19 (56255, 1€ bounty)
+Seat 2: Player22 (142969, 2.50€ bounty)
+Seat 3: Tantaculejen (47560, 1€ bounty)
+Seat 4: Player13 (52490, 1€ bounty)
+Seat 5: Player28 (47640, 1€ bounty)
+Seat 6: Player03 (235339, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Player13 posts ante 60
+Player28 posts ante 60
+Player19 posts ante 60
+Player22 posts ante 60
+Tantaculejen posts ante 60
+Player03 posts ante 60
+Player13 posts small blind 250
+Player28 posts big blind 500
+Dealt to Tantaculejen [Kd Qh]
+*** PRE-FLOP *** 
+Player03 folds
+Player19 folds
+Player22 folds
+Tantaculejen raises 750 to 1250
+Player13 raises 3360 to 4610
+Player28 folds
+Tantaculejen calls 3360
+*** FLOP *** [5c 4s 6c]
+Player13 checks
+Tantaculejen checks
+*** TURN *** [5c 4s 6c][8s]
+Player13 checks
+Tantaculejen checks
+*** RIVER *** [5c 4s 6c 8s][9s]
+Player13 checks
+Tantaculejen checks
+*** SHOW DOWN ***
+Tantaculejen shows [Kd Qh] (High card : King)
+Player13 shows [Ah Qd] (High card : Ace)
+Player13 collected 10080 from pot
+*** SUMMARY ***
+Total pot 10080 | No rake
+Board: [5c 4s 6c 8s 9s]
+Seat 3: Tantaculejen (button) showed [Kd Qh] and lost with High card : King
+Seat 4: Player13 (small blind) showed [Ah Qd] and won 10080 with High card : Ace
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 1 - HandId: #5193417103624896579-27-1793474356 - Holdem no limit (60/250/500) - 2026/10/31 19:19:16 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #4 is the button
+Seat 1: Player19 (56195, 1€ bounty)
+Seat 2: Player22 (142909, 2.50€ bounty)
+Seat 3: Tantaculejen (42890, 1€ bounty)
+Seat 4: Player13 (57900, 1€ bounty)
+Seat 5: Player28 (47080, 1€ bounty)
+Seat 6: Player03 (235279, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Player28 posts ante 60
+Player03 posts ante 60
+Player19 posts ante 60
+Player22 posts ante 60
+Tantaculejen posts ante 60
+Player13 posts ante 60
+Player28 posts small blind 250
+Player03 posts big blind 500
+Dealt to Tantaculejen [9d 4d]
+*** PRE-FLOP *** 
+Player19 folds
+Player22 folds
+Tantaculejen folds
+Player13 calls 500
+Player28 raises 750 to 1250
+Player03 folds
+Player13 calls 750
+*** FLOP *** [6c 9c 9s]
+Player28 checks
+Player13 checks
+*** TURN *** [6c 9c 9s][Jh]
+Player28 bets 1176
+Player13 folds
+Player28 collected 4536 from pot
+*** SUMMARY ***
+Total pot 4536 | No rake
+Board: [6c 9c 9s Jh]
+Seat 5: Player28 (small blind) won 4536
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 1 - HandId: #5193417103624896579-28-1793474386 - Holdem no limit (60/250/500) - 2026/10/31 19:19:46 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #5 is the button
+Seat 1: Player19 (56135, 1€ bounty)
+Seat 2: Player22 (142849, 2.50€ bounty)
+Seat 3: Tantaculejen (42830, 1€ bounty)
+Seat 4: Player13 (56590, 1€ bounty)
+Seat 5: Player28 (49130, 1€ bounty)
+Seat 6: Player03 (234719, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Player03 posts ante 60
+Player19 posts ante 60
+Player22 posts ante 60
+Tantaculejen posts ante 60
+Player13 posts ante 60
+Player28 posts ante 60
+Player03 posts small blind 250
+Player19 posts big blind 500
+Dealt to Tantaculejen [9h 6s]
+*** PRE-FLOP *** 
+Player22 calls 500
+Tantaculejen folds
+Player13 folds
+Player28 folds
+Player03 folds
+Player19 checks
+*** FLOP *** [Qc Jh 8s]
+Player19 bets 500
+Player22 folds
+Player19 collected 2110 from pot
+*** SUMMARY ***
+Total pot 2110 | No rake
+Board: [Qc Jh 8s]
+Seat 1: Player19 (big blind) won 2110
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 1 - HandId: #5193417103624896579-29-1793474417 - Holdem no limit (60/250/500) - 2026/10/31 19:20:17 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #6 is the button
+Seat 1: Player19 (57185, 1€ bounty)
+Seat 2: Player22 (142289, 2.50€ bounty)
+Seat 3: Tantaculejen (42770, 1€ bounty)
+Seat 4: Player13 (56530, 1€ bounty)
+Seat 5: Player28 (49070, 1€ bounty)
+Seat 6: Player03 (234409, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Player19 posts ante 60
+Player22 posts ante 60
+Tantaculejen posts ante 60
+Player13 posts ante 60
+Player28 posts ante 60
+Player03 posts ante 60
+Player19 posts small blind 250
+Player22 posts big blind 500
+Dealt to Tantaculejen [3d Jc]
+*** PRE-FLOP *** 
+Tantaculejen folds
+Player13 calls 500
+Player28 calls 500
+Player03 raises 2750 to 3250
+Player19 folds
+Player22 folds
+Player13 calls 2750
+Player28 calls 2750
+*** FLOP *** [Ah Qh Js]
+Player13 checks
+Player28 checks
+Player03 bets 5430
+Player13 calls 5430
+Player28 calls 5430
+*** TURN *** [Ah Qh Js][8c]
+Player13 checks
+Player28 checks
+Player03 bets 13575
+Player13 calls 13575
+Player28 folds
+*** RIVER *** [Ah Qh Js 8c][2d]
+Player13 bets 19005
+Player03 raises 19005 to 38010
+Player13 calls 15210 and is all-in
+*** SHOW DOWN ***
+Player13 shows [Ts 9h] (Straight Queen high)
+Player03 shows [8s 8h] (Trips of 8)
+Player03 collected 3795 from side pot 1
+Player13 collected 122730 from main pot
+*** SUMMARY ***
+Total pot 126525 | No rake
+Board: [Ah Qh Js 8c 2d]
+Seat 4: Player13 showed [Ts 9h] and won 122730 with Straight Queen high
+Seat 6: Player03 (button) showed [8s 8h] and won 3795 with Trips of 8
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 1 - HandId: #5193417103624896579-30-1793474486 - Holdem no limit (60/250/500) - 2026/10/31 19:21:26 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #1 is the button
+Seat 1: Player19 (56875, 1€ bounty)
+Seat 2: Player22 (141729, 2.50€ bounty)
+Seat 3: Tantaculejen (42710, 1€ bounty)
+Seat 4: Player13 (122730, 1€ bounty)
+Seat 5: Player28 (40330, 1€ bounty)
+Seat 6: Player03 (177879, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Player22 posts ante 60
+Tantaculejen posts ante 60
+Player19 posts ante 60
+Player13 posts ante 60
+Player28 posts ante 60
+Player03 posts ante 60
+Player22 posts small blind 250
+Tantaculejen posts big blind 500
+Dealt to Tantaculejen [3c As]
+*** PRE-FLOP *** 
+Player13 folds
+Player28 raises 500 to 1000
+Player03 calls 1000
+Player19 folds
+Player22 folds
+Tantaculejen calls 500
+*** FLOP *** [9s 2c 2s]
+Tantaculejen checks
+Player28 bets 1264
+Player03 folds
+Tantaculejen folds
+Player28 collected 4874 from pot
+*** SUMMARY ***
+Total pot 4874 | No rake
+Board: [9s 2c 2s]
+Seat 5: Player28 won 4874
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 1 - HandId: #5193417103624896579-31-1793474508 - Holdem no limit (60/250/500) - 2026/10/31 19:21:48 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #2 is the button
+Seat 1: Player19 (56815, 1€ bounty)
+Seat 2: Player22 (141419, 2.50€ bounty)
+Seat 3: Tantaculejen (41650, 1€ bounty)
+Seat 4: Player13 (122670, 1€ bounty)
+Seat 5: Player28 (42880, 1€ bounty)
+Seat 6: Player03 (176819, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Tantaculejen posts ante 60
+Player13 posts ante 60
+Player19 posts ante 60
+Player22 posts ante 60
+Player28 posts ante 60
+Player03 posts ante 60
+Tantaculejen posts small blind 250
+Player13 posts big blind 500
+Dealt to Tantaculejen [Qd 4d]
+*** PRE-FLOP *** 
+Player28 folds
+Player03 folds
+Player19 folds
+Player22 calls 500
+Tantaculejen folds
+Player13 raises 1610 to 2110
+Player22 calls 1610
+*** FLOP *** [Kc 3h 6h]
+Player13 checks
+Player22 bets 3140
+Player13 calls 3140
+*** TURN *** [Kc 3h 6h][4c]
+Player13 checks
+Player22 checks
+*** RIVER *** [Kc 3h 6h 4c][8c]
+Player13 checks
+Player22 checks
+*** SHOW DOWN ***
+Player13 shows [Ah Qh] (High card : Ace)
+Player22 shows [Kd 7d] (One pair : Kings)
+Player22 collected 11110 from pot
+*** SUMMARY ***
+Total pot 11110 | No rake
+Board: [Kc 3h 6h 4c 8c]
+Seat 2: Player22 (button) showed [Kd 7d] and won 11110 with One pair : Kings
+Seat 4: Player13 (big blind) showed [Ah Qh] and lost with High card : Ace
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 1 - HandId: #5193417103624896579-32-1793474545 - Holdem no limit (60/250/500) - 2026/10/31 19:22:25 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #3 is the button
+Seat 1: Player19 (56755, 1€ bounty)
+Seat 2: Player22 (147219, 2.50€ bounty)
+Seat 3: Tantaculejen (41340, 1€ bounty)
+Seat 4: Player13 (117360, 1€ bounty)
+Seat 5: Player28 (42820, 1€ bounty)
+Seat 6: Player03 (176759, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Player13 posts ante 60
+Player28 posts ante 60
+Player19 posts ante 60
+Player22 posts ante 60
+Tantaculejen posts ante 60
+Player03 posts ante 60
+Player13 posts small blind 250
+Player28 posts big blind 500
+Dealt to Tantaculejen [8c Jc]
+*** PRE-FLOP *** 
+Player03 folds
+Player19 calls 500
+Player22 calls 500
+Tantaculejen raises 1000 to 1500
+Player13 folds
+Player28 folds
+Player19 calls 1000
+Player22 calls 1000
+*** FLOP *** [Tc Ks Kh]
+Player19 checks
+Player22 checks
+Tantaculejen checks
+*** TURN *** [Tc Ks Kh][As]
+Player19 checks
+Player22 checks
+Tantaculejen checks
+*** RIVER *** [Tc Ks Kh As][Qs]
+Player19 checks
+Player22 checks
+Tantaculejen bets 3647
+Player19 folds
+Player22 folds
+Tantaculejen collected 9257 from pot
+*** SUMMARY ***
+Total pot 9257 | No rake
+Board: [Tc Ks Kh As Qs]
+Seat 3: Tantaculejen (button) won 9257
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 1 - HandId: #5193417103624896579-33-1793474624 - Holdem no limit (60/250/500) - 2026/10/31 19:23:44 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #4 is the button
+Seat 1: Player19 (55195, 1€ bounty)
+Seat 2: Player22 (145659, 2.50€ bounty)
+Seat 3: Tantaculejen (45390, 1€ bounty)
+Seat 4: Player13 (117050, 1€ bounty)
+Seat 5: Player28 (42260, 1€ bounty)
+Seat 6: Player03 (176699, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Player28 posts ante 60
+Player03 posts ante 60
+Player19 posts ante 60
+Player22 posts ante 60
+Tantaculejen posts ante 60
+Player13 posts ante 60
+Player28 posts small blind 250
+Player03 posts big blind 500
+Dealt to Tantaculejen [Ah Js]
+*** PRE-FLOP *** 
+Player19 folds
+Player22 calls 500
+Tantaculejen raises 750 to 1250
+Player13 calls 1250
+Player28 folds
+Player03 folds
+Player22 calls 750
+*** FLOP *** [3c Qd Kc]
+Player22 checks
+Tantaculejen bets 3159
+Player13 folds
+Player22 calls 3159
+*** TURN *** [3c Qd Kc][8d]
+Player22 checks
+Tantaculejen checks
+*** RIVER *** [3c Qd Kc 8d][Ts]
+Player22 bets 7266
+Tantaculejen raises 14168 to 21434
+Player22 calls 14168
+*** SHOW DOWN ***
+Player22 shows [5d Kd] (One pair : Kings)
+Tantaculejen shows [Ah Js] (Straight Ace high)
+Tantaculejen collected 54046 from pot
+*** SUMMARY ***
+Total pot 54046 | No rake
+Board: [3c Qd Kc 8d Ts]
+Seat 2: Player22 showed [5d Kd] and lost with One pair : Kings
+Seat 3: Tantaculejen showed [Ah Js] and won 54046 with Straight Ace high
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 1 - HandId: #5193417103624896579-34-1793474706 - Holdem no limit (60/250/500) - 2026/10/31 19:25:06 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #5 is the button
+Seat 1: Player19 (55135, 1€ bounty)
+Seat 2: Player22 (119756, 2.50€ bounty)
+Seat 3: Tantaculejen (73533, 1€ bounty)
+Seat 4: Player13 (115740, 1€ bounty)
+Seat 5: Player28 (41950, 1€ bounty)
+Seat 6: Player03 (176139, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Player03 posts ante 60
+Player19 posts ante 60
+Player22 posts ante 60
+Tantaculejen posts ante 60
+Player13 posts ante 60
+Player28 posts ante 60
+Player03 posts small blind 250
+Player19 posts big blind 500
+Dealt to Tantaculejen [2h 8h]
+*** PRE-FLOP *** 
+Player22 calls 500
+Tantaculejen folds
+Player13 calls 500
+Player28 raises 750 to 1250
+Player03 calls 1000
+Player19 folds
+Player22 calls 750
+Player13 calls 750
+*** FLOP *** [Jh 4c Ad]
+Player03 checks
+Player22 checks
+Player13 checks
+Player28 bets 2866
+Player03 calls 2866
+Player22 folds
+Player13 calls 2866
+*** TURN *** [Jh 4c Ad][9c]
+Player03 checks
+Player13 checks
+Player28 bets 5060
+Player03 calls 5060
+Player13 folds
+*** RIVER *** [Jh 4c Ad 9c][6s]
+Player03 bets 30723
+Player28 raises 1991 to 32714 and is all-in
+Player03 calls 1991
+*** SHOW DOWN ***
+Player03 shows [6h As] (Two pairs : Aces and 6)
+Player28 shows [Ah Ac] (Trips of Aces)
+Player28 collected 90006 from pot
+*** SUMMARY ***
+Total pot 90006 | No rake
+Board: [Jh 4c Ad 9c 6s]
+Seat 5: Player28 (button) showed [Ah Ac] and won 90006 with Trips of Aces
+Seat 6: Player03 (small blind) showed [6h As] and lost with Two pairs : Aces and 6
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 1 - HandId: #5193417103624896579-35-1793474807 - Holdem no limit (60/250/500) - 2026/10/31 19:26:47 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #6 is the button
+Seat 1: Player19 (54575, 1€ bounty)
+Seat 2: Player22 (118446, 2.50€ bounty)
+Seat 3: Tantaculejen (73473, 1€ bounty)
+Seat 4: Player13 (111564, 1€ bounty)
+Seat 5: Player28 (90006, 1€ bounty)
+Seat 6: Player03 (134189, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Player19 posts ante 60
+Player22 posts ante 60
+Tantaculejen posts ante 60
+Player13 posts ante 60
+Player28 posts ante 60
+Player03 posts ante 60
+Player19 posts small blind 250
+Player22 posts big blind 500
+Dealt to Tantaculejen [5d 7d]
+*** PRE-FLOP *** 
+Tantaculejen folds
+Player13 folds
+Player28 folds
+Player03 folds
+Player19 calls 250
+Player22 raises 1000 to 1500
+Player19 folds
+Player22 collected 2360 from pot
+*** SUMMARY ***
+Total pot 2360 | No rake
+Seat 2: Player22 (big blind) won 2360
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 1 - HandId: #5193417103624896579-36-1793474841 - Holdem no limit (60/250/500) - 2026/10/31 19:27:21 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #1 is the button
+Seat 1: Player19 (54015, 1€ bounty)
+Seat 2: Player22 (119246, 2.50€ bounty)
+Seat 3: Tantaculejen (73413, 1€ bounty)
+Seat 4: Player13 (111504, 1€ bounty)
+Seat 5: Player28 (89946, 1€ bounty)
+Seat 6: Player03 (134129, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Player22 posts ante 60
+Tantaculejen posts ante 60
+Player19 posts ante 60
+Player13 posts ante 60
+Player28 posts ante 60
+Player03 posts ante 60
+Player22 posts small blind 250
+Tantaculejen posts big blind 500
+Dealt to Tantaculejen [8s Jc]
+*** PRE-FLOP *** 
+Player13 calls 500
+Player28 folds
+Player03 folds
+Player19 calls 500
+Player22 calls 250
+Tantaculejen checks
+*** FLOP *** [4c Jh 5h]
+Player22 checks
+Tantaculejen bets 1534
+Player13 calls 1534
+Player19 folds
+Player22 folds
+*** TURN *** [4c Jh 5h][9h]
+Tantaculejen bets 3528
+Player13 calls 3528
+*** RIVER *** [4c Jh 5h 9h][Ac]
+Tantaculejen bets 8115
+Player13 folds
+Tantaculejen collected 20599 from pot
+*** SUMMARY ***
+Total pot 20599 | No rake
+Board: [4c Jh 5h 9h Ac]
+Seat 3: Tantaculejen (big blind) won 20599
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 1 - HandId: #5193417103624896579-37-1793474889 - Holdem no limit (60/250/500) - 2026/10/31 19:28:09 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #2 is the button
+Seat 1: Player19 (53455, 1€ bounty)
+Seat 2: Player22 (118686, 2.50€ bounty)
+Seat 3: Tantaculejen (80275, 1€ bounty)
+Seat 4: Player13 (105882, 1€ bounty)
+Seat 5: Player28 (89886, 1€ bounty)
+Seat 6: Player03 (134069, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Tantaculejen posts ante 60
+Player13 posts ante 60
+Player19 posts ante 60
+Player22 posts ante 60
+Player28 posts ante 60
+Player03 posts ante 60
+Tantaculejen posts small blind 250
+Player13 posts big blind 500
+Dealt to Tantaculejen [Qd Kc]
+*** PRE-FLOP *** 
+Player28 folds
+Player03 folds
+Player19 folds
+Player22 raises 1500 to 2000
+Tantaculejen calls 1750
+Player13 folds
+*** FLOP *** [9h Th Ks]
+Tantaculejen bets 3159
+Player22 folds
+Tantaculejen collected 8019 from pot
+*** SUMMARY ***
+Total pot 8019 | No rake
+Board: [9h Th Ks]
+Seat 3: Tantaculejen (small blind) won 8019
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 1 - HandId: #5193417103624896579-38-1793474925 - Holdem no limit (60/250/500) - 2026/10/31 19:28:45 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #3 is the button
+Seat 1: Player19 (53395, 1€ bounty)
+Seat 2: Player22 (116626, 2.50€ bounty)
+Seat 3: Tantaculejen (83075, 1€ bounty)
+Seat 4: Player13 (105322, 1€ bounty)
+Seat 5: Player28 (89826, 1€ bounty)
+Seat 6: Player03 (134009, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Player13 posts ante 60
+Player28 posts ante 60
+Player19 posts ante 60
+Player22 posts ante 60
+Tantaculejen posts ante 60
+Player03 posts ante 60
+Player13 posts small blind 250
+Player28 posts big blind 500
+Dealt to Tantaculejen [As Qc]
+*** PRE-FLOP *** 
+Player03 folds
+Player19 folds
+Player22 folds
+Tantaculejen raises 750 to 1250
+Player13 calls 1000
+Player28 folds
+*** FLOP *** [Jh Th Ts]
+Player13 checks
+Tantaculejen checks
+*** TURN *** [Jh Th Ts][8c]
+Player13 checks
+Tantaculejen checks
+*** RIVER *** [Jh Th Ts 8c][Td]
+Player13 checks
+Tantaculejen checks
+*** SHOW DOWN ***
+Player13 shows [7c Ah] (Trips of Tens)
+Tantaculejen shows [As Qc] (Trips of Tens)
+Tantaculejen collected 3360 from pot
+*** SUMMARY ***
+Total pot 3360 | No rake
+Board: [Jh Th Ts 8c Td]
+Seat 3: Tantaculejen (button) showed [As Qc] and won 3360 with Trips of Tens
+Seat 4: Player13 (small blind) showed [7c Ah] and lost with Trips of Tens
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 1 - HandId: #5193417103624896579-39-1793474982 - Holdem no limit (60/250/500) - 2026/10/31 19:29:42 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #4 is the button
+Seat 1: Player19 (53335, 1€ bounty)
+Seat 2: Player22 (116566, 2.50€ bounty)
+Seat 3: Tantaculejen (85125, 1€ bounty)
+Seat 4: Player13 (104012, 1€ bounty)
+Seat 5: Player28 (89266, 1€ bounty)
+Seat 6: Player03 (133949, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Player28 posts ante 60
+Player03 posts ante 60
+Player19 posts ante 60
+Player22 posts ante 60
+Tantaculejen posts ante 60
+Player13 posts ante 60
+Player28 posts small blind 250
+Player03 posts big blind 500
+Dealt to Tantaculejen [3h 9h]
+*** PRE-FLOP *** 
+Player19 folds
+Player22 raises 750 to 1250
+Tantaculejen folds
+Player13 calls 1250
+Player28 calls 1000
+Player03 folds
+*** FLOP *** [Ah 7s 5s]
+Player28 checks
+Player22 checks
+Player13 checks
+*** TURN *** [Ah 7s 5s][Ac]
+Player28 bets 1614
+Player22 calls 1614
+Player13 folds
+*** RIVER *** [Ah 7s 5s Ac][4s]
+Player28 checks
+Player22 bets 10838
+Player28 folds
+Player22 collected 18676 from pot
+*** SUMMARY ***
+Total pot 18676 | No rake
+Board: [Ah 7s 5s Ac 4s]
+Seat 2: Player22 won 18676
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 2 - HandId: #5193417103624896579-40-1793475047 - Holdem no limit (70/300/600) - 2026/10/31 19:30:47 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #5 is the button
+Seat 1: Player19 (53275, 1€ bounty)
+Seat 2: Player22 (121480, 2.50€ bounty)
+Seat 3: Tantaculejen (85065, 1€ bounty)
+Seat 4: Player13 (102702, 1€ bounty)
+Seat 5: Player28 (86342, 1€ bounty)
+Seat 6: Player03 (133389, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Player03 posts ante 70
+Player19 posts ante 70
+Player22 posts ante 70
+Tantaculejen posts ante 70
+Player13 posts ante 70
+Player28 posts ante 70
+Player03 posts small blind 300
+Player19 posts big blind 600
+Dealt to Tantaculejen [7c 4s]
+*** PRE-FLOP *** 
+Player22 folds
+Tantaculejen folds
+Player13 folds
+Player28 folds
+Player03 folds
+Player19 collected 1320 from pot
+*** SUMMARY ***
+Total pot 1320 | No rake
+Seat 1: Player19 (big blind) won 1320
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 2 - HandId: #5193417103624896579-41-1793475064 - Holdem no limit (70/300/600) - 2026/10/31 19:31:04 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #6 is the button
+Seat 1: Player19 (53925, 1€ bounty)
+Seat 2: Player22 (121410, 2.50€ bounty)
+Seat 3: Tantaculejen (84995, 1€ bounty)
+Seat 4: Player13 (102632, 1€ bounty)
+Seat 5: Player28 (86272, 1€ bounty)
+Seat 6: Player03 (133019, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Player19 posts ante 70
+Player22 posts ante 70
+Tantaculejen posts ante 70
+Player13 posts ante 70
+Player28 posts ante 70
+Player03 posts ante 70
+Player19 posts small blind 300
+Player22 posts big blind 600
+Dealt to Tantaculejen [4d Th]
+*** PRE-FLOP *** 
+Tantaculejen folds
+Player13 calls 600
+Player28 folds
+Player03 folds
+Player19 calls 300
+Player22 checks
+*** FLOP *** [Ts Jh Ah]
+Player19 checks
+Player22 checks
+Player13 bets 2220
+Player19 calls 2220
+Player22 folds
+*** TURN *** [Ts Jh Ah][7h]
+Player19 checks
+Player13 checks
+*** RIVER *** [Ts Jh Ah 7h][Kd]
+Player19 checks
+Player13 checks
+*** SHOW DOWN ***
+Player13 shows [3s 8s] (High card : Ace)
+Player19 shows [8h Qc] (Straight Ace high)
+Player19 collected 6660 from pot
+*** SUMMARY ***
+Total pot 6660 | No rake
+Board: [Ts Jh Ah 7h Kd]
+Seat 1: Player19 (small blind) showed [8h Qc] and won 6660 with Straight Ace high
+Seat 4: Player13 showed [3s 8s] and lost with High card : Ace
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 2 - HandId: #5193417103624896579-42-1793475106 - Holdem no limit (70/300/600) - 2026/10/31 19:31:46 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #1 is the button
+Seat 1: Player19 (57695, 1€ bounty)
+Seat 2: Player22 (120740, 2.50€ bounty)
+Seat 3: Tantaculejen (84925, 1€ bounty)
+Seat 4: Player13 (99742, 1€ bounty)
+Seat 5: Player28 (86202, 1€ bounty)
+Seat 6: Player03 (132949, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Player22 posts ante 70
+Tantaculejen posts ante 70
+Player19 posts ante 70
+Player13 posts ante 70
+Player28 posts ante 70
+Player03 posts ante 70
+Player22 posts small blind 300
+Tantaculejen posts big blind 600
+Dealt to Tantaculejen [Js 5c]
+*** PRE-FLOP *** 
+Player13 calls 600
+Player28 calls 600
+Player03 folds
+Player19 folds
+Player22 folds
+Tantaculejen checks
+*** FLOP *** [2s 2c 8c]
+Tantaculejen checks
+Player13 checks
+Player28 bets 1638
+Tantaculejen folds
+Player13 folds
+Player28 collected 4158 from pot
+*** SUMMARY ***
+Total pot 4158 | No rake
+Board: [2s 2c 8c]
+Seat 5: Player28 won 4158
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 2 - HandId: #5193417103624896579-43-1793475150 - Holdem no limit (70/300/600) - 2026/10/31 19:32:30 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #2 is the button
+Seat 1: Player19 (57625, 1€ bounty)
+Seat 2: Player22 (120370, 2.50€ bounty)
+Seat 3: Tantaculejen (84255, 1€ bounty)
+Seat 4: Player13 (99072, 1€ bounty)
+Seat 5: Player28 (88052, 1€ bounty)
+Seat 6: Player03 (132879, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Tantaculejen posts ante 70
+Player13 posts ante 70
+Player19 posts ante 70
+Player22 posts ante 70
+Player28 posts ante 70
+Player03 posts ante 70
+Tantaculejen posts small blind 300
+Player13 posts big blind 600
+Dealt to Tantaculejen [Ah Jh]
+*** PRE-FLOP *** 
+Player28 folds
+Player03 raises 900 to 1500
+Player19 folds
+Player22 folds
+Tantaculejen raises 3000 to 4500
+Player13 calls 3900
+Player03 calls 3000
+*** FLOP *** [Kd Tc Qh]
+Tantaculejen bets 4872
+Player13 calls 4872
+Player03 calls 4872
+*** TURN *** [Kd Tc Qh][Jc]
+Tantaculejen bets 18548
+Player13 folds
+Player03 folds
+Tantaculejen collected 47084 from pot
+*** SUMMARY ***
+Total pot 47084 | No rake
+Board: [Kd Tc Qh Jc]
+Seat 3: Tantaculejen (small blind) won 47084
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 2 - HandId: #5193417103624896579-44-1793475209 - Holdem no limit (70/300/600) - 2026/10/31 19:33:29 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #3 is the button
+Seat 1: Player19 (57555, 1€ bounty)
+Seat 2: Player22 (120300, 2.50€ bounty)
+Seat 3: Tantaculejen (103349, 1€ bounty)
+Seat 4: Player13 (89630, 1€ bounty)
+Seat 5: Player28 (87982, 1€ bounty)
+Seat 6: Player03 (123437, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Player13 posts ante 70
+Player28 posts ante 70
+Player19 posts ante 70
+Player22 posts ante 70
+Tantaculejen posts ante 70
+Player03 posts ante 70
+Player13 posts small blind 300
+Player28 posts big blind 600
+Dealt to Tantaculejen [Ah Kd]
+*** PRE-FLOP *** 
+Player03 folds
+Player19 calls 600
+Player22 folds
+Tantaculejen raises 900 to 1500
+Player13 folds
+Player28 calls 900
+Player19 calls 900
+*** FLOP *** [Qc Jh 4c]
+Player28 checks
+Player19 checks
+Tantaculejen checks
+*** TURN *** [Qc Jh 4c][7h]
+Player28 checks
+Player19 checks
+Tantaculejen checks
+*** RIVER *** [Qc Jh 4c 7h][9c]
+Player28 checks
+Player19 checks
+Tantaculejen checks
+*** SHOW DOWN ***
+Player19 shows [7s As] (One pair : 7)
+Tantaculejen shows [Ah Kd] (High card : Ace)
+Player28 shows [Ac 9h] (One pair : 9)
+Player28 collected 5220 from pot
+*** SUMMARY ***
+Total pot 5220 | No rake
+Board: [Qc Jh 4c 7h 9c]
+Seat 1: Player19 showed [7s As] and lost with One pair : 7
+Seat 3: Tantaculejen (button) showed [Ah Kd] and lost with High card : Ace
+Seat 5: Player28 (big blind) showed [Ac 9h] and won 5220 with One pair : 9
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 2 - HandId: #5193417103624896579-45-1793475239 - Holdem no limit (70/300/600) - 2026/10/31 19:33:59 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #4 is the button
+Seat 1: Player06 (50000, 1€ bounty)
+Seat 2: Player22 (120230, 2.50€ bounty)
+Seat 3: Tantaculejen (101779, 1€ bounty)
+Seat 4: Player13 (89260, 1€ bounty)
+Seat 5: Player28 (91632, 1€ bounty)
+Seat 6: Player03 (123367, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Player28 posts ante 70
+Player03 posts ante 70
+Player06 posts ante 70
+Player22 posts ante 70
+Tantaculejen posts ante 70
+Player13 posts ante 70
+Player28 posts small blind 300
+Player03 posts big blind 600
+Dealt to Tantaculejen [7c 4s]
+*** PRE-FLOP *** 
+Player06 folds
+Player22 calls 600
+Tantaculejen folds
+Player13 folds
+Player28 calls 300
+Player03 checks
+*** FLOP *** [5h 2s Jc]
+Player28 checks
+Player03 checks
+Player22 checks
+*** TURN *** [5h 2s Jc][9d]
+Player28 checks
+Player03 checks
+Player22 checks
+*** RIVER *** [5h 2s Jc 9d][Jd]
+Player28 checks
+Player03 checks
+Player22 checks
+*** SHOW DOWN ***
+Player28 shows [6c Qs] (One pair : Jacks)
+Player03 shows [7h Ks] (One pair : Jacks)
+Player22 shows [Ah 9s] (Two pairs : Jacks and 9)
+Player22 collected 2220 from pot
+*** SUMMARY ***
+Total pot 2220 | No rake
+Board: [5h 2s Jc 9d Jd]
+Seat 2: Player22 showed [Ah 9s] and won 2220 with Two pairs : Jacks and 9
+Seat 5: Player28 (small blind) showed [6c Qs] and lost with One pair : Jacks
+Seat 6: Player03 (big blind) showed [7h Ks] and lost with One pair : Jacks
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 2 - HandId: #5193417103624896579-46-1793475310 - Holdem no limit (70/300/600) - 2026/10/31 19:35:10 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #5 is the button
+Seat 1: Player06 (49930, 1€ bounty)
+Seat 2: Player22 (121780, 2.50€ bounty)
+Seat 3: Tantaculejen (101709, 1€ bounty)
+Seat 4: Player13 (89190, 1€ bounty)
+Seat 5: Player28 (90962, 1€ bounty)
+Seat 6: Player03 (122697, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Player03 posts ante 70
+Player06 posts ante 70
+Player22 posts ante 70
+Tantaculejen posts ante 70
+Player13 posts ante 70
+Player28 posts ante 70
+Player03 posts small blind 300
+Player06 posts big blind 600
+Dealt to Tantaculejen [4h Kh]
+*** PRE-FLOP *** 
+Player22 folds
+Tantaculejen folds
+Player13 calls 600
+Player28 folds
+Player03 calls 300
+Player06 checks
+*** FLOP *** [As Js 3c]
+Player03 checks
+Player06 bets 777
+Player13 calls 777
+Player03 folds
+*** TURN *** [As Js 3c][9c]
+Player06 checks
+Player13 checks
+*** RIVER *** [As Js 3c 9c][6d]
+Player06 bets 1887
+Player13 calls 1887
+*** SHOW DOWN ***
+Player06 shows [Jd 8h] (One pair : Jacks)
+Player13 shows [6s 9s] (Two pairs : 9 and 6)
+Player13 collected 7548 from pot
+*** SUMMARY ***
+Total pot 7548 | No rake
+Board: [As Js 3c 9c 6d]
+Seat 1: Player06 (big blind) showed [Jd 8h] and lost with One pair : Jacks
+Seat 4: Player13 showed [6s 9s] and won 7548 with Two pairs : 9 and 6
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 3 - HandId: #5193417103624896579-47-1793475383 - Holdem no limit (80/350/700) - 2026/10/31 19:36:23 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #6 is the button
+Seat 1: Player06 (46596, 1€ bounty)
+Seat 2: Player22 (121710, 2.50€ bounty)
+Seat 3: Tantaculejen (101639, 1€ bounty)
+Seat 4: Player13 (93404, 1€ bounty)
+Seat 5: Player28 (90892, 1€ bounty)
+Seat 6: Player03 (122027, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Player06 posts ante 80
+Player22 posts ante 80
+Tantaculejen posts ante 80
+Player13 posts ante 80
+Player28 posts ante 80
+Player03 posts ante 80
+Player06 posts small blind 350
+Player22 posts big blind 700
+Dealt to Tantaculejen [4h Kd]
+*** PRE-FLOP *** 
+Tantaculejen folds
+Player13 raises 700 to 1400
+Player28 folds
+Player03 raises 120547 to 121947 and is all-in
+Player06 folds
+Player22 folds
+Player13 folds
+Player03 collected 124877 from pot
+*** SUMMARY ***
+Total pot 124877 | No rake
+Seat 6: Player03 (button) won 124877
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 3 - HandId: #5193417103624896579-48-1793475418 - Holdem no limit (80/350/700) - 2026/10/31 19:36:58 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #1 is the button
+Seat 1: Player06 (46166, 1€ bounty)
+Seat 2: Player22 (120930, 2.50€ bounty)
+Seat 3: Tantaculejen (101559, 1€ bounty)
+Seat 4: Player13 (91924, 1€ bounty)
+Seat 5: Player28 (90812, 1€ bounty)
+Seat 6: Player03 (124877, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Player22 posts ante 80
+Tantaculejen posts ante 80
+Player06 posts ante 80
+Player13 posts ante 80
+Player28 posts ante 80
+Player03 posts ante 80
+Player22 posts small blind 350
+Tantaculejen posts big blind 700
+Dealt to Tantaculejen [5s 3d]
+*** PRE-FLOP *** 
+Player13 calls 700
+Player28 folds
+Player03 folds
+Player06 calls 700
+Player22 calls 350
+Tantaculejen checks
+*** FLOP *** [Js 7s Kh]
+Player22 checks
+Tantaculejen checks
+Player13 checks
+Player06 bets 1148
+Player22 folds
+Tantaculejen folds
+Player13 folds
+Player06 collected 4428 from pot
+*** SUMMARY ***
+Total pot 4428 | No rake
+Board: [Js 7s Kh]
+Seat 1: Player06 (button) won 4428
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 3 - HandId: #5193417103624896579-49-1793475481 - Holdem no limit (80/350/700) - 2026/10/31 19:38:01 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #2 is the button
+Seat 1: Player06 (48666, 1€ bounty)
+Seat 2: Player22 (120150, 2.50€ bounty)
+Seat 3: Tantaculejen (100779, 1€ bounty)
+Seat 4: Player13 (91144, 1€ bounty)
+Seat 5: Player28 (90732, 1€ bounty)
+Seat 6: Player03 (124797, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Tantaculejen posts ante 80
+Player13 posts ante 80
+Player06 posts ante 80
+Player22 posts ante 80
+Player28 posts ante 80
+Player03 posts ante 80
+Tantaculejen posts small blind 350
+Player13 posts big blind 700
+Dealt to Tantaculejen [2d Js]
+*** PRE-FLOP *** 
+Player28 folds
+Player03 folds
+Player06 raises 700 to 1400
+Player22 calls 1400
+Tantaculejen folds
+Player13 calls 700
+*** FLOP *** [Kh 6d 6h]
+Player13 checks
+Player06 bets 1761
+Player22 calls 1761
+Player13 folds
+*** TURN *** [Kh 6d 6h][4s]
+Player06 bets 2993
+Player22 calls 2993
+*** RIVER *** [Kh 6d 6h 4s][6c]
+Player06 bets 11630
+Player22 raises 102286 to 113916 and is all-in
+Player06 calls 30802 and is all-in
+*** SHOW DOWN ***
+Player06 shows [Ts Kc] (Full of 6 and Kings)
+Player22 shows [Ac Ks] (Full of 6 and Kings)
+Player22 collected 121185 from side pot 1
+Player06 collected 49701 from main pot
+*** SUMMARY ***
+Total pot 170886 | No rake
+Board: [Kh 6d 6h 4s 6c]
+Seat 1: Player06 showed [Ts Kc] and won 49701 with Full of 6 and Kings
+Seat 2: Player22 (button) showed [Ac Ks] and won 121185 with Full of 6 and Kings
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 3 - HandId: #5193417103624896579-50-1793475599 - Holdem no limit (80/350/700) - 2026/10/31 19:39:59 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #3 is the button
+Seat 1: Player06 (49701, 1€ bounty)
+Seat 2: Player22 (121185, 2.50€ bounty)
+Seat 3: Tantaculejen (100349, 1€ bounty)
+Seat 4: Player13 (89664, 1€ bounty)
+Seat 5: Player28 (90652, 1€ bounty)
+Seat 6: Player03 (124717, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Player13 posts ante 80
+Player28 posts ante 80
+Player06 posts ante 80
+Player22 posts ante 80
+Tantaculejen posts ante 80
+Player03 posts ante 80
+Player13 posts small blind 350
+Player28 posts big blind 700
+Dealt to Tantaculejen [8c 3d]
+*** PRE-FLOP *** 
+Player03 folds
+Player06 folds
+Player22 calls 700
+Tantaculejen folds
+Player13 calls 350
+Player28 checks
+*** FLOP *** [Tc Jh 4h]
+Player13 checks
+Player28 checks
+Player22 bets 903
+Player13 folds
+Player28 folds
+Player22 collected 3483 from pot
+*** SUMMARY ***
+Total pot 3483 | No rake
+Board: [Tc Jh 4h]
+Seat 2: Player22 won 3483
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 3 - HandId: #5193417103624896579-51-1793475656 - Holdem no limit (80/350/700) - 2026/10/31 19:40:56 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #4 is the button
+Seat 1: Player06 (49621, 1€ bounty)
+Seat 2: Player22 (122985, 2.50€ bounty)
+Seat 3: Tantaculejen (100269, 1€ bounty)
+Seat 4: Player13 (88884, 1€ bounty)
+Seat 5: Player28 (89872, 1€ bounty)
+Seat 6: Player03 (124637, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Player28 posts ante 80
+Player03 posts ante 80
+Player06 posts ante 80
+Player22 posts ante 80
+Tantaculejen posts ante 80
+Player13 posts ante 80
+Player28 posts small blind 350
+Player03 posts big blind 700
+Dealt to Tantaculejen [5s 5c]
+*** PRE-FLOP *** 
+Player06 folds
+Player22 raises 1400 to 2100
+Tantaculejen raises 4200 to 6300
+Player13 folds
+Player28 folds
+Player03 folds
+Player22 calls 4200
+*** FLOP *** [3d 2c 8d]
+Player22 bets 116605 and is all-in
+Tantaculejen folds
+Player22 collected 130735 from pot
+*** SUMMARY ***
+Total pot 130735 | No rake
+Board: [3d 2c 8d]
+Seat 2: Player22 won 130735
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 3 - HandId: #5193417103624896579-52-1793475692 - Holdem no limit (80/350/700) - 2026/10/31 19:41:32 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #5 is the button
+Seat 1: Player06 (49541, 1€ bounty)
+Seat 2: Player22 (130735, 2.50€ bounty)
+Seat 3: Tantaculejen (93889, 1€ bounty)
+Seat 4: Player13 (88804, 1€ bounty)
+Seat 5: Player28 (89442, 1€ bounty)
+Seat 6: Player03 (123857, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Player03 posts ante 80
+Player06 posts ante 80
+Player22 posts ante 80
+Tantaculejen posts ante 80
+Player13 posts ante 80
+Player28 posts ante 80
+Player03 posts small blind 350
+Player06 posts big blind 700
+Dealt to Tantaculejen [6c 8s]
+*** PRE-FLOP *** 
+Player22 folds
+Tantaculejen folds
+Player13 calls 700
+Player28 raises 700 to 1400
+Player03 folds
+Player06 folds
+Player13 calls 700
+*** FLOP *** [5d Qd 6d]
+Player13 checks
+Player28 bets 1516
+Player13 folds
+Player28 collected 5846 from pot
+*** SUMMARY ***
+Total pot 5846 | No rake
+Board: [5d Qd 6d]
+Seat 5: Player28 (button) won 5846
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 3 - HandId: #5193417103624896579-53-1793475712 - Holdem no limit (80/350/700) - 2026/10/31 19:41:52 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #6 is the button
+Seat 1: Player06 (48761, 1€ bounty)
+Seat 2: Player22 (130655, 2.50€ bounty)
+Seat 3: Tantaculejen (93809, 1€ bounty)
+Seat 4: Player13 (87324, 1€ bounty)
+Seat 5: Player28 (92292, 1€ bounty)
+Seat 6: Player03 (123427, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Player06 posts ante 80
+Player22 posts ante 80
+Tantaculejen posts ante 80
+Player13 posts ante 80
+Player28 posts ante 80
+Player03 posts ante 80
+Player06 posts small blind 350
+Player22 posts big blind 700
+Dealt to Tantaculejen [5h 8h]
+*** PRE-FLOP *** 
+Tantaculejen raises 1050 to 1750
+Player13 calls 1750
+Player28 folds
+Player03 calls 1750
+Player06 folds
+Player22 calls 1050
+*** FLOP *** [Qc Th Ac]
+Player22 checks
+Tantaculejen checks
+Player13 checks
+Player03 bets 3915
+Player22 folds
+Tantaculejen folds
+Player13 calls 3915
+*** TURN *** [Qc Th Ac][Jh]
+Player13 checks
+Player03 checks
+*** RIVER *** [Qc Th Ac Jh][7h]
+Player13 bets 15660
+Player03 raises 19340 to 35000
+Player13 calls 19340
+*** SHOW DOWN ***
+Player13 shows [3d Kd] (Straight Ace high)
+Player03 shows [Ah 6h] (Flush Ace high)
+Player03 collected 85660 from pot
+*** SUMMARY ***
+Total pot 85660 | No rake
+Board: [Qc Th Ac Jh 7h]
+Seat 4: Player13 showed [3d Kd] and lost with Straight Ace high
+Seat 6: Player03 (button) showed [Ah 6h] and won 85660 with Flush Ace high
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 4 - HandId: #5193417103624896579-54-1793475781 - Holdem no limit (100/400/800) - 2026/10/31 19:43:01 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #1 is the button
+Seat 1: Player06 (48331, 1€ bounty)
+Seat 2: Player22 (128825, 2.50€ bounty)
+Seat 3: Tantaculejen (91979, 1€ bounty)
+Seat 4: Player13 (46579, 1€ bounty)
+Seat 5: Player28 (92212, 1€ bounty)
+Seat 6: Player03 (168342, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Player22 posts ante 100
+Tantaculejen posts ante 100
+Player06 posts ante 100
+Player13 posts ante 100
+Player28 posts ante 100
+Player03 posts ante 100
+Player22 posts small blind 400
+Tantaculejen posts big blind 800
+Dealt to Tantaculejen [2s 9s]
+*** PRE-FLOP *** 
+Player13 raises 1200 to 2000
+Player28 calls 2000
+Player03 folds
+Player06 folds
+Player22 calls 1600
+Tantaculejen folds
+*** FLOP *** [4s 6s 8c]
+Player22 checks
+Player13 checks
+Player28 checks
+*** TURN *** [4s 6s 8c][Qs]
+Player22 checks
+Player13 checks
+Player28 bets 2590
+Player22 folds
+Player13 calls 2590
+*** RIVER *** [4s 6s 8c Qs][9d]
+Player13 checks
+Player28 checks
+*** SHOW DOWN ***
+Player13 shows [Ad 9h] (One pair : 9)
+Player28 shows [Qc Js] (One pair : Queens)
+Player28 collected 12580 from pot
+*** SUMMARY ***
+Total pot 12580 | No rake
+Board: [4s 6s 8c Qs 9d]
+Seat 4: Player13 showed [Ad 9h] and lost with One pair : 9
+Seat 5: Player28 showed [Qc Js] and won 12580 with One pair : Queens
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 4 - HandId: #5193417103624896579-55-1793475829 - Holdem no limit (100/400/800) - 2026/10/31 19:43:49 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #2 is the button
+Seat 1: Player06 (48231, 1€ bounty)
+Seat 2: Player22 (126725, 2.50€ bounty)
+Seat 3: Tantaculejen (91079, 1€ bounty)
+Seat 4: Player13 (41889, 1€ bounty)
+Seat 5: Player28 (100102, 1€ bounty)
+Seat 6: Player03 (168242, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Tantaculejen posts ante 100
+Player13 posts ante 100
+Player06 posts ante 100
+Player22 posts ante 100
+Player28 posts ante 100
+Player03 posts ante 100
+Tantaculejen posts small blind 400
+Player13 posts big blind 800
+Dealt to Tantaculejen [7c As]
+*** PRE-FLOP *** 
+Player28 folds
+Player03 folds
+Player06 folds
+Player22 folds
+Tantaculejen raises 1200 to 2000
+Player13 folds
+Tantaculejen collected 3400 from pot
+*** SUMMARY ***
+Total pot 3400 | No rake
+Seat 3: Tantaculejen (small blind) won 3400
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 4 - HandId: #5193417103624896579-56-1793475856 - Holdem no limit (100/400/800) - 2026/10/31 19:44:16 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #3 is the button
+Seat 1: Player06 (48131, 1€ bounty)
+Seat 2: Player22 (126625, 2.50€ bounty)
+Seat 3: Tantaculejen (92379, 1€ bounty)
+Seat 4: Player13 (40989, 1€ bounty)
+Seat 5: Player28 (100002, 1€ bounty)
+Seat 6: Player03 (168142, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Player13 posts ante 100
+Player28 posts ante 100
+Player06 posts ante 100
+Player22 posts ante 100
+Tantaculejen posts ante 100
+Player03 posts ante 100
+Player13 posts small blind 400
+Player28 posts big blind 800
+Dealt to Tantaculejen [Qs Jd]
+*** PRE-FLOP *** 
+Player03 folds
+Player06 folds
+Player22 calls 800
+Tantaculejen raises 1200 to 2000
+Player13 calls 1600
+Player28 calls 1200
+Player22 folds
+*** FLOP *** [3h 4h 4s]
+Player13 checks
+Player28 checks
+Tantaculejen checks
+*** TURN *** [3h 4h 4s][5c]
+Player13 bets 7400
+Player28 folds
+Tantaculejen folds
+Player13 collected 14800 from pot
+*** SUMMARY ***
+Total pot 14800 | No rake
+Board: [3h 4h 4s 5c]
+Seat 4: Player13 (small blind) won 14800
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 4 - HandId: #5193417103624896579-57-1793475916 - Holdem no limit (100/400/800) - 2026/10/31 19:45:16 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #4 is the button
+Seat 1: Player06 (48031, 1€ bounty)
+Seat 2: Player22 (125725, 2.50€ bounty)
+Seat 3: Tantaculejen (90279, 1€ bounty)
+Seat 4: Player13 (46289, 1€ bounty)
+Seat 5: Player28 (97902, 1€ bounty)
+Seat 6: Player03 (168042, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Player28 posts ante 100
+Player03 posts ante 100
+Player06 posts ante 100
+Player22 posts ante 100
+Tantaculejen posts ante 100
+Player13 posts ante 100
+Player28 posts small blind 400
+Player03 posts big blind 800
+Dealt to Tantaculejen [9s Qs]
+*** PRE-FLOP *** 
+Player06 raises 800 to 1600
+Player22 folds
+Tantaculejen raises 2400 to 4000
+Player13 folds
+Player28 folds
+Player03 folds
+Player06 raises 8000 to 12000
+Tantaculejen calls 8000
+*** FLOP *** [8h 3h Js]
+Player06 bets 12900
+Tantaculejen calls 12900
+*** TURN *** [8h 3h Js][7c]
+Player06 bets 23031 and is all-in
+Tantaculejen calls 23031
+*** RIVER *** [8h 3h Js 7c][Jc]
+*** SHOW DOWN ***
+Tantaculejen shows [9s Qs] (One pair : Jacks)
+Player06 shows [4s As] (One pair : Jacks)
+Player06 collected 97662 from pot
+*** SUMMARY ***
+Total pot 97662 | No rake
+Board: [8h 3h Js 7c Jc]
+Seat 1: Player06 showed [4s As] and won 97662 with One pair : Jacks
+Seat 3: Tantaculejen showed [9s Qs] and lost with One pair : Jacks
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 4 - HandId: #5193417103624896579-58-1793475976 - Holdem no limit (100/400/800) - 2026/10/31 19:46:16 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #5 is the button
+Seat 1: Player06 (97662, 1€ bounty)
+Seat 2: Player22 (125625, 2.50€ bounty)
+Seat 3: Tantaculejen (42248, 1€ bounty)
+Seat 4: Player13 (46189, 1€ bounty)
+Seat 5: Player28 (97402, 1€ bounty)
+Seat 6: Player03 (167142, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Player03 posts ante 100
+Player06 posts ante 100
+Player22 posts ante 100
+Tantaculejen posts ante 100
+Player13 posts ante 100
+Player28 posts ante 100
+Player03 posts small blind 400
+Player06 posts big blind 800
+Dealt to Tantaculejen [7d 6c]
+*** PRE-FLOP *** 
+Player22 raises 800 to 1600
+Tantaculejen folds
+Player13 folds
+Player28 calls 1600
+Player03 folds
+Player06 calls 800
+*** FLOP *** [3s Kc 2h]
+Player06 checks
+Player22 checks
+Player28 checks
+*** TURN *** [3s Kc 2h][4c]
+Player06 checks
+Player22 checks
+Player28 bets 2030
+Player06 calls 2030
+Player22 folds
+*** RIVER *** [3s Kc 2h 4c][9c]
+Player06 bets 3451
+Player28 calls 3451
+*** SHOW DOWN ***
+Player06 shows [4h Ah] (One pair : 4)
+Player28 shows [Ad 9h] (One pair : 9)
+Player28 collected 16762 from pot
+*** SUMMARY ***
+Total pot 16762 | No rake
+Board: [3s Kc 2h 4c 9c]
+Seat 1: Player06 (big blind) showed [4h Ah] and lost with One pair : 4
+Seat 5: Player28 (button) showed [Ad 9h] and won 16762 with One pair : 9
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 4 - HandId: #5193417103624896579-59-1793476054 - Holdem no limit (100/400/800) - 2026/10/31 19:47:34 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #6 is the button
+Seat 1: Player06 (90481, 1€ bounty)
+Seat 2: Player22 (123925, 2.50€ bounty)
+Seat 3: Tantaculejen (42148, 1€ bounty)
+Seat 4: Player13 (46089, 1€ bounty)
+Seat 5: Player28 (106983, 1€ bounty)
+Seat 6: Player03 (166642, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Player06 posts ante 100
+Player22 posts ante 100
+Tantaculejen posts ante 100
+Player13 posts ante 100
+Player28 posts ante 100
+Player03 posts ante 100
+Player06 posts small blind 400
+Player22 posts big blind 800
+Dealt to Tantaculejen [Jh Ah]
+*** PRE-FLOP *** 
+Tantaculejen raises 1200 to 2000
+Player13 folds
+Player28 folds
+Player03 folds
+Player06 folds
+Player22 raises 1200 to 3200
+Tantaculejen calls 1200
+*** FLOP *** [6h 3s 9c]
+Player22 bets 2590
+Tantaculejen calls 2590
+*** TURN *** [6h 3s 9c][Ks]
+Player22 checks
+Tantaculejen bets 8177
+Player22 folds
+Tantaculejen collected 20757 from pot
+*** SUMMARY ***
+Total pot 20757 | No rake
+Board: [6h 3s 9c Ks]
+Seat 3: Tantaculejen won 20757
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 5 - HandId: #5193417103624896579-60-1793476111 - Holdem no limit (120/500/1000) - 2026/10/31 19:48:31 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #1 is the button
+Seat 1: Player06 (89981, 1€ bounty)
+Seat 2: Player22 (118035, 2.50€ bounty)
+Seat 3: Tantaculejen (48838, 1€ bounty)
+Seat 4: Player13 (45989, 1€ bounty)
+Seat 5: Player28 (106883, 1€ bounty)
+Seat 6: Player03 (166542, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Player22 posts ante 120
+Tantaculejen posts ante 120
+Player06 posts ante 120
+Player13 posts ante 120
+Player28 posts ante 120
+Player03 posts ante 120
+Player22 posts small blind 500
+Tantaculejen posts big blind 1000
+Dealt to Tantaculejen [6h 2s]
+*** PRE-FLOP *** 
+Player13 folds
+Player28 folds
+Player03 folds
+Player06 folds
+Player22 folds
+Tantaculejen collected 2220 from pot
+*** SUMMARY ***
+Total pot 2220 | No rake
+Seat 3: Tantaculejen (big blind) won 2220
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 5 - HandId: #5193417103624896579-61-1793476152 - Holdem no limit (120/500/1000) - 2026/10/31 19:49:12 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #2 is the button
+Seat 1: Player06 (89861, 1€ bounty)
+Seat 2: Player22 (117415, 2.50€ bounty)
+Seat 3: Tantaculejen (49938, 1€ bounty)
+Seat 4: Player13 (45869, 1€ bounty)
+Seat 5: Player28 (106763, 1€ bounty)
+Seat 6: Player03 (166422, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Tantaculejen posts ante 120
+Player13 posts ante 120
+Player06 posts ante 120
+Player22 posts ante 120
+Player28 posts ante 120
+Player03 posts ante 120
+Tantaculejen posts small blind 500
+Player13 posts big blind 1000
+Dealt to Tantaculejen [3d 3s]
+*** PRE-FLOP *** 
+Player28 folds
+Player03 folds
+Player06 raises 1500 to 2500
+Player22 calls 2500
+Tantaculejen calls 2000
+Player13 calls 1500
+*** FLOP *** [4c 2d Qc]
+Tantaculejen checks
+Player13 bets 10720
+Player06 calls 10720
+Player22 folds
+Tantaculejen folds
+*** TURN *** [4c 2d Qc][Kc]
+Player13 bets 32529 and is all-in
+Player06 calls 32529
+*** RIVER *** [4c 2d Qc Kc][Ks]
+*** SHOW DOWN ***
+Player06 shows [Th Tc] (Two pairs : Kings and Tens)
+Player13 shows [5s Qh] (Two pairs : Kings and Queens)
+Player13 collected 97218 from pot
+*** SUMMARY ***
+Total pot 97218 | No rake
+Board: [4c 2d Qc Kc Ks]
+Seat 1: Player06 showed [Th Tc] and lost with Two pairs : Kings and Tens
+Seat 4: Player13 (big blind) showed [5s Qh] and won 97218 with Two pairs : Kings and Queens
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 5 - HandId: #5193417103624896579-62-1793476213 - Holdem no limit (120/500/1000) - 2026/10/31 19:50:13 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #3 is the button
+Seat 1: Player06 (43992, 1€ bounty)
+Seat 2: Player22 (114795, 2.50€ bounty)
+Seat 3: Tantaculejen (47318, 1€ bounty)
+Seat 4: Player13 (97218, 1€ bounty)
+Seat 5: Player28 (106643, 1€ bounty)
+Seat 6: Player03 (166302, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Player13 posts ante 120
+Player28 posts ante 120
+Player06 posts ante 120
+Player22 posts ante 120
+Tantaculejen posts ante 120
+Player03 posts ante 120
+Player13 posts small blind 500
+Player28 posts big blind 1000
+Dealt to Tantaculejen [Kh 6s]
+*** PRE-FLOP *** 
+Player03 folds
+Player06 raises 1500 to 2500
+Player22 raises 5000 to 7500
+Tantaculejen folds
+Player13 folds
+Player28 folds
+Player06 raises 15000 to 22500
+Player22 raises 92175 to 114675 and is all-in
+Player06 calls 21372 and is all-in
+*** FLOP *** [8h Ac 4s]
+*** TURN *** [8h Ac 4s][4d]
+*** RIVER *** [8h Ac 4s 4d][Jh]
+*** SHOW DOWN ***
+Player06 shows [Td Th] (Two pairs : Tens and 4)
+Player22 shows [9h 9d] (Two pairs : 9 and 4)
+Player22 collected 70803 from side pot 1
+Player06 collected 89964 from main pot
+*** SUMMARY ***
+Total pot 160767 | No rake
+Board: [8h Ac 4s 4d Jh]
+Seat 1: Player06 showed [Td Th] and won 89964 with Two pairs : Tens and 4
+Seat 2: Player22 showed [9h 9d] and won 70803 with Two pairs : 9 and 4
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 5 - HandId: #5193417103624896579-63-1793476264 - Holdem no limit (120/500/1000) - 2026/10/31 19:51:04 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #4 is the button
+Seat 1: Player06 (89964, 1€ bounty)
+Seat 2: Player22 (70803, 2.50€ bounty)
+Seat 3: Tantaculejen (47198, 1€ bounty)
+Seat 4: Player13 (96598, 1€ bounty)
+Seat 5: Player28 (105523, 1€ bounty)
+Seat 6: Player03 (166182, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Player28 posts ante 120
+Player03 posts ante 120
+Player06 posts ante 120
+Player22 posts ante 120
+Tantaculejen posts ante 120
+Player13 posts ante 120
+Player28 posts small blind 500
+Player03 posts big blind 1000
+Dealt to Tantaculejen [Ks Th]
+*** PRE-FLOP *** 
+Player06 folds
+Player22 folds
+Tantaculejen raises 1500 to 2500
+Player13 calls 2500
+Player28 calls 2000
+Player03 calls 1500
+*** FLOP *** [6d 3s Tc]
+Player28 bets 3752
+Player03 calls 3752
+Tantaculejen raises 12971 to 16723
+Player13 folds
+Player28 folds
+Player03 folds
+Tantaculejen collected 34947 from pot
+*** SUMMARY ***
+Total pot 34947 | No rake
+Board: [6d 3s Tc]
+Seat 3: Tantaculejen won 34947
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 5 - HandId: #5193417103624896579-64-1793476324 - Holdem no limit (120/500/1000) - 2026/10/31 19:52:04 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #5 is the button
+Seat 1: Player06 (89844, 1€ bounty)
+Seat 2: Player22 (70683, 2.50€ bounty)
+Seat 3: Tantaculejen (62802, 1€ bounty)
+Seat 4: Player13 (93978, 1€ bounty)
+Seat 5: Player28 (99151, 1€ bounty)
+Seat 6: Player03 (159810, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Player03 posts ante 120
+Player06 posts ante 120
+Player22 posts ante 120
+Tantaculejen posts ante 120
+Player13 posts ante 120
+Player28 posts ante 120
+Player03 posts small blind 500
+Player06 posts big blind 1000
+Dealt to Tantaculejen [Jd 6d]
+*** PRE-FLOP *** 
+Player22 folds
+Tantaculejen folds
+Player13 raises 2000 to 3000
+Player28 folds
+Player03 folds
+Player06 folds
+Player13 collected 5220 from pot
+*** SUMMARY ***
+Total pot 5220 | No rake
+Seat 4: Player13 won 5220
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 5 - HandId: #5193417103624896579-65-1793476340 - Holdem no limit (120/500/1000) - 2026/10/31 19:52:20 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #6 is the button
+Seat 1: Player06 (88724, 1€ bounty)
+Seat 2: Player22 (70563, 2.50€ bounty)
+Seat 3: Tantaculejen (62682, 1€ bounty)
+Seat 4: Player13 (96078, 1€ bounty)
+Seat 5: Player28 (99031, 1€ bounty)
+Seat 6: Player03 (159190, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Player06 posts ante 120
+Player22 posts ante 120
+Tantaculejen posts ante 120
+Player13 posts ante 120
+Player28 posts ante 120
+Player03 posts ante 120
+Player06 posts small blind 500
+Player22 posts big blind 1000
+Dealt to Tantaculejen [6h 2s]
+*** PRE-FLOP *** 
+Tantaculejen folds
+Player13 calls 1000
+Player28 folds
+Player03 folds
+Player06 calls 500
+Player22 checks
+*** FLOP *** [9h Kh Ad]
+Player06 checks
+Player22 checks
+Player13 checks
+*** TURN *** [9h Kh Ad][7d]
+Player06 bets 2418
+Player22 folds
+Player13 folds
+Player06 collected 6138 from pot
+*** SUMMARY ***
+Total pot 6138 | No rake
+Board: [9h Kh Ad 7d]
+Seat 1: Player06 (small blind) won 6138
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 5 - HandId: #5193417103624896579-66-1793476384 - Holdem no limit (120/500/1000) - 2026/10/31 19:53:04 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #1 is the button
+Seat 1: Player06 (91324, 1€ bounty)
+Seat 2: Player22 (69443, 2.50€ bounty)
+Seat 3: Tantaculejen (62562, 1€ bounty)
+Seat 4: Player13 (94958, 1€ bounty)
+Seat 5: Player28 (98911, 1€ bounty)
+Seat 6: Player03 (159070, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Player22 posts ante 120
+Tantaculejen posts ante 120
+Player06 posts ante 120
+Player13 posts ante 120
+Player28 posts ante 120
+Player03 posts ante 120
+Player22 posts small blind 500
+Tantaculejen posts big blind 1000
+Dealt to Tantaculejen [5s 8h]
+*** PRE-FLOP *** 
+Player13 raises 2000 to 3000
+Player28 folds
+Player03 folds
+Player06 folds
+Player22 calls 2500
+Tantaculejen folds
+*** FLOP *** [4s 6s As]
+Player22 checks
+Player13 checks
+*** TURN *** [4s 6s As][Ad]
+Player22 checks
+Player13 checks
+*** RIVER *** [4s 6s As Ad][7c]
+Player22 bets 66323 and is all-in
+Player13 folds
+Player22 collected 74043 from pot
+*** SUMMARY ***
+Total pot 74043 | No rake
+Board: [4s 6s As Ad 7c]
+Seat 2: Player22 (small blind) won 74043
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 5 - HandId: #5193417103624896579-67-1793476427 - Holdem no limit (120/500/1000) - 2026/10/31 19:53:47 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #2 is the button
+Seat 1: Player06 (91204, 1€ bounty)
+Seat 2: Player22 (74043, 2.50€ bounty)
+Seat 3: Tantaculejen (61442, 1€ bounty)
+Seat 4: Player13 (91838, 1€ bounty)
+Seat 5: Player28 (98791, 1€ bounty)
+Seat 6: Player03 (158950, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Tantaculejen posts ante 120
+Player13 posts ante 120
+Player06 posts ante 120
+Player22 posts ante 120
+Player28 posts ante 120
+Player03 posts ante 120
+Tantaculejen posts small blind 500
+Player13 posts big blind 1000
+Dealt to Tantaculejen [6d 6c]
+*** PRE-FLOP *** 
+Player28 folds
+Player03 folds
+Player06 folds
+Player22 folds
+Tantaculejen raises 1500 to 2500
+Player13 calls 1500
+*** FLOP *** [7d 8s 7s]
+Tantaculejen checks
+Player13 checks
+*** TURN *** [7d 8s 7s][8h]
+Tantaculejen checks
+Player13 checks
+*** RIVER *** [7d 8s 7s 8h][2c]
+Tantaculejen checks
+Player13 checks
+*** SHOW DOWN ***
+Tantaculejen shows [6d 6c] (Two pairs : 8 and 7)
+Player13 shows [7h 9c] (Full of 7 and 8)
+Player13 collected 5720 from pot
+*** SUMMARY ***
+Total pot 5720 | No rake
+Board: [7d 8s 7s 8h 2c]
+Seat 3: Tantaculejen (small blind) showed [6d 6c] and lost with Two pairs : 8 and 7
+Seat 4: Player13 (big blind) showed [7h 9c] and won 5720 with Full of 7 and 8
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 6 - HandId: #5193417103624896579-68-1793476470 - Holdem no limit (140/600/1200) - 2026/10/31 19:54:30 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #3 is the button
+Seat 1: Player06 (91084, 1€ bounty)
+Seat 2: Player22 (73923, 2.50€ bounty)
+Seat 3: Tantaculejen (58822, 1€ bounty)
+Seat 4: Player13 (94938, 1€ bounty)
+Seat 5: Player28 (98671, 1€ bounty)
+Seat 6: Player03 (158830, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Player13 posts ante 140
+Player28 posts ante 140
+Player06 posts ante 140
+Player22 posts ante 140
+Tantaculejen posts ante 140
+Player03 posts ante 140
+Player13 posts small blind 600
+Player28 posts big blind 1200
+Dealt to Tantaculejen [3h 8c]
+*** PRE-FLOP *** 
+Player03 raises 2400 to 3600
+Player06 folds
+Player22 folds
+Tantaculejen folds
+Player13 calls 3000
+Player28 folds
+*** FLOP *** [6d 5d 5c]
+Player13 checks
+Player03 bets 6006
+Player13 raises 85192 to 91198 and is all-in
+Player03 calls 85192
+*** TURN *** [6d 5d 5c][9h]
+*** RIVER *** [6d 5d 5c 9h][Th]
+*** SHOW DOWN ***
+Player03 shows [Kc Ad] (One pair : 5)
+Player13 shows [Ah 6s] (Two pairs : 6 and 5)
+Player13 collected 191636 from pot
+*** SUMMARY ***
+Total pot 191636 | No rake
+Board: [6d 5d 5c 9h Th]
+Seat 4: Player13 (small blind) showed [Ah 6s] and won 191636 with Two pairs : 6 and 5
+Seat 6: Player03 showed [Kc Ad] and lost with One pair : 5
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 6 - HandId: #5193417103624896579-69-1793476860 - Holdem no limit (140/600/1200) - 2026/10/31 20:01:00 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #4 is the button
+Seat 1: Player06 (90944, 1€ bounty)
+Seat 2: Player22 (73783, 2.50€ bounty)
+Seat 3: Tantaculejen (58682, 1€ bounty)
+Seat 4: Player13 (191636, 1€ bounty)
+Seat 5: Player28 (97331, 1€ bounty)
+Seat 6: Player03 (63892, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Player28 posts ante 140
+Player03 posts ante 140
+Player06 posts ante 140
+Player22 posts ante 140
+Tantaculejen posts ante 140
+Player13 posts ante 140
+Player28 posts small blind 600
+Player03 posts big blind 1200
+Dealt to Tantaculejen [Jd Ac]
+*** PRE-FLOP *** 
+Player06 folds
+Player22 folds
+Tantaculejen folds
+Player13 raises 1200 to 2400
+Player28 folds
+Player03 folds
+Player13 collected 5040 from pot
+*** SUMMARY ***
+Total pot 5040 | No rake
+Seat 4: Player13 (button) won 5040
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 6 - HandId: #5193417103624896579-70-1793476951 - Holdem no limit (140/600/1200) - 2026/10/31 20:02:31 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #5 is the button
+Seat 1: Player06 (90804, 1€ bounty)
+Seat 2: Player22 (73643, 2.50€ bounty)
+Seat 3: Tantaculejen (58542, 1€ bounty)
+Seat 4: Player13 (194136, 1€ bounty)
+Seat 5: Player28 (96591, 1€ bounty)
+Seat 6: Player03 (62552, 3.10€ bounty)
+*** ANTE/BLINDS ***
+Player03 posts ante 140
+Player06 posts ante 140
+Player22 posts ante 140
+Tantaculejen posts ante 140
+Player13 posts ante 140
+Player28 posts ante 140
+Player03 posts small blind 600
+Player06 posts big blind 1200
+Dealt to Tantaculejen [2d 9d]
+*** PRE-FLOP *** 
+Player22 folds
+Tantaculejen folds
+Player13 calls 1200
+Player28 folds
+Player03 raises 61212 to 62412 and is all-in
+Player06 calls 61212
+Player13 folds
+*** FLOP *** [8h Js Kh]
+*** TURN *** [8h Js Kh][4s]
+*** RIVER *** [8h Js Kh 4s][2s]
+*** SHOW DOWN ***
+Player03 shows [Ts Qh] (High card : King)
+Player06 shows [Qc Kc] (One pair : Kings)
+Player06 collected 126864 from pot
+*** SUMMARY ***
+Total pot 126864 | No rake
+Board: [8h Js Kh 4s 2s]
+Seat 1: Player06 (big blind) showed [Qc Kc] and won 126864 with One pair : Kings
+Seat 6: Player03 (small blind) showed [Ts Qh] and lost with High card : King
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 6 - HandId: #5193417103624896579-71-1793476992 - Holdem no limit (140/600/1200) - 2026/10/31 20:03:12 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #6 is the button
+Seat 1: Player06 (155116, 1.62€ bounty)
+Seat 2: Player22 (73503, 2.50€ bounty)
+Seat 3: Tantaculejen (58402, 1€ bounty)
+Seat 4: Player13 (192796, 1€ bounty)
+Seat 5: Player28 (96451, 1€ bounty)
+*** ANTE/BLINDS ***
+Player06 posts ante 140
+Player22 posts ante 140
+Tantaculejen posts ante 140
+Player13 posts ante 140
+Player28 posts ante 140
+Player06 posts small blind 600
+Player22 posts big blind 1200
+Dealt to Tantaculejen [Qd Kd]
+*** PRE-FLOP *** 
+Tantaculejen folds
+Player13 calls 1200
+Player28 calls 1200
+Player06 folds
+Player22 checks
+*** FLOP *** [4d Jd Qc]
+Player22 checks
+Player13 bets 3185
+Player28 folds
+Player22 folds
+Player13 collected 8085 from pot
+*** SUMMARY ***
+Total pot 8085 | No rake
+Board: [4d Jd Qc]
+Seat 4: Player13 won 8085
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 6 - HandId: #5193417103624896579-72-1793477035 - Holdem no limit (140/600/1200) - 2026/10/31 20:03:55 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #1 is the button
+Seat 1: Player06 (154376, 1.62€ bounty)
+Seat 2: Player22 (72163, 2.50€ bounty)
+Seat 3: Tantaculejen (58262, 1€ bounty)
+Seat 4: Player13 (196356, 1€ bounty)
+Seat 5: Player28 (95111, 1€ bounty)
+Seat 6: Player12 (50000, 1€ bounty)
+*** ANTE/BLINDS ***
+Player22 posts ante 140
+Tantaculejen posts ante 140
+Player06 posts ante 140
+Player13 posts ante 140
+Player28 posts ante 140
+Player12 posts ante 140
+Player22 posts small blind 600
+Tantaculejen posts big blind 1200
+Dealt to Tantaculejen [2s As]
+*** PRE-FLOP *** 
+Player13 folds
+Player28 folds
+Player12 folds
+Player06 raises 1200 to 2400
+Player22 folds
+Tantaculejen folds
+Player06 collected 5040 from pot
+*** SUMMARY ***
+Total pot 5040 | No rake
+Seat 1: Player06 (button) won 5040
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 6 - HandId: #5193417103624896579-73-1793477059 - Holdem no limit (140/600/1200) - 2026/10/31 20:04:19 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #2 is the button
+Seat 1: Player06 (156876, 1.62€ bounty)
+Seat 2: Player22 (71423, 2.50€ bounty)
+Seat 3: Tantaculejen (56922, 1€ bounty)
+Seat 4: Player13 (196216, 1€ bounty)
+Seat 5: Player28 (94971, 1€ bounty)
+Seat 6: Player12 (49860, 1€ bounty)
+*** ANTE/BLINDS ***
+Tantaculejen posts ante 140
+Player13 posts ante 140
+Player06 posts ante 140
+Player22 posts ante 140
+Player28 posts ante 140
+Player12 posts ante 140
+Tantaculejen posts small blind 600
+Player13 posts big blind 1200
+Dealt to Tantaculejen [3c Kc]
+*** PRE-FLOP *** 
+Player28 folds
+Player12 folds
+Player06 folds
+Player22 folds
+Tantaculejen folds
+Player13 collected 2640 from pot
+*** SUMMARY ***
+Total pot 2640 | No rake
+Seat 4: Player13 (big blind) won 2640
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 6 - HandId: #5193417103624896579-74-1793477074 - Holdem no limit (140/600/1200) - 2026/10/31 20:04:34 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #3 is the button
+Seat 1: Player06 (156736, 1.62€ bounty)
+Seat 2: Player22 (71283, 2.50€ bounty)
+Seat 3: Tantaculejen (56182, 1€ bounty)
+Seat 4: Player13 (197516, 1€ bounty)
+Seat 5: Player28 (94831, 1€ bounty)
+Seat 6: Player12 (49720, 1€ bounty)
+*** ANTE/BLINDS ***
+Player13 posts ante 140
+Player28 posts ante 140
+Player06 posts ante 140
+Player22 posts ante 140
+Tantaculejen posts ante 140
+Player12 posts ante 140
+Player13 posts small blind 600
+Player28 posts big blind 1200
+Dealt to Tantaculejen [2c Qc]
+*** PRE-FLOP *** 
+Player12 folds
+Player06 folds
+Player22 raises 2400 to 3600
+Tantaculejen folds
+Player13 calls 3000
+Player28 folds
+*** FLOP *** [Ts 7h Kd]
+Player13 checks
+Player22 bets 6006
+Player13 folds
+Player22 collected 15246 from pot
+*** SUMMARY ***
+Total pot 15246 | No rake
+Board: [Ts 7h Kd]
+Seat 2: Player22 won 15246
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 6 - HandId: #5193417103624896579-75-1793477105 - Holdem no limit (140/600/1200) - 2026/10/31 20:05:05 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #4 is the button
+Seat 1: Player06 (156596, 1.62€ bounty)
+Seat 2: Player22 (76783, 2.50€ bounty)
+Seat 3: Tantaculejen (56042, 1€ bounty)
+Seat 4: Player13 (193776, 1€ bounty)
+Seat 5: Player28 (93491, 1€ bounty)
+Seat 6: Player12 (49580, 1€ bounty)
+*** ANTE/BLINDS ***
+Player28 posts ante 140
+Player12 posts ante 140
+Player06 posts ante 140
+Player22 posts ante 140
+Tantaculejen posts ante 140
+Player13 posts ante 140
+Player28 posts small blind 600
+Player12 posts big blind 1200
+Dealt to Tantaculejen [Ts Qc]
+*** PRE-FLOP *** 
+Player06 folds
+Player22 folds
+Tantaculejen folds
+Player13 calls 1200
+Player28 calls 600
+Player12 checks
+*** FLOP *** [4d 7c 5d]
+Player28 bets 1554
+Player12 calls 1554
+Player13 calls 1554
+*** TURN *** [4d 7c 5d][9h]
+Player28 checks
+Player12 checks
+Player13 checks
+*** RIVER *** [4d 7c 5d 9h][8d]
+Player28 bets 3186
+Player12 raises 43500 to 46686 and is all-in
+Player13 calls 46686
+Player28 calls 43500
+*** SHOW DOWN ***
+Player12 shows [4s Ad] (One pair : 4)
+Player13 shows [6c Jc] (Straight 9 high)
+Player28 shows [6s Qh] (Straight 9 high)
+Player28 collected 74580 from pot
+Player13 collected 74580 from pot
+*** SUMMARY ***
+Total pot 149160 | No rake
+Board: [4d 7c 5d 9h 8d]
+Seat 4: Player13 (button) showed [6c Jc] and won 74580 with Straight 9 high
+Seat 5: Player28 (small blind) showed [6s Qh] and won 74580 with Straight 9 high
+Seat 6: Player12 (big blind) showed [4s Ad] and lost with One pair : 4
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 7 - HandId: #5193417103624896579-76-1793477188 - Holdem no limit (160/700/1400) - 2026/10/31 20:06:28 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #5 is the button
+Seat 1: Player06 (156456, 1.62€ bounty)
+Seat 2: Player22 (76643, 2.50€ bounty)
+Seat 3: Tantaculejen (55902, 1€ bounty)
+Seat 4: Player13 (218776, 1.25€ bounty)
+Seat 5: Player28 (118491, 1.25€ bounty)
+*** ANTE/BLINDS ***
+Player06 posts ante 160
+Player22 posts ante 160
+Tantaculejen posts ante 160
+Player13 posts ante 160
+Player28 posts ante 160
+Player06 posts big blind 1400
+Dealt to Tantaculejen [2c 2d]
+*** PRE-FLOP *** 
+Player22 folds
+Tantaculejen folds
+Player13 calls 1400
+Player28 folds
+Player06 raises 2100 to 3500
+Player13 folds
+Player06 collected 5700 from pot
+*** SUMMARY ***
+Total pot 5700 | No rake
+Seat 1: Player06 (big blind) won 5700
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 7 - HandId: #5193417103624896579-77-1793477209 - Holdem no limit (160/700/1400) - 2026/10/31 20:06:49 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #6 is the button
+Seat 1: Player06 (158496, 1.62€ bounty)
+Seat 2: Player22 (76483, 2.50€ bounty)
+Seat 3: Tantaculejen (55742, 1€ bounty)
+Seat 4: Player13 (217216, 1.25€ bounty)
+Seat 5: Player28 (118331, 1.25€ bounty)
+*** ANTE/BLINDS ***
+Player06 posts ante 160
+Player22 posts ante 160
+Tantaculejen posts ante 160
+Player13 posts ante 160
+Player28 posts ante 160
+Player06 posts small blind 700
+Player22 posts big blind 1400
+Dealt to Tantaculejen [2d 9s]
+*** PRE-FLOP *** 
+Tantaculejen folds
+Player13 raises 1400 to 2800
+Player28 folds
+Player06 folds
+Player22 raises 5600 to 8400
+Player13 calls 5600
+*** FLOP *** [8c 9c 4s]
+Player22 bets 11895
+Player13 calls 11895
+*** TURN *** [8c 9c 4s][Js]
+Player22 bets 56028 and is all-in
+Player13 folds
+Player22 collected 98118 from pot
+*** SUMMARY ***
+Total pot 98118 | No rake
+Board: [8c 9c 4s Js]
+Seat 2: Player22 (big blind) won 98118
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 7 - HandId: #5193417103624896579-78-1793477243 - Holdem no limit (160/700/1400) - 2026/10/31 20:07:23 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #1 is the button
+Seat 1: Player06 (157636, 1.62€ bounty)
+Seat 2: Player22 (98118, 2.50€ bounty)
+Seat 3: Tantaculejen (55582, 1€ bounty)
+Seat 4: Player13 (196761, 1.25€ bounty)
+Seat 5: Player28 (118171, 1.25€ bounty)
+Seat 6: Player37 (50000, 1€ bounty)
+*** ANTE/BLINDS ***
+Player22 posts ante 160
+Tantaculejen posts ante 160
+Player06 posts ante 160
+Player13 posts ante 160
+Player28 posts ante 160
+Player37 posts ante 160
+Player22 posts small blind 700
+Tantaculejen posts big blind 1400
+Dealt to Tantaculejen [Kh 6d]
+*** PRE-FLOP *** 
+Player13 calls 1400
+Player28 raises 2100 to 3500
+Player37 calls 3500
+Player06 folds
+Player22 folds
+Tantaculejen folds
+Player13 calls 2100
+*** FLOP *** [7c 9d 3h]
+Player13 checks
+Player28 checks
+Player37 checks
+*** TURN *** [7c 9d 3h][8h]
+Player13 checks
+Player28 checks
+Player37 checks
+*** RIVER *** [7c 9d 3h 8h][9c]
+Player13 checks
+Player28 checks
+Player37 checks
+*** SHOW DOWN ***
+Player13 shows [Ac 4s] (One pair : 9)
+Player37 shows [Qc Jd] (One pair : 9)
+Player28 shows [Ah Jc] (One pair : 9)
+Player28 collected 13560 from pot
+*** SUMMARY ***
+Total pot 13560 | No rake
+Board: [7c 9d 3h 8h 9c]
+Seat 4: Player13 showed [Ac 4s] and lost with One pair : 9
+Seat 5: Player28 showed [Ah Jc] and won 13560 with One pair : 9
+Seat 6: Player37 showed [Qc Jd] and lost with One pair : 9
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 7 - HandId: #5193417103624896579-79-1793477284 - Holdem no limit (160/700/1400) - 2026/10/31 20:08:04 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #2 is the button
+Seat 1: Player06 (157476, 1.62€ bounty)
+Seat 2: Player22 (97258, 2.50€ bounty)
+Seat 3: Tantaculejen (54022, 1€ bounty)
+Seat 4: Player13 (193101, 1.25€ bounty)
+Seat 5: Player28 (128071, 1.25€ bounty)
+Seat 6: Player37 (46340, 1€ bounty)
+*** ANTE/BLINDS ***
+Tantaculejen posts ante 160
+Player13 posts ante 160
+Player06 posts ante 160
+Player22 posts ante 160
+Player28 posts ante 160
+Player37 posts ante 160
+Tantaculejen posts small blind 700
+Player13 posts big blind 1400
+Dealt to Tantaculejen [7s 8d]
+*** PRE-FLOP *** 
+Player28 folds
+Player37 folds
+Player06 raises 1400 to 2800
+Player22 folds
+Tantaculejen folds
+Player13 raises 5600 to 8400
+Player06 calls 5600
+*** FLOP *** [5d Kd 8s]
+Player13 checks
+Player06 bets 9230
+Player13 calls 9230
+*** TURN *** [5d Kd 8s][7h]
+Player13 checks
+Player06 checks
+*** RIVER *** [5d Kd 8s 7h][As]
+Player13 checks
+Player06 bets 23998
+Player13 calls 23998
+*** SHOW DOWN ***
+Player06 shows [Ad 4h] (One pair : Aces)
+Player13 shows [Qh Ah] (One pair : Aces)
+Player13 collected 84916 from pot
+*** SUMMARY ***
+Total pot 84916 | No rake
+Board: [5d Kd 8s 7h As]
+Seat 1: Player06 showed [Ad 4h] and lost with One pair : Aces
+Seat 4: Player13 (big blind) showed [Qh Ah] and won 84916 with One pair : Aces
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 7 - HandId: #5193417103624896579-80-1793477334 - Holdem no limit (160/700/1400) - 2026/10/31 20:08:54 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #3 is the button
+Seat 1: Player06 (115688, 1.62€ bounty)
+Seat 2: Player22 (97098, 2.50€ bounty)
+Seat 3: Tantaculejen (53162, 1€ bounty)
+Seat 4: Player13 (236229, 1.25€ bounty)
+Seat 5: Player28 (127911, 1.25€ bounty)
+Seat 6: Player37 (46180, 1€ bounty)
+*** ANTE/BLINDS ***
+Player13 posts ante 160
+Player28 posts ante 160
+Player06 posts ante 160
+Player22 posts ante 160
+Tantaculejen posts ante 160
+Player37 posts ante 160
+Player13 posts small blind 700
+Player28 posts big blind 1400
+Dealt to Tantaculejen [3d 7d]
+*** PRE-FLOP *** 
+Player37 folds
+Player06 folds
+Player22 raises 2800 to 4200
+Tantaculejen folds
+Player13 folds
+Player28 folds
+Player22 collected 7260 from pot
+*** SUMMARY ***
+Total pot 7260 | No rake
+Seat 2: Player22 won 7260
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 7 - HandId: #5193417103624896579-81-1793477357 - Holdem no limit (160/700/1400) - 2026/10/31 20:09:17 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #4 is the button
+Seat 1: Player06 (115528, 1.62€ bounty)
+Seat 2: Player22 (99998, 2.50€ bounty)
+Seat 3: Tantaculejen (53002, 1€ bounty)
+Seat 4: Player13 (235369, 1.25€ bounty)
+Seat 5: Player28 (126351, 1.25€ bounty)
+Seat 6: Player37 (46020, 1€ bounty)
+*** ANTE/BLINDS ***
+Player28 posts ante 160
+Player37 posts ante 160
+Player06 posts ante 160
+Player22 posts ante 160
+Tantaculejen posts ante 160
+Player13 posts ante 160
+Player28 posts small blind 700
+Player37 posts big blind 1400
+Dealt to Tantaculejen [8d 2c]
+*** PRE-FLOP *** 
+Player06 folds
+Player22 calls 1400
+Tantaculejen folds
+Player13 calls 1400
+Player28 calls 700
+Player37 checks
+*** FLOP *** [3h Js Jd]
+Player28 checks
+Player37 bets 2296
+Player22 folds
+Player13 folds
+Player28 folds
+Player37 collected 8856 from pot
+*** SUMMARY ***
+Total pot 8856 | No rake
+Board: [3h Js Jd]
+Seat 6: Player37 (big blind) won 8856
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 7 - HandId: #5193417103624896579-82-1793477407 - Holdem no limit (160/700/1400) - 2026/10/31 20:10:07 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #5 is the button
+Seat 1: Player06 (115368, 1.62€ bounty)
+Seat 2: Player22 (98438, 2.50€ bounty)
+Seat 3: Tantaculejen (52842, 1€ bounty)
+Seat 4: Player13 (233809, 1.25€ bounty)
+Seat 5: Player28 (124791, 1.25€ bounty)
+Seat 6: Player37 (51020, 1€ bounty)
+*** ANTE/BLINDS ***
+Player37 posts ante 160
+Player06 posts ante 160
+Player22 posts ante 160
+Tantaculejen posts ante 160
+Player13 posts ante 160
+Player28 posts ante 160
+Player37 posts small blind 700
+Player06 posts big blind 1400
+Dealt to Tantaculejen [9s Ks]
+*** PRE-FLOP *** 
+Player22 calls 1400
+Tantaculejen folds
+Player13 folds
+Player28 folds
+Player37 calls 700
+Player06 checks
+*** FLOP *** [5h Qs 7h]
+Player37 checks
+Player06 bets 3354
+Player22 calls 3354
+Player37 folds
+*** TURN *** [5h Qs 7h][As]
+Player06 bets 7714
+Player22 calls 7714
+*** RIVER *** [5h Qs 7h As][Qd]
+Player06 bets 21837
+Player22 calls 21837
+*** SHOW DOWN ***
+Player06 shows [6h 9h] (One pair : Queens)
+Player22 shows [5d 7d] (Two pairs : Queens and 7)
+Player22 collected 70970 from pot
+*** SUMMARY ***
+Total pot 70970 | No rake
+Board: [5h Qs 7h As Qd]
+Seat 1: Player06 (big blind) showed [6h 9h] and lost with One pair : Queens
+Seat 2: Player22 showed [5d 7d] and won 70970 with Two pairs : Queens and 7
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 7 - HandId: #5193417103624896579-83-1793477451 - Holdem no limit (160/700/1400) - 2026/10/31 20:10:51 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #6 is the button
+Seat 1: Player06 (80903, 1.62€ bounty)
+Seat 2: Player22 (134943, 2.50€ bounty)
+Seat 3: Tantaculejen (52682, 1€ bounty)
+Seat 4: Player13 (233649, 1.25€ bounty)
+Seat 5: Player28 (124631, 1.25€ bounty)
+Seat 6: Player37 (49460, 1€ bounty)
+*** ANTE/BLINDS ***
+Player06 posts ante 160
+Player22 posts ante 160
+Tantaculejen posts ante 160
+Player13 posts ante 160
+Player28 posts ante 160
+Player37 posts ante 160
+Player06 posts small blind 700
+Player22 posts big blind 1400
+Dealt to Tantaculejen [Jh Ac]
+*** PRE-FLOP *** 
+Tantaculejen folds
+Player13 raises 4460 to 5860
+Player28 calls 5860
+Player37 folds
+Player06 raises 74883 to 80743 and is all-in
+Player22 folds
+Player13 calls 74883
+Player28 folds
+*** FLOP *** [3c 3d Qd]
+*** TURN *** [3c 3d Qd][5c]
+*** RIVER *** [3c 3d Qd 5c][7c]
+*** SHOW DOWN ***
+Player13 shows [Kd As] (One pair : 3)
+Player06 shows [2c 2d] (Two pairs : 3 and 2)
+Player06 collected 169706 from pot
+*** SUMMARY ***
+Total pot 169706 | No rake
+Board: [3c 3d Qd 5c 7c]
+Seat 1: Player06 (small blind) showed [2c 2d] and won 169706 with Two pairs : 3 and 2
+Seat 4: Player13 showed [Kd As] and lost with One pair : 3
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 7 - HandId: #5193417103624896579-84-1793477476 - Holdem no limit (160/700/1400) - 2026/10/31 20:11:16 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #1 is the button
+Seat 1: Player06 (169706, 1.62€ bounty)
+Seat 2: Player22 (133383, 2.50€ bounty)
+Seat 3: Tantaculejen (52522, 1€ bounty)
+Seat 4: Player13 (152746, 1.25€ bounty)
+Seat 5: Player28 (118611, 1.25€ bounty)
+Seat 6: Player37 (49300, 1€ bounty)
+*** ANTE/BLINDS ***
+Player22 posts ante 160
+Tantaculejen posts ante 160
+Player06 posts ante 160
+Player13 posts ante 160
+Player28 posts ante 160
+Player37 posts ante 160
+Player22 posts small blind 700
+Tantaculejen posts big blind 1400
+Dealt to Tantaculejen [8c 8d]
+*** PRE-FLOP *** 
+Player13 folds
+Player28 calls 1400
+Player37 calls 1400
+Player06 folds
+Player22 calls 700
+Tantaculejen checks
+*** FLOP *** [9c 9s Js]
+Player22 checks
+Tantaculejen checks
+Player28 bets 2296
+Player37 raises 4428 to 6724
+Player22 folds
+Tantaculejen folds
+Player28 calls 4428
+*** TURN *** [9c 9s Js][Qs]
+Player28 checks
+Player37 bets 10004
+Player28 folds
+Player37 collected 30012 from pot
+*** SUMMARY ***
+Total pot 30012 | No rake
+Board: [9c 9s Js Qs]
+Seat 6: Player37 won 30012
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 7 - HandId: #5193417103624896579-85-1793477539 - Holdem no limit (160/700/1400) - 2026/10/31 20:12:19 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #2 is the button
+Seat 1: Player06 (169546, 1.62€ bounty)
+Seat 2: Player22 (131823, 2.50€ bounty)
+Seat 3: Tantaculejen (50962, 1€ bounty)
+Seat 4: Player13 (152586, 1.25€ bounty)
+Seat 5: Player28 (110327, 1.25€ bounty)
+Seat 6: Player37 (61024, 1€ bounty)
+*** ANTE/BLINDS ***
+Tantaculejen posts ante 160
+Player13 posts ante 160
+Player06 posts ante 160
+Player22 posts ante 160
+Player28 posts ante 160
+Player37 posts ante 160
+Tantaculejen posts small blind 700
+Player13 posts big blind 1400
+Dealt to Tantaculejen [5d 2h]
+*** PRE-FLOP *** 
+Player28 folds
+Player37 calls 1400
+Player06 folds
+Player22 folds
+Tantaculejen folds
+Player13 checks
+*** FLOP *** [Kc 2d 4s]
+Player13 checks
+Player37 checks
+*** TURN *** [Kc 2d 4s][Ac]
+Player13 checks
+Player37 bets 2230
+Player13 folds
+Player37 collected 6690 from pot
+*** SUMMARY ***
+Total pot 6690 | No rake
+Board: [Kc 2d 4s Ac]
+Seat 6: Player37 won 6690
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 8 - HandId: #5193417103624896579-86-1793477590 - Holdem no limit (200/800/1600) - 2026/10/31 20:13:10 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #3 is the button
+Seat 1: Player06 (169386, 1.62€ bounty)
+Seat 2: Player22 (131663, 2.50€ bounty)
+Seat 3: Tantaculejen (50102, 1€ bounty)
+Seat 4: Player13 (151026, 1.25€ bounty)
+Seat 5: Player28 (110167, 1.25€ bounty)
+Seat 6: Player37 (63924, 1€ bounty)
+*** ANTE/BLINDS ***
+Player13 posts ante 200
+Player28 posts ante 200
+Player06 posts ante 200
+Player22 posts ante 200
+Tantaculejen posts ante 200
+Player37 posts ante 200
+Player13 posts small blind 800
+Player28 posts big blind 1600
+Dealt to Tantaculejen [6s Th]
+*** PRE-FLOP *** 
+Player37 folds
+Player06 raises 1600 to 3200
+Player22 calls 3200
+Tantaculejen folds
+Player13 raises 12400 to 15600
+Player28 folds
+Player06 folds
+Player22 folds
+Player13 collected 24800 from pot
+*** SUMMARY ***
+Total pot 24800 | No rake
+Seat 4: Player13 (small blind) won 24800
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 8 - HandId: #5193417103624896579-87-1793477619 - Holdem no limit (200/800/1600) - 2026/10/31 20:13:39 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #4 is the button
+Seat 1: Player06 (165986, 1.62€ bounty)
+Seat 2: Player22 (128263, 2.50€ bounty)
+Seat 3: Tantaculejen (49902, 1€ bounty)
+Seat 4: Player13 (160026, 1.25€ bounty)
+Seat 5: Player28 (108367, 1.25€ bounty)
+Seat 6: Player37 (63724, 1€ bounty)
+*** ANTE/BLINDS ***
+Player28 posts ante 200
+Player37 posts ante 200
+Player06 posts ante 200
+Player22 posts ante 200
+Tantaculejen posts ante 200
+Player13 posts ante 200
+Player28 posts small blind 800
+Player37 posts big blind 1600
+Dealt to Tantaculejen [Kd Jh]
+*** PRE-FLOP *** 
+Player06 folds
+Player22 folds
+Tantaculejen folds
+Player13 folds
+Player28 raises 1600 to 3200
+Player37 calls 1600
+*** FLOP *** [9h Qs As]
+Player28 bets 2660
+Player37 calls 2660
+*** TURN *** [9h Qs As][Kc]
+Player28 bets 4522
+Player37 calls 4522
+*** RIVER *** [9h Qs As Kc][6d]
+Player28 bets 7687
+Player37 calls 7687
+*** SHOW DOWN ***
+Player28 shows [Td Ks] (One pair : Kings)
+Player37 shows [Ac Js] (One pair : Aces)
+Player37 collected 37338 from pot
+*** SUMMARY ***
+Total pot 37338 | No rake
+Board: [9h Qs As Kc 6d]
+Seat 5: Player28 (small blind) showed [Td Ks] and lost with One pair : Kings
+Seat 6: Player37 (big blind) showed [Ac Js] and won 37338 with One pair : Aces
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 8 - HandId: #5193417103624896579-88-1793477645 - Holdem no limit (200/800/1600) - 2026/10/31 20:14:05 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #5 is the button
+Seat 1: Player06 (165786, 1.62€ bounty)
+Seat 2: Player22 (128063, 2.50€ bounty)
+Seat 3: Tantaculejen (49702, 1€ bounty)
+Seat 4: Player13 (159826, 1.25€ bounty)
+Seat 5: Player28 (90098, 1.25€ bounty)
+Seat 6: Player37 (82793, 1€ bounty)
+*** ANTE/BLINDS ***
+Player37 posts ante 200
+Player06 posts ante 200
+Player22 posts ante 200
+Tantaculejen posts ante 200
+Player13 posts ante 200
+Player28 posts ante 200
+Player37 posts small blind 800
+Player06 posts big blind 1600
+Dealt to Tantaculejen [4h 8c]
+*** PRE-FLOP *** 
+Player22 folds
+Tantaculejen folds
+Player13 folds
+Player28 folds
+Player37 folds
+Player06 collected 3600 from pot
+*** SUMMARY ***
+Total pot 3600 | No rake
+Seat 1: Player06 (big blind) won 3600
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 8 - HandId: #5193417103624896579-89-1793477656 - Holdem no limit (200/800/1600) - 2026/10/31 20:14:16 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #6 is the button
+Seat 1: Player06 (167586, 1.62€ bounty)
+Seat 2: Player22 (127863, 2.50€ bounty)
+Seat 3: Tantaculejen (49502, 1€ bounty)
+Seat 4: Player13 (159626, 1.25€ bounty)
+Seat 5: Player28 (89898, 1.25€ bounty)
+Seat 6: Player37 (81793, 1€ bounty)
+*** ANTE/BLINDS ***
+Player06 posts ante 200
+Player22 posts ante 200
+Tantaculejen posts ante 200
+Player13 posts ante 200
+Player28 posts ante 200
+Player37 posts ante 200
+Player06 posts small blind 800
+Player22 posts big blind 1600
+Dealt to Tantaculejen [9c 5c]
+*** PRE-FLOP *** 
+Tantaculejen folds
+Player13 calls 1600
+Player28 folds
+Player37 calls 1600
+Player06 raises 7163 to 8763
+Player22 folds
+Player13 calls 7163
+Player37 folds
+*** FLOP *** [Th 8d 8c]
+Player06 bets 14252
+Player13 raises 50430 to 64682
+Player06 raises 93941 to 158623 and is all-in
+Player13 calls 85981 and is all-in
+*** TURN *** [Th 8d 8c][6s]
+*** RIVER *** [Th 8d 8c 6s][Ah]
+*** SHOW DOWN ***
+Player13 shows [Qs Ts] (Two pairs : Tens and 8)
+Player06 shows [Jc Jh] (Two pairs : Jacks and 8)
+Player06 collected 331212 from pot
+*** SUMMARY ***
+Total pot 331212 | No rake
+Board: [Th 8d 8c 6s Ah]
+Seat 1: Player06 (small blind) showed [Jc Jh] and won 331212 with Two pairs : Jacks and 8
+Seat 4: Player13 showed [Qs Ts] and lost with Two pairs : Tens and 8
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 8 - HandId: #5193417103624896579-90-1793477707 - Holdem no limit (200/800/1600) - 2026/10/31 20:15:07 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #1 is the button
+Seat 1: Player06 (331212, 1.87€ bounty)
+Seat 2: Player22 (126063, 2.50€ bounty)
+Seat 3: Tantaculejen (49302, 1€ bounty)
+Seat 5: Player28 (89698, 1.25€ bounty)
+Seat 6: Player37 (79993, 1€ bounty)
+*** ANTE/BLINDS ***
+Player22 posts ante 200
+Tantaculejen posts ante 200
+Player06 posts ante 200
+Player28 posts ante 200
+Player37 posts ante 200
+Player22 posts small blind 800
+Tantaculejen posts big blind 1600
+Dealt to Tantaculejen [Td Ks]
+*** PRE-FLOP *** 
+Player28 folds
+Player37 folds
+Player06 folds
+Player22 calls 800
+Tantaculejen checks
+*** FLOP *** [6h 2h Kh]
+Player22 checks
+Tantaculejen checks
+*** TURN *** [6h 2h Kh][Qs]
+Player22 checks
+Tantaculejen checks
+*** RIVER *** [6h 2h Kh Qs][Kd]
+Player22 checks
+Tantaculejen checks
+*** SHOW DOWN ***
+Player22 shows [As 6c] (Two pairs : Kings and 6)
+Tantaculejen shows [Td Ks] (Trips of Kings)
+Tantaculejen collected 4200 from pot
+*** SUMMARY ***
+Total pot 4200 | No rake
+Board: [6h 2h Kh Qs Kd]
+Seat 2: Player22 (small blind) showed [As 6c] and lost with Two pairs : Kings and 6
+Seat 3: Tantaculejen (big blind) showed [Td Ks] and won 4200 with Trips of Kings
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 8 - HandId: #5193417103624896579-91-1793477762 - Holdem no limit (200/800/1600) - 2026/10/31 20:16:02 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #2 is the button
+Seat 1: Player06 (331012, 1.87€ bounty)
+Seat 2: Player22 (124263, 2.50€ bounty)
+Seat 3: Tantaculejen (51702, 1€ bounty)
+Seat 4: Player21 (50000, 1€ bounty)
+Seat 5: Player28 (89498, 1.25€ bounty)
+Seat 6: Player37 (79793, 1€ bounty)
+*** ANTE/BLINDS ***
+Tantaculejen posts ante 200
+Player21 posts ante 200
+Player06 posts ante 200
+Player22 posts ante 200
+Player28 posts ante 200
+Player37 posts ante 200
+Tantaculejen posts small blind 800
+Player21 posts big blind 1600
+Dealt to Tantaculejen [Ks 2d]
+*** PRE-FLOP *** 
+Player28 folds
+Player37 folds
+Player06 folds
+Player22 folds
+Tantaculejen folds
+Player21 collected 3600 from pot
+*** SUMMARY ***
+Total pot 3600 | No rake
+Seat 4: Player21 (big blind) won 3600
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 8 - HandId: #5193417103624896579-92-1793477779 - Holdem no limit (200/800/1600) - 2026/10/31 20:16:19 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #3 is the button
+Seat 1: Player06 (330812, 1.87€ bounty)
+Seat 2: Player22 (124063, 2.50€ bounty)
+Seat 3: Tantaculejen (50702, 1€ bounty)
+Seat 4: Player21 (51800, 1€ bounty)
+Seat 5: Player28 (89298, 1.25€ bounty)
+Seat 6: Player37 (79593, 1€ bounty)
+*** ANTE/BLINDS ***
+Player21 posts ante 200
+Player28 posts ante 200
+Player06 posts ante 200
+Player22 posts ante 200
+Tantaculejen posts ante 200
+Player37 posts ante 200
+Player21 posts small blind 800
+Player28 posts big blind 1600
+Dealt to Tantaculejen [Qh 6s]
+*** PRE-FLOP *** 
+Player37 folds
+Player06 raises 1600 to 3200
+Player22 calls 3200
+Tantaculejen folds
+Player21 folds
+Player28 calls 1600
+*** FLOP *** [8h 5s 6d]
+Player28 bets 4060
+Player06 calls 4060
+Player22 raises 116603 to 120663 and is all-in
+Player28 folds
+Player06 folds
+Player22 collected 140383 from pot
+*** SUMMARY ***
+Total pot 140383 | No rake
+Board: [8h 5s 6d]
+Seat 2: Player22 won 140383
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 8 - HandId: #5193417103624896579-93-1793477811 - Holdem no limit (200/800/1600) - 2026/10/31 20:16:51 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #4 is the button
+Seat 1: Player06 (323352, 1.87€ bounty)
+Seat 2: Player22 (140383, 2.50€ bounty)
+Seat 3: Tantaculejen (50502, 1€ bounty)
+Seat 4: Player21 (50800, 1€ bounty)
+Seat 5: Player28 (81838, 1.25€ bounty)
+Seat 6: Player37 (79393, 1€ bounty)
+*** ANTE/BLINDS ***
+Player28 posts ante 200
+Player37 posts ante 200
+Player06 posts ante 200
+Player22 posts ante 200
+Tantaculejen posts ante 200
+Player21 posts ante 200
+Player28 posts small blind 800
+Player37 posts big blind 1600
+Dealt to Tantaculejen [5s 8s]
+*** PRE-FLOP *** 
+Player06 folds
+Player22 folds
+Tantaculejen folds
+Player21 folds
+Player28 folds
+Player37 collected 3600 from pot
+*** SUMMARY ***
+Total pot 3600 | No rake
+Seat 6: Player37 (big blind) won 3600
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 8 - HandId: #5193417103624896579-94-1793477825 - Holdem no limit (200/800/1600) - 2026/10/31 20:17:05 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #5 is the button
+Seat 1: Player06 (323152, 1.87€ bounty)
+Seat 2: Player22 (140183, 2.50€ bounty)
+Seat 3: Tantaculejen (50302, 1€ bounty)
+Seat 4: Player21 (50600, 1€ bounty)
+Seat 5: Player28 (80838, 1.25€ bounty)
+Seat 6: Player37 (81193, 1€ bounty)
+*** ANTE/BLINDS ***
+Player37 posts ante 200
+Player06 posts ante 200
+Player22 posts ante 200
+Tantaculejen posts ante 200
+Player21 posts ante 200
+Player28 posts ante 200
+Player37 posts small blind 800
+Player06 posts big blind 1600
+Dealt to Tantaculejen [8c 2s]
+*** PRE-FLOP *** 
+Player22 folds
+Tantaculejen folds
+Player21 folds
+Player28 raises 1600 to 3200
+Player37 folds
+Player06 calls 1600
+*** FLOP *** [Jh 3s 2h]
+Player06 checks
+Player28 checks
+*** TURN *** [Jh 3s 2h][Th]
+Player06 bets 5460
+Player28 calls 5460
+*** RIVER *** [Jh 3s 2h Th][Ah]
+Player06 checks
+Player28 bets 12558
+Player06 folds
+Player28 collected 31878 from pot
+*** SUMMARY ***
+Total pot 31878 | No rake
+Board: [Jh 3s 2h Th Ah]
+Seat 5: Player28 (button) won 31878
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 8 - HandId: #5193417103624896579-95-1793477879 - Holdem no limit (200/800/1600) - 2026/10/31 20:17:59 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #6 is the button
+Seat 1: Player06 (314292, 1.87€ bounty)
+Seat 2: Player22 (139983, 2.50€ bounty)
+Seat 3: Tantaculejen (50102, 1€ bounty)
+Seat 4: Player21 (50400, 1€ bounty)
+Seat 5: Player28 (91298, 1.25€ bounty)
+Seat 6: Player37 (80193, 1€ bounty)
+*** ANTE/BLINDS ***
+Player06 posts ante 200
+Player22 posts ante 200
+Tantaculejen posts ante 200
+Player21 posts ante 200
+Player28 posts ante 200
+Player37 posts ante 200
+Player06 posts small blind 800
+Player22 posts big blind 1600
+Dealt to Tantaculejen [Qc 7h]
+*** PRE-FLOP *** 
+Tantaculejen folds
+Player21 folds
+Player28 raises 1600 to 3200
+Player37 calls 3200
+Player06 folds
+Player22 calls 1600
+*** FLOP *** [5h 6s 4s]
+Player22 checks
+Player28 checks
+Player37 checks
+*** TURN *** [5h 6s 4s][Ks]
+Player22 checks
+Player28 bets 4060
+Player37 folds
+Player22 folds
+Player28 collected 15660 from pot
+*** SUMMARY ***
+Total pot 15660 | No rake
+Board: [5h 6s 4s Ks]
+Seat 5: Player28 won 15660
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 9 - HandId: #5193417103624896579-96-1793477928 - Holdem no limit (250/1000/2000) - 2026/10/31 20:18:48 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #1 is the button
+Seat 1: Player06 (313292, 1.87€ bounty)
+Seat 2: Player22 (136583, 2.50€ bounty)
+Seat 3: Tantaculejen (49902, 1€ bounty)
+Seat 4: Player21 (50200, 1€ bounty)
+Seat 5: Player28 (99498, 1.25€ bounty)
+Seat 6: Player37 (76793, 1€ bounty)
+*** ANTE/BLINDS ***
+Player22 posts ante 250
+Tantaculejen posts ante 250
+Player06 posts ante 250
+Player21 posts ante 250
+Player28 posts ante 250
+Player37 posts ante 250
+Player22 posts small blind 1000
+Tantaculejen posts big blind 2000
+Dealt to Tantaculejen [7s 9c]
+*** PRE-FLOP *** 
+Player21 folds
+Player28 raises 2000 to 4000
+Player37 folds
+Player06 folds
+Player22 folds
+Tantaculejen folds
+Player28 collected 8500 from pot
+*** SUMMARY ***
+Total pot 8500 | No rake
+Seat 5: Player28 won 8500
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 9 - HandId: #5193417103624896579-97-1793477940 - Holdem no limit (250/1000/2000) - 2026/10/31 20:19:00 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #2 is the button
+Seat 1: Player06 (313042, 1.87€ bounty)
+Seat 2: Player22 (135333, 2.50€ bounty)
+Seat 3: Tantaculejen (47652, 1€ bounty)
+Seat 4: Player21 (49950, 1€ bounty)
+Seat 5: Player28 (103748, 1.25€ bounty)
+Seat 6: Player37 (76543, 1€ bounty)
+*** ANTE/BLINDS ***
+Tantaculejen posts ante 250
+Player21 posts ante 250
+Player06 posts ante 250
+Player22 posts ante 250
+Player28 posts ante 250
+Player37 posts ante 250
+Tantaculejen posts small blind 1000
+Player21 posts big blind 2000
+Dealt to Tantaculejen [8c 4h]
+*** PRE-FLOP *** 
+Player28 folds
+Player37 folds
+Player06 raises 2000 to 4000
+Player22 folds
+Tantaculejen folds
+Player21 calls 2000
+*** FLOP *** [2s 7h Kd]
+Player21 checks
+Player06 checks
+*** TURN *** [2s 7h Kd][4d]
+Player21 checks
+Player06 bets 3675
+Player21 folds
+Player06 collected 14175 from pot
+*** SUMMARY ***
+Total pot 14175 | No rake
+Board: [2s 7h Kd 4d]
+Seat 1: Player06 won 14175
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 9 - HandId: #5193417103624896579-98-1793477979 - Holdem no limit (250/1000/2000) - 2026/10/31 20:19:39 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #3 is the button
+Seat 1: Player06 (319292, 1.87€ bounty)
+Seat 2: Player22 (135083, 2.50€ bounty)
+Seat 3: Tantaculejen (46402, 1€ bounty)
+Seat 4: Player21 (45700, 1€ bounty)
+Seat 5: Player28 (103498, 1.25€ bounty)
+Seat 6: Player37 (76293, 1€ bounty)
+*** ANTE/BLINDS ***
+Player21 posts ante 250
+Player28 posts ante 250
+Player06 posts ante 250
+Player22 posts ante 250
+Tantaculejen posts ante 250
+Player37 posts ante 250
+Player21 posts small blind 1000
+Player28 posts big blind 2000
+Dealt to Tantaculejen [3d As]
+*** PRE-FLOP *** 
+Player37 folds
+Player06 raises 2000 to 4000
+Player22 folds
+Tantaculejen folds
+Player21 folds
+Player28 calls 2000
+*** FLOP *** [8c Jh 4d]
+Player28 checks
+Player06 bets 5250
+Player28 raises 5250 to 10500
+Player06 raises 304542 to 315042 and is all-in
+Player28 calls 88748 and is all-in
+*** TURN *** [8c Jh 4d][Qc]
+*** RIVER *** [8c Jh 4d Qc][7d]
+*** SHOW DOWN ***
+Player28 shows [6d 6c] (One pair : 6)
+Player06 shows [Jc Tc] (One pair : Jacks)
+Player06 collected 424790 from pot
+*** SUMMARY ***
+Total pot 424790 | No rake
+Board: [8c Jh 4d Qc 7d]
+Seat 1: Player06 showed [Jc Tc] and won 424790 with One pair : Jacks
+Seat 5: Player28 (big blind) showed [6d 6c] and lost with One pair : 6
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 9 - HandId: #5193417103624896579-99-1793478039 - Holdem no limit (250/1000/2000) - 2026/10/31 20:20:39 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #4 is the button
+Seat 1: Player06 (424790, 2.49€ bounty)
+Seat 2: Player22 (134833, 2.50€ bounty)
+Seat 3: Tantaculejen (46152, 1€ bounty)
+Seat 4: Player21 (44450, 1€ bounty)
+Seat 6: Player37 (76043, 1€ bounty)
+*** ANTE/BLINDS ***
+Player37 posts ante 250
+Player06 posts ante 250
+Player22 posts ante 250
+Tantaculejen posts ante 250
+Player21 posts ante 250
+Player37 posts big blind 2000
+Dealt to Tantaculejen [5c 4s]
+*** PRE-FLOP *** 
+Player06 folds
+Player22 folds
+Tantaculejen folds
+Player21 folds
+Player37 collected 3250 from pot
+*** SUMMARY ***
+Total pot 3250 | No rake
+Seat 6: Player37 (big blind) won 3250
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 9 - HandId: #5193417103624896579-100-1793478062 - Holdem no limit (250/1000/2000) - 2026/10/31 20:21:02 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #5 is the button
+Seat 1: Player06 (424540, 2.49€ bounty)
+Seat 2: Player22 (134583, 2.50€ bounty)
+Seat 3: Tantaculejen (45902, 1€ bounty)
+Seat 4: Player21 (44200, 1€ bounty)
+Seat 6: Player37 (77043, 1€ bounty)
+*** ANTE/BLINDS ***
+Player37 posts ante 250
+Player06 posts ante 250
+Player22 posts ante 250
+Tantaculejen posts ante 250
+Player21 posts ante 250
+Player37 posts small blind 1000
+Player06 posts big blind 2000
+Dealt to Tantaculejen [Ac 8s]
+*** PRE-FLOP *** 
+Player22 calls 2000
+Tantaculejen folds
+Player21 folds
+Player37 folds
+Player06 checks
+*** FLOP *** [Jh 5s 9s]
+Player06 checks
+Player22 bets 2000
+Player06 folds
+Player22 collected 8250 from pot
+*** SUMMARY ***
+Total pot 8250 | No rake
+Board: [Jh 5s 9s]
+Seat 2: Player22 won 8250
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 9 - HandId: #5193417103624896579-101-1793478098 - Holdem no limit (250/1000/2000) - 2026/10/31 20:21:38 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #6 is the button
+Seat 1: Player06 (422290, 2.49€ bounty)
+Seat 2: Player22 (138583, 2.50€ bounty)
+Seat 3: Tantaculejen (45652, 1€ bounty)
+Seat 4: Player21 (43950, 1€ bounty)
+Seat 5: Player33 (50000, 1€ bounty)
+Seat 6: Player37 (75793, 1€ bounty)
+*** ANTE/BLINDS ***
+Player06 posts ante 250
+Player22 posts ante 250
+Tantaculejen posts ante 250
+Player21 posts ante 250
+Player33 posts ante 250
+Player37 posts ante 250
+Player06 posts small blind 1000
+Player22 posts big blind 2000
+Dealt to Tantaculejen [8d Ts]
+*** PRE-FLOP *** 
+Tantaculejen folds
+Player21 folds
+Player33 folds
+Player37 folds
+Player06 raises 420040 to 422040 and is all-in
+Player22 folds
+Player06 collected 425540 from pot
+*** SUMMARY ***
+Total pot 425540 | No rake
+Seat 1: Player06 (small blind) won 425540
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 9 - HandId: #5193417103624896579-102-1793478125 - Holdem no limit (250/1000/2000) - 2026/10/31 20:22:05 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #1 is the button
+Seat 1: Player06 (425540, 2.49€ bounty)
+Seat 2: Player22 (136333, 2.50€ bounty)
+Seat 3: Tantaculejen (45402, 1€ bounty)
+Seat 4: Player21 (43700, 1€ bounty)
+Seat 5: Player33 (49750, 1€ bounty)
+Seat 6: Player37 (75543, 1€ bounty)
+*** ANTE/BLINDS ***
+Player22 posts ante 250
+Tantaculejen posts ante 250
+Player06 posts ante 250
+Player21 posts ante 250
+Player33 posts ante 250
+Player37 posts ante 250
+Player22 posts small blind 1000
+Tantaculejen posts big blind 2000
+Dealt to Tantaculejen [5c 8s]
+*** PRE-FLOP *** 
+Player21 folds
+Player33 folds
+Player37 calls 2000
+Player06 raises 2000 to 4000
+Player22 folds
+Tantaculejen folds
+Player37 calls 2000
+*** FLOP *** [Ts Jc 7d]
+Player37 checks
+Player06 checks
+*** TURN *** [Ts Jc 7d][Th]
+Player37 bets 4375
+Player06 calls 4375
+*** RIVER *** [Ts Jc 7d Th][Ks]
+Player37 bets 10625
+Player06 calls 10625
+*** SHOW DOWN ***
+Player06 shows [Ac 2h] (One pair : Tens)
+Player37 shows [Qc 7c] (Two pairs : Tens and 7)
+Player37 collected 42500 from pot
+*** SUMMARY ***
+Total pot 42500 | No rake
+Board: [Ts Jc 7d Th Ks]
+Seat 1: Player06 (button) showed [Ac 2h] and lost with One pair : Tens
+Seat 6: Player37 showed [Qc 7c] and won 42500 with Two pairs : Tens and 7
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 9 - HandId: #5193417103624896579-103-1793478155 - Holdem no limit (250/1000/2000) - 2026/10/31 20:22:35 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #2 is the button
+Seat 1: Player06 (406290, 2.49€ bounty)
+Seat 2: Player22 (135083, 2.50€ bounty)
+Seat 3: Tantaculejen (43152, 1€ bounty)
+Seat 4: Player21 (43450, 1€ bounty)
+Seat 5: Player33 (49500, 1€ bounty)
+Seat 6: Player37 (98793, 1€ bounty)
+*** ANTE/BLINDS ***
+Tantaculejen posts ante 250
+Player21 posts ante 250
+Player06 posts ante 250
+Player22 posts ante 250
+Player33 posts ante 250
+Player37 posts ante 250
+Tantaculejen posts small blind 1000
+Player21 posts big blind 2000
+Dealt to Tantaculejen [Ts 5h]
+*** PRE-FLOP *** 
+Player33 folds
+Player37 folds
+Player06 raises 3000 to 5000
+Player22 raises 129833 to 134833 and is all-in
+Tantaculejen folds
+Player21 folds
+Player06 calls 129833
+*** FLOP *** [8c Td Qc]
+*** TURN *** [8c Td Qc][Qh]
+*** RIVER *** [8c Td Qc Qh][5s]
+*** SHOW DOWN ***
+Player06 shows [9c Ac] (One pair : Queens)
+Player22 shows [7s 7h] (Two pairs : Queens and 7)
+Player22 collected 274166 from pot
+*** SUMMARY ***
+Total pot 274166 | No rake
+Board: [8c Td Qc Qh 5s]
+Seat 1: Player06 showed [9c Ac] and lost with One pair : Queens
+Seat 2: Player22 (button) showed [7s 7h] and won 274166 with Two pairs : Queens and 7
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 9 - HandId: #5193417103624896579-104-1793478192 - Holdem no limit (250/1000/2000) - 2026/10/31 20:23:12 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #3 is the button
+Seat 1: Player06 (271207, 2.49€ bounty)
+Seat 2: Player22 (274166, 2.50€ bounty)
+Seat 3: Tantaculejen (41902, 1€ bounty)
+Seat 4: Player21 (41200, 1€ bounty)
+Seat 5: Player33 (49250, 1€ bounty)
+Seat 6: Player37 (98543, 1€ bounty)
+*** ANTE/BLINDS ***
+Player21 posts ante 250
+Player33 posts ante 250
+Player06 posts ante 250
+Player22 posts ante 250
+Tantaculejen posts ante 250
+Player37 posts ante 250
+Player21 posts small blind 1000
+Player33 posts big blind 2000
+Dealt to Tantaculejen [3s 5d]
+*** PRE-FLOP *** 
+Player37 calls 2000
+Player06 folds
+Player22 calls 2000
+Tantaculejen folds
+Player21 calls 1000
+Player33 raises 47000 to 49000 and is all-in
+Player37 folds
+Player22 calls 47000
+Player21 folds
+*** FLOP *** [Tc 9s Qd]
+*** TURN *** [Tc 9s Qd][Jc]
+*** RIVER *** [Tc 9s Qd Jc][6d]
+*** SHOW DOWN ***
+Player22 shows [Jd Ad] (One pair : Jacks)
+Player33 shows [Ah Jh] (One pair : Jacks)
+Player33 collected 51750 from pot
+Player22 collected 51750 from pot
+*** SUMMARY ***
+Total pot 103500 | No rake
+Board: [Tc 9s Qd Jc 6d]
+Seat 2: Player22 showed [Jd Ad] and won 51750 with One pair : Jacks
+Seat 5: Player33 (big blind) showed [Ah Jh] and won 51750 with One pair : Jacks
+
+
+Winamax Poker - Tournament "SPACE HALLOWEEN - 2€" buyIn: 1.80€ + 0.20€ level: 9 - HandId: #5193417103624896579-105-1793478243 - Holdem no limit (250/1000/2000) - 2026/10/31 20:24:03 UTC
+Table: 'SPACE HALLOWEEN - 2€(1209186647)#0066' 6-max (real money) Seat #4 is the button
+Seat 1: Player06 (270957, 2.49€ bounty)
+Seat 2: Player22 (276666, 2.50€ bounty)
+Seat 3: Tantaculejen (41652, 1€ bounty)
+Seat 4: Player21 (38950, 1€ bounty)
+Seat 5: Player33 (51750, 1€ bounty)
+Seat 6: Player37 (96293, 1€ bounty)
+*** ANTE/BLINDS ***
+Player33 posts ante 250
+Player37 posts ante 250
+Player06 posts ante 250
+Player22 posts ante 250
+Tantaculejen posts ante 250
+Player21 posts ante 250
+Player33 posts small blind 1000
+Player37 posts big blind 2000
+Dealt to Tantaculejen [5d 9s]
+*** PRE-FLOP *** 
+Player06 folds
+Player22 folds
+Tantaculejen folds
+Player21 calls 2000
+Player33 calls 1000
+Player37 checks
+*** FLOP *** [8d 9d Jd]
+Player33 checks
+Player37 bets 2625
+Player21 folds
+Player33 folds
+Player37 collected 10125 from pot
+*** SUMMARY ***
+Total pot 10125 | No rake
+Board: [8d 9d Jd]
+Seat 6: Player37 (big blind) won 10125
+
+

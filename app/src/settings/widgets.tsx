@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { ArrowDown, ArrowUp } from "lucide-react";
+import { ArrowDown, ArrowUp, FolderOpen, X } from "lucide-react";
+import { getBackend } from "@/lib/backend";
 import { Button } from "@/components/ui/button";
 import { Input, Switch } from "@/components/ui/input";
 import { formatEvent } from "@/hotkeys/keys";
@@ -105,5 +106,35 @@ export function ModuleTogglesWidget({ value, onChange }: { value: string[]; onCh
         </li>
       ))}
     </ul>
+  );
+}
+
+/** List of folders with a native "add folder" picker. */
+export function FolderListWidget({ value, onChange }: { value: string[]; onChange: (v: string[]) => void }) {
+  const { t } = useTranslation();
+  return (
+    <div className="flex flex-col gap-1" data-testid="folder-list">
+      {value.map((f) => (
+        <div key={f} className="flex items-center gap-d2 rounded border border-border px-d2 py-1 text-sm">
+          <code className="flex-1 truncate">{f}</code>
+          <Button variant="ghost" size="icon" aria-label={t("widget.remove")} onClick={() => onChange(value.filter((x) => x !== f))}>
+            <X className="h-4 w-4" />
+          </Button>
+        </div>
+      ))}
+      <Button
+        variant="outline"
+        size="sm"
+        className="w-fit"
+        onClick={() =>
+          void getBackend()
+            .then((b) => b.pickPaths({ directory: true, multiple: false, title: t("widget.add_folder") }))
+            .then((p) => p && onChange([...new Set([...value, ...p])]))
+        }
+      >
+        <FolderOpen className="h-4 w-4" />
+        {t("widget.add_folder")}
+      </Button>
+    </div>
   );
 }

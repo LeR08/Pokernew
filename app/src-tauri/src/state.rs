@@ -9,6 +9,7 @@ use lps_config::watch::{self, ConfigWatcher};
 use lps_config::{defaults, ConfigError, ConfigStore};
 
 use crate::bus::{AppEvent, EventBus};
+use crate::import_service::ImportService;
 
 pub struct AppState {
     pub data_dir: DataDir,
@@ -16,6 +17,9 @@ pub struct AppState {
     pub bus: EventBus,
     pub started: Instant,
     pub backend_ready_ms: u64,
+    /// `None` when the database could not be opened (the error is in `db_error`).
+    pub import: Option<Arc<ImportService>>,
+    pub db_error: Option<String>,
     _watcher: Mutex<Option<ConfigWatcher>>,
 }
 
@@ -42,10 +46,22 @@ impl AppState {
         let watcher = watch::watch(store.clone(), move |e| bus2.publish(AppEvent::Config(e)))
             .map_err(|e| log::warn!("hot reload disabled: {e}"))
             .ok();
+        let (import, db_error) = match ImportService::start(&data_dir.path, &store, bus.clone()) {
+            Ok(svc) => {
+                svc.spawn_backup_scheduler(store.clone());
+                (Some(svc), None)
+            }
+            Err(e) => {
+                log::error!("database unavailable: {e}");
+                (None, Some(e.to_string()))
+            }
+        };
         Ok(Self {
             data_dir,
             store,
             bus,
+            import,
+            db_error,
             started,
             backend_ready_ms: started.elapsed().as_millis() as u64,
             _watcher: Mutex::new(watcher),

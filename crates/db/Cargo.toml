@@ -4,8 +4,23 @@ version.workspace = true
 edition.workspace = true
 license.workspace = true
 publish = false
+description = "SQLite schema, migrations, counters and the hand-history import pipeline."
 
 [lib]
 name = "lps_db"
 
 [dependencies]
+lps-core-model = { path = "../core-model" }
+lps-hh-parsers = { path = "../hh-parsers" }
+rusqlite = { version = "0.37", features = ["bundled", "backup"] }
+rayon = "1"
+serde.workspace = true
+serde_json.workspace = true
+toml.workspace = true
+thiserror.workspace = true
+log.workspace = true
+notify-debouncer-mini.workspace = true
+zip = { version = "2", default-features = false, features = ["deflate"] }
+
+[dev-dependencies]
+tempfile.workspace = true

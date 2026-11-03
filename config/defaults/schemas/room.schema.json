@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lps://schemas/room",
+  "title": "schema.room.title",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["name", "enabled", "folders", "hero_names", "hud_allowed"],
+  "properties": {
+    "name": { "title": "schema.room.name", "type": "string", "minLength": 1 },
+    "enabled": { "title": "schema.room.enabled", "type": "boolean" },
+    "folders": { "title": "schema.room.folders", "description": "schema.room.folders_help", "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true, "x-widget": "folder-list" },
+    "hero_names": { "title": "schema.room.hero_names", "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+    "hud_allowed": { "title": "schema.room.hud_allowed", "description": "schema.room.hud_allowed_help", "type": "boolean" }
+  }
+}
