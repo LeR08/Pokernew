@@ -14,6 +14,7 @@ import { HandsList } from "../tracker/HandsList";
 import { FilterBar } from "../tracker/FilterBar";
 import type { ModuleManifest } from "../types";
 import { stateAt, totalSteps } from "./replay";
+import { NotesPanel } from "./NotesPanel";
 
 function useAmount(h: Hand | undefined, inBb: boolean, lang: string) {
   return useMemo(() => {
@@ -38,6 +39,7 @@ function Replayer({ hand }: { hand: Hand }) {
   const [step, setStep] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [inBb, setInBb] = useState(true);
+  const [notesFor, setNotesFor] = useState<string | null>(null);
   const fmt = useAmount(hand, inBb, i18n.language);
   const last = totalSteps(hand);
   const st = stateAt(hand, step);
@@ -112,9 +114,11 @@ function Replayer({ hand }: { hand: Hand }) {
             return (
               <div
                 key={p.seat}
-                className="absolute flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-1"
+                className="absolute flex -translate-x-1/2 -translate-y-1/2 cursor-pointer flex-col items-center gap-1"
                 style={pos}
                 data-testid="seat"
+                title={t("notes.open")}
+                onClick={() => setNotesFor(p.name)}
               >
                 <div className="flex gap-0.5">
                   {[0, 1].map((k) => (
@@ -167,6 +171,8 @@ function Replayer({ hand }: { hand: Hand }) {
           </span>
         </div>
       </div>
+      <div className="flex flex-col gap-d3">
+      {notesFor && <NotesPanel room={hand.room} name={notesFor} />}
       <Card className="max-h-[36rem] overflow-y-auto p-d3 text-sm" data-testid="action-log">
         <ol className="flex flex-col gap-0.5">
           {hand.actions.map((a, i) => (
@@ -191,6 +197,7 @@ function Replayer({ hand }: { hand: Hand }) {
           </li>
         </ol>
       </Card>
+      </div>
     </div>
   );
 }

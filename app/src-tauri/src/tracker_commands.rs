@@ -164,3 +164,137 @@ pub fn stat_preview(s: State<'_, AppState>, def: StatDef, filter: Filter) -> Res
         hands: row.map(|r| r.hands).unwrap_or(0),
     })
 }
+
+// ---- Sessions & review, leaks, grid ----
+
+use lps_stats_engine::grid::Cell;
+use lps_stats_engine::leaks::{LeakRow, TargetsFile};
+use lps_stats_engine::review::{Session, SessionReview};
+
+#[tauri::command]
+pub fn tracker_sessions(s: State<'_, AppState>, filter: Filter) -> Res<Vec<Session>> {
+    svc(&s)?.with_reader(|c| lps_stats_engine::review::sessions(c, &filter).map_err(sql_err)).map_err(err)
+}
+
+/// Post-session review: rules of thumb on the finished hands of a session.
+#[tauri::command]
+pub fn session_review(s: State<'_, AppState>, filter: Filter, start: i64, end: i64) -> Res<SessionReview> {
+    svc(&s)?.with_reader(|c| lps_stats_engine::review::review_session(c, &filter, start, end)).map_err(err)
+}
+
+#[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct LeaksResponse {
+    pub rows: Vec<LeakRow>,
+    pub stats: Vec<StatMeta>,
+}
+
+#[tauri::command]
+pub fn tracker_leaks(s: State<'_, AppState>, filter: Filter) -> Res<LeaksResponse> {
+    let (compiled, stats, _) = load_stats(&s);
+    let mut targets = TargetsFile::default();
+    for id in s.store.list("leaks") {
+        if let Some(v) = s.store.get("leaks", &id) {
+            if let Ok(t) = serde_json::from_value::<TargetsFile>(v) {
+                targets.target.extend(t.target);
+            }
+        }
+    }
+    let rows = svc(&s)?
+        .with_reader(|c| lps_stats_engine::leaks::find(c, &filter, &compiled, &targets).map_err(sql_err))
+        .map_err(err)?;
+    Ok(LeaksResponse { rows, stats })
+}
+
+#[tauri::command]
+pub fn tracker_grid(s: State<'_, AppState>, filter: Filter) -> Res<Vec<Cell>> {
+    svc(&s)?.with_reader(|c| lps_stats_engine::grid::grid(c, &filter).map_err(sql_err)).map_err(err)
+}
+
+// ---- Notes ----
+
+#[tauri::command]
+pub fn notes_get(s: State<'_, AppState>, room: String, name: String) -> Res<lps_db::user::PlayerNotes> {
+    svc(&s)?.with_reader(|c| lps_db::user::notes(c, &room, &name)).map_err(err)
+}
+
+#[tauri::command]
+pub fn note_add(s: State<'_, AppState>, room: String, name: String, text: String) -> Res<i64> {
+    let now = std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).map(|d| d.as_secs() as i64).unwrap_or(0);
+    svc(&s)?.with_reader(|c| lps_db::user::add_note(c, &room, &name, &text, now)).map_err(err)
+}
+
+#[tauri::command]
+pub fn note_delete(s: State<'_, AppState>, id: i64) -> Res<()> {
+    svc(&s)?.with_reader(|c| lps_db::user::delete_note(c, id)).map_err(err)
+}
+
+#[tauri::command]
+pub fn player_colour(s: State<'_, AppState>, room: String, name: String, colour: Option<String>) -> Res<()> {
+    svc(&s)?.with_reader(|c| lps_db::user::set_colour(c, &room, &name, colour.as_deref())).map_err(err)
+}
+
+// ---- Bankroll ----
+
+#[tauri::command]
+pub fn bankroll_get(s: State<'_, AppState>) -> Res<lps_stats_engine::bankroll::Bankroll> {
+    svc(&s)?.with_reader(lps_stats_engine::bankroll::bankroll).map_err(err)
+}
+
+#[tauri::command]
+pub fn bankroll_tx_list(s: State<'_, AppState>) -> Res<Vec<lps_db::user::Tx>> {
+    svc(&s)?.with_reader(lps_db::user::list_tx).map_err(err)
+}
+
+#[tauri::command]
+pub fn bankroll_tx_add(s: State<'_, AppState>, tx: lps_db::user::Tx) -> Res<i64> {
+    svc(&s)?.with_reader(|c| lps_db::user::add_tx(c, &tx)).map_err(err)
+}
+
+#[tauri::command]
+pub fn bankroll_tx_delete(s: State<'_, AppState>, id: i64) -> Res<()> {
+    svc(&s)?.with_reader(|c| lps_db::user::delete_tx(c, id)).map_err(err)
+}
+
+// ---- CSV export ----
+
+fn csv_cell(v: &str) -> String {
+    if v.contains([';', '"', '\n', '\r']) {
+        format!("\"{}\"", v.replace('"', "\"\""))
+    } else {
+        v.to_string()
+    }
+}
+
+/// Builds CSV text: `;` separator and a UTF-8 BOM, so Excel (French locale) opens it directly.
+pub fn to_csv(rows: &[Vec<String>]) -> String {
+    let mut out = String::from("\u{feff}");
+    for r in rows {
+        out.push_str(&r.iter().map(|c| csv_cell(c)).collect::<Vec<_>>().join(";"));
+        out.push_str("\r\n");
+    }
+    out
+}
+
+/// Writes `<data>/exports/<name>-<time>.csv`; returns its path.
+#[tauri::command]
+pub fn export_csv(s: State<'_, AppState>, name: String, rows: Vec<Vec<String>>) -> Res<String> {
+    let safe: String = name.chars().map(|c| if c.is_ascii_alphanumeric() || c == '-' { c } else { '_' }).take(40).collect();
+    let now = std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).map(|d| d.as_secs()).unwrap_or(0);
+    let dir = s.data_dir.path.join("exports");
+    std::fs::create_dir_all(&dir).map_err(|e| CommandError::from(e.to_string()))?;
+    let path = dir.join(format!("{safe}-{now}.csv"));
+    std::fs::write(&path, to_csv(&rows)).map_err(|e| CommandError::from(e.to_string()))?;
+    Ok(path.display().to_string())
+}
+
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn csv_is_excel_friendly() {
+        let csv = super::to_csv(&[vec!["Position".into(), "VPIP".into()], vec!["BTN".into(), "31,2 %".into()], vec!["a;b".into(), "say \"hi\"".into()]]);
+        assert!(csv.starts_with('\u{feff}'));
+        assert!(csv.contains("BTN;31,2 %\r\n"));
+        assert!(csv.contains("\"a;b\";\"say \"\"hi\"\"\""));
+    }
+}

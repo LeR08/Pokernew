@@ -14,7 +14,21 @@ import type {
 } from "./backend";
 import { BackendError } from "./backend";
 import type { JSONSchema } from "./schema";
-import type { Graph, Hand, HandsResponse, Preview, ReportResponse, TournamentsResponse } from "./tracker";
+import type {
+  Bankroll,
+  Graph,
+  GridCell,
+  Hand,
+  HandsResponse,
+  LeaksResponse,
+  PlayerNotes,
+  Preview,
+  ReportResponse,
+  Session,
+  SessionReview,
+  TournamentsResponse,
+  Tx,
+} from "./tracker";
 
 /** Shape of errors returned by src-tauri commands. */
 interface CommandError {
@@ -88,6 +102,19 @@ export function createTauriBackend(): Backend {
     trackerAccounts: () => call<string[]>("tracker_accounts"),
     handGet: (handId) => call<Hand>("hand_get", { handId }),
     statPreview: (def, filter) => call<Preview>("stat_preview", { def, filter }),
+    trackerSessions: (filter) => call<Session[]>("tracker_sessions", { filter }),
+    sessionReview: (filter, start, end) => call<SessionReview>("session_review", { filter, start, end }),
+    trackerLeaks: (filter) => call<LeaksResponse>("tracker_leaks", { filter }),
+    trackerGrid: (filter) => call<GridCell[]>("tracker_grid", { filter }),
+    notesGet: (room, name) => call<PlayerNotes>("notes_get", { room, name }),
+    noteAdd: (room, name, text) => call<number>("note_add", { room, name, text }),
+    noteDelete: (id) => call("note_delete", { id }),
+    playerColour: (room, name, colour) => call("player_colour", { room, name, colour }),
+    bankrollGet: () => call<Bankroll>("bankroll_get"),
+    bankrollTxList: () => call<Tx[]>("bankroll_tx_list"),
+    bankrollTxAdd: (tx) => call<number>("bankroll_tx_add", { tx: { ...tx, id: tx.id ?? 0 } }),
+    bankrollTxDelete: (id) => call("bankroll_tx_delete", { id }),
+    exportCsv: (name, rows) => call<string>("export_csv", { name, rows }),
     markReady() {
       void invoke("frontend_ready").catch(() => undefined);
     },

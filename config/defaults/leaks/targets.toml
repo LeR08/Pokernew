@@ -1,0 +1,59 @@
+# Repères du détecteur de fuites / leak-finder targets
+#
+# FR : pour chaque stat, la fourchette visée, par format (cash, mtt, spin) ou
+#      `default`. Valeurs en fraction : 0.25 = 25 %. Une stat est une « fuite »
+#      quand tout son intervalle de confiance à 95 % sort de la fourchette.
+#      Ces repères sont des valeurs de joueurs réguliers gagnants en micro-limites,
+#      pas des vérités : adapte-les à ton jeu.
+# EN : target range per stat and format; values are fractions (0.25 = 25 %).
+
+[target.vpip]
+cash = { min = 0.20, max = 0.30 }
+mtt = { min = 0.18, max = 0.28 }
+spin = { min = 0.35, max = 0.60 }
+too_high = { fr = "Tu joues trop de mains : resserre tes ouvertures, surtout aux premières positions.", en = "Too many hands played: tighten your opening ranges, especially early." }
+too_low = { fr = "Tu joues très peu de mains : tu peux ouvrir davantage au CO et au bouton.", en = "Very few hands played: you can open more from CO and the button." }
+
+[target.pfr]
+cash = { min = 0.16, max = 0.25 }
+mtt = { min = 0.14, max = 0.23 }
+spin = { min = 0.25, max = 0.50 }
+too_low = { fr = "Tu relances trop peu : entre plutôt dans les coups en relançant qu'en suivant.", en = "Too few raises: enter pots by raising rather than calling." }
+too_high = { fr = "Tu relances beaucoup : vérifie que tes ouvertures restent rentables.", en = "Many raises: check your opens are profitable." }
+
+[target.three_bet]
+default = { min = 0.05, max = 0.12 }
+too_low = { fr = "Tu sur-relances rarement : face aux ouvertures du bouton et du CO, 3-bet tes bonnes mains et quelques bluffs.", en = "You rarely 3-bet: 3-bet good hands and some bluffs against late-position opens." }
+too_high = { fr = "Tu sur-relances très souvent : les adversaires vont te 4-bet ou payer plus large.", en = "You 3-bet a lot: opponents will adjust." }
+
+[target.fold_to_3bet]
+default = { min = 0.40, max = 0.65 }
+too_high = { fr = "Tu te couches trop souvent face aux 3-bets : on peut te sur-relancer en bluff.", en = "You fold too much to 3-bets: you can be exploited." }
+too_low = { fr = "Tu continues souvent face aux 3-bets : attention à ne pas payer avec des mains dominées.", en = "You rarely fold to 3-bets: avoid calling with dominated hands." }
+
+[target.steal]
+default = { min = 0.30, max = 0.50 }
+too_low = { fr = "Tu voles peu les blindes : quand c'est couché jusqu'à toi au CO ou au bouton, relance plus souvent.", en = "You rarely steal: raise more when folded to in CO/BTN." }
+too_high = { fr = "Tu voles très souvent : les blindes vont commencer à te sur-relancer.", en = "You steal a lot: blinds will start re-raising." }
+
+[target.fold_to_steal]
+default = { min = 0.55, max = 0.80 }
+too_high = { fr = "Tu abandonnes trop souvent tes blindes : défends plus souvent, surtout en big blind.", en = "You give up your blinds too often: defend more, especially in the BB." }
+
+[target.cbet_flop]
+default = { min = 0.45, max = 0.75 }
+too_low = { fr = "Tu continues rarement au flop après avoir relancé : tu laisses des pots faciles.", en = "You rarely c-bet: you give up easy pots." }
+too_high = { fr = "Tu c-bets presque toujours : choisis mieux les boards (moins sur les boards connectés).", en = "You almost always c-bet: be more selective." }
+
+[target.fold_to_cbet_flop]
+default = { min = 0.35, max = 0.60 }
+too_high = { fr = "Tu te couches souvent face aux c-bets : défends plus avec tes tirages et paires.", en = "You fold to c-bets too often." }
+
+[target.wtsd]
+default = { min = 0.25, max = 0.35 }
+too_high = { fr = "Tu vas souvent à l'abattage : tu paies peut-être trop avec des mains moyennes.", en = "You go to showdown often: maybe calling too much." }
+too_low = { fr = "Tu vas rarement à l'abattage : tu abandonnes peut-être trop de pots.", en = "You rarely go to showdown: maybe folding too much." }
+
+[target.wsd]
+default = { min = 0.48 }
+too_low = { fr = "Tu perds souvent à l'abattage : tes calls de turn et de river sont trop larges.", en = "You lose often at showdown: turn/river calls are too loose." }

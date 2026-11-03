@@ -107,6 +107,19 @@ pub fn run(started: Instant) {
             tracker_commands::tracker_accounts,
             tracker_commands::hand_get,
             tracker_commands::stat_preview,
+            tracker_commands::tracker_sessions,
+            tracker_commands::session_review,
+            tracker_commands::tracker_leaks,
+            tracker_commands::tracker_grid,
+            tracker_commands::notes_get,
+            tracker_commands::note_add,
+            tracker_commands::note_delete,
+            tracker_commands::player_colour,
+            tracker_commands::bankroll_get,
+            tracker_commands::bankroll_tx_list,
+            tracker_commands::bankroll_tx_add,
+            tracker_commands::bankroll_tx_delete,
+            tracker_commands::export_csv,
         ])
         .run(tauri::generate_context!())
         .expect("error while running Local Poker Suite");

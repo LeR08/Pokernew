@@ -6,6 +6,13 @@
  */
 import type { JSONSchema } from "./schema";
 import type {
+  Bankroll,
+  GridCell,
+  LeaksResponse,
+  PlayerNotes,
+  Session,
+  SessionReview,
+  Tx,
   Filter,
   Graph,
   Group,
@@ -154,6 +161,20 @@ export interface Backend {
   trackerAccounts(): Promise<string[]>;
   handGet(handId: number): Promise<Hand>;
   statPreview(def: StatDef, filter: Filter): Promise<Preview>;
+  trackerSessions(filter: Filter): Promise<Session[]>;
+  sessionReview(filter: Filter, start: number, end: number): Promise<SessionReview>;
+  trackerLeaks(filter: Filter): Promise<LeaksResponse>;
+  trackerGrid(filter: Filter): Promise<GridCell[]>;
+  notesGet(room: string, name: string): Promise<PlayerNotes>;
+  noteAdd(room: string, name: string, text: string): Promise<number>;
+  noteDelete(id: number): Promise<void>;
+  playerColour(room: string, name: string, colour: string | null): Promise<void>;
+  bankrollGet(): Promise<Bankroll>;
+  bankrollTxList(): Promise<Tx[]>;
+  bankrollTxAdd(tx: Tx): Promise<number>;
+  bankrollTxDelete(id: number): Promise<void>;
+  /** Writes a CSV file in <data>/exports; returns its path. */
+  exportCsv(name: string, rows: string[][]): Promise<string>;
 }
 
 export const isTauri = (): boolean =>

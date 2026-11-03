@@ -1,6 +1,6 @@
 import { Wallet } from "lucide-react";
-import { ComingSoon } from "../ComingSoon";
 import type { ModuleManifest } from "../types";
+import { BankrollPage } from "./BankrollPage";
 
 export const manifest: ModuleManifest = {
   id: "bankroll",
@@ -9,5 +9,5 @@ export const manifest: ModuleManifest = {
   icon: Wallet,
   phase: 2,
   replaces: ["Poker Copilot", "Xeester", "Poker Analytics"],
-  routes: [{ path: "", component: ComingSoon }],
+  routes: [{ path: "", component: BankrollPage }],
 };

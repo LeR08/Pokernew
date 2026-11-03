@@ -10,6 +10,9 @@ Format: [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/). Versions follo
 - Tracker : vue d'ensemble (résultat d'abord), rapports par position / format / mois / limite / compte, graphique (bb ; « Afficher en € » pour le cash et les tournois), tournois avec ROI et ITM, liste des mains, éditeur de stats avec aperçu en direct.
 - Replayer : table, cartes, mises, pot, pas à pas, lecture automatique, flèches du clavier, montants en bb ou en jetons / €.
 - Référence indépendante pour les stats (`tools/reference_stats.py`).
+- Sessions (regroupées par trous de 30 min) et **bilan de session** : mains à revoir et bons coups, expliqués, avec un lien vers le replayer ; alerte de tilt.
+- Détecteur de fuites (`leaks/targets.toml`, intervalle de Wilson 95 %, résultat dans le spot).
+- Grille 13×13 des mains de départ, bankroll (dépôts/retraits, courbe, règle des 30 buy-ins), notes et couleurs par joueur, export CSV.
 
 ## Phase 1 : Import & base de données
 

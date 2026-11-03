@@ -4,7 +4,9 @@ import { Select } from "@/components/ui/input";
 import { bb, colourClass, euros, formatStat, int, resultClass } from "@/lib/format";
 import type { Group } from "@/lib/tracker";
 import { useTracker } from "@/stores/tracker";
-import { useFilter, useReport } from "./api";
+import { FileDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { exportCsv, useFilter, useReport } from "./api";
 
 /** A report: one row per group (position by default), all stats as columns. */
 export function Positions() {
@@ -15,8 +17,23 @@ export function Positions() {
   const euro = useTracker((s) => s.euros);
   const report = useReport(filter, group).data;
   const stats = report?.stats.filter((s) => s.id !== "bb100") ?? [];
+  const [exported, setExported] = useState<string | null>(null);
+  const toCsv = async () => {
+    if (!report) return;
+    const head = [t(`tracker.group.${group}`), t("tracker.hands"), t("tracker.col_net_bb"), t("tracker.col_cash_eur"), "bb/100", ...stats.map((s) => s.name)];
+    const rows = report.rows.map((r) => [
+      r.key,
+      String(r.hands),
+      r.netBb.toFixed(2),
+      (r.netCashCents / 100).toFixed(2),
+      r.bbPer100 != null ? r.bbPer100.toFixed(2) : "",
+      ...stats.map((s) => formatStat(r.stats.find((x) => x.id === s.id)?.value, s.format, lang)),
+    ]);
+    setExported(await exportCsv(`rapport-${group}`, [head, ...rows]));
+  };
   return (
     <div className="flex flex-col gap-d3">
+      <div className="flex flex-wrap items-center justify-between gap-d2">
       <label className="flex items-center gap-d2 text-sm">
         {t("tracker.group_by")}
         <Select className="w-44" value={group} onChange={(e) => setGroup(e.target.value as Group)} data-testid="group-by">
@@ -27,6 +44,12 @@ export function Positions() {
           ))}
         </Select>
       </label>
+        <Button variant="outline" size="sm" onClick={() => void toCsv()} data-testid="export-report">
+          <FileDown className="h-4 w-4" />
+          {t("tracker.export_csv")}
+        </Button>
+      </div>
+      {exported && <p className="text-xs text-success">{t("tracker.exported", { path: exported })}</p>}
       <div className="overflow-x-auto rounded-lg border border-border">
         <table className="w-full text-sm tabular-nums" data-testid="report-table">
           <thead className="bg-surface-alt text-left text-xs text-muted">

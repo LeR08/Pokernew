@@ -7,10 +7,13 @@ import { GraphView } from "./GraphView";
 import { HandsList } from "./HandsList";
 import { Overview } from "./Overview";
 import { Positions } from "./Positions";
+import { Grid } from "./Grid";
+import { Leaks } from "./Leaks";
+import { Sessions } from "./Sessions";
 import { StatsEditor } from "./StatsEditor";
 import { Tournaments } from "./Tournaments";
 
-const TABS = ["overview", "report", "graph", "tournaments", "hands", "stats"] as const;
+const TABS = ["overview", "sessions", "leaks", "report", "grid", "graph", "tournaments", "hands", "stats"] as const;
 
 export function TrackerPage({ manifest }: { manifest: ModuleManifest }) {
   const { t } = useTranslation();
@@ -35,6 +38,9 @@ export function TrackerPage({ manifest }: { manifest: ModuleManifest }) {
       </nav>
       {current !== "stats" && <FilterBar />}
       {current === "overview" && <Overview />}
+      {current === "sessions" && <Sessions />}
+      {current === "leaks" && <Leaks />}
+      {current === "grid" && <Grid />}
       {current === "report" && <Positions />}
       {current === "graph" && <GraphView />}
       {current === "tournaments" && <Tournaments />}

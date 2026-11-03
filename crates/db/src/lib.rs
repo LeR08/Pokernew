@@ -8,6 +8,7 @@ pub mod counters;
 pub mod import;
 pub mod load;
 pub mod schema;
+pub mod user;
 pub mod watch;
 pub mod write;
 

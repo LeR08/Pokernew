@@ -1,10 +1,14 @@
 //! Stats engine: user-editable stat definitions, an expression language
 //! compiled to SQL, and the report queries of the tracker.
 
+pub mod bankroll;
 pub mod compile;
 pub mod defs;
 pub mod expr;
+pub mod grid;
+pub mod leaks;
 pub mod query;
+pub mod review;
 
 pub use defs::{compile as compile_stat, CompiledStat, StatDef, StatError, StatsFile};
 

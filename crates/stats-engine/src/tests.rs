@@ -145,3 +145,117 @@ fn every_default_stat_compiles_and_runs() {
     let rows = query::report(&conn, &Filter::default(), &stats, Group::Month).unwrap();
     assert!(!rows.is_empty());
 }
+
+#[test]
+fn grid_covers_every_hero_hand() {
+    let conn = db();
+    let cells = crate::grid::grid(&conn, &Filter::default()).unwrap();
+    assert_eq!(cells.len(), 169);
+    let total: i64 = cells.iter().map(|c| c.hands).sum();
+    let with_cards: i64 =
+        conn.query_row("SELECT COUNT(*) FROM hand_players WHERE is_hero = 1 AND length(hole_cards) = 4", [], |r| r.get(0)).unwrap();
+    assert_eq!(total, with_cards);
+    let sum_bb: f64 = cells.iter().map(|c| c.net_bb).sum();
+    let ref_bb: f64 = conn.query_row("SELECT SUM(net_won_bb) FROM hand_players WHERE is_hero = 1", [], |r| r.get(0)).unwrap();
+    assert!((sum_bb - ref_bb).abs() < 1e-6);
+}
+
+#[test]
+fn sessions_split_on_30_minute_gaps() {
+    let conn = db();
+    let s = crate::review::sessions(&conn, &Filter::default()).unwrap();
+    assert_eq!(s.iter().map(|x| x.hands).sum::<i64>(), 496);
+    assert!(s.windows(2).all(|w| w[0].start > w[1].end + crate::review::SESSION_GAP));
+    // The two Nov. 2 tournaments (SPACE KO + TRIDENT, 18:15–21:28) are one session.
+    let nov2 = s.iter().find(|x| x.start <= 1_793_644_483 && x.end >= 1_793_644_483).unwrap();
+    assert_eq!(nov2.tournaments, 2);
+    assert_eq!(nov2.hands, 200);
+}
+
+#[test]
+fn session_review_finds_mistakes_and_good_plays() {
+    let conn = db();
+    let s = crate::review::sessions(&conn, &Filter::default()).unwrap();
+    let nov2 = s.iter().find(|x| x.start <= 1_793_644_483 && x.end >= 1_793_644_483).unwrap();
+    let r = crate::review::review_session(&conn, &Filter::default(), nov2.start, nov2.end).unwrap();
+    assert_eq!(r.session.as_ref().unwrap().hands, 200);
+    assert!(r.findings.iter().any(|f| f.kind == crate::review::Kind::Good));
+    // Reviews come first, worst result first.
+    let kinds: Vec<_> = r.findings.iter().map(|f| f.kind).collect();
+    let first_good = kinds.iter().position(|k| *k == crate::review::Kind::Good).unwrap_or(kinds.len());
+    assert!(kinds[first_good..].iter().all(|k| *k == crate::review::Kind::Good));
+    assert!(r.vpip.is_some() && r.vpip_overall.is_some());
+    assert!(r.worst_hand.is_some() && r.best_hand.is_some());
+}
+
+/// Rules checked on real hands from the fixtures, read by hand.
+#[test]
+fn review_rules_on_known_hands() {
+    let conn = db();
+    let find = |hand_no: &str| -> Vec<&'static str> {
+        let id = lps_db::write::hand_id(&conn, "winamax", hand_no).unwrap().unwrap();
+        let (h, _) = lps_db::load::load_hand(&conn, id).unwrap();
+        crate::review::review_hand(&h, id).into_iter().map(|f| f.rule).collect()
+    };
+    // TRIDENT #34: hero SB shoves K6s for 9 bb over a limp and wins 10 bb: nothing to flag
+    // (Chen score 5 is too weak for the "good short shove" rule, 9 bb too short for "weak shove").
+    assert!(find("5135071836924543030-34-1793644523").is_empty());
+    // TRIDENT #47: hero BTN raises QJo, stacks off on the flop and wins 2893 (+21 bb).
+    let r = find("5135071836924543030-47-1793644836");
+    assert!(r.contains(&"big_pot"), "{r:?}");
+    // TRIDENT #44: hero BTN raises KTo, blinds fold: steal won.
+    assert!(find("5135071836924543030-44-1793644752").contains(&"steal_won"));
+    // TRIDENT #40: hero SB raises AJs, flop c-bet takes it.
+    assert!(find("5135071836924543030-40-1793644654").contains(&"cbet_won"));
+    // TRIDENT #36: hero BB calls a river bet of 272 into 254 with A2 and loses.
+    assert!(find("5135071836924543030-36-1793644577").contains(&"river_call_lost"));
+}
+
+#[test]
+fn leak_finder_flags_out_of_range_stats() {
+    let conn = db();
+    let targets: crate::leaks::TargetsFile = toml::from_str(include_str!("../../../config/defaults/leaks/targets.toml")).unwrap();
+    let rows = crate::leaks::find(&conn, &Filter::default(), &core(), &targets).unwrap();
+    assert!(!rows.is_empty());
+    let mtt_vpip = rows.iter().find(|r| r.stat == "vpip" && r.game_type == "mtt").unwrap();
+    assert_eq!(mtt_vpip.sample, rows.iter().find(|r| r.stat == "pfr" && r.game_type == "mtt").unwrap().sample);
+    assert!(mtt_vpip.ci_low.unwrap() <= mtt_vpip.value.unwrap() && mtt_vpip.value.unwrap() <= mtt_vpip.ci_high.unwrap());
+    assert!(mtt_vpip.bb100_when_done.is_some());
+    assert!(rows.iter().filter(|r| r.stat == "wsd").all(|r| r.bb100_when_done.is_none()));
+    // Sorted: leaks first.
+    let ranks: Vec<u8> = rows
+        .iter()
+        .map(|r| match r.status {
+            crate::leaks::Status::Leak => 0,
+            crate::leaks::Status::Possible => 1,
+            crate::leaks::Status::Ok => 2,
+            crate::leaks::Status::TooFew => 3,
+        })
+        .collect();
+    assert!(ranks.windows(2).all(|w| w[0] <= w[1]));
+}
+
+#[test]
+fn bankroll_adds_movements_cash_and_tournaments() {
+    let conn = db();
+    lps_db::user::add_tx(
+        &conn,
+        &lps_db::user::Tx { id: 0, room: "winamax".into(), at: 1_700_000_000, kind: "deposit".into(), amount_cents: 2000, note: String::new() },
+    )
+    .unwrap();
+    let b = crate::bankroll::bankroll(&conn).unwrap();
+    assert_eq!(b.deposits_cents, 2000);
+    assert_eq!(b.balance_cents, b.deposits_cents - b.withdrawals_cents + b.cash_cents + b.tournaments_cents);
+    assert_eq!(*b.balance_eur.last().unwrap(), b.balance_cents as f64 / 100.0);
+    // Every tournament with a summary counts, even without imported hands (money really moved).
+    let all: i64 = conn
+        .query_row(
+            "SELECT SUM(COALESCE(won_cents, 0) + COALESCE(bounty_won_cents, 0) + ticket_won_cents - (buy_in_cents + fee_cents) * entries)
+             FROM tournaments WHERE has_summary = 1",
+            [],
+            |r| r.get(0),
+        )
+        .unwrap();
+    assert_eq!(b.tournaments_cents, all);
+    assert!(b.avg_buy_in_cents.is_some());
+}

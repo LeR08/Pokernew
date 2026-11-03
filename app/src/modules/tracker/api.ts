@@ -25,3 +25,24 @@ export const useHands = (filter: Filter, limit: number, offset: number) =>
   });
 export const useAccounts = () =>
   useQuery({ queryKey: ["db", "accounts"], queryFn: async () => (await getBackend()).trackerAccounts() });
+
+export const useSessions = (filter: Filter) =>
+  useQuery({ queryKey: ["db", "sessions", filter], queryFn: async () => (await getBackend()).trackerSessions(filter) });
+export const useSessionReview = (filter: Filter, start: number | null, end: number | null) =>
+  useQuery({
+    queryKey: ["db", "review", filter, start, end],
+    queryFn: async () => (await getBackend()).sessionReview(filter, start!, end!),
+    enabled: start !== null && end !== null,
+  });
+export const useLeaks = (filter: Filter) =>
+  useQuery({ queryKey: ["db", "leaks", filter], queryFn: async () => (await getBackend()).trackerLeaks(filter) });
+export const useGrid = (filter: Filter) =>
+  useQuery({ queryKey: ["db", "grid", filter], queryFn: async () => (await getBackend()).trackerGrid(filter) });
+
+/** Writes rows to a CSV file and shows it in the file manager. */
+export async function exportCsv(name: string, rows: string[][]): Promise<string> {
+  const b = await getBackend();
+  const path = await b.exportCsv(name, rows);
+  await b.revealPath(path).catch(() => undefined);
+  return path;
+}

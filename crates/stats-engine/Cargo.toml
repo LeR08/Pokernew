@@ -11,6 +11,7 @@ name = "lps_stats_engine"
 
 [dependencies]
 lps-db = { path = "../db" }
+lps-core-model = { path = "../core-model" }
 rusqlite = "0.37"
 serde.workspace = true
 serde_json.workspace = true

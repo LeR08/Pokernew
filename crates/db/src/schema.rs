@@ -181,6 +181,18 @@ DELETE FROM import_errors;
     r#"
 ALTER TABLE tournaments ADD COLUMN ticket_won_cents INTEGER NOT NULL DEFAULT 0;
 "#,
+    // v4 — bankroll: deposits, withdrawals, bonuses per room.
+    r#"
+CREATE TABLE bankroll_tx (
+    id INTEGER PRIMARY KEY,
+    room TEXT NOT NULL,
+    at INTEGER NOT NULL,
+    kind TEXT NOT NULL CHECK (kind IN ('deposit', 'withdrawal', 'bonus', 'adjustment')),
+    amount_cents INTEGER NOT NULL,
+    note TEXT NOT NULL DEFAULT ''
+);
+CREATE INDEX bankroll_tx_at ON bankroll_tx (at);
+"#,
 ];
 
 /// Connection pragmas: WAL so the UI can read while the importer writes.

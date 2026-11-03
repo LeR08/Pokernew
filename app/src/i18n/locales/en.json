@@ -193,6 +193,10 @@
     "stats": {
       "title": "Stats",
       "stat": "Stats"
+    },
+    "leaks": {
+      "title": "Leak targets",
+      "target": "Targets"
     }
   },
   "enum": {
@@ -361,7 +365,10 @@
       "graph": "Graph",
       "tournaments": "Tournaments",
       "hands": "Hands",
-      "stats": "My stats"
+      "stats": "My stats",
+      "sessions": "Sessions & review",
+      "leaks": "Leaks",
+      "grid": "Hand grid"
     },
     "editor": {
       "new": "New stat",
@@ -385,7 +392,11 @@
       "saved": "Saved to stats/{{file}}.toml",
       "pick": "Pick a stat on the left to edit it, or create your own.",
       "custom_file_header": "My own stats"
-    }
+    },
+    "export_csv": "Export as CSV",
+    "export_csv_hands": "Export up to 1,000 hands as CSV",
+    "exported": "Exported: {{path}}",
+    "csv": "CSV"
   },
   "replayer": {
     "level": "level {{n}}",
@@ -419,5 +430,147 @@
     "result": "Result",
     "pick_other": "Pick another hand",
     "pick": "Pick a hand to replay."
+  },
+  "review": {
+    "title": "Session review",
+    "result": "Result",
+    "usual": "usually {{vpip}} / {{pfr}}",
+    "counts": "Summary",
+    "to_review_one": "{{count}} hand to review",
+    "to_review_other": "{{count}} hands to review",
+    "good_plays_one": "{{count}} good play",
+    "good_plays_other": "{{count}} good plays",
+    "hands": "{{n}} hands",
+    "tournaments_one": "{{count}} tournament",
+    "tournaments_other": "{{count}} tournaments",
+    "tilt": "Careful: you played many more hands than usual this session (VPIP +10 points or more). Possible tilt or fatigue.",
+    "disclaimer": "These tips come from classic poker rules applied after the fact to finished hands: things to look at again, not a verdict. Solver analysis comes in phase 6.",
+    "section_review": "To review",
+    "section_good": "Good plays",
+    "nothing_to_review": "Nothing special to review this session. Well played!",
+    "no_good": "No standout play found.",
+    "replay": "Replay",
+    "rules": {
+      "open_limp": {
+        "title": "Open limp",
+        "why": "Entering the pot first by just calling the big blind is rarely profitable: raise to take the initiative, or fold."
+      },
+      "weak_shove": {
+        "title": "Shove with {{hand}} at {{stack}} bb",
+        "why": "With more than 15 bb, shoving a weak hand risks a lot to win the blinds. At this depth a normal raise or a fold is usually better."
+      },
+      "raise_fold_short": {
+        "title": "Raise-fold at {{stack}} bb",
+        "why": "With 12 bb or less, raising without going all-in then folding cost you {{lost}} bb. At this depth it is usually shove or fold."
+      },
+      "premium_fold": {
+        "title": "Folded {{hand}} preflop",
+        "why": "{{hand}} is one of the 5 best starting hands. Folding it preflop against so little action is almost always a mistake (barring extreme ICM)."
+      },
+      "sb_flat": {
+        "title": "Small-blind call with {{hand}}",
+        "why": "Calling a raise from the small blind means playing out of position with the big blind still behind. 3-bet or fold is usually better."
+      },
+      "river_call_lost": {
+        "title": "Lost river call ({{lost}} bb)",
+        "why": "You called a big river bet (at least half the pot) and lost. Replay it: did your opponent usually have better on that line?"
+      },
+      "big_fold": {
+        "title": "Folded after investing {{lost}} bb",
+        "why": "You folded after putting in a big part of your stack. Either go all the way or stop earlier: find the street where you should have decided."
+      },
+      "steal_won": {
+        "title": "Successful steal (+{{won}} bb)",
+        "why": "Folded to you, your raise took the blinds unopposed. These small pots add up."
+      },
+      "three_bet_won": {
+        "title": "Winning 3-bet with {{hand}} (+{{won}} bb)",
+        "why": "Your preflop re-raise paid off: you took the initiative and won the hand."
+      },
+      "cbet_won": {
+        "title": "C-bet takes the pot (+{{won}} bb)",
+        "why": "After raising preflop, your flop bet made your opponent fold: good continuation."
+      },
+      "value_bet": {
+        "title": "Value bet paid (+{{won}} bb)",
+        "why": "You bet or raised the river and got called by worse: you got the most out of your hand."
+      },
+      "short_shove": {
+        "title": "Good shove at {{stack}} bb with {{hand}}",
+        "why": "With 10 bb or less, shoving first in with a solid hand is the right strategy."
+      },
+      "big_pot": {
+        "title": "Big pot won (+{{won}} bb)",
+        "why": "One of the big hands of your session: replay it to see what worked."
+      }
+    },
+    "vpip_pfr": "VPIP / PFR"
+  },
+  "leaks": {
+    "intro": "Your stats against winning-player targets, by format. \"Leak\" = certain even allowing for luck (95 % confidence interval). \"Watch\" = keep an eye on it. Edit targets in Settings → leaks/targets.toml.",
+    "not_enough": "Not enough hands yet to find leaks (at least 20 opportunities per stat).",
+    "status": {
+      "leak": "Leak",
+      "possible": "Watch",
+      "ok": "OK",
+      "too_few": "Too few hands"
+    },
+    "target": "target: {{min}} – {{max}}",
+    "ci": "95 % interval: {{low}} – {{high}} over {{n}} opportunities",
+    "impact": "Your result in this spot: {{done}} bb/100 when you do it, {{not}} bb/100 when you don't.",
+    "target_min": "target: at least {{min}}",
+    "target_max": "target: at most {{max}}"
+  },
+  "grid": {
+    "metric": "Show",
+    "bb100": "bb/100 (5 hands or more)",
+    "net": "Total result (bb)",
+    "hands": "Number of hands",
+    "losing": "losing",
+    "winning": "winning",
+    "tooltip": "{{n}} hands · {{net}} · {{bb100}} bb/100",
+    "help": "Row and column = the two cards. Above the diagonal: suited (s); below: offsuit (o); diagonal: pairs. Hover a cell for details.",
+    "max": "max"
+  },
+  "bankroll": {
+    "balance": "Bankroll",
+    "deposits": "Deposits",
+    "withdrawals": "Withdrawals",
+    "cash": "Cash result",
+    "tournaments": "Tournament result",
+    "curve": "Bankroll over time",
+    "events": "Movements and results",
+    "movements": "Deposits and withdrawals",
+    "kind": "Type",
+    "amount": "Amount (€)",
+    "date": "Date",
+    "note": "Note",
+    "add": "Add",
+    "none": "No movement yet. Add your first deposit to track your bankroll.",
+    "kinds": {
+      "deposit": "Deposit",
+      "withdrawal": "Withdrawal",
+      "bonus": "Bonus",
+      "adjustment": "Adjustment"
+    },
+    "rule_ok": "Your bankroll is {{n}} average buy-ins ({{avg}}). Above 30 you have room.",
+    "rule_low": "Careful: your bankroll is only {{n}} average buy-ins ({{avg}}). At least 30 buy-ins is advised for tournaments: move down or top up.",
+    "see_sessions": "See sessions and their review"
+  },
+  "notes": {
+    "title": "Notes on {{name}}",
+    "colour": "Colour",
+    "open": "Click to add notes on this player",
+    "placeholder": "E.g. calls too wide, bluffs rivers…",
+    "add": "Add note",
+    "colours": {
+      "none": "No colour",
+      "red": "Red",
+      "orange": "Orange",
+      "yellow": "Yellow",
+      "green": "Green",
+      "blue": "Blue",
+      "violet": "Violet"
+    }
   }
 }

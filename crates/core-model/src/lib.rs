@@ -10,6 +10,7 @@
 pub mod card;
 pub mod hand;
 pub mod position;
+pub mod preflop;
 
 pub use card::{cards_to_string, parse_cards, Card, CardParseError, Rank, Suit};
 /// Alias kept for test readability.

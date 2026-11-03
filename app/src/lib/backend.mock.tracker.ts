@@ -1,6 +1,6 @@
 /** Browser-mock data for the tracker and replayer (dev server, tests). */
 import type { Backend } from "./backend";
-import type { Graph, Hand, HandRow, ReportRow, StatMeta } from "./tracker";
+import type { Finding, Graph, GridCell, Hand, HandRow, LeakRow, Note, ReportRow, StatMeta, Tx } from "./tracker";
 import mockHands from "./mockHands.json";
 
 const HANDS = mockHands as unknown as Hand[];
@@ -31,10 +31,35 @@ const VALUES: Record<string, number> = {
   af: 2.3,
 };
 
+const RANKS = "AKQJT98765432";
+
 export function mockTracker(statsMeta: () => StatMeta[]): Pick<
   Backend,
-  "trackerReport" | "trackerGraph" | "trackerTournaments" | "trackerHands" | "trackerAccounts" | "handGet" | "statPreview"
+  | "trackerReport"
+  | "trackerGraph"
+  | "trackerTournaments"
+  | "trackerHands"
+  | "trackerAccounts"
+  | "handGet"
+  | "statPreview"
+  | "trackerSessions"
+  | "sessionReview"
+  | "trackerLeaks"
+  | "trackerGrid"
+  | "notesGet"
+  | "noteAdd"
+  | "noteDelete"
+  | "playerColour"
+  | "bankrollGet"
+  | "bankrollTxList"
+  | "bankrollTxAdd"
+  | "bankrollTxDelete"
+  | "exportCsv"
 > {
+  const notes = new Map<string, Note[]>();
+  const colours = new Map<string, string | null>();
+  const txs: Tx[] = [];
+  let nextId = 1;
   const row = (key: string, hands: number, k: number): ReportRow => ({
     key,
     hands,
@@ -114,6 +139,89 @@ export function mockTracker(statsMeta: () => StatMeta[]): Pick<
       const h = HANDS[handId - 1];
       if (!h) throw new Error(`hand ${handId} not found`);
       return h;
+    },
+    async trackerSessions() {
+      return [
+        { start: 1793643300, end: 1793654895, hands: 200, netBb: 42.5, netCashCents: 0, tournaments: 2, vpipHands: 58, pfrHands: 41 },
+        { start: 1793474056, end: 1793480000, hands: 88, netBb: -61.2, netCashCents: 0, tournaments: 1, vpipHands: 30, pfrHands: 19 },
+      ];
+    },
+    async sessionReview(_f, start) {
+      const base = { holeCards: "8hQd", position: "BB", stackBb: 12.5, playedAt: start + 60 };
+      return {
+        session: { start, end: start + 3600, hands: 200, netBb: 42.5, netCashCents: 0, tournaments: 2, vpipHands: 58, pfrHands: 41 },
+        findings: <Finding[]>[
+          { ...base, rule: "river_call_lost", kind: "review", handId: 1, netBb: -18.5, detail: { call: 6.8, lost: 18.5 } },
+          { ...base, rule: "open_limp", kind: "review", handId: 2, netBb: -1, detail: {} },
+          { ...base, rule: "steal_won", kind: "good", handId: 3, netBb: 1.6, detail: { won: 1.6 } },
+          { ...base, rule: "big_pot", kind: "good", handId: 1, netBb: 21.0, detail: { won: 21.0 } },
+        ],
+        vpip: 0.29,
+        pfr: 0.205,
+        vpipOverall: 0.236,
+        pfrOverall: 0.174,
+        tiltWarning: false,
+        worstHand: [1, -18.5],
+        bestHand: [3, 21],
+      };
+    },
+    async trackerLeaks() {
+      const stats = statsMeta();
+      return {
+        stats,
+        rows: <LeakRow[]>[
+          { stat: "fold_to_steal", gameType: "mtt", value: 0.85, sample: 120, ciLow: 0.78, ciHigh: 0.9, target: { min: 0.55, max: 0.8 }, status: "leak", direction: "high", tooLow: null, tooHigh: { fr: "Tu abandonnes trop souvent tes blindes : défends plus souvent, surtout en big blind.", en: "You give up your blinds too often." }, bb100WhenDone: -50, bb100WhenNot: 12 },
+          { stat: "three_bet", gameType: "mtt", value: 0.044, sample: 136, ciLow: 0.02, ciHigh: 0.09, target: { min: 0.05, max: 0.12 }, status: "possible", direction: "low", tooLow: { fr: "Tu sur-relances rarement.", en: "You rarely 3-bet." }, tooHigh: null, bb100WhenDone: 80, bb100WhenNot: -20 },
+          { stat: "vpip", gameType: "mtt", value: 0.236, sample: 496, ciLow: 0.2, ciHigh: 0.27, target: { min: 0.18, max: 0.28 }, status: "ok", direction: null, tooLow: null, tooHigh: null, bb100WhenDone: 10, bb100WhenNot: -9 },
+        ],
+      };
+    },
+    async trackerGrid() {
+      const r = rng(3);
+      const cells: GridCell[] = [];
+      for (let i = 0; i < 13; i++)
+        for (let j = 0; j < 13; j++) {
+          const cls = i === j ? RANKS[i] + RANKS[i] : i < j ? `${RANKS[i]}${RANKS[j]}s` : `${RANKS[j]}${RANKS[i]}o`;
+          const hands = Math.round(r() * (i === j ? 8 : i < j ? 6 : 18));
+          cells.push({ class: cls, hands, netBb: hands ? (r() - 0.5) * 40 - (i + j) * 0.6 : 0, vpip: Math.round(hands * 0.5), pfr: Math.round(hands * 0.3) });
+        }
+      return cells;
+    },
+    async notesGet(room, name) {
+      return { playerId: 1, name, colour: colours.get(`${room}/${name}`) ?? null, notes: notes.get(`${room}/${name}`) ?? [] };
+    },
+    async noteAdd(room, name, text) {
+      const k = `${room}/${name}`;
+      const id = nextId++;
+      notes.set(k, [{ id, text, auto: false, createdAt: Math.floor(Date.now() / 1000) }, ...(notes.get(k) ?? [])]);
+      return id;
+    },
+    async noteDelete(id) {
+      for (const [k, v] of notes) notes.set(k, v.filter((n) => n.id !== id));
+    },
+    async playerColour(room, name, colour) {
+      colours.set(`${room}/${name}`, colour);
+    },
+    async bankrollGet() {
+      const dep = txs.filter((t) => t.kind !== "withdrawal").reduce((a, t) => a + t.amountCents, 0);
+      const wd = txs.filter((t) => t.kind === "withdrawal").reduce((a, t) => a + t.amountCents, 0);
+      const bal = dep - wd + 3;
+      return { t: [1793474056, 1793654895], balanceEur: [(dep - wd) / 100, bal / 100], depositsCents: dep, withdrawalsCents: wd, cashCents: 0, tournamentsCents: 3, balanceCents: bal, avgBuyInCents: 75 };
+    },
+    async bankrollTxList() {
+      return [...txs].sort((a, b) => b.at - a.at);
+    },
+    async bankrollTxAdd(tx) {
+      const id = nextId++;
+      txs.push({ ...tx, id });
+      return id;
+    },
+    async bankrollTxDelete(id) {
+      const i = txs.findIndex((t) => t.id === id);
+      if (i >= 0) txs.splice(i, 1);
+    },
+    async exportCsv(name) {
+      return `(browser mock)/exports/${name}.csv`;
     },
     async statPreview(def) {
       if (!def.formula.trim()) throw new Error("formula: empty formula (position 0)");

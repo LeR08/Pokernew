@@ -1,6 +1,6 @@
 # Phase 2 — Tracker (stats, rapports, graphiques, replayer)
 
-Statut : **première partie livrée, en attente de ton test** · Choix de l'utilisateur (3 nov. 2026) :
+Statut : **deuxième partie livrée — en attente de ton test** (première partie validée le 3 nov. 2026) · Choix de l'utilisateur (3 nov. 2026) :
 - stats **simples**, chacune avec une explication en clair dans l'app ;
 - objectif : **être en bénéfice** → le gain est la première chose affichée partout ;
 - gains en **jetons / big blinds** par défaut, case à cocher **« Afficher en € »**.
@@ -80,3 +80,30 @@ Reste pour la phase 2 :
 - constructeur de rapports, grille 13×13 par main, export CSV ;
 - notes manuelles et auto-notes, détecteur de fuites ;
 - bankroll et sessions, analyse de population.
+
+## Résultats — deuxième partie (3 nov. 2026)
+
+Demande de l'utilisateur : « sur les mains jouées, me conseiller sur les erreurs de session et les bons coups ».
+
+| Fonction | Détail |
+|---|---|
+| **Sessions** | Regroupées automatiquement : un trou de plus de 30 min entre deux mains ouvre une nouvelle session. Résultat, durée, mains et tournois |
+| **Bilan de session** | 7 règles « à revoir » et 6 « bons coups » (liste et seuils dans `crates/stats-engine/src/review.rs`), chacune expliquée en clair avec un lien vers le replayer. VPIP/PFR de la session comparés à ton habitude, avec une alerte de tilt quand le VPIP dépasse ton habitude de 10 points ou plus sur au moins 50 mains |
+| **Détecteur de fuites** | Repères par format dans `leaks/targets.toml`, modifiables. Intervalle de Wilson à 95 % : « Fuite » si tout l'intervalle sort du repère, « À surveiller » sinon. Pour les stats de décision : bb/100 quand tu le fais vs quand tu ne le fais pas |
+| **Grille 13×13** | bb/100, résultat ou nombre de mains par main de départ ; échelle divergente rouge ↔ gris ↔ bleu de la palette de référence |
+| **Bankroll** | Dépôts, retraits, bonus et ajustements ; courbe (mouvements + cash + tournois) ; règle des 30 buy-ins moyens |
+| **Notes** | Notes et couleur par joueur, depuis le replayer (en clic sur un siège) ; le HUD les affichera en phase 3 |
+| **Export CSV** | Rapports et mains, séparateur `;` et BOM UTF-8 pour ouvrir directement dans Excel en français |
+
+Fair-play : le bilan ne porte que sur des mains **terminées**. Comme les autres modules d'étude, il sera
+verrouillé pendant le jeu dès que la phase 3 saura détecter les tables ouvertes.
+
+Les règles sont des règles de poker classiques (force des mains de départ : formule de Chen), pas un solveur.
+L'analyse par solveur, avec la perte d'EV main par main, arrive en phases 6 et 8.
+
+Tests : 107 Rust (règles vérifiées sur des mains réelles lues à la main, sessions, Wilson, grille, bankroll),
+23 Vitest, 19 Playwright. Vérifié dans la vraie app : sessions, bilan et fuites sur une base réelle.
+
+Reste avant de clore la phase 2 :
+- filtres avancés (cartes, texture du board, séquence d'actions, profondeur, type de pot) ;
+- auto-notes, analyse de population, constructeur de rapports.

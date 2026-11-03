@@ -193,6 +193,10 @@
     "stats": {
       "title": "Stats",
       "stat": "Stats"
+    },
+    "leaks": {
+      "title": "Repères des fuites",
+      "target": "Repères"
     }
   },
   "enum": {
@@ -361,7 +365,10 @@
       "graph": "Graphique",
       "tournaments": "Tournois",
       "hands": "Mains",
-      "stats": "Mes stats"
+      "stats": "Mes stats",
+      "sessions": "Sessions & bilan",
+      "leaks": "Fuites",
+      "grid": "Grille des mains"
     },
     "editor": {
       "new": "Nouvelle stat",
@@ -385,7 +392,11 @@
       "saved": "Enregistré dans stats/{{file}}.toml",
       "pick": "Choisis une stat à gauche pour la modifier, ou crée la tienne.",
       "custom_file_header": "Mes stats personnelles"
-    }
+    },
+    "export_csv": "Exporter en CSV",
+    "export_csv_hands": "Exporter jusqu'à 1 000 mains en CSV",
+    "exported": "Exporté : {{path}}",
+    "csv": "CSV"
   },
   "replayer": {
     "level": "niveau {{n}}",
@@ -419,5 +430,147 @@
     "result": "Résultat",
     "pick_other": "Choisir une autre main",
     "pick": "Choisis une main à rejouer."
+  },
+  "review": {
+    "title": "Bilan de la session",
+    "result": "Résultat",
+    "usual": "d'habitude {{vpip}} / {{pfr}}",
+    "counts": "Bilan",
+    "to_review_one": "{{count}} main à revoir",
+    "to_review_other": "{{count}} mains à revoir",
+    "good_plays_one": "{{count}} bon coup",
+    "good_plays_other": "{{count}} bons coups",
+    "hands": "{{n}} mains",
+    "tournaments_one": "{{count}} tournoi",
+    "tournaments_other": "{{count}} tournois",
+    "tilt": "Attention : tu as joué nettement plus de mains que d'habitude pendant cette session (VPIP +10 points ou plus). Signe possible de tilt ou de fatigue.",
+    "disclaimer": "Ces conseils viennent de règles de poker classiques, appliquées après coup aux mains terminées : ce sont des pistes à revoir, pas un verdict. L'analyse par solveur arrivera en phase 6.",
+    "section_review": "À revoir",
+    "section_good": "Bons coups",
+    "nothing_to_review": "Rien de particulier à revoir dans cette session. Bien joué !",
+    "no_good": "Pas de coup marquant repéré.",
+    "replay": "Rejouer",
+    "rules": {
+      "open_limp": {
+        "title": "Limp en premier",
+        "why": "Entrer dans le coup en suivant la grosse blinde, alors que personne n'a joué avant toi, est rarement rentable : relance pour prendre l'initiative, ou couche-toi."
+      },
+      "weak_shove": {
+        "title": "Tapis avec {{hand}} à {{stack}} bb",
+        "why": "Avec plus de 15 bb, un tapis préflop avec une main faible risque gros pour un petit gain (les blindes). À cette profondeur, une relance normale ou un fold est en général meilleur."
+      },
+      "raise_fold_short": {
+        "title": "Relance puis fold à {{stack}} bb",
+        "why": "Avec un tapis de 12 bb ou moins, relancer sans faire tapis puis te coucher t'a coûté {{lost}} bb. À cette profondeur, c'est en général tapis ou couche."
+      },
+      "premium_fold": {
+        "title": "Fold de {{hand}} préflop",
+        "why": "{{hand}} fait partie des 5 meilleures mains de départ. Te coucher avant le flop face à aussi peu d'action est presque toujours une erreur (sauf situation ICM extrême)."
+      },
+      "sb_flat": {
+        "title": "Call en petite blinde avec {{hand}}",
+        "why": "Suivre une relance depuis la petite blinde te fait jouer hors de position, avec la big blind encore derrière toi. On préfère en général sur-relancer (3-bet) ou se coucher."
+      },
+      "river_call_lost": {
+        "title": "Call river perdant ({{lost}} bb)",
+        "why": "Tu as suivi une grosse mise à la river (au moins la moitié du pot) et perdu. Rejoue la main : est-ce que l'adversaire avait souvent mieux sur cette ligne de jeu ?"
+      },
+      "big_fold": {
+        "title": "Abandon après {{lost}} bb investis",
+        "why": "Tu t'es couché après avoir mis une grosse part de ton tapis. Soit il fallait aller jusqu'au bout, soit il fallait arrêter plus tôt : revois à quelle rue tu aurais dû décider."
+      },
+      "steal_won": {
+        "title": "Vol de blindes réussi (+{{won}} bb)",
+        "why": "Tout le monde s'est couché jusqu'à toi et ta relance a pris les blindes sans résistance. Ces petits pots gagnés font une grosse différence sur la durée."
+      },
+      "three_bet_won": {
+        "title": "3-bet gagnant avec {{hand}} (+{{won}} bb)",
+        "why": "Ta sur-relance avant le flop a payé : tu as pris l'initiative et gagné le coup."
+      },
+      "cbet_won": {
+        "title": "C-bet qui prend le pot (+{{won}} bb)",
+        "why": "Après avoir relancé avant le flop, ta mise au flop a fait coucher l'adversaire : bonne continuation."
+      },
+      "value_bet": {
+        "title": "Mise de valeur payée (+{{won}} bb)",
+        "why": "Tu as misé ou relancé à la river et l'adversaire a payé avec moins bien : tu as tiré le maximum de ta main."
+      },
+      "short_shove": {
+        "title": "Bon tapis à {{stack}} bb avec {{hand}}",
+        "why": "Avec 10 bb ou moins, faire tapis en premier avec une main solide est la bonne stratégie : tu mets la pression et tu gardes ta fold equity."
+      },
+      "big_pot": {
+        "title": "Gros pot gagné (+{{won}} bb)",
+        "why": "Un des gros coups de ta session : rejoue-le pour voir ce qui a bien marché."
+      }
+    },
+    "vpip_pfr": "VPIP / PFR"
+  },
+  "leaks": {
+    "intro": "Tes stats comparées à des repères de joueurs gagnants, par format. « Fuite » = sûr, même en tenant compte du hasard (intervalle de confiance à 95 %). « Possible » = à surveiller. Les repères se modifient dans Réglages → fichier leaks/targets.toml.",
+    "not_enough": "Pas encore assez de mains pour repérer des fuites (au moins 20 occasions par stat).",
+    "status": {
+      "leak": "Fuite",
+      "possible": "À surveiller",
+      "ok": "OK",
+      "too_few": "Pas assez de mains"
+    },
+    "target": "repère : {{min}} – {{max}}",
+    "ci": "intervalle 95 % : {{low}} – {{high}} sur {{n}} occasions",
+    "impact": "Ton résultat dans ce spot : {{done}} bb/100 quand tu le fais, {{not}} bb/100 quand tu ne le fais pas.",
+    "target_min": "repère : au moins {{min}}",
+    "target_max": "repère : au plus {{max}}"
+  },
+  "grid": {
+    "metric": "Afficher",
+    "bb100": "bb/100 (au moins 5 mains)",
+    "net": "Résultat total (bb)",
+    "hands": "Nombre de mains",
+    "losing": "perte",
+    "winning": "gain",
+    "tooltip": "{{n}} mains · {{net}} · {{bb100}} bb/100",
+    "help": "Ligne et colonne = les deux cartes. Au-dessus de la diagonale : assorties (s) ; en dessous : dépareillées (o) ; diagonale : paires. Survole une case pour le détail.",
+    "max": "max"
+  },
+  "bankroll": {
+    "balance": "Bankroll",
+    "deposits": "Dépôts",
+    "withdrawals": "Retraits",
+    "cash": "Résultat cash",
+    "tournaments": "Résultat tournois",
+    "curve": "Évolution de la bankroll",
+    "events": "Mouvements et résultats",
+    "movements": "Dépôts et retraits",
+    "kind": "Type",
+    "amount": "Montant (€)",
+    "date": "Date",
+    "note": "Note",
+    "add": "Ajouter",
+    "none": "Aucun mouvement. Ajoute ton premier dépôt pour suivre ta bankroll.",
+    "kinds": {
+      "deposit": "Dépôt",
+      "withdrawal": "Retrait",
+      "bonus": "Bonus",
+      "adjustment": "Ajustement"
+    },
+    "rule_ok": "Ta bankroll représente {{n}} buy-ins moyens ({{avg}}). Au-dessus de 30, tu as de la marge.",
+    "rule_low": "Attention : ta bankroll ne représente que {{n}} buy-ins moyens ({{avg}}). On conseille au moins 30 buy-ins en tournoi : baisse de limite ou recharge.",
+    "see_sessions": "Voir les sessions et leur bilan"
+  },
+  "notes": {
+    "title": "Notes sur {{name}}",
+    "colour": "Couleur",
+    "open": "Clique pour noter ce joueur",
+    "placeholder": "Ex. : paie trop large, bluffe la river…",
+    "add": "Ajouter la note",
+    "colours": {
+      "none": "Sans couleur",
+      "red": "Rouge",
+      "orange": "Orange",
+      "yellow": "Jaune",
+      "green": "Vert",
+      "blue": "Bleu",
+      "violet": "Violet"
+    }
   }
 }

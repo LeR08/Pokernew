@@ -191,3 +191,102 @@ export interface Hand {
   showdown: boolean;
   played_at: number;
 }
+
+// ---- Phase 2, part 2 ----
+export interface Session {
+  start: number;
+  end: number;
+  hands: number;
+  netBb: number;
+  netCashCents: number;
+  tournaments: number;
+  vpipHands: number;
+  pfrHands: number;
+}
+
+export interface Finding {
+  rule: string;
+  kind: "review" | "good";
+  handId: number;
+  playedAt: number;
+  holeCards: string;
+  position: string | null;
+  stackBb: number;
+  netBb: number;
+  detail: Record<string, string | number>;
+}
+
+export interface SessionReview {
+  session: Session | null;
+  findings: Finding[];
+  vpip: number | null;
+  pfr: number | null;
+  vpipOverall: number | null;
+  pfrOverall: number | null;
+  tiltWarning: boolean;
+  worstHand: [number, number] | null;
+  bestHand: [number, number] | null;
+}
+
+export interface LeakRow {
+  stat: string;
+  gameType: string;
+  value: number | null;
+  sample: number;
+  ciLow: number | null;
+  ciHigh: number | null;
+  target: { min?: number; max?: number };
+  status: "ok" | "possible" | "leak" | "too_few";
+  direction: "low" | "high" | null;
+  tooLow: I18nText | null;
+  tooHigh: I18nText | null;
+  bb100WhenDone: number | null;
+  bb100WhenNot: number | null;
+}
+
+export interface LeaksResponse {
+  rows: LeakRow[];
+  stats: StatMeta[];
+}
+
+export interface GridCell {
+  class: string;
+  hands: number;
+  netBb: number;
+  vpip: number;
+  pfr: number;
+}
+
+export interface Note {
+  id: number;
+  text: string;
+  auto: boolean;
+  createdAt: number;
+}
+
+export interface PlayerNotes {
+  playerId: number;
+  name: string;
+  colour: string | null;
+  notes: Note[];
+}
+
+export interface Tx {
+  id?: number;
+  room: string;
+  at: number;
+  kind: "deposit" | "withdrawal" | "bonus" | "adjustment";
+  amountCents: number;
+  note: string;
+}
+
+export interface Bankroll {
+  t: number[];
+  balanceEur: number[];
+  depositsCents: number;
+  withdrawalsCents: number;
+  cashCents: number;
+  tournamentsCents: number;
+  balanceCents: number;
+  avgBuyInCents: number | null;
+}

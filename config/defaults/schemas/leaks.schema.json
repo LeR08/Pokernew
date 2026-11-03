@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lps://schemas/leaks",
+  "title": "schema.leaks.title",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "target"
+  ],
+  "properties": {
+    "target": {
+      "title": "schema.leaks.target",
+      "type": "object",
+      "x-widget": "hidden",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "default": {
+            "$ref": "#/$defs/range"
+          },
+          "cash": {
+            "$ref": "#/$defs/range"
+          },
+          "mtt": {
+            "$ref": "#/$defs/range"
+          },
+          "spin": {
+            "$ref": "#/$defs/range"
+          },
+          "too_low": {
+            "$ref": "#/$defs/text"
+          },
+          "too_high": {
+            "$ref": "#/$defs/text"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "range": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "min": {
+          "type": "number"
+        },
+        "max": {
+          "type": "number"
+        }
+      }
+    },
+    "text": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "fr",
+            "en"
+          ],
+          "properties": {
+            "fr": {
+              "type": "string"
+            },
+            "en": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

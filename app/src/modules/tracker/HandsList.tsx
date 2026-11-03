@@ -6,7 +6,9 @@ import { Cards, splitCards } from "@/components/PlayingCard";
 import { formatDate } from "@/lib/importApi";
 import { bb, euros, int, resultClass } from "@/lib/format";
 import { useTracker } from "@/stores/tracker";
-import { useFilter, useHands } from "./api";
+import { FileDown } from "lucide-react";
+import { getBackend } from "@/lib/backend";
+import { exportCsv, useFilter, useHands } from "./api";
 
 const PAGE = 50;
 
@@ -23,10 +25,30 @@ export function HandsList() {
   const data = useHands(filter, PAGE, page * PAGE).data;
   if (!data) return null;
   const pages = Math.max(1, Math.ceil(data.total / PAGE));
+  const toCsv = async () => {
+    const all = await (await getBackend()).trackerHands(filter, 1000, 0);
+    const head = [t("tracker.col.date"), t("tracker.col.table"), t("tracker.col.position"), t("tracker.col.cards"), t("tracker.col.board"), t("tracker.col_net_bb"), t("tracker.col_cash_eur")];
+    const rows = all.rows.map((h) => [
+      new Date(h.playedAt * 1000).toISOString(),
+      h.tableName,
+      h.position ?? "",
+      h.holeCards,
+      h.board,
+      h.netWonBb.toFixed(2),
+      h.unit === "cents" ? (h.netWon / 100).toFixed(2) : "",
+    ]);
+    await exportCsv("mains", [head, ...rows]);
+  };
   return (
     <div className="flex flex-col gap-d3">
       <div className="flex items-center justify-between text-sm text-muted">
-        <span>{t("tracker.hands_count", { n: int(data.total, lang) })}</span>
+        <span className="flex items-center gap-d2">
+          {t("tracker.hands_count", { n: int(data.total, lang) })}
+          <Button variant="ghost" size="sm" onClick={() => void toCsv()} title={t("tracker.export_csv_hands")}>
+            <FileDown className="h-4 w-4" />
+            {t("tracker.csv")}
+          </Button>
+        </span>
         <div className="flex items-center gap-d2">
           <Button variant="outline" size="sm" disabled={page === 0} onClick={() => setPage((p) => p - 1)}>
             ←
