@@ -1,0 +1,34 @@
+Winamax Poker - Tournament "Expresso Nitro" buyIn: 0.93€ + 0.07€ level: 1 - HandId: #3958331654874857473-1-1743113860 - Holdem no limit (10/20) - 2025/03/27 22:17:40 UTC
+Table: 'Expresso Nitro(921620907)#0' 3-max (real money) Seat #3 is the button
+Seat 1: Opp088 (300)
+Seat 2: Opp040 (300)
+Seat 3: GTOverBet (300)
+*** ANTE/BLINDS ***
+Opp088 posts small blind 10
+Opp040 posts big blind 20
+Dealt to GTOverBet [Kd 8c]
+*** PRE-FLOP *** 
+GTOverBet raises 20 to 40
+Opp088 calls 30
+Opp040 folds
+*** FLOP *** [Tc 4h Jc]
+Opp088 checks
+GTOverBet checks
+*** TURN *** [Tc 4h Jc][Ac]
+Opp088 bets 100
+GTOverBet calls 100
+*** RIVER *** [Tc 4h Jc Ac][Th]
+Opp088 checks
+GTOverBet bets 160 and is all-in
+Opp088 calls 160 and is all-in
+*** SHOW DOWN ***
+GTOverBet shows [Kd 8c] (One pair : Tens)
+Opp088 shows [Ah 2d] (Two pairs : Aces and Tens)
+Opp088 collected 620 from pot
+*** SUMMARY ***
+Total pot 620 | No rake
+Board: [Tc 4h Jc Ac Th]
+Seat 1: Opp088 (small blind) showed [Ah 2d] and won 620 with Two pairs : Aces and Tens
+Seat 3: GTOverBet (button) showed [Kd 8c] and lost with One pair : Tens
+
+

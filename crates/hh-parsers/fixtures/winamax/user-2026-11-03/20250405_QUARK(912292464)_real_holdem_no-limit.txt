@@ -1,0 +1,71 @@
+Winamax Poker - Tournament "QUARK" buyIn: 1.80€ + 0.20€ level: 9 - HandId: #3918266297267257429-61-1743867200 - Holdem no limit (100/400/800) - 2025/04/05 15:33:20 UTC
+Table: 'QUARK(912292464)#0084' 6-max (real money) Seat #4 is the button
+Seat 1: Opp050 (21272, 1€ bounty)
+Seat 3: GTOverBet (114739, 2.44€ bounty)
+Seat 4: Opp027 (49519, 1.20€ bounty)
+Seat 6: Opp123 (48628, 1.60€ bounty)
+*** ANTE/BLINDS ***
+Opp123 posts ante 100
+Opp050 posts ante 100
+GTOverBet posts ante 100
+Opp027 posts ante 100
+Opp123 posts big blind 800
+Dealt to GTOverBet [5c 8s]
+*** PRE-FLOP *** 
+Opp050 raises 1600 to 2400
+GTOverBet folds
+Opp027 calls 2400
+Opp123 calls 1600
+*** FLOP *** [4h Ts Jd]
+Opp123 checks
+Opp050 bets 18772 and is all-in
+Opp027 folds
+Opp123 folds
+Opp050 shows [Ks As] (High card : Ace)
+Opp050 collected 26372 from pot
+*** SUMMARY ***
+Total pot 26372 | No rake
+Board: [4h Ts Jd]
+Seat 1: Opp050 showed [Ks As] and won 26372 with High card : Ace
+
+
+Winamax Poker - Tournament "QUARK" buyIn: 1.80€ + 0.20€ level: 4 - HandId: #3918266297267257429-32-1743865494 - Holdem no limit (40/175/350) - 2025/04/05 15:04:54 UTC
+Table: 'QUARK(912292464)#0084' 6-max (real money) Seat #5 is the button
+Seat 1: Opp050 (21775, 1€ bounty)
+Seat 2: Opp057 (15819, 1€ bounty)
+Seat 3: GTOverBet (22026, 1€ bounty)
+Seat 4: Opp070 (21098, 2€ bounty)
+Seat 5: Opp009 (38704, 1.20€ bounty)
+Seat 6: Opp123 (58214, 1.20€ bounty)
+*** ANTE/BLINDS ***
+Opp123 posts ante 40
+Opp050 posts ante 40
+Opp057 posts ante 40
+GTOverBet posts ante 40
+Opp070 posts ante 40
+Opp009 posts ante 40
+Opp123 posts small blind 175
+Opp050 posts big blind 350
+Dealt to GTOverBet [Ac 6c]
+*** PRE-FLOP *** 
+Opp057 folds
+GTOverBet folds
+Opp070 folds
+Opp009 folds
+Opp123 raises 350 to 700
+Opp050 calls 350
+*** FLOP *** [4c 3d Td]
+Opp123 bets 1640
+Opp050 calls 1640
+*** TURN *** [4c 3d Td][Jc]
+Opp123 bets 4920
+Opp050 raises 14475 to 19395 and is all-in
+Opp123 folds
+Opp050 shows [Jh Tc] (Two pairs : Jacks and Tens)
+Opp050 collected 29235 from pot
+*** SUMMARY ***
+Total pot 29235 | No rake
+Board: [4c 3d Td Jc]
+Seat 1: Opp050 (big blind) showed [Jh Tc] and won 29235 with Two pairs : Jacks and Tens
+
+

@@ -1,0 +1,323 @@
+Winamax Poker - Tournament "ROTATION" buyIn: 1.80€ + 0.20€ level: -21023 - HandId: #3918335420470919259-8-1743856948 - Holdem no limit (25/100/200) - 2025/04/05 12:42:28 UTC
+Table: 'ROTATION(912308558)#090' 6-max (real money) Seat #2 is the button
+Seat 1: Opp079 (19480, 1€ bounty)
+Seat 2: Opp054 (29046, 1.20€ bounty)
+Seat 3: Opp045 (27978, 1.20€ bounty)
+Seat 4: GTOverBet (13994, 1€ bounty)
+Seat 5: Opp013 (19950, 1€ bounty)
+Seat 6: Opp137 (21488, 1€ bounty)
+*** ANTE/BLINDS ***
+Opp045 posts ante 25
+GTOverBet posts ante 25
+Opp079 posts ante 25
+Opp054 posts ante 25
+Opp013 posts ante 25
+Opp137 posts ante 25
+Opp045 posts small blind 100
+GTOverBet posts big blind 200
+Dealt to GTOverBet [9s 9d]
+*** PRE-FLOP *** 
+Opp013 folds
+Opp137 folds
+Opp079 folds
+Opp054 raises 200 to 400
+Opp045 raises 1600 to 2000
+GTOverBet calls 1800
+Opp054 calls 1600
+*** FLOP *** [Qs 6h 6d]
+Opp045 bets 1230
+GTOverBet raises 10739 to 11969 and is all-in
+Opp054 folds
+Opp045 calls 10739
+*** TURN *** [Qs 6h 6d][5c]
+*** RIVER *** [Qs 6h 6d 5c][8h]
+*** SHOW DOWN ***
+GTOverBet shows [9s 9d] (Two pairs : 9 and 6)
+Opp045 shows [Qd Jd] (Two pairs : Queens and 6)
+Opp045 collected 30088 from pot
+*** SUMMARY ***
+Total pot 30088 | No rake
+Board: [Qs 6h 6d 5c 8h]
+Seat 3: Opp045 (small blind) showed [Qd Jd] and won 30088 with Two pairs : Queens and 6
+Seat 4: GTOverBet (big blind) showed [9s 9d] and lost with Two pairs : 9 and 6
+
+
+Winamax Poker - Tournament "ROTATION" buyIn: 1.80€ + 0.20€ level: -21023 - HandId: #3918335420470919259-7-1743856842 - Holdem no limit (25/100/200) - 2025/04/05 12:40:42 UTC
+Table: 'ROTATION(912308558)#090' 6-max (real money) Seat #1 is the button
+Seat 1: Opp079 (17275, 1€ bounty)
+Seat 2: Opp054 (29171, 1.20€ bounty)
+Seat 3: Opp045 (28993, 1.20€ bounty)
+Seat 4: GTOverBet (15009, 1€ bounty)
+Seat 5: Opp013 (19975, 1€ bounty)
+Seat 6: Opp137 (21513, 1€ bounty)
+*** ANTE/BLINDS ***
+Opp054 posts ante 25
+Opp045 posts ante 25
+Opp079 posts ante 25
+GTOverBet posts ante 25
+Opp013 posts ante 25
+Opp137 posts ante 25
+Opp054 posts small blind 100
+Opp045 posts big blind 200
+Dealt to GTOverBet [4d As]
+*** PRE-FLOP *** 
+GTOverBet raises 240 to 440
+Opp013 folds
+Opp137 folds
+Opp079 calls 440
+Opp054 folds
+Opp045 calls 240
+*** FLOP *** [6h 7h Th]
+Opp045 checks
+GTOverBet checks
+Opp079 checks
+*** TURN *** [6h 7h Th][Ah]
+Opp045 checks
+GTOverBet checks
+Opp079 bets 550
+Opp045 calls 550
+GTOverBet calls 550
+*** RIVER *** [6h 7h Th Ah][Ks]
+Opp045 checks
+GTOverBet checks
+Opp079 checks
+*** SHOW DOWN ***
+Opp045 shows [7s 6c] (Two pairs : 7 and 6)
+GTOverBet shows [4d As] (One pair : Aces)
+Opp079 shows [8h Jh] (Flush Ace high)
+Opp079 collected 3220 from pot
+*** SUMMARY ***
+Total pot 3220 | No rake
+Board: [6h 7h Th Ah Ks]
+Seat 1: Opp079 (button) showed [8h Jh] and won 3220 with Flush Ace high
+Seat 3: Opp045 (big blind) showed [7s 6c] and lost with Two pairs : 7 and 6
+Seat 4: GTOverBet showed [4d As] and lost with One pair : Aces
+
+
+Winamax Poker - Tournament "ROTATION" buyIn: 1.80€ + 0.20€ level: -21023 - HandId: #3918335420470919259-6-1743856779 - Holdem no limit (25/100/200) - 2025/04/05 12:39:39 UTC
+Table: 'ROTATION(912308558)#090' 6-max (real money) Seat #6 is the button
+Seat 1: Opp079 (17400, 1€ bounty)
+Seat 2: Opp054 (29946, 1.20€ bounty)
+Seat 3: Opp045 (28018, 1.20€ bounty)
+Seat 4: GTOverBet (15034, 1€ bounty)
+Seat 5: Opp013 (20000, 1€ bounty)
+Seat 6: Opp137 (21538, 1€ bounty)
+*** ANTE/BLINDS ***
+Opp079 posts ante 25
+Opp054 posts ante 25
+Opp045 posts ante 25
+GTOverBet posts ante 25
+Opp013 posts ante 25
+Opp137 posts ante 25
+Opp079 posts small blind 100
+Opp054 posts big blind 200
+Dealt to GTOverBet [9h 4c]
+*** PRE-FLOP *** 
+Opp045 raises 300 to 500
+GTOverBet folds
+Opp013 folds
+Opp137 folds
+Opp079 folds
+Opp054 calls 300
+*** FLOP *** [Js 9d Jh]
+Opp054 checks
+Opp045 bets 250
+Opp054 calls 250
+*** TURN *** [Js 9d Jh][Ac]
+Opp054 checks
+Opp045 bets 1750
+Opp054 folds
+Opp045 collected 3500 from pot
+*** SUMMARY ***
+Total pot 3500 | No rake
+Board: [Js 9d Jh Ac]
+Seat 3: Opp045 won 3500
+
+
+Winamax Poker - Tournament "ROTATION" buyIn: 1.80€ + 0.20€ level: -21023 - HandId: #3918335420470919259-5-1743856714 - Holdem no limit (25/100/200) - 2025/04/05 12:38:34 UTC
+Table: 'ROTATION(912308558)#090' 6-max (real money) Seat #5 is the button
+Seat 1: Opp079 (18371, 1€ bounty)
+Seat 2: Opp054 (29971, 1.20€ bounty)
+Seat 3: Opp045 (28043, 1.20€ bounty)
+Seat 4: GTOverBet (18575, 1€ bounty)
+Seat 6: Opp137 (16976, 1€ bounty)
+*** ANTE/BLINDS ***
+Opp137 posts ante 25
+Opp079 posts ante 25
+Opp054 posts ante 25
+Opp045 posts ante 25
+GTOverBet posts ante 25
+Opp137 posts small blind 100
+Opp079 posts big blind 200
+Dealt to GTOverBet [9d Qd]
+*** PRE-FLOP *** 
+Opp054 folds
+Opp045 folds
+GTOverBet raises 240 to 440
+Opp137 calls 340
+Opp079 calls 240
+*** FLOP *** [5h Td Qs]
+Opp137 checks
+Opp079 bets 506
+GTOverBet calls 506
+Opp137 calls 506
+*** TURN *** [5h Td Qs][As]
+Opp137 checks
+Opp079 checks
+GTOverBet bets 2570
+Opp137 calls 2570
+Opp079 folds
+*** RIVER *** [5h Td Qs As][6h]
+Opp137 checks
+GTOverBet checks
+*** SHOW DOWN ***
+GTOverBet shows [9d Qd] (One pair : Queens)
+Opp137 shows [Ac Kc] (One pair : Aces)
+Opp137 collected 8103 from pot
+*** SUMMARY ***
+Total pot 8103 | No rake
+Board: [5h Td Qs As 6h]
+Seat 4: GTOverBet showed [9d Qd] and lost with One pair : Queens
+Seat 6: Opp137 (small blind) showed [Ac Kc] and won 8103 with One pair : Aces
+
+
+Winamax Poker - Tournament "ROTATION" buyIn: 1.80€ + 0.20€ level: -21023 - HandId: #3918335420470919259-4-1743856662 - Holdem no limit (25/100/200) - 2025/04/05 12:37:42 UTC
+Table: 'ROTATION(912308558)#090' 6-max (real money) Seat #4 is the button
+Seat 1: Opp079 (18396, 1€ bounty)
+Seat 2: Opp054 (29996, 1.20€ bounty)
+Seat 3: Opp045 (20578, 1€ bounty)
+Seat 4: GTOverBet (18600, 1€ bounty)
+Seat 5: Opp099 (7165, 1€ bounty)
+Seat 6: Opp137 (17201, 1€ bounty)
+*** ANTE/BLINDS ***
+Opp099 posts ante 25
+Opp137 posts ante 25
+Opp079 posts ante 25
+Opp054 posts ante 25
+Opp045 posts ante 25
+GTOverBet posts ante 25
+Opp099 posts small blind 100
+Opp137 posts big blind 200
+Dealt to GTOverBet [3c Th]
+*** PRE-FLOP *** 
+Opp079 folds
+Opp054 folds
+Opp045 raises 300 to 500
+GTOverBet folds
+Opp099 calls 400
+Opp137 folds
+*** FLOP *** [7s 4h 6s]
+Opp099 bets 1350
+Opp045 raises 18703 to 20053 and is all-in
+Opp099 calls 5290 and is all-in
+*** TURN *** [7s 4h 6s][5s]
+*** RIVER *** [7s 4h 6s 5s][Jd]
+*** SHOW DOWN ***
+Opp099 shows [6c Ad] (One pair : 6)
+Opp045 shows [9c 9d] (One pair : 9)
+Opp045 collected 28043 from pot
+*** SUMMARY ***
+Total pot 28043 | No rake
+Board: [7s 4h 6s 5s Jd]
+Seat 3: Opp045 showed [9c 9d] and won 28043 with One pair : 9
+Seat 5: Opp099 (small blind) showed [6c Ad] and lost with One pair : 6
+
+
+Winamax Poker - Tournament "ROTATION" buyIn: 1.80€ + 0.20€ level: -21023 - HandId: #3918335420470919259-3-1743856544 - Holdem no limit (25/100/200) - 2025/04/05 12:35:44 UTC
+Table: 'ROTATION(912308558)#090' 6-max (real money) Seat #3 is the button
+Seat 1: Opp079 (18421, 1€ bounty)
+Seat 2: Opp054 (14748, 1.20€ bounty)
+Seat 3: Opp045 (20603, 1€ bounty)
+Seat 4: GTOverBet (19025, 1€ bounty)
+Seat 5: Opp099 (21913, 1€ bounty)
+Seat 6: Opp137 (17226, 1€ bounty)
+*** ANTE/BLINDS ***
+GTOverBet posts ante 25
+Opp099 posts ante 25
+Opp079 posts ante 25
+Opp054 posts ante 25
+Opp045 posts ante 25
+Opp137 posts ante 25
+GTOverBet posts small blind 100
+Opp099 posts big blind 200
+Dealt to GTOverBet [9s As]
+*** PRE-FLOP *** 
+Opp137 folds
+Opp079 folds
+Opp054 raises 200 to 400
+Opp045 folds
+GTOverBet calls 300
+Opp099 calls 200
+*** FLOP *** [3c 8h 2d]
+GTOverBet checks
+Opp099 checks
+Opp054 checks
+*** TURN *** [3c 8h 2d][Kh]
+GTOverBet checks
+Opp099 bets 1350
+Opp054 calls 1350
+GTOverBet folds
+*** RIVER *** [3c 8h 2d Kh][9h]
+Opp099 bets 4050
+Opp054 raises 8923 to 12973 and is all-in
+Opp099 calls 8923
+*** SHOW DOWN ***
+Opp099 shows [2c Ks] (Two pairs : Kings and 2)
+Opp054 shows [Qh Ah] (Flush Ace high)
+Opp054 collected 29996 from pot
+*** SUMMARY ***
+Total pot 29996 | No rake
+Board: [3c 8h 2d Kh 9h]
+Seat 2: Opp054 showed [Qh Ah] and won 29996 with Flush Ace high
+Seat 5: Opp099 (big blind) showed [2c Ks] and lost with Two pairs : Kings and 2
+
+
+Winamax Poker - Tournament "ROTATION" buyIn: 1.80€ + 0.20€ level: -21023 - HandId: #3918335420470919259-2-1743856452 - Holdem no limit (25/100/200) - 2025/04/05 12:34:12 UTC
+Table: 'ROTATION(912308558)#090' 6-max (real money) Seat #2 is the button
+Seat 1: Opp079 (18446, 1€ bounty)
+Seat 2: Opp054 (14773, 1.20€ bounty)
+Seat 3: Opp045 (20828, 1€ bounty)
+Seat 4: GTOverBet (20000, 1€ bounty)
+Seat 5: Opp099 (20638, 1€ bounty)
+Seat 6: Opp137 (17251, 1€ bounty)
+*** ANTE/BLINDS ***
+Opp045 posts ante 25
+GTOverBet posts ante 25
+Opp079 posts ante 25
+Opp054 posts ante 25
+Opp099 posts ante 25
+Opp137 posts ante 25
+Opp045 posts small blind 100
+GTOverBet posts big blind 200
+Dealt to GTOverBet [Js 6c]
+*** PRE-FLOP *** 
+Opp099 calls 200
+Opp137 folds
+Opp079 folds
+Opp054 folds
+Opp045 calls 100
+GTOverBet checks
+*** FLOP *** [9h 8s 6s]
+Opp045 checks
+GTOverBet checks
+Opp099 checks
+*** TURN *** [9h 8s 6s][As]
+Opp045 checks
+GTOverBet checks
+Opp099 bets 750
+Opp045 folds
+GTOverBet calls 750
+*** RIVER *** [9h 8s 6s As][4d]
+GTOverBet checks
+Opp099 checks
+*** SHOW DOWN ***
+GTOverBet shows [Js 6c] (One pair : 6)
+Opp099 shows [2s Ah] (One pair : Aces)
+Opp099 collected 2250 from pot
+*** SUMMARY ***
+Total pot 2250 | No rake
+Board: [9h 8s 6s As 4d]
+Seat 4: GTOverBet (big blind) showed [Js 6c] and lost with One pair : 6
+Seat 5: Opp099 showed [2s Ah] and won 2250 with One pair : Aces
+
+

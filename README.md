@@ -76,8 +76,8 @@ Tout se trouve dans le dossier de données, en TOML commenté :
 
 | Salle | Formats | État |
 |---|---|---|
-| Winamax | MTT, knockout (6-max, 3-max) + résumés de tournoi | ✅ |
-| Winamax | cash, Expresso, Go Fast | ⏳ en attente de fichiers d'exemple |
+| Winamax | MTT, knockout, satellites, Expresso, cash (6-max, 5-max, 3-max) + résumés de tournoi | ✅ |
+| Winamax | Go Fast | ⏳ en attente de fichiers d'exemple |
 | Autres salles | — | phase 9, une salle = un fichier dans `crates/hh-parsers/src/` |
 
 Un parseur n'est écrit qu'à partir de vrais fichiers : une ligne inconnue apparaît dans

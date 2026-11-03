@@ -24,6 +24,9 @@
 //! title suffix ` - Late Registration`. When only a bounty was won the line
 //! reads `You won Bounty 1.07€`.
 //!
+//! Satellites: `You won 197.76€ + Ticket 20€ + Bounty 204.19€`. Some titles
+//! contain the literal text `\u20ac` instead of `€` (written by Winamax).
+//!
 //! A two-part buy-in (`prize + fee`, no bounty) has not been seen yet; it is
 //! accepted because the meaning of the parts is unambiguous.
 
@@ -38,8 +41,6 @@ use crate::ParseError;
 
 static TITLE: LazyLock<Regex> =
     LazyLock::new(|| Regex::new(r"^Winamax Poker - Tournament summary : (?P<name>.*)\((?P<id>\d+)\)(?P<late> - Late Registration)?$").unwrap());
-static WON: LazyLock<Regex> =
-    LazyLock::new(|| Regex::new(r"^You won (?:(?P<won>[0-9.]+)€)?(?:(?: \+ )?Bounty (?P<bounty>[0-9.]+)€)?$").unwrap());
 static FINISHED: LazyLock<Regex> = LazyLock::new(|| Regex::new(r"^You finished in (?P<pos>\d+)(?:st|nd|rd|th) place$").unwrap());
 static PLAYED: LazyLock<Regex> =
     LazyLock::new(|| Regex::new(r"^You played (?:(?P<h>\d+)h ?)?(?:(?P<m>\d+)min ?)?(?:(?P<s>\d+)s)?$").unwrap());
@@ -80,7 +81,7 @@ pub fn parse(text: &str) -> Result<TournamentSummary, ParseError> {
     let mut s = TournamentSummary {
         room: ROOM.into(),
         id: t["id"].to_string(),
-        name: t["name"].to_string(),
+        name: t["name"].replace("\\u20ac", "€").trim_end().to_string(),
         hero: String::new(),
         buy_in_prize_cents: 0,
         buy_in_bounty_cents: 0,
@@ -95,6 +96,7 @@ pub fn parse(text: &str) -> Result<TournamentSummary, ParseError> {
         finish_position: None,
         won_cents: 0,
         bounty_won_cents: 0,
+        ticket_won_cents: 0,
         late_registration: t.name("late").is_some(),
     };
     for (n, line) in lines {
@@ -138,12 +140,17 @@ pub fn parse(text: &str) -> Result<TournamentSummary, ParseError> {
             s.duration_secs = Some(g("h") * 3600 + g("m") * 60 + g("s"));
         } else if let Some(c) = FINISHED.captures(line) {
             s.finish_position = c["pos"].parse().ok();
-        } else if let Some(c) = WON.captures(line).filter(|c| c.name("won").is_some() || c.name("bounty").is_some()) {
-            if let Some(w) = c.name("won") {
-                s.won_cents = parse_cents(w.as_str()).ok_or_else(|| ParseError::new(n, line, "bad amount"))?;
-            }
-            if let Some(b) = c.name("bounty") {
-                s.bounty_won_cents = parse_cents(b.as_str()).ok_or_else(|| ParseError::new(n, line, "bad amount"))?;
+        } else if let Some(rest) = line.strip_prefix("You won ") {
+            // Parts joined by " + ": "0.52€", "Ticket 20€", "Bounty 0.51€".
+            for part in rest.split(" + ") {
+                let (slot, amount) = if let Some(a) = part.strip_prefix("Bounty ") {
+                    (&mut s.bounty_won_cents, a)
+                } else if let Some(a) = part.strip_prefix("Ticket ") {
+                    (&mut s.ticket_won_cents, a)
+                } else {
+                    (&mut s.won_cents, part)
+                };
+                *slot += euros(n, line, amount)?;
             }
         } else {
             return Err(ParseError::new(n, line, "unknown summary line"));

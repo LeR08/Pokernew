@@ -1,0 +1,29 @@
+Winamax Poker - Tournament "ATOM" buyIn: 4.50€ + 0.50€ level: 24 - HandId: #3897478101503836204-200-1743025697 - Holdem no limit (1400/6000/12000) - 2025/03/26 21:48:17 UTC
+Table: 'ATOM(907452335)#0043' 6-max (real money) Seat #6 is the button
+Seat 1: Opp146 (660627, 17.59€ bounty)
+Seat 2: Opp135 (269692, 4.55€ bounty)
+Seat 3: Opp152 (221828, 10.50€ bounty)
+Seat 5: GTOverBet (155166, 16.14€ bounty)
+Seat 6: Opp059 (231494, 11.75€ bounty)
+*** ANTE/BLINDS ***
+Opp146 posts ante 1400
+Opp135 posts ante 1400
+Opp152 posts ante 1400
+GTOverBet posts ante 1400
+Opp059 posts ante 1400
+Opp146 posts small blind 6000
+Opp135 posts big blind 12000
+Dealt to GTOverBet [4h 5h]
+*** PRE-FLOP *** 
+Opp152 folds
+GTOverBet folds
+Opp059 raises 218094 to 230094 and is all-in
+Opp146 folds
+Opp135 folds
+Opp059 shows [Ad 9d] (High card : Ace)
+Opp059 collected 255094 from pot
+*** SUMMARY ***
+Total pot 255094 | No rake
+Seat 6: Opp059 (button) showed [Ad 9d] and won 255094 with High card : Ace
+
+

@@ -1,0 +1,249 @@
+Winamax Poker - Tournament "PLANETE POK - ROAD TO WINAMAX SERIES 20 €" buyIn: 1.80€ + 0.20€ level: -1127524452 - HandId: #3910095053267140785-6-1743550189 - Holdem no limit (30000/125000/250000) - 2025/04/01 23:29:49 UTC
+Table: 'PLANETE POK - ROAD TO WINAMAX SERIES 20 €(910389948)#0176' 7-max (real money) Seat #6 is the button
+Seat 1: Opp026 (6981015, 30.92€ bounty)
+Seat 2: Opp129 (4628546, 15.40€ bounty)
+Seat 3: Opp116 (1560574, 5.04€ bounty)
+Seat 5: Opp047 (8328252, 11.46€ bounty)
+Seat 6: GTOverBet (12573220, 63.77€ bounty)
+Seat 7: Opp147 (7388393, 29.96€ bounty)
+*** ANTE/BLINDS ***
+Opp147 posts ante 30000
+Opp026 posts ante 30000
+Opp129 posts ante 30000
+Opp116 posts ante 30000
+Opp047 posts ante 30000
+GTOverBet posts ante 30000
+Opp147 posts small blind 125000
+Opp026 posts big blind 250000
+Dealt to GTOverBet [Jd Qc]
+*** PRE-FLOP *** 
+Opp129 folds
+Opp116 folds
+Opp047 folds
+GTOverBet raises 300000 to 550000
+Opp147 folds
+Opp026 calls 300000
+*** FLOP *** [8h Ts 9h]
+Opp026 checks
+GTOverBet bets 491750
+Opp026 calls 491750
+*** TURN *** [8h Ts 9h][Jc]
+Opp026 bets 788205
+GTOverBet raises 788205 to 1576410
+Opp026 folds
+GTOverBet collected 4753115 from pot
+*** SUMMARY ***
+Total pot 4753115 | No rake
+Board: [8h Ts 9h Jc]
+Seat 6: GTOverBet (button) won 4753115
+
+
+Winamax Poker - Tournament "PLANETE POK - ROAD TO WINAMAX SERIES 20 €" buyIn: 1.80€ + 0.20€ level: -1127524452 - HandId: #3910095053267140785-5-1743550172 - Holdem no limit (30000/125000/250000) - 2025/04/01 23:29:32 UTC
+Table: 'PLANETE POK - ROAD TO WINAMAX SERIES 20 €(910389948)#0176' 7-max (real money) Seat #5 is the button
+Seat 1: Opp026 (7011015, 30.92€ bounty)
+Seat 2: Opp129 (4658546, 15.40€ bounty)
+Seat 3: Opp116 (1035574, 5.04€ bounty)
+Seat 5: Opp047 (8358252, 11.46€ bounty)
+Seat 6: GTOverBet (12728220, 63.77€ bounty)
+Seat 7: Opp147 (7668393, 29.96€ bounty)
+*** ANTE/BLINDS ***
+GTOverBet posts ante 30000
+Opp147 posts ante 30000
+Opp026 posts ante 30000
+Opp129 posts ante 30000
+Opp116 posts ante 30000
+Opp047 posts ante 30000
+GTOverBet posts small blind 125000
+Opp147 posts big blind 250000
+Dealt to GTOverBet [3d 4s]
+*** PRE-FLOP *** 
+Opp026 folds
+Opp129 folds
+Opp116 raises 755574 to 1005574 and is all-in
+Opp047 folds
+GTOverBet folds
+Opp147 folds
+Opp116 collected 1560574 from pot
+*** SUMMARY ***
+Total pot 1560574 | No rake
+Seat 3: Opp116 won 1560574
+
+
+Winamax Poker - Tournament "PLANETE POK - ROAD TO WINAMAX SERIES 20 €" buyIn: 1.80€ + 0.20€ level: -1127524452 - HandId: #3910095053267140785-4-1743550138 - Holdem no limit (30000/125000/250000) - 2025/04/01 23:28:58 UTC
+Table: 'PLANETE POK - ROAD TO WINAMAX SERIES 20 €(910389948)#0176' 7-max (real money) Seat #4 is the button
+Seat 1: Opp026 (7041015, 30.92€ bounty)
+Seat 2: Opp129 (4688546, 15.40€ bounty)
+Seat 3: Opp116 (1065574, 5.04€ bounty)
+Seat 5: Opp047 (7708252, 11.46€ bounty)
+Seat 6: GTOverBet (13008220, 63.77€ bounty)
+Seat 7: Opp147 (7948393, 29.96€ bounty)
+*** ANTE/BLINDS ***
+Opp047 posts ante 30000
+GTOverBet posts ante 30000
+Opp026 posts ante 30000
+Opp129 posts ante 30000
+Opp116 posts ante 30000
+Opp147 posts ante 30000
+Opp047 posts small blind 125000
+GTOverBet posts big blind 250000
+Dealt to GTOverBet [Qs 3h]
+*** PRE-FLOP *** 
+Opp147 calls 250000
+Opp026 folds
+Opp129 folds
+Opp116 folds
+Opp047 raises 875000 to 1125000
+GTOverBet folds
+Opp147 folds
+Opp047 collected 1805000 from pot
+*** SUMMARY ***
+Total pot 1805000 | No rake
+Seat 5: Opp047 (small blind) won 1805000
+
+
+Winamax Poker - Tournament "PLANETE POK - ROAD TO WINAMAX SERIES 20 €" buyIn: 1.80€ + 0.20€ level: -1127524452 - HandId: #3910095053267140785-3-1743550079 - Holdem no limit (30000/125000/250000) - 2025/04/01 23:27:59 UTC
+Table: 'PLANETE POK - ROAD TO WINAMAX SERIES 20 €(910389948)#0176' 7-max (real money) Seat #3 is the button
+Seat 1: Opp026 (7071015, 30.92€ bounty)
+Seat 2: Opp129 (4718546, 15.40€ bounty)
+Seat 3: Opp116 (1095574, 5.04€ bounty)
+Seat 5: Opp047 (7308252, 11.46€ bounty)
+Seat 6: GTOverBet (13038220, 63.77€ bounty)
+Seat 7: Opp147 (8228393, 29.96€ bounty)
+*** ANTE/BLINDS ***
+Opp047 posts ante 30000
+Opp026 posts ante 30000
+Opp129 posts ante 30000
+Opp116 posts ante 30000
+GTOverBet posts ante 30000
+Opp147 posts ante 30000
+Opp047 posts big blind 250000
+Dealt to GTOverBet [6s 9h]
+*** PRE-FLOP *** 
+GTOverBet folds
+Opp147 calls 250000
+Opp026 folds
+Opp129 folds
+Opp116 folds
+Opp047 checks
+*** FLOP *** [6d 2d 2s]
+Opp047 checks
+Opp147 checks
+*** TURN *** [6d 2d 2s][Jc]
+Opp047 bets 362500
+Opp147 folds
+Opp047 collected 1042500 from pot
+*** SUMMARY ***
+Total pot 1042500 | No rake
+Board: [6d 2d 2s Jc]
+Seat 5: Opp047 (big blind) won 1042500
+
+
+Winamax Poker - Tournament "PLANETE POK - ROAD TO WINAMAX SERIES 20 €" buyIn: 1.80€ + 0.20€ level: -1127524452 - HandId: #3910095053267140785-2-1743550027 - Holdem no limit (30000/125000/250000) - 2025/04/01 23:27:07 UTC
+Table: 'PLANETE POK - ROAD TO WINAMAX SERIES 20 €(910389948)#0176' 7-max (real money) Seat #2 is the button
+Seat 1: Opp026 (7101015, 30.92€ bounty)
+Seat 2: Opp129 (4748546, 15.40€ bounty)
+Seat 3: Opp116 (1250574, 5.04€ bounty)
+Seat 4: Opp111 (2539279, 22.67€ bounty)
+Seat 5: Opp047 (7338252, 11.46€ bounty)
+Seat 6: GTOverBet (13068220, 63.77€ bounty)
+Seat 7: Opp147 (5414114, 18.63€ bounty)
+*** ANTE/BLINDS ***
+Opp116 posts ante 30000
+Opp111 posts ante 30000
+Opp026 posts ante 30000
+Opp129 posts ante 30000
+Opp047 posts ante 30000
+GTOverBet posts ante 30000
+Opp147 posts ante 30000
+Opp116 posts small blind 125000
+Opp111 posts big blind 250000
+Dealt to GTOverBet [6d 4d]
+*** PRE-FLOP *** 
+Opp047 folds
+GTOverBet folds
+Opp147 calls 250000
+Opp026 folds
+Opp129 folds
+Opp116 folds
+Opp111 raises 2259279 to 2509279 and is all-in
+Opp147 calls 2259279
+*** FLOP *** [Jh 3h 3c]
+*** TURN *** [Jh 3h 3c][Kd]
+*** RIVER *** [Jh 3h 3c Kd][7h]
+*** SHOW DOWN ***
+Opp111 shows [Ac 8s] (One pair : 3)
+Opp147 shows [7s As] (Two pairs : 7 and 3)
+Opp147 collected 5353558 from pot
+*** SUMMARY ***
+Total pot 5353558 | No rake
+Board: [Jh 3h 3c Kd 7h]
+Seat 4: Opp111 (big blind) showed [Ac 8s] and lost with One pair : 3
+Seat 7: Opp147 showed [7s As] and won 5353558 with Two pairs : 7 and 3
+
+
+Winamax Poker - Tournament "PLANETE POK - ROAD TO WINAMAX SERIES 20 €" buyIn: 1.80€ + 0.20€ level: -1127524452 - HandId: #3910095053267140785-1-1743549980 - Holdem no limit (30000/125000/250000) - 2025/04/01 23:26:20 UTC
+Table: 'PLANETE POK - ROAD TO WINAMAX SERIES 20 €(910389948)#0176' 7-max (real money) Seat #1 is the button
+Seat 1: Opp026 (7131015, 30.92€ bounty)
+Seat 2: Opp129 (4903546, 15.40€ bounty)
+Seat 3: Opp116 (1530574, 5.04€ bounty)
+Seat 4: Opp111 (3069279, 22.67€ bounty)
+Seat 5: Opp047 (6283252, 11.46€ bounty)
+Seat 6: GTOverBet (13098220, 63.77€ bounty)
+Seat 7: Opp147 (5444114, 18.63€ bounty)
+*** ANTE/BLINDS ***
+Opp129 posts ante 30000
+Opp116 posts ante 30000
+Opp026 posts ante 30000
+Opp111 posts ante 30000
+Opp047 posts ante 30000
+GTOverBet posts ante 30000
+Opp147 posts ante 30000
+Opp129 posts small blind 125000
+Opp116 posts big blind 250000
+Dealt to GTOverBet [Th Kd]
+*** PRE-FLOP *** 
+Opp111 raises 250000 to 500000
+Opp047 raises 5753252 to 6253252 and is all-in
+GTOverBet folds
+Opp147 folds
+Opp026 folds
+Opp129 folds
+Opp116 folds
+Opp111 folds
+Opp047 collected 7338252 from pot
+*** SUMMARY ***
+Total pot 7338252 | No rake
+Seat 5: Opp047 won 7338252
+
+
+Winamax Poker - Tournament "PLANETE POK - ROAD TO WINAMAX SERIES 20 €" buyIn: 1.80€ + 0.20€ level: 30 - HandId: #3910095053267140614-272-1743545773 - Holdem no limit (4000/17500/35000) - 2025/04/01 22:16:13 UTC
+Table: 'PLANETE POK - ROAD TO WINAMAX SERIES 20 €(910389948)#0005' 6-max (real money) Seat #2 is the button
+Seat 1: Opp107 (394438, 3.87€ bounty)
+Seat 2: Opp062 (1180625, 12.60€ bounty)
+Seat 3: Opp149 (1283000, 5.33€ bounty)
+Seat 4: Opp142 (3201286, 10.57€ bounty)
+Seat 5: GTOverBet (2004271, 15.86€ bounty)
+Seat 6: Opp080 (700893, 7.33€ bounty)
+*** ANTE/BLINDS ***
+Opp149 posts ante 4000
+Opp142 posts ante 4000
+Opp107 posts ante 4000
+Opp062 posts ante 4000
+GTOverBet posts ante 4000
+Opp080 posts ante 4000
+Opp149 posts small blind 17500
+Opp142 posts big blind 35000
+Dealt to GTOverBet [5h 3h]
+*** PRE-FLOP *** 
+GTOverBet folds
+Opp080 folds
+Opp107 folds
+Opp062 folds
+Opp149 folds
+Opp142 shows [Ts Td] (One pair : Tens)
+Opp142 collected 76500 from pot
+*** SUMMARY ***
+Total pot 76500 | No rake
+Seat 4: Opp142 (big blind) showed [Ts Td] and won 76500 with One pair : Tens
+
+

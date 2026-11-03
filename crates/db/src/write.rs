@@ -179,19 +179,23 @@ pub fn upsert_summary(tx: &Transaction<'_>, entries: &[TournamentSummary]) -> Re
     let Some(s) = entries.last() else { return Ok(()) };
     let won: i64 = entries.iter().map(|e| e.won_cents).sum();
     let bounty_won: i64 = entries.iter().map(|e| e.bounty_won_cents).sum();
+    let ticket_won: i64 = entries.iter().map(|e| e.ticket_won_cents).sum();
+    // Same rule as the hand parser (Expresso = Spin & Go format).
+    let game_type = if s.name.starts_with("Expresso") { "spin" } else { "mtt" };
     let duration: Option<i64> = entries.iter().map(|e| e.duration_secs).sum();
     tx.execute(
         "INSERT INTO tournaments (room, room_tournament_id, name, game_type, currency, buy_in_cents, bounty_cents, fee_cents,
             registered_players, mode, kind, speed, prize_pool_cents, started_at, duration_secs, finish_position,
-            won_cents, bounty_won_cents, has_summary, entries)
-         VALUES (?1, ?2, ?3, 'mtt', 'EUR', ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15, ?16, 1, ?17)
+            won_cents, bounty_won_cents, has_summary, entries, ticket_won_cents)
+         VALUES (?1, ?2, ?3, ?19, 'EUR', ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15, ?16, 1, ?17, ?18)
          ON CONFLICT (room, room_tournament_id) DO UPDATE SET
             name = excluded.name, buy_in_cents = excluded.buy_in_cents, bounty_cents = excluded.bounty_cents,
             fee_cents = excluded.fee_cents, registered_players = excluded.registered_players, mode = excluded.mode,
             kind = excluded.kind, speed = excluded.speed, prize_pool_cents = excluded.prize_pool_cents,
             started_at = excluded.started_at, duration_secs = excluded.duration_secs,
             finish_position = excluded.finish_position, won_cents = excluded.won_cents,
-            bounty_won_cents = excluded.bounty_won_cents, has_summary = 1, entries = excluded.entries",
+            bounty_won_cents = excluded.bounty_won_cents, has_summary = 1, entries = excluded.entries,
+            ticket_won_cents = excluded.ticket_won_cents",
         params![
             s.room,
             s.id,
@@ -210,6 +214,8 @@ pub fn upsert_summary(tx: &Transaction<'_>, entries: &[TournamentSummary]) -> Re
             won,
             bounty_won,
             entries.len() as i64,
+            ticket_won,
+            game_type,
         ],
     )?;
     Ok(())

@@ -1,0 +1,50 @@
+Winamax Poker - Tournament "TRIDENT SPACE KO" buyIn: 1.80€ + 0.20€ level: -584177855 - HandId: #3898928189837148369-2-1743012954 - Holdem no limit (3/10/20) - 2025/03/26 18:15:54 UTC
+Table: 'TRIDENT SPACE KO(907789960)#0208' 3-max (real money) Seat #1 is the button
+Seat 1: GTOverBet (487, 1€ bounty)
+Seat 2: Opp150 (513, 1€ bounty)
+Seat 3: Opp005 (500, 1€ bounty)
+*** ANTE/BLINDS ***
+Opp150 posts ante 3
+Opp005 posts ante 3
+GTOverBet posts ante 3
+Opp150 posts small blind 10
+Opp005 posts big blind 20
+Dealt to GTOverBet [Kd Jd]
+*** PRE-FLOP *** 
+GTOverBet raises 30 to 50
+Opp150 folds
+Opp005 raises 447 to 497 and is all-in
+GTOverBet calls 434 and is all-in
+*** FLOP *** [4c 3d 7s]
+*** TURN *** [4c 3d 7s][Th]
+*** RIVER *** [4c 3d 7s Th][8h]
+*** SHOW DOWN ***
+GTOverBet shows [Kd Jd] (High card : King)
+Opp005 shows [6h Ac] (High card : Ace)
+Opp005 collected 1000 from pot
+*** SUMMARY ***
+Total pot 1000 | No rake
+Board: [4c 3d 7s Th 8h]
+Seat 1: GTOverBet (button) showed [Kd Jd] and lost with High card : King
+Seat 3: Opp005 (big blind) showed [6h Ac] and won 1000 with High card : Ace
+
+
+Winamax Poker - Tournament "TRIDENT SPACE KO" buyIn: 1.80€ + 0.20€ level: -584177855 - HandId: #3898928189837148369-1-1743012947 - Holdem no limit (3/10/20) - 2025/03/26 18:15:47 UTC
+Table: 'TRIDENT SPACE KO(907789960)#0208' 3-max (real money) Seat #1 is the button
+Seat 1: GTOverBet (500, 1€ bounty)
+Seat 2: Opp150 (500, 1€ bounty)
+Seat 3: Opp005 (500, 1€ bounty)
+*** ANTE/BLINDS ***
+GTOverBet posts ante 3
+Opp150 posts ante 3
+GTOverBet posts small blind 10
+Opp150 posts big blind 20
+Dealt to GTOverBet [2h 4h]
+*** PRE-FLOP *** 
+GTOverBet folds
+Opp150 collected 36 from pot
+*** SUMMARY ***
+Total pot 36 | No rake
+Seat 2: Opp150 (big blind) won 36
+
+

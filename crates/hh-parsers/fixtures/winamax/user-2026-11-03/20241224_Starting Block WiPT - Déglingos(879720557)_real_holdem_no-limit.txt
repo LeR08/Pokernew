@@ -1,0 +1,450 @@
+Winamax Poker - Tournament "Starting Block WiPT - Déglingos" buyIn: 0€ + 0€ level: 6 - HandId: #3778371021933903873-15-1735059371 - Holdem no limit (60/120) - 2024/12/24 16:56:11 UTC
+Table: 'Starting Block WiPT - Déglingos(879720557)#0' 6-max (real money) Seat #4 is the button
+Seat 1: Opp119 (320)
+Seat 4: Opp060 (145)
+Seat 6: GTOverBet (2535)
+*** ANTE/BLINDS ***
+GTOverBet posts small blind 60
+Opp119 posts big blind 120
+Dealt to GTOverBet [6s Ad]
+*** PRE-FLOP *** 
+Opp060 raises 25 to 145 and is all-in
+GTOverBet calls 85
+Opp119 calls 25
+*** FLOP *** [Jd Kd 5d]
+GTOverBet bets 180
+Opp119 folds
+*** TURN *** [Jd Kd 5d][7d]
+*** RIVER *** [Jd Kd 5d 7d][8c]
+*** SHOW DOWN ***
+Opp060 shows [Ac 4d] (Flush King high)
+GTOverBet shows [6s Ad] (Flush Ace high)
+GTOverBet collected 615 from pot
+*** SUMMARY ***
+Total pot 615 | No rake
+Board: [Jd Kd 5d 7d 8c]
+Seat 4: Opp060 (button) showed [Ac 4d] and lost with Flush King high
+Seat 6: GTOverBet (small blind) showed [6s Ad] and won 615 with Flush Ace high
+
+
+Winamax Poker - Tournament "Starting Block WiPT - Déglingos" buyIn: 0€ + 0€ level: 6 - HandId: #3778371021933903873-14-1735059331 - Holdem no limit (60/120) - 2024/12/24 16:55:31 UTC
+Table: 'Starting Block WiPT - Déglingos(879720557)#0' 6-max (real money) Seat #3 is the button
+Seat 1: Opp119 (320)
+Seat 2: Opp020 (1045)
+Seat 4: Opp060 (205)
+Seat 6: GTOverBet (1430)
+*** ANTE/BLINDS ***
+Opp060 posts small blind 60
+GTOverBet posts big blind 120
+Dealt to GTOverBet [Ad Jd]
+*** PRE-FLOP *** 
+Opp119 folds
+Opp020 calls 120
+Opp060 folds
+GTOverBet raises 1310 to 1430 and is all-in
+Opp020 calls 925 and is all-in
+*** FLOP *** [5s 7c 8s]
+*** TURN *** [5s 7c 8s][4h]
+*** RIVER *** [5s 7c 8s 4h][2s]
+*** SHOW DOWN ***
+Opp020 shows [9d Ac] (High card : Ace)
+GTOverBet shows [Ad Jd] (High card : Ace)
+GTOverBet collected 2535 from pot
+*** SUMMARY ***
+Total pot 2535 | No rake
+Board: [5s 7c 8s 4h 2s]
+Seat 2: Opp020 showed [9d Ac] and lost with High card : Ace
+Seat 6: GTOverBet (big blind) showed [Ad Jd] and won 2535 with High card : Ace
+
+
+Winamax Poker - Tournament "Starting Block WiPT - Déglingos" buyIn: 0€ + 0€ level: 6 - HandId: #3778371021933903873-13-1735059320 - Holdem no limit (60/120) - 2024/12/24 16:55:20 UTC
+Table: 'Starting Block WiPT - Déglingos(879720557)#0' 6-max (real money) Seat #2 is the button
+Seat 1: Opp119 (320)
+Seat 2: Opp020 (1045)
+Seat 4: Opp060 (325)
+Seat 6: GTOverBet (1310)
+*** ANTE/BLINDS ***
+Opp060 posts big blind 120
+Dealt to GTOverBet [Td Jd]
+*** PRE-FLOP *** 
+GTOverBet raises 120 to 240
+Opp119 folds
+Opp020 folds
+Opp060 folds
+GTOverBet collected 360 from pot
+*** SUMMARY ***
+Total pot 360 | No rake
+Seat 6: GTOverBet won 360
+
+
+Winamax Poker - Tournament "Starting Block WiPT - Déglingos" buyIn: 0€ + 0€ level: 5 - HandId: #3778371021933903873-12-1735059291 - Holdem no limit (40/80) - 2024/12/24 16:54:51 UTC
+Table: 'Starting Block WiPT - Déglingos(879720557)#0' 6-max (real money) Seat #1 is the button
+Seat 1: Opp119 (320)
+Seat 2: Opp020 (490)
+Seat 3: Opp052 (65)
+Seat 4: Opp060 (325)
+Seat 6: GTOverBet (1800)
+*** ANTE/BLINDS ***
+Opp020 posts small blind 40
+Opp052 posts big blind 65 and is all-in
+Dealt to GTOverBet [4c 4h]
+*** PRE-FLOP *** 
+Opp060 folds
+GTOverBet raises 1735 to 1800 and is all-in
+Opp119 folds
+Opp020 calls 450 and is all-in
+*** FLOP *** [Ad 3h Th]
+*** TURN *** [Ad 3h Th][Js]
+*** RIVER *** [Ad 3h Th Js][3s]
+*** SHOW DOWN ***
+Opp052 shows [8d 9s] (One pair : 3)
+Opp020 shows [Jc Jd] (Full of Jacks and 3)
+GTOverBet shows [4c 4h] (Two pairs : 4 and 3)
+GTOverBet collected 1310 from side pot 1
+Opp020 collected 1045 from main pot
+*** SUMMARY ***
+Total pot 2355 | No rake
+Board: [Ad 3h Th Js 3s]
+Seat 2: Opp020 (small blind) showed [Jc Jd] and won 1045 with Full of Jacks and 3
+Seat 3: Opp052 (big blind) showed [8d 9s] and lost with One pair : 3
+Seat 6: GTOverBet showed [4c 4h] and won 1310 with Two pairs : 4 and 3
+
+
+Winamax Poker - Tournament "Starting Block WiPT - Déglingos" buyIn: 0€ + 0€ level: 5 - HandId: #3778371021933903873-11-1735059274 - Holdem no limit (40/80) - 2024/12/24 16:54:34 UTC
+Table: 'Starting Block WiPT - Déglingos(879720557)#0' 6-max (real money) Seat #6 is the button
+Seat 1: Opp119 (360)
+Seat 2: Opp020 (570)
+Seat 3: Opp052 (905)
+Seat 4: Opp060 (325)
+Seat 6: GTOverBet (840)
+*** ANTE/BLINDS ***
+Opp119 posts small blind 40
+Opp020 posts big blind 80
+Dealt to GTOverBet [Ad Qc]
+*** PRE-FLOP *** 
+Opp052 raises 825 to 905 and is all-in
+Opp060 folds
+GTOverBet calls 840 and is all-in
+Opp119 folds
+Opp020 folds
+*** FLOP *** [2h As Kc]
+*** TURN *** [2h As Kc][Ts]
+*** RIVER *** [2h As Kc Ts][9c]
+*** SHOW DOWN ***
+Opp052 shows [Ks 7c] (One pair : Kings)
+GTOverBet shows [Ad Qc] (One pair : Aces)
+GTOverBet collected 1800 from main pot
+Opp052 collected 65 from side pot 1
+*** SUMMARY ***
+Total pot 1865 | No rake
+Board: [2h As Kc Ts 9c]
+Seat 3: Opp052 showed [Ks 7c] and won 65 with One pair : Kings
+Seat 6: GTOverBet (button) showed [Ad Qc] and won 1800 with One pair : Aces
+
+
+Winamax Poker - Tournament "Starting Block WiPT - Déglingos" buyIn: 0€ + 0€ level: 5 - HandId: #3778371021933903873-10-1735059248 - Holdem no limit (40/80) - 2024/12/24 16:54:08 UTC
+Table: 'Starting Block WiPT - Déglingos(879720557)#0' 6-max (real money) Seat #4 is the button
+Seat 1: Opp119 (440)
+Seat 2: Opp020 (570)
+Seat 3: Opp052 (1285)
+Seat 4: Opp060 (325)
+Seat 6: GTOverBet (380)
+*** ANTE/BLINDS ***
+GTOverBet posts small blind 40
+Opp119 posts big blind 80
+Dealt to GTOverBet [As 2s]
+*** PRE-FLOP *** 
+Opp020 folds
+Opp052 raises 1205 to 1285 and is all-in
+Opp060 folds
+GTOverBet calls 340 and is all-in
+Opp119 folds
+*** FLOP *** [6d 8h Ad]
+*** TURN *** [6d 8h Ad][Kd]
+*** RIVER *** [6d 8h Ad Kd][Th]
+*** SHOW DOWN ***
+Opp052 shows [2h Jd] (High card : Ace)
+GTOverBet shows [As 2s] (One pair : Aces)
+GTOverBet collected 840 from main pot
+Opp052 collected 905 from side pot 1
+*** SUMMARY ***
+Total pot 1745 | No rake
+Board: [6d 8h Ad Kd Th]
+Seat 3: Opp052 showed [2h Jd] and won 905 with High card : Ace
+Seat 6: GTOverBet (small blind) showed [As 2s] and won 840 with One pair : Aces
+
+
+Winamax Poker - Tournament "Starting Block WiPT - Déglingos" buyIn: 0€ + 0€ level: 5 - HandId: #3778371021933903873-9-1735059218 - Holdem no limit (40/80) - 2024/12/24 16:53:38 UTC
+Table: 'Starting Block WiPT - Déglingos(879720557)#0' 6-max (real money) Seat #3 is the button
+Seat 1: Opp119 (180)
+Seat 2: Opp020 (570)
+Seat 3: Opp052 (1285)
+Seat 4: Opp060 (505)
+Seat 6: GTOverBet (460)
+*** ANTE/BLINDS ***
+Opp060 posts small blind 40
+GTOverBet posts big blind 80
+Dealt to GTOverBet [3h 2c]
+*** PRE-FLOP *** 
+Opp119 raises 100 to 180 and is all-in
+Opp020 folds
+Opp052 folds
+Opp060 raises 325 to 505 and is all-in
+GTOverBet folds
+*** FLOP *** [2s 5s 7h]
+*** TURN *** [2s 5s 7h][2d]
+*** RIVER *** [2s 5s 7h 2d][7d]
+*** SHOW DOWN ***
+Opp119 shows [8s Ad] (Two pairs : 7 and 2)
+Opp060 shows [Ks Ts] (Two pairs : 7 and 2)
+Opp060 collected 325 from side pot 1
+Opp119 collected 440 from main pot
+*** SUMMARY ***
+Total pot 765 | No rake
+Board: [2s 5s 7h 2d 7d]
+Seat 1: Opp119 showed [8s Ad] and won 440 with Two pairs : 7 and 2
+Seat 4: Opp060 (small blind) showed [Ks Ts] and won 325 with Two pairs : 7 and 2
+
+
+Winamax Poker - Tournament "Starting Block WiPT - Déglingos" buyIn: 0€ + 0€ level: 4 - HandId: #3778371021933903873-8-1735059187 - Holdem no limit (30/60) - 2024/12/24 16:53:07 UTC
+Table: 'Starting Block WiPT - Déglingos(879720557)#0' 6-max (real money) Seat #2 is the button
+Seat 1: Opp119 (240)
+Seat 2: Opp020 (630)
+Seat 3: Opp052 (1105)
+Seat 4: Opp060 (565)
+Seat 6: GTOverBet (460)
+*** ANTE/BLINDS ***
+Opp052 posts small blind 30
+Opp060 posts big blind 60
+Dealt to GTOverBet [Jc 5d]
+*** PRE-FLOP *** 
+GTOverBet folds
+Opp119 calls 60
+Opp020 calls 60
+Opp052 raises 1045 to 1105 and is all-in
+Opp060 folds
+Opp119 folds
+Opp020 folds
+Opp052 collected 1285 from pot
+*** SUMMARY ***
+Total pot 1285 | No rake
+Seat 3: Opp052 (small blind) won 1285
+
+
+Winamax Poker - Tournament "Starting Block WiPT - Déglingos" buyIn: 0€ + 0€ level: 4 - HandId: #3778371021933903873-7-1735059156 - Holdem no limit (30/60) - 2024/12/24 16:52:36 UTC
+Table: 'Starting Block WiPT - Déglingos(879720557)#0' 6-max (real money) Seat #1 is the button
+Seat 1: Opp119 (300)
+Seat 2: Opp020 (690)
+Seat 3: Opp052 (985)
+Seat 4: Opp060 (565)
+Seat 6: GTOverBet (460)
+*** ANTE/BLINDS ***
+Opp020 posts small blind 30
+Opp052 posts big blind 60
+Dealt to GTOverBet [Js 4h]
+*** PRE-FLOP *** 
+Opp060 folds
+GTOverBet folds
+Opp119 calls 60
+Opp020 calls 30
+Opp052 raises 925 to 985 and is all-in
+Opp119 folds
+Opp020 folds
+Opp052 collected 1105 from pot
+*** SUMMARY ***
+Total pot 1105 | No rake
+Seat 3: Opp052 (big blind) won 1105
+
+
+Winamax Poker - Tournament "Starting Block WiPT - Déglingos" buyIn: 0€ + 0€ level: 3 - HandId: #3778371021933903873-6-1735059084 - Holdem no limit (20/40) - 2024/12/24 16:51:24 UTC
+Table: 'Starting Block WiPT - Déglingos(879720557)#0' 6-max (real money) Seat #6 is the button
+Seat 1: Opp119 (380)
+Seat 2: Opp020 (390)
+Seat 3: Opp052 (985)
+Seat 4: Opp060 (565)
+Seat 6: GTOverBet (680)
+*** ANTE/BLINDS ***
+Opp119 posts small blind 20
+Opp020 posts big blind 40
+Dealt to GTOverBet [8c 9d]
+*** PRE-FLOP *** 
+Opp052 folds
+Opp060 folds
+GTOverBet raises 40 to 80
+Opp119 calls 60
+Opp020 calls 40
+*** FLOP *** [Ad Kd 5d]
+Opp119 checks
+Opp020 checks
+GTOverBet bets 100
+Opp119 folds
+Opp020 calls 100
+*** TURN *** [Ad Kd 5d][Kh]
+Opp020 bets 40
+GTOverBet calls 40
+*** RIVER *** [Ad Kd 5d Kh][5h]
+Opp020 bets 130
+GTOverBet folds
+Opp020 collected 650 from pot
+*** SUMMARY ***
+Total pot 650 | No rake
+Board: [Ad Kd 5d Kh 5h]
+Seat 2: Opp020 (big blind) won 650
+
+
+Winamax Poker - Tournament "Starting Block WiPT - Déglingos" buyIn: 0€ + 0€ level: 2 - HandId: #3778371021933903873-5-1735059021 - Holdem no limit (15/30) - 2024/12/24 16:50:21 UTC
+Table: 'Starting Block WiPT - Déglingos(879720557)#0' 6-max (real money) Seat #4 is the button
+Seat 1: Opp119 (440)
+Seat 2: Opp020 (450)
+Seat 3: Opp052 (985)
+Seat 4: Opp060 (565)
+Seat 6: GTOverBet (560)
+*** ANTE/BLINDS ***
+GTOverBet posts small blind 15
+Opp119 posts big blind 30
+Dealt to GTOverBet [Qc 7s]
+*** PRE-FLOP *** 
+Opp020 calls 30
+Opp052 folds
+Opp060 folds
+GTOverBet raises 30 to 60
+Opp119 calls 30
+Opp020 calls 30
+*** FLOP *** [Th 5c 6d]
+GTOverBet checks
+Opp119 checks
+Opp020 checks
+*** TURN *** [Th 5c 6d][4c]
+GTOverBet checks
+Opp119 checks
+Opp020 checks
+*** RIVER *** [Th 5c 6d 4c][8h]
+GTOverBet checks
+Opp119 checks
+Opp020 checks
+*** SHOW DOWN ***
+Opp119 shows [Qs 3d] (High card : Queen)
+Opp020 shows [3s Kh] (High card : King)
+GTOverBet shows [Qc 7s] (Straight 8 high)
+GTOverBet collected 180 from pot
+*** SUMMARY ***
+Total pot 180 | No rake
+Board: [Th 5c 6d 4c 8h]
+Seat 1: Opp119 (big blind) showed [Qs 3d] and lost with High card : Queen
+Seat 2: Opp020 showed [3s Kh] and lost with High card : King
+Seat 6: GTOverBet (small blind) showed [Qc 7s] and won 180 with Straight 8 high
+
+
+Winamax Poker - Tournament "Starting Block WiPT - Déglingos" buyIn: 0€ + 0€ level: 2 - HandId: #3778371021933903873-4-1735058961 - Holdem no limit (15/30) - 2024/12/24 16:49:21 UTC
+Table: 'Starting Block WiPT - Déglingos(879720557)#0' 6-max (real money) Seat #3 is the button
+Seat 1: Opp119 (470)
+Seat 2: Opp020 (450)
+Seat 3: Opp052 (470)
+Seat 4: Opp060 (580)
+Seat 6: GTOverBet (1030)
+*** ANTE/BLINDS ***
+Opp060 posts small blind 15
+GTOverBet posts big blind 30
+Dealt to GTOverBet [8d Ah]
+*** PRE-FLOP *** 
+Opp119 calls 30
+Opp020 folds
+Opp052 raises 440 to 470 and is all-in
+Opp060 folds
+GTOverBet calls 440
+Opp119 folds
+*** FLOP *** [Js Jh 6s]
+*** TURN *** [Js Jh 6s][Jd]
+*** RIVER *** [Js Jh 6s Jd][2c]
+*** SHOW DOWN ***
+GTOverBet shows [8d Ah] (Trips of Jacks)
+Opp052 shows [3s 3d] (Full of Jacks and 3)
+Opp052 collected 985 from pot
+*** SUMMARY ***
+Total pot 985 | No rake
+Board: [Js Jh 6s Jd 2c]
+Seat 3: Opp052 (button) showed [3s 3d] and won 985 with Full of Jacks and 3
+Seat 6: GTOverBet (big blind) showed [8d Ah] and lost with Trips of Jacks
+
+
+Winamax Poker - Tournament "Starting Block WiPT - Déglingos" buyIn: 0€ + 0€ level: 1 - HandId: #3778371021933903873-3-1735058914 - Holdem no limit (10/20) - 2024/12/24 16:48:34 UTC
+Table: 'Starting Block WiPT - Déglingos(879720557)#0' 6-max (real money) Seat #2 is the button
+Seat 1: Opp119 (490)
+Seat 2: Opp020 (470)
+Seat 3: Opp052 (480)
+Seat 4: Opp060 (530)
+Seat 6: GTOverBet (1030)
+*** ANTE/BLINDS ***
+Opp052 posts small blind 10
+Opp060 posts big blind 20
+Dealt to GTOverBet [7c 8h]
+*** PRE-FLOP *** 
+GTOverBet folds
+Opp119 calls 20
+Opp020 calls 20
+Opp052 folds
+Opp060 raises 510 to 530 and is all-in
+Opp119 folds
+Opp020 folds
+Opp060 collected 580 from pot
+*** SUMMARY ***
+Total pot 580 | No rake
+Seat 4: Opp060 (big blind) won 580
+
+
+Winamax Poker - Tournament "Starting Block WiPT - Déglingos" buyIn: 0€ + 0€ level: 1 - HandId: #3778371021933903873-2-1735058888 - Holdem no limit (10/20) - 2024/12/24 16:48:08 UTC
+Table: 'Starting Block WiPT - Déglingos(879720557)#0' 6-max (real money) Seat #1 is the button
+Seat 1: Opp119 (490)
+Seat 2: Opp020 (480)
+Seat 3: Opp052 (500)
+Seat 4: Opp060 (500)
+Seat 6: GTOverBet (1030)
+*** ANTE/BLINDS ***
+Opp020 posts small blind 10
+Opp052 posts big blind 20
+Dealt to GTOverBet [8d 3h]
+*** PRE-FLOP *** 
+Opp060 raises 480 to 500 and is all-in
+GTOverBet folds
+Opp119 folds
+Opp020 folds
+Opp052 folds
+Opp060 collected 530 from pot
+*** SUMMARY ***
+Total pot 530 | No rake
+Seat 4: Opp060 won 530
+
+
+Winamax Poker - Tournament "Starting Block WiPT - Déglingos" buyIn: 0€ + 0€ level: 1 - HandId: #3778371021933903873-1-1735058848 - Holdem no limit (10/20) - 2024/12/24 16:47:28 UTC
+Table: 'Starting Block WiPT - Déglingos(879720557)#0' 6-max (real money) Seat #6 is the button
+Seat 1: Opp119 (500)
+Seat 2: Opp020 (500)
+Seat 3: Opp052 (500)
+Seat 4: Opp060 (500)
+Seat 5: Opp128 (500)
+Seat 6: GTOverBet (500)
+*** ANTE/BLINDS ***
+Opp119 posts small blind 10
+Opp020 posts big blind 20
+Dealt to GTOverBet [Ad 4d]
+*** PRE-FLOP *** 
+Opp052 folds
+Opp060 folds
+Opp128 raises 480 to 500 and is all-in
+GTOverBet calls 500 and is all-in
+Opp119 folds
+Opp020 folds
+*** FLOP *** [2d Qs 9d]
+*** TURN *** [2d Qs 9d][6d]
+*** RIVER *** [2d Qs 9d 6d][Tc]
+*** SHOW DOWN ***
+Opp128 shows [Jc 9s] (One pair : 9)
+GTOverBet shows [Ad 4d] (Flush Ace high)
+GTOverBet collected 1030 from pot
+*** SUMMARY ***
+Total pot 1030 | No rake
+Board: [2d Qs 9d 6d Tc]
+Seat 5: Opp128 showed [Jc 9s] and lost with One pair : 9
+Seat 6: GTOverBet (button) showed [Ad 4d] and won 1030 with Flush Ace high
+
+

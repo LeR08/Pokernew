@@ -1,0 +1,213 @@
+Winamax Poker - Tournament "Starting Block WiPT" buyIn: 0€ + 0€ level: 4 - HandId: #3780192921291063297-6-1735153294 - Holdem no limit (30/60) - 2024/12/25 19:01:34 UTC
+Table: 'Starting Block WiPT(880144751)#0' 6-max (real money) Seat #6 is the button
+Seat 1: Opp028 (2209)
+Seat 2: GTOverBet (1397)
+Seat 3: Opp151 (1470)
+Seat 4: Opp093 (1015)
+Seat 6: Opp049 (2909)
+*** ANTE/BLINDS ***
+Opp028 posts small blind 30
+GTOverBet posts big blind 60
+Dealt to GTOverBet [7c Ad]
+*** PRE-FLOP *** 
+Opp151 folds
+Opp093 folds
+Opp049 raises 2849 to 2909 and is all-in
+Opp028 folds
+GTOverBet calls 1337 and is all-in
+*** FLOP *** [4h Td 7s]
+*** TURN *** [4h Td 7s][5h]
+*** RIVER *** [4h Td 7s 5h][9c]
+*** SHOW DOWN ***
+GTOverBet shows [7c Ad] (One pair : 7)
+Opp049 shows [Jd Jc] (One pair : Jacks)
+Opp049 collected 4336 from pot
+*** SUMMARY ***
+Total pot 4336 | No rake
+Board: [4h Td 7s 5h 9c]
+Seat 2: GTOverBet (big blind) showed [7c Ad] and lost with One pair : 7
+Seat 6: Opp049 (button) showed [Jd Jc] and won 4336 with One pair : Jacks
+
+
+Winamax Poker - Tournament "Starting Block WiPT" buyIn: 0€ + 0€ level: 3 - HandId: #3780192921291063297-5-1735153239 - Holdem no limit (20/40) - 2024/12/25 19:00:39 UTC
+Table: 'Starting Block WiPT(880144751)#0' 6-max (real money) Seat #5 is the button
+Seat 1: Opp028 (1735)
+Seat 2: GTOverBet (1397)
+Seat 3: Opp151 (1470)
+Seat 4: Opp093 (1135)
+Seat 6: Opp049 (3263)
+*** ANTE/BLINDS ***
+Opp049 posts small blind 20
+Opp028 posts big blind 40
+Dealt to GTOverBet [3d 8s]
+*** PRE-FLOP *** 
+GTOverBet folds
+Opp151 folds
+Opp093 raises 80 to 120
+Opp049 calls 100
+Opp028 calls 80
+*** FLOP *** [9h Tc 7s]
+Opp049 checks
+Opp028 bets 234
+Opp093 folds
+Opp049 calls 234
+*** TURN *** [9h Tc 7s][4c]
+Opp049 checks
+Opp028 bets 290
+Opp049 folds
+Opp028 collected 1118 from pot
+*** SUMMARY ***
+Total pot 1118 | No rake
+Board: [9h Tc 7s 4c]
+Seat 1: Opp028 (big blind) won 1118
+
+
+Winamax Poker - Tournament "Starting Block WiPT" buyIn: 0€ + 0€ level: 2 - HandId: #3780192921291063297-4-1735153155 - Holdem no limit (15/30) - 2024/12/25 18:59:15 UTC
+Table: 'Starting Block WiPT(880144751)#0' 6-max (real money) Seat #4 is the button
+Seat 1: Opp028 (1998)
+Seat 2: GTOverBet (1472)
+Seat 3: Opp151 (1470)
+Seat 4: Opp093 (1135)
+Seat 5: Opp082 (90)
+Seat 6: Opp049 (2835)
+*** ANTE/BLINDS ***
+Opp082 posts small blind 15
+Opp049 posts big blind 30
+Dealt to GTOverBet [8c 5c]
+*** PRE-FLOP *** 
+Opp028 calls 30
+GTOverBet raises 45 to 75
+Opp151 folds
+Opp093 folds
+Opp082 calls 60
+Opp049 calls 45
+Opp028 calls 45
+*** FLOP *** [Tc Ah Js]
+Opp082 bets 15 and is all-in
+Opp049 calls 15
+Opp028 calls 15
+GTOverBet folds
+*** TURN *** [Tc Ah Js][Kh]
+Opp049 checks
+Opp028 checks
+*** RIVER *** [Tc Ah Js Kh][Kd]
+Opp049 bets 173
+Opp028 calls 173
+*** SHOW DOWN ***
+Opp028 shows [4c Ac] (Two pairs : Aces and Kings)
+Opp082 shows [Jh 6c] (Two pairs : Kings and Jacks)
+Opp049 shows [7s Ks] (Trips of Kings)
+Opp049 collected 691 from pot
+*** SUMMARY ***
+Total pot 691 | No rake
+Board: [Tc Ah Js Kh Kd]
+Seat 1: Opp028 showed [4c Ac] and lost with Two pairs : Aces and Kings
+Seat 5: Opp082 (small blind) showed [Jh 6c] and lost with Two pairs : Kings and Jacks
+Seat 6: Opp049 (big blind) showed [7s Ks] and won 691 with Trips of Kings
+
+
+Winamax Poker - Tournament "Starting Block WiPT" buyIn: 0€ + 0€ level: 2 - HandId: #3780192921291063297-3-1735153126 - Holdem no limit (15/30) - 2024/12/25 18:58:46 UTC
+Table: 'Starting Block WiPT(880144751)#0' 6-max (real money) Seat #3 is the button
+Seat 1: Opp028 (1998)
+Seat 2: GTOverBet (1472)
+Seat 3: Opp151 (1470)
+Seat 4: Opp093 (1150)
+Seat 5: Opp082 (1500)
+Seat 6: Opp049 (1410)
+*** ANTE/BLINDS ***
+Opp093 posts small blind 15
+Opp082 posts big blind 30
+Dealt to GTOverBet [2d 6h]
+*** PRE-FLOP *** 
+Opp049 raises 1380 to 1410 and is all-in
+Opp028 folds
+GTOverBet folds
+Opp151 folds
+Opp093 folds
+Opp082 calls 1380
+*** FLOP *** [4s 8h 9d]
+*** TURN *** [4s 8h 9d][Tc]
+*** RIVER *** [4s 8h 9d Tc][Ks]
+*** SHOW DOWN ***
+Opp082 shows [Qc Ad] (High card : Ace)
+Opp049 shows [Td Ts] (Trips of Tens)
+Opp049 collected 2835 from pot
+*** SUMMARY ***
+Total pot 2835 | No rake
+Board: [4s 8h 9d Tc Ks]
+Seat 5: Opp082 (big blind) showed [Qc Ad] and lost with High card : Ace
+Seat 6: Opp049 showed [Td Ts] and won 2835 with Trips of Tens
+
+
+Winamax Poker - Tournament "Starting Block WiPT" buyIn: 0€ + 0€ level: 1 - HandId: #3780192921291063297-2-1735153071 - Holdem no limit (10/20) - 2024/12/25 18:57:51 UTC
+Table: 'Starting Block WiPT(880144751)#0' 6-max (real money) Seat #2 is the button
+Seat 1: Opp028 (1500)
+Seat 2: GTOverBet (1610)
+Seat 3: Opp151 (1480)
+Seat 4: Opp093 (1500)
+Seat 5: Opp082 (1500)
+Seat 6: Opp049 (1410)
+*** ANTE/BLINDS ***
+Opp151 posts small blind 10
+Opp093 posts big blind 20
+Dealt to GTOverBet [Qh 8s]
+*** PRE-FLOP *** 
+Opp082 folds
+Opp049 folds
+Opp028 calls 20
+GTOverBet raises 30 to 50
+Opp151 folds
+Opp093 raises 88 to 138
+Opp028 calls 118
+GTOverBet calls 88
+*** FLOP *** [Ts 2h 5h]
+Opp093 bets 212
+Opp028 calls 212
+GTOverBet folds
+*** TURN *** [Ts 2h 5h][8d]
+Opp093 checks
+Opp028 bets 551
+Opp093 folds
+Opp028 collected 1399 from pot
+*** SUMMARY ***
+Total pot 1399 | No rake
+Board: [Ts 2h 5h 8d]
+Seat 1: Opp028 won 1399
+
+
+Winamax Poker - Tournament "Starting Block WiPT" buyIn: 0€ + 0€ level: 1 - HandId: #3780192921291063297-1-1735153016 - Holdem no limit (10/20) - 2024/12/25 18:56:56 UTC
+Table: 'Starting Block WiPT(880144751)#0' 6-max (real money) Seat #1 is the button
+Seat 1: Opp028 (1500)
+Seat 2: GTOverBet (1500)
+Seat 3: Opp151 (1500)
+Seat 4: Opp093 (1500)
+Seat 5: Opp082 (1500)
+Seat 6: Opp049 (1500)
+*** ANTE/BLINDS ***
+GTOverBet posts small blind 10
+Opp151 posts big blind 20
+Dealt to GTOverBet [Kc Jd]
+*** PRE-FLOP *** 
+Opp093 folds
+Opp082 folds
+Opp049 calls 20
+Opp028 folds
+GTOverBet raises 30 to 50
+Opp151 folds
+Opp049 calls 30
+*** FLOP *** [2h Ah 3s]
+GTOverBet checks
+Opp049 checks
+*** TURN *** [2h Ah 3s][Kd]
+GTOverBet bets 40
+Opp049 calls 40
+*** RIVER *** [2h Ah 3s Kd][Tc]
+GTOverBet bets 130
+Opp049 folds
+GTOverBet collected 330 from pot
+*** SUMMARY ***
+Total pot 330 | No rake
+Board: [2h Ah 3s Kd Tc]
+Seat 2: GTOverBet (small blind) won 330
+
+

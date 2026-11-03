@@ -305,6 +305,8 @@ pub struct TournamentSummary {
     pub finish_position: Option<u32>,
     pub won_cents: i64,
     pub bounty_won_cents: i64,
+    /// Value of tickets won (satellites), in cents.
+    pub ticket_won_cents: i64,
     /// This entry busted during late registration (a re-entry may follow).
     pub late_registration: bool,
 }

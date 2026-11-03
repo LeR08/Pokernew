@@ -1,0 +1,87 @@
+Winamax Poker - Tournament "Kill The Fish" buyIn: 1.80€ + 0.20€ level: -1939724479 - HandId: #3908280184771444775-18-1743439748 - Holdem no limit (25/100/200) - 2025/03/31 16:49:08 UTC
+Table: 'Kill The Fish(909967391)#038' 6-max (real money) Seat #3 is the button
+Seat 1: Opp003 (20400, 0.90€ bounty)
+Seat 2: Opp048 (19399, 1.12€ bounty)
+Seat 3: Opp144 (16520, 0.90€ bounty)
+Seat 4: GTOverBet (19775, 0.90€ bounty)
+Seat 5: Opp109 (44156, 1.12€ bounty)
+Seat 6: Opp019 (20375, 0.90€ bounty)
+*** ANTE/BLINDS ***
+GTOverBet posts ante 25
+Opp109 posts ante 25
+Opp003 posts ante 25
+Opp048 posts ante 25
+Opp144 posts ante 25
+Opp019 posts ante 25
+GTOverBet posts small blind 100
+Opp109 posts big blind 200
+Dealt to GTOverBet [Tc Th]
+*** PRE-FLOP *** 
+Opp019 folds
+Opp003 raises 200 to 400
+Opp048 folds
+Opp144 folds
+GTOverBet raises 800 to 1200
+Opp109 folds
+Opp003 calls 800
+*** FLOP *** [2d 9c 4d]
+GTOverBet bets 1788
+Opp003 calls 1788
+*** TURN *** [2d 9c 4d][9d]
+GTOverBet bets 4112
+Opp003 calls 4112
+*** RIVER *** [2d 9c 4d 9d][5h]
+GTOverBet bets 12650 and is all-in
+Opp003 calls 12650
+*** SHOW DOWN ***
+GTOverBet shows [Tc Th] (Two pairs : Tens and 9)
+Opp003 shows [Td 8d] (Flush Ten high)
+Opp003 collected 39850 from pot
+*** SUMMARY ***
+Total pot 39850 | No rake
+Board: [2d 9c 4d 9d 5h]
+Seat 1: Opp003 showed [Td 8d] and won 39850 with Flush Ten high
+Seat 4: GTOverBet (small blind) showed [Tc Th] and lost with Two pairs : Tens and 9
+
+
+Winamax Poker - Tournament "Kill The Fish" buyIn: 1.80€ + 0.20€ level: -1939724479 - HandId: #3908280184771444775-17-1743439631 - Holdem no limit (25/100/200) - 2025/03/31 16:47:11 UTC
+Table: 'Kill The Fish(909967391)#038' 6-max (real money) Seat #2 is the button
+Seat 1: Opp003 (20425, 0.90€ bounty)
+Seat 2: Opp048 (19824, 1.12€ bounty)
+Seat 3: Opp144 (17488, 0.90€ bounty)
+Seat 4: GTOverBet (20000, 0.90€ bounty)
+Seat 5: Opp109 (42488, 1.12€ bounty)
+Seat 6: Opp019 (20400, 0.90€ bounty)
+*** ANTE/BLINDS ***
+Opp144 posts ante 25
+GTOverBet posts ante 25
+Opp003 posts ante 25
+Opp048 posts ante 25
+Opp109 posts ante 25
+Opp019 posts ante 25
+Opp144 posts small blind 100
+GTOverBet posts big blind 200
+Dealt to GTOverBet [4d 5c]
+*** PRE-FLOP *** 
+Opp109 raises 200 to 400
+Opp019 folds
+Opp003 folds
+Opp048 calls 400
+Opp144 calls 300
+GTOverBet folds
+*** FLOP *** [Kh 9h Qs]
+Opp144 checks
+Opp109 bets 543
+Opp048 folds
+Opp144 calls 543
+*** TURN *** [Kh 9h Qs][4h]
+Opp144 checks
+Opp109 bets 1318
+Opp144 folds
+Opp109 collected 3954 from pot
+*** SUMMARY ***
+Total pot 3954 | No rake
+Board: [Kh 9h Qs 4h]
+Seat 5: Opp109 won 3954
+
+

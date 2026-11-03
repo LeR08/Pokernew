@@ -1,0 +1,31 @@
+Winamax Poker - Tournament "#2 - W SERIES - GIANT - SPACE KO - DAY 1" buyIn: 1.80€ + 0.20€ level: 12 - HandId: #3947934294965485640-230-1743956322 - Holdem no limit (160/700/1400) - 2025/04/06 16:18:42 UTC
+Table: '#2 - W SERIES - GIANT - SPACE KO - DAY 1(919200083)#0071' 6-max (real money) Seat #5 is the button
+Seat 1: Opp031 (71860, 3.70€ bounty)
+Seat 2: Opp044 (47926, 2€ bounty)
+Seat 3: GTOverBet (129886, 1.19€ bounty)
+Seat 4: Opp030 (85475, 1.70€ bounty)
+Seat 5: Opp010 (73775, 1.55€ bounty)
+Seat 6: Opp138 (262734, 6.50€ bounty)
+*** ANTE/BLINDS ***
+Opp138 posts ante 160
+Opp031 posts ante 160
+Opp044 posts ante 160
+GTOverBet posts ante 160
+Opp030 posts ante 160
+Opp010 posts ante 160
+Opp138 posts small blind 700
+Opp031 posts big blind 1400
+Dealt to GTOverBet [2d 3s]
+*** PRE-FLOP *** 
+Opp044 folds
+GTOverBet folds
+Opp030 folds
+Opp010 folds
+Opp138 folds
+Opp031 shows [As Ac] (One pair : Aces)
+Opp031 collected 3060 from pot
+*** SUMMARY ***
+Total pot 3060 | No rake
+Seat 1: Opp031 (big blind) showed [As Ac] and won 3060 with One pair : Aces
+
+

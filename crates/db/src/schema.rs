@@ -177,6 +177,10 @@ UPDATE import_files SET offset = 0, size = -1, errors = 0
     WHERE id IN (SELECT DISTINCT file_id FROM import_errors);
 DELETE FROM import_errors;
 "#,
+    // v3 — satellites: value of tickets won.
+    r#"
+ALTER TABLE tournaments ADD COLUMN ticket_won_cents INTEGER NOT NULL DEFAULT 0;
+"#,
 ];
 
 /// Connection pragmas: WAL so the UI can read while the importer writes.

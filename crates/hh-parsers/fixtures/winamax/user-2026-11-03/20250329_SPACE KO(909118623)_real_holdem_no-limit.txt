@@ -1,0 +1,421 @@
+Winamax Poker - Tournament "SPACE KO" buyIn: 0.90€ + 0.10€ level: -1939724479 - HandId: #3904634753969553442-27-1743238123 - Holdem no limit (25/100/200) - 2025/03/29 08:48:43 UTC
+Table: 'SPACE KO(909118623)#0033' 6-max (real money) Seat #4 is the button
+Seat 1: Opp016 (22405, 1€ bounty)
+Seat 2: Opp089 (20812, 0.50€ bounty)
+Seat 3: Opp077 (74009, 1€ bounty)
+Seat 4: Opp011 (26349, 0.50€ bounty)
+Seat 5: Opp007 (19345, 0.50€ bounty)
+Seat 6: GTOverBet (19925, 0.50€ bounty)
+*** ANTE/BLINDS ***
+Opp007 posts ante 25
+GTOverBet posts ante 25
+Opp016 posts ante 25
+Opp089 posts ante 25
+Opp077 posts ante 25
+Opp011 posts ante 25
+Opp007 posts small blind 100
+GTOverBet posts big blind 200
+Dealt to GTOverBet [8s 8c]
+*** PRE-FLOP *** 
+Opp016 folds
+Opp089 calls 200
+Opp077 raises 800 to 1000
+Opp011 folds
+Opp007 folds
+GTOverBet calls 800
+Opp089 calls 800
+*** FLOP *** [5s Ts 6s]
+GTOverBet bets 1625
+Opp089 calls 1625
+Opp077 raises 71359 to 72984 and is all-in
+GTOverBet calls 17275 and is all-in
+Opp089 folds
+*** TURN *** [5s Ts 6s][2d]
+*** RIVER *** [5s Ts 6s 2d][6d]
+*** SHOW DOWN ***
+GTOverBet shows [8s 8c] (Two pairs : 8 and 6)
+Opp077 shows [Ad Tc] (Two pairs : Tens and 6)
+Opp077 collected 96759 from pot
+*** SUMMARY ***
+Total pot 96759 | No rake
+Board: [5s Ts 6s 2d 6d]
+Seat 3: Opp077 showed [Ad Tc] and won 96759 with Two pairs : Tens and 6
+Seat 6: GTOverBet (big blind) showed [8s 8c] and lost with Two pairs : 8 and 6
+
+
+Winamax Poker - Tournament "SPACE KO" buyIn: 0.90€ + 0.10€ level: -1939724479 - HandId: #3904634753969553442-26-1743238085 - Holdem no limit (25/100/200) - 2025/03/29 08:48:05 UTC
+Table: 'SPACE KO(909118623)#0033' 6-max (real money) Seat #3 is the button
+Seat 1: Opp016 (20780, 1€ bounty)
+Seat 2: Opp089 (21337, 0.50€ bounty)
+Seat 3: Opp077 (74034, 1€ bounty)
+Seat 4: Opp011 (26874, 0.50€ bounty)
+Seat 5: Opp007 (19870, 0.50€ bounty)
+Seat 6: GTOverBet (19950, 0.50€ bounty)
+*** ANTE/BLINDS ***
+Opp011 posts ante 25
+Opp007 posts ante 25
+Opp016 posts ante 25
+Opp089 posts ante 25
+Opp077 posts ante 25
+GTOverBet posts ante 25
+Opp011 posts small blind 100
+Opp007 posts big blind 200
+Dealt to GTOverBet [Js 5c]
+*** PRE-FLOP *** 
+GTOverBet folds
+Opp016 raises 300 to 500
+Opp089 calls 500
+Opp077 folds
+Opp011 calls 400
+Opp007 calls 300
+*** FLOP *** [3d Jc 6h]
+Opp011 checks
+Opp007 checks
+Opp016 bets 1075
+Opp089 folds
+Opp011 folds
+Opp007 folds
+Opp016 collected 3225 from pot
+*** SUMMARY ***
+Total pot 3225 | No rake
+Board: [3d Jc 6h]
+Seat 1: Opp016 won 3225
+
+
+Winamax Poker - Tournament "SPACE KO" buyIn: 0.90€ + 0.10€ level: -1939724479 - HandId: #3904634753969553442-25-1743238056 - Holdem no limit (25/100/200) - 2025/03/29 08:47:36 UTC
+Table: 'SPACE KO(909118623)#0033' 6-max (real money) Seat #2 is the button
+Seat 1: Opp016 (20805, 1€ bounty)
+Seat 2: Opp089 (20912, 0.50€ bounty)
+Seat 3: Opp077 (74159, 1€ bounty)
+Seat 4: Opp011 (27099, 0.50€ bounty)
+Seat 5: Opp007 (19895, 0.50€ bounty)
+Seat 6: GTOverBet (19975, 0.50€ bounty)
+*** ANTE/BLINDS ***
+Opp077 posts ante 25
+Opp011 posts ante 25
+Opp016 posts ante 25
+Opp089 posts ante 25
+Opp007 posts ante 25
+GTOverBet posts ante 25
+Opp077 posts small blind 100
+Opp011 posts big blind 200
+Dealt to GTOverBet [Jh 4s]
+*** PRE-FLOP *** 
+Opp007 folds
+GTOverBet folds
+Opp016 folds
+Opp089 calls 200
+Opp077 folds
+Opp011 checks
+*** FLOP *** [7h 9s 5s]
+Opp011 checks
+Opp089 bets 650
+Opp011 folds
+Opp089 collected 1300 from pot
+*** SUMMARY ***
+Total pot 1300 | No rake
+Board: [7h 9s 5s]
+Seat 2: Opp089 (button) won 1300
+
+
+Winamax Poker - Tournament "SPACE KO" buyIn: 0.90€ + 0.10€ level: -1939724479 - HandId: #3904634753969553442-24-1743237995 - Holdem no limit (25/100/200) - 2025/03/29 08:46:35 UTC
+Table: 'SPACE KO(909118623)#0033' 6-max (real money) Seat #1 is the button
+Seat 1: Opp016 (19700, 1€ bounty)
+Seat 2: Opp089 (21037, 0.50€ bounty)
+Seat 3: Opp077 (74624, 1€ bounty)
+Seat 4: Opp011 (27124, 0.50€ bounty)
+Seat 5: Opp007 (19920, 0.50€ bounty)
+Seat 6: GTOverBet (20440, 0.50€ bounty)
+*** ANTE/BLINDS ***
+Opp089 posts ante 25
+Opp077 posts ante 25
+Opp016 posts ante 25
+Opp011 posts ante 25
+Opp007 posts ante 25
+GTOverBet posts ante 25
+Opp089 posts small blind 100
+Opp077 posts big blind 200
+Dealt to GTOverBet [3c Ah]
+*** PRE-FLOP *** 
+Opp011 folds
+Opp007 folds
+GTOverBet raises 240 to 440
+Opp016 calls 440
+Opp089 folds
+Opp077 calls 240
+*** FLOP *** [7d 2h Qs]
+Opp077 checks
+GTOverBet checks
+Opp016 bets 1025
+Opp077 folds
+GTOverBet folds
+Opp016 collected 2595 from pot
+*** SUMMARY ***
+Total pot 2595 | No rake
+Board: [7d 2h Qs]
+Seat 1: Opp016 (button) won 2595
+
+
+Winamax Poker - Tournament "SPACE KO" buyIn: 0.90€ + 0.10€ level: -1939724479 - HandId: #3904634753969553442-23-1743237934 - Holdem no limit (25/100/200) - 2025/03/29 08:45:34 UTC
+Table: 'SPACE KO(909118623)#0033' 6-max (real money) Seat #6 is the button
+Seat 1: Opp016 (19175, 1€ bounty)
+Seat 2: Opp089 (21262, 0.50€ bounty)
+Seat 3: Opp077 (74649, 1€ bounty)
+Seat 4: Opp011 (27349, 0.50€ bounty)
+Seat 5: Opp007 (19945, 0.50€ bounty)
+Seat 6: GTOverBet (20465, 0.50€ bounty)
+*** ANTE/BLINDS ***
+Opp016 posts ante 25
+Opp089 posts ante 25
+Opp077 posts ante 25
+Opp011 posts ante 25
+Opp007 posts ante 25
+GTOverBet posts ante 25
+Opp016 posts small blind 100
+Opp089 posts big blind 200
+Dealt to GTOverBet [2c 6h]
+*** PRE-FLOP *** 
+Opp077 folds
+Opp011 calls 200
+Opp007 folds
+GTOverBet folds
+Opp016 calls 100
+Opp089 checks
+*** FLOP *** [3c Jd Kc]
+Opp016 checks
+Opp089 checks
+Opp011 checks
+*** TURN *** [3c Jd Kc][6c]
+Opp016 checks
+Opp089 checks
+Opp011 checks
+*** RIVER *** [3c Jd Kc 6c][7s]
+Opp016 bets 750
+Opp089 folds
+Opp011 folds
+Opp016 collected 1500 from pot
+*** SUMMARY ***
+Total pot 1500 | No rake
+Board: [3c Jd Kc 6c 7s]
+Seat 1: Opp016 (small blind) won 1500
+
+
+Winamax Poker - Tournament "SPACE KO" buyIn: 0.90€ + 0.10€ level: -1939724479 - HandId: #3904634753969553442-22-1743237882 - Holdem no limit (25/100/200) - 2025/03/29 08:44:42 UTC
+Table: 'SPACE KO(909118623)#0033' 6-max (real money) Seat #5 is the button
+Seat 1: Opp016 (19400, 1€ bounty)
+Seat 2: Opp089 (21727, 0.50€ bounty)
+Seat 3: Opp077 (74674, 1€ bounty)
+Seat 4: Opp011 (27814, 0.50€ bounty)
+Seat 5: Opp007 (19970, 0.50€ bounty)
+Seat 6: GTOverBet (19260, 0.50€ bounty)
+*** ANTE/BLINDS ***
+GTOverBet posts ante 25
+Opp016 posts ante 25
+Opp089 posts ante 25
+Opp077 posts ante 25
+Opp011 posts ante 25
+Opp007 posts ante 25
+GTOverBet posts small blind 100
+Opp016 posts big blind 200
+Dealt to GTOverBet [Td Kc]
+*** PRE-FLOP *** 
+Opp089 calls 200
+Opp077 folds
+Opp011 calls 200
+Opp007 folds
+GTOverBet raises 240 to 440
+Opp016 folds
+Opp089 calls 240
+Opp011 calls 240
+*** FLOP *** [6d Kh Js]
+GTOverBet checks
+Opp089 checks
+Opp011 checks
+*** TURN *** [6d Kh Js][Jc]
+GTOverBet bets 1086
+Opp089 folds
+Opp011 folds
+GTOverBet collected 2756 from pot
+*** SUMMARY ***
+Total pot 2756 | No rake
+Board: [6d Kh Js Jc]
+Seat 6: GTOverBet (small blind) won 2756
+
+
+Winamax Poker - Tournament "SPACE KO" buyIn: 0.90€ + 0.10€ level: -1939724479 - HandId: #3904634753969553442-21-1743237838 - Holdem no limit (25/100/200) - 2025/03/29 08:43:58 UTC
+Table: 'SPACE KO(909118623)#0033' 6-max (real money) Seat #4 is the button
+Seat 1: Opp016 (19425, 1€ bounty)
+Seat 2: Opp089 (21752, 0.50€ bounty)
+Seat 3: Opp077 (74699, 1€ bounty)
+Seat 4: Opp011 (27839, 0.50€ bounty)
+Seat 5: Opp007 (19645, 0.50€ bounty)
+Seat 6: GTOverBet (19485, 0.50€ bounty)
+*** ANTE/BLINDS ***
+Opp007 posts ante 25
+GTOverBet posts ante 25
+Opp016 posts ante 25
+Opp089 posts ante 25
+Opp077 posts ante 25
+Opp011 posts ante 25
+Opp007 posts small blind 100
+GTOverBet posts big blind 200
+Dealt to GTOverBet [Td 7c]
+*** PRE-FLOP *** 
+Opp016 folds
+Opp089 folds
+Opp077 folds
+Opp011 folds
+Opp007 calls 100
+GTOverBet checks
+*** FLOP *** [6c 8s 6s]
+Opp007 checks
+GTOverBet checks
+*** TURN *** [6c 8s 6s][3d]
+Opp007 bets 440
+GTOverBet folds
+Opp007 collected 990 from pot
+*** SUMMARY ***
+Total pot 990 | No rake
+Board: [6c 8s 6s 3d]
+Seat 5: Opp007 (small blind) won 990
+
+
+Winamax Poker - Tournament "SPACE KO" buyIn: 0.90€ + 0.10€ level: -1939724479 - HandId: #3904634753969553442-20-1743237746 - Holdem no limit (25/100/200) - 2025/03/29 08:42:26 UTC
+Table: 'SPACE KO(909118623)#0033' 6-max (real money) Seat #3 is the button
+Seat 1: Opp016 (19450, 1€ bounty)
+Seat 2: Opp089 (18725, 0.50€ bounty)
+Seat 3: Opp077 (77326, 1€ bounty)
+Seat 4: Opp011 (27964, 0.50€ bounty)
+Seat 5: Opp007 (19870, 0.50€ bounty)
+Seat 6: GTOverBet (19510, 0.50€ bounty)
+*** ANTE/BLINDS ***
+Opp011 posts ante 25
+Opp007 posts ante 25
+Opp016 posts ante 25
+Opp089 posts ante 25
+Opp077 posts ante 25
+GTOverBet posts ante 25
+Opp011 posts small blind 100
+Opp007 posts big blind 200
+Dealt to GTOverBet [3h 2s]
+*** PRE-FLOP *** 
+GTOverBet folds
+Opp016 folds
+Opp089 calls 200
+Opp077 calls 200
+Opp011 folds
+Opp007 checks
+*** FLOP *** [4d Ts 5h]
+Opp007 checks
+Opp089 bets 553
+Opp077 calls 553
+Opp007 folds
+*** TURN *** [4d Ts 5h][Qh]
+Opp089 bets 685
+Opp077 calls 685
+*** RIVER *** [4d Ts 5h Qh][9s]
+Opp089 bets 1164
+Opp077 calls 1164
+*** SHOW DOWN ***
+Opp077 shows [Ah 5s] (One pair : 5)
+Opp089 shows [Tc 8d] (One pair : Tens)
+Opp089 collected 5654 from pot
+*** SUMMARY ***
+Total pot 5654 | No rake
+Board: [4d Ts 5h Qh 9s]
+Seat 2: Opp089 showed [Tc 8d] and won 5654 with One pair : Tens
+Seat 3: Opp077 (button) showed [Ah 5s] and lost with One pair : 5
+
+
+Winamax Poker - Tournament "SPACE KO" buyIn: 0.90€ + 0.10€ level: -1939724479 - HandId: #3904634753969553442-19-1743237687 - Holdem no limit (25/100/200) - 2025/03/29 08:41:27 UTC
+Table: 'SPACE KO(909118623)#0033' 6-max (real money) Seat #2 is the button
+Seat 1: Opp016 (19475, 1€ bounty)
+Seat 2: Opp089 (18750, 0.50€ bounty)
+Seat 3: Opp077 (76561, 1€ bounty)
+Seat 4: Opp011 (28189, 0.50€ bounty)
+Seat 5: Opp007 (19895, 0.50€ bounty)
+Seat 6: GTOverBet (19975, 0.50€ bounty)
+*** ANTE/BLINDS ***
+Opp077 posts ante 25
+Opp011 posts ante 25
+Opp016 posts ante 25
+Opp089 posts ante 25
+Opp007 posts ante 25
+GTOverBet posts ante 25
+Opp077 posts small blind 100
+Opp011 posts big blind 200
+Dealt to GTOverBet [Qc Jc]
+*** PRE-FLOP *** 
+Opp007 folds
+GTOverBet raises 240 to 440
+Opp016 folds
+Opp089 folds
+Opp077 calls 340
+Opp011 folds
+*** FLOP *** [8h Ad 2h]
+Opp077 checks
+GTOverBet checks
+*** TURN *** [8h Ad 2h][7c]
+Opp077 checks
+GTOverBet checks
+*** RIVER *** [8h Ad 2h 7c][2s]
+Opp077 bets 1230
+GTOverBet folds
+Opp077 collected 2460 from pot
+*** SUMMARY ***
+Total pot 2460 | No rake
+Board: [8h Ad 2h 7c 2s]
+Seat 3: Opp077 (small blind) won 2460
+
+
+Winamax Poker - Tournament "SPACE KO" buyIn: 0.90€ + 0.10€ level: -1939724479 - HandId: #3904634753969553442-18-1743237628 - Holdem no limit (25/100/200) - 2025/03/29 08:40:28 UTC
+Table: 'SPACE KO(909118623)#0033' 6-max (real money) Seat #1 is the button
+Seat 1: Opp016 (26739, 1€ bounty)
+Seat 2: Opp089 (18875, 0.50€ bounty)
+Seat 3: Opp077 (76786, 1€ bounty)
+Seat 4: Opp011 (19925, 0.50€ bounty)
+Seat 5: Opp007 (20520, 0.50€ bounty)
+Seat 6: GTOverBet (20000, 0.50€ bounty)
+*** ANTE/BLINDS ***
+Opp089 posts ante 25
+Opp077 posts ante 25
+Opp016 posts ante 25
+Opp011 posts ante 25
+Opp007 posts ante 25
+GTOverBet posts ante 25
+Opp089 posts small blind 100
+Opp077 posts big blind 200
+Dealt to GTOverBet [5d Qc]
+*** PRE-FLOP *** 
+Opp011 calls 200
+Opp007 calls 200
+GTOverBet folds
+Opp016 raises 400 to 600
+Opp089 folds
+Opp077 folds
+Opp011 calls 400
+Opp007 calls 400
+*** FLOP *** [4d 3d 7h]
+Opp011 checks
+Opp007 checks
+Opp016 bets 1463
+Opp011 calls 1463
+Opp007 folds
+*** TURN *** [4d 3d 7h][5c]
+Opp011 checks
+Opp016 checks
+*** RIVER *** [4d 3d 7h 5c][As]
+Opp011 checks
+Opp016 bets 5176
+Opp011 calls 5176
+*** SHOW DOWN ***
+Opp016 shows [Jh Kc] (High card : Ace)
+Opp011 shows [Td 2d] (Straight 5 high)
+Opp011 collected 15528 from pot
+*** SUMMARY ***
+Total pot 15528 | No rake
+Board: [4d 3d 7h 5c As]
+Seat 1: Opp016 (button) showed [Jh Kc] and lost with High card : Ace
+Seat 4: Opp011 showed [Td 2d] and won 15528 with Straight 5 high
+
+

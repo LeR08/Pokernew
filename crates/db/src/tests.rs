@@ -25,10 +25,14 @@ fn imports_all_fixtures_without_errors_and_no_duplicates_on_reimport() {
     let tmp = tempfile::tempdir().unwrap();
     let mut imp = importer(&tmp.path().join("db.sqlite"));
     let r = imp.import_path(&fixtures()).unwrap();
-    assert_eq!((r.hands_inserted, r.errors, r.summaries), (288, 0, 3), "{r:?}");
+    assert_eq!((r.hands_inserted, r.errors, r.summaries), (496, 0, 4), "{r:?}");
     let s = stats(imp.conn()).unwrap();
-    assert_eq!((s.hands, s.hero_hands, s.tournaments), (288, 288, 4));
+    assert_eq!((s.hands, s.hero_hands), (496, 496));
 
+    // Cash hands are stored in cents, Expresso as spin.
+    assert_eq!(count(imp.conn(), "SELECT COUNT(*) FROM hands WHERE game_type = 'cash' AND unit = 'cents'"), 22);
+    assert_eq!(count(imp.conn(), "SELECT COUNT(*) FROM tournaments WHERE game_type = 'spin'"), 2);
+    assert_eq!(count(imp.conn(), "SELECT ticket_won_cents FROM tournaments WHERE room_tournament_id = '910389948'"), 2000);
     // Same folder again: files unchanged -> nothing read.
     let r2 = imp.import_path(&fixtures()).unwrap();
     assert_eq!((r2.hands_parsed, r2.hands_inserted), (0, 0));
@@ -39,7 +43,7 @@ fn imports_all_fixtures_without_errors_and_no_duplicates_on_reimport() {
     std::fs::copy(fixtures().join(TRIDENT), copy.join("x.txt")).unwrap();
     let r3 = imp.import_path(&copy).unwrap();
     assert_eq!((r3.hands_inserted, r3.duplicates), (0, 24));
-    assert_eq!(count(imp.conn(), "SELECT COUNT(*) FROM hands"), 288);
+    assert_eq!(count(imp.conn(), "SELECT COUNT(*) FROM hands"), 496);
 }
 
 #[test]
@@ -106,14 +110,22 @@ fn stored_hands_reload_identically() {
 fn net_won_sums_to_zero_and_matches_stack_changes() {
     let mut imp = Importer::new(open_in_memory().unwrap(), 1).unwrap();
     imp.import_path(&fixtures()).unwrap();
-    // No rake in tournaments: every hand is zero-sum.
-    assert_eq!(count(imp.conn(), "SELECT COUNT(*) FROM (SELECT hand_id FROM hand_players GROUP BY hand_id HAVING SUM(net_won) <> 0)"), 0);
+    // Every hand is zero-sum once the rake is counted (no rake in tournaments).
+    assert_eq!(
+        count(
+            imp.conn(),
+            "SELECT COUNT(*) FROM (SELECT hp.hand_id FROM hand_players hp JOIN hands h ON h.id = hp.hand_id
+             GROUP BY hp.hand_id HAVING SUM(hp.net_won) + MAX(h.rake) <> 0)"
+        ),
+        0
+    );
+    assert!(count(imp.conn(), "SELECT SUM(rake) FROM hands") > 0);
     // Hero stack continuity inside the 3-max table: stack(n) + net(n) = stack(n+1).
     let mut st = imp
         .conn()
         .prepare(
             "SELECT hp.stack, hp.net_won FROM hand_players hp JOIN hands h ON h.id = hp.hand_id
-             WHERE hp.is_hero = 1 AND h.table_name LIKE 'TRIDENT%' ORDER BY h.played_at",
+             WHERE hp.is_hero = 1 AND h.table_name LIKE 'TRIDENT SPACE KO(1195602081)%' ORDER BY h.played_at",
         )
         .unwrap();
     let rows: Vec<(i64, i64)> = st.query_map([], |r| Ok((r.get(0)?, r.get(1)?))).unwrap().map(Result::unwrap).collect();
@@ -198,7 +210,7 @@ fn recompute_gives_identical_counters() {
         let before = snap(imp.conn());
         let mut c2 = std::mem::replace(&mut imp, Importer::new(open_in_memory().unwrap(), 1).unwrap()).into_conn();
         c2.execute("UPDATE hand_player_stats SET cnt_vpip = 0, cnt_wtsd = 0", []).unwrap();
-        assert_eq!(recompute_counters(&mut c2).unwrap(), 288);
+        assert_eq!(recompute_counters(&mut c2).unwrap(), 496);
         assert_eq!(snap(&c2), before);
     }
     drop(conn);
@@ -273,7 +285,7 @@ fn bench_100k_hands() {
     let mut sources = Vec::new();
     for f in std::fs::read_dir(fixtures()).unwrap().flatten() {
         let name = f.file_name().to_string_lossy().into_owned();
-        if !name.ends_with("summary.txt") {
+        if f.path().is_file() && !name.ends_with("summary.txt") {
             sources.push(std::fs::read_to_string(f.path()).unwrap());
         }
     }
@@ -339,4 +351,24 @@ fn non_utf8_file_is_not_reimported_at_every_scan() {
     std::fs::write(&file, &more).unwrap();
     let r3 = imp.import_file(&file).unwrap();
     assert_eq!((r3.hands_parsed, r3.hands_inserted, r3.errors), (1, 1, 0));
+}
+
+#[test]
+fn files_with_errors_are_retried_when_parsers_change() {
+    let tmp = tempfile::tempdir().unwrap();
+    let db = tmp.path().join("db.sqlite");
+    let file = tmp.path().join("bad.txt");
+    let good = std::fs::read_to_string(fixtures().join(TRIDENT)).unwrap();
+    std::fs::write(&file, good.replacen("Tantaculejen folds", "Tantaculejen dances", 1)).unwrap();
+    {
+        let mut imp = importer(&db);
+        assert_eq!(imp.import_file(&file).unwrap().errors, 1);
+    }
+    // Simulate an older parser version, and a file the new parser understands.
+    open(&db).unwrap().execute("UPDATE meta SET value = '1' WHERE key = 'parser_version'", []).unwrap();
+    std::fs::write(&file, &good).unwrap();
+    let mut imp = importer(&db);
+    assert_eq!(count(imp.conn(), "SELECT COUNT(*) FROM import_errors"), 0);
+    let r = imp.import_file(&file).unwrap();
+    assert_eq!((r.hands_inserted, r.duplicates, r.errors), (1, 23, 0));
 }

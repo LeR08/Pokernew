@@ -141,16 +141,17 @@ mod tests {
 
         let deadline = Instant::now() + Duration::from_secs(30);
         let mut inserted = 0;
-        while inserted < 288 && Instant::now() < deadline {
+        while inserted < 496 && Instant::now() < deadline {
             if let Ok(AppEvent::HandsImported(ev)) = rx.try_recv() {
                 inserted += ev.report.hands_inserted;
             } else {
                 std::thread::sleep(Duration::from_millis(50));
             }
         }
-        assert_eq!(inserted, 288);
+        assert_eq!(inserted, 496);
         let stats = svc.with_reader(lps_db::stats).unwrap();
-        assert_eq!((stats.hands, stats.tournaments, stats.errors), (288, 4, 0));
+        assert_eq!((stats.hands, stats.errors), (496, 0));
+        assert!(stats.tournaments > 4);
         assert_eq!(svc.status().folders.len(), 1);
         assert!(tmp.path().join("data/database.sqlite").is_file());
     }

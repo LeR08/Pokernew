@@ -1,0 +1,41 @@
+Winamax Poker - Tournament "QUARK" buyIn: 1.80€ + 0.20€ level: 1 - HandId: #3915120783478751315-11-1743691225 - Holdem no limit (25/100/200) - 2025/04/03 14:40:25 UTC
+Table: 'QUARK(911560092)#0082' 6-max (real money) Seat #4 is the button
+Seat 1: Opp005 (17645, 1.20€ bounty)
+Seat 2: Opp081 (19475, 1€ bounty)
+Seat 3: Opp125 (18190, 1€ bounty)
+Seat 4: GTOverBet (37897, 1€ bounty)
+Seat 5: Opp078 (26304, 1€ bounty)
+Seat 6: Opp095 (19328, 1€ bounty)
+*** ANTE/BLINDS ***
+Opp078 posts ante 25
+Opp095 posts ante 25
+Opp005 posts ante 25
+Opp081 posts ante 25
+Opp125 posts ante 25
+GTOverBet posts ante 25
+Opp078 posts small blind 100
+Opp095 posts big blind 200
+Dealt to GTOverBet [2c As]
+*** PRE-FLOP *** 
+Opp005 raises 400 to 600
+Opp081 folds
+Opp125 folds
+GTOverBet folds
+Opp078 folds
+Opp095 calls 400
+*** FLOP *** [4c Ah 8c]
+Opp095 checks
+Opp005 bets 1160
+Opp095 calls 1160
+*** TURN *** [4c Ah 8c][9c]
+Opp095 checks
+Opp005 bets 15860 and is all-in
+Opp095 folds
+Opp005 shows [Qd 8h] (One pair : 8)
+Opp005 collected 19630 from pot
+*** SUMMARY ***
+Total pot 19630 | No rake
+Board: [4c Ah 8c 9c]
+Seat 1: Opp005 showed [Qd 8h] and won 19630 with One pair : 8
+
+

@@ -1,0 +1,374 @@
+Winamax Poker - CashGame - HandId: #20478190-444-1735914773 - Holdem no limit (0.01€/0.02€) - 2025/01/03 14:32:53 UTC
+Table: 'Aalen 17' 5-max (real money) Seat #1 is the button
+Seat 1: Opp022 (8.10€)
+Seat 2: Opp043 (1.91€)
+Seat 3: GTOverBet (2.07€)
+Seat 4: Opp154 (2.90€)
+Seat 5: Opp025 (2.04€)
+*** ANTE/BLINDS ***
+Opp043 posts small blind 0.01€
+GTOverBet posts big blind 0.02€
+Dealt to GTOverBet [Ts Kh]
+*** PRE-FLOP *** 
+Opp154 folds
+Opp025 folds
+Opp022 calls 0.02€
+Opp043 calls 0.01€
+GTOverBet checks
+*** FLOP *** [Qh 9h Kd]
+Opp043 checks
+GTOverBet bets 0.04€
+Opp022 calls 0.04€
+Opp043 calls 0.04€
+*** TURN *** [Qh 9h Kd][3s]
+Opp043 checks
+GTOverBet checks
+Opp022 checks
+*** RIVER *** [Qh 9h Kd 3s][6h]
+Opp043 bets 0.12€
+GTOverBet folds
+Opp022 calls 0.12€
+*** SHOW DOWN ***
+Opp022 shows [5d Ks] (One pair : Kings)
+Opp043 shows [4h 3h] (Flush Queen high)
+Opp043 collected 0.40€ from pot
+*** SUMMARY ***
+Total pot 0.40€ | Rake 0.02€
+Board: [Qh 9h Kd 3s 6h]
+Seat 1: Opp022 (button) showed [5d Ks] and lost with One pair : Kings
+Seat 2: Opp043 (small blind) showed [4h 3h] and won 0.40€ with Flush Queen high
+
+
+Winamax Poker - CashGame - HandId: #20478190-443-1735914745 - Holdem no limit (0.01€/0.02€) - 2025/01/03 14:32:25 UTC
+Table: 'Aalen 17' 5-max (real money) Seat #5 is the button
+Seat 1: Opp022 (8.16€)
+Seat 2: Opp043 (1.93€)
+Seat 3: GTOverBet (2€)
+Seat 4: Opp154 (2.90€)
+Seat 5: Opp025 (2.04€)
+*** ANTE/BLINDS ***
+Opp022 posts small blind 0.01€
+Opp043 posts big blind 0.02€
+Dealt to GTOverBet [7h As]
+*** PRE-FLOP *** 
+GTOverBet raises 0.04€ to 0.06€
+Opp154 folds
+Opp025 folds
+Opp022 calls 0.05€
+Opp043 folds
+*** FLOP *** [7c 8s 8d]
+Opp022 checks
+GTOverBet bets 0.09€
+Opp022 folds
+GTOverBet collected 0.22€ from pot
+*** SUMMARY ***
+Total pot 0.22€ | Rake 0.01€
+Board: [7c 8s 8d]
+Seat 3: GTOverBet won 0.22€
+
+
+Winamax Poker - CashGame - HandId: #20478190-442-1735914694 - Holdem no limit (0.01€/0.02€) - 2025/01/03 14:31:34 UTC
+Table: 'Aalen 17' 5-max (real money) Seat #4 is the button
+Seat 1: Opp022 (8.18€)
+Seat 2: Opp043 (1.95€)
+Seat 3: GTOverBet (2€)
+Seat 4: Opp154 (2.90€)
+Seat 5: Opp025 (2€)
+*** ANTE/BLINDS ***
+Opp025 posts small blind 0.01€
+Opp022 posts big blind 0.02€
+Dealt to GTOverBet [8c 2s]
+*** PRE-FLOP *** 
+Opp043 calls 0.02€
+GTOverBet folds
+Opp154 folds
+Opp025 calls 0.01€
+Opp022 checks
+*** FLOP *** [2h Th 8h]
+Opp025 checks
+Opp022 checks
+Opp043 checks
+*** TURN *** [2h Th 8h][5s]
+Opp025 checks
+Opp022 checks
+Opp043 checks
+*** RIVER *** [2h Th 8h 5s][2c]
+Opp025 checks
+Opp022 checks
+Opp043 checks
+*** SHOW DOWN ***
+Opp022 shows [3d Qc] (One pair : 2)
+Opp043 shows [7d Kd] (One pair : 2)
+Opp025 shows [6c 8d] (Two pairs : 8 and 2)
+Opp025 collected 0.06€ from pot
+*** SUMMARY ***
+Total pot 0.06€ | No rake
+Board: [2h Th 8h 5s 2c]
+Seat 1: Opp022 (big blind) showed [3d Qc] and lost with One pair : 2
+Seat 2: Opp043 showed [7d Kd] and lost with One pair : 2
+Seat 5: Opp025 (small blind) showed [6c 8d] and won 0.06€ with Two pairs : 8 and 2
+
+
+Winamax Poker - CashGame - HandId: #20478190-441-1735914623 - Holdem no limit (0.01€/0.02€) - 2025/01/03 14:30:23 UTC
+Table: 'Aalen 17' 5-max (real money) Seat #3 is the button
+Seat 1: Opp022 (8.18€)
+Seat 2: Opp043 (2€)
+Seat 3: GTOverBet (2€)
+Seat 4: Opp154 (2.12€)
+Seat 5: Opp025 (2.06€)
+*** ANTE/BLINDS ***
+Opp154 posts small blind 0.01€
+Opp025 posts big blind 0.02€
+Dealt to GTOverBet [3s Qd]
+*** PRE-FLOP *** 
+Opp022 folds
+Opp043 raises 0.03€ to 0.05€
+GTOverBet folds
+Opp154 calls 0.04€
+Opp025 raises 0.15€ to 0.20€
+Opp043 folds
+Opp154 calls 0.15€
+*** FLOP *** [8s 7c Th]
+Opp154 checks
+Opp025 checks
+*** TURN *** [8s 7c Th][8h]
+Opp154 bets 0.23€
+Opp025 calls 0.23€
+*** RIVER *** [8s 7c Th 8h][4d]
+Opp154 bets 0.40€
+Opp025 calls 0.40€
+*** SHOW DOWN ***
+Opp025 shows [Ks As] (One pair : 8)
+Opp154 shows [5c 5d] (Two pairs : 8 and 5)
+Opp154 collected 1.61€ from pot
+*** SUMMARY ***
+Total pot 1.61€ | Rake 0.10€
+Board: [8s 7c Th 8h 4d]
+Seat 4: Opp154 (small blind) showed [5c 5d] and won 1.61€ with Two pairs : 8 and 5
+Seat 5: Opp025 (big blind) showed [Ks As] and lost with One pair : 8
+
+
+Winamax Poker - CashGame - HandId: #20478190-440-1735914572 - Holdem no limit (0.01€/0.02€) - 2025/01/03 14:29:32 UTC
+Table: 'Aalen 17' 5-max (real money) Seat #2 is the button
+Seat 1: Opp022 (8.18€)
+Seat 2: Opp043 (2€)
+Seat 3: GTOverBet (2.01€)
+Seat 4: Opp154 (2.18€)
+Seat 5: Opp025 (2€)
+*** ANTE/BLINDS ***
+GTOverBet posts small blind 0.01€
+Opp154 posts big blind 0.02€
+Dealt to GTOverBet [Td 8s]
+*** PRE-FLOP *** 
+Opp025 raises 0.04€ to 0.06€
+Opp022 folds
+Opp043 folds
+GTOverBet folds
+Opp154 calls 0.04€
+*** FLOP *** [3d Kh 8d]
+Opp154 checks
+Opp025 checks
+*** TURN *** [3d Kh 8d][9s]
+Opp154 checks
+Opp025 checks
+*** RIVER *** [3d Kh 8d 9s][Jc]
+Opp154 checks
+Opp025 bets 0.05€
+Opp154 folds
+Opp025 collected 0.17€ from pot
+*** SUMMARY ***
+Total pot 0.17€ | Rake 0.01€
+Board: [3d Kh 8d 9s Jc]
+Seat 5: Opp025 won 0.17€
+
+
+Winamax Poker - CashGame - HandId: #20478190-439-1735914542 - Holdem no limit (0.01€/0.02€) - 2025/01/03 14:29:02 UTC
+Table: 'Aalen 17' 5-max (real money) Seat #1 is the button
+Seat 1: Opp022 (8.18€)
+Seat 2: Opp043 (1.98€)
+Seat 3: GTOverBet (2.03€)
+Seat 4: Opp154 (2.18€)
+Seat 5: Opp025 (2€)
+*** ANTE/BLINDS ***
+Opp043 posts small blind 0.01€
+GTOverBet posts big blind 0.02€
+Dealt to GTOverBet [2c 4d]
+*** PRE-FLOP *** 
+Opp154 folds
+Opp025 folds
+Opp022 folds
+Opp043 calls 0.01€
+GTOverBet checks
+*** FLOP *** [Qh 5c 7c]
+Opp043 bets 0.03€
+GTOverBet folds
+Opp043 collected 0.07€ from pot
+*** SUMMARY ***
+Total pot 0.07€ | No rake
+Board: [Qh 5c 7c]
+Seat 2: Opp043 (small blind) won 0.07€
+
+
+Winamax Poker - CashGame - HandId: #20478190-438-1735914524 - Holdem no limit (0.01€/0.02€) - 2025/01/03 14:28:44 UTC
+Table: 'Aalen 17' 5-max (real money) Seat #5 is the button
+Seat 1: Opp022 (8.19€)
+Seat 2: Opp043 (2€)
+Seat 3: GTOverBet (2€)
+Seat 4: Opp154 (2.18€)
+Seat 5: Opp025 (2€)
+*** ANTE/BLINDS ***
+Opp022 posts small blind 0.01€
+Opp043 posts big blind 0.02€
+Dealt to GTOverBet [Js Ah]
+*** PRE-FLOP *** 
+GTOverBet raises 0.04€ to 0.06€
+Opp154 folds
+Opp025 folds
+Opp022 folds
+Opp043 folds
+GTOverBet collected 0.09€ from pot
+*** SUMMARY ***
+Total pot 0.09€ | No rake
+Seat 3: GTOverBet won 0.09€
+
+
+Winamax Poker - CashGame - HandId: #20478190-437-1735914472 - Holdem no limit (0.01€/0.02€) - 2025/01/03 14:27:52 UTC
+Table: 'Aalen 17' 5-max (real money) Seat #4 is the button
+Seat 1: Opp022 (8.38€)
+Seat 2: Opp096 (0€)
+Seat 3: GTOverBet (2€)
+Seat 4: Opp154 (2€)
+Seat 5: Opp025 (2€)
+*** ANTE/BLINDS ***
+Opp025 posts small blind 0.01€
+Opp022 posts big blind 0.02€
+Dealt to GTOverBet [Kc 8s]
+*** PRE-FLOP *** 
+GTOverBet folds
+Opp154 raises 0.03€ to 0.05€
+Opp025 folds
+Opp022 calls 0.03€
+*** FLOP *** [4h Ks 7d]
+Opp022 checks
+Opp154 bets 0.04€
+Opp022 calls 0.04€
+*** TURN *** [4h Ks 7d][Jh]
+Opp022 checks
+Opp154 bets 0.10€
+Opp022 calls 0.10€
+*** RIVER *** [4h Ks 7d Jh][As]
+Opp022 checks
+Opp154 checks
+*** SHOW DOWN ***
+Opp022 shows [8d 8h] (One pair : 8)
+Opp154 shows [Tc Kh] (One pair : Kings)
+Opp154 collected 0.37€ from pot
+*** SUMMARY ***
+Total pot 0.37€ | Rake 0.02€
+Board: [4h Ks 7d Jh As]
+Seat 1: Opp022 (big blind) showed [8d 8h] and lost with One pair : 8
+Seat 4: Opp154 (button) showed [Tc Kh] and won 0.37€ with One pair : Kings
+
+
+Winamax Poker - CashGame - HandId: #20478190-436-1735914426 - Holdem no limit (0.01€/0.02€) - 2025/01/03 14:27:06 UTC
+Table: 'Aalen 17' 5-max (real money) Seat #3 is the button
+Seat 1: Opp022 (6.15€)
+Seat 2: Opp096 (2.49€)
+Seat 3: GTOverBet (2€)
+Seat 4: Opp154 (2€)
+Seat 5: Opp025 (2€)
+*** ANTE/BLINDS ***
+Opp154 posts small blind 0.01€
+Opp025 posts big blind 0.02€
+Dealt to GTOverBet [3s 5d]
+*** PRE-FLOP *** 
+Opp022 calls 0.02€
+Opp096 raises 0.07€ to 0.09€
+GTOverBet folds
+Opp154 folds
+Opp025 folds
+Opp022 calls 0.07€
+*** FLOP *** [8d 7h 4c]
+Opp022 checks
+Opp096 bets 0.14€
+Opp022 calls 0.14€
+*** TURN *** [8d 7h 4c][Kc]
+Opp022 checks
+Opp096 bets 0.32€
+Opp022 calls 0.32€
+*** RIVER *** [8d 7h 4c Kc][Jd]
+Opp022 bets 5.60€ and is all-in
+Opp096 calls 1.94€ and is all-in
+*** SHOW DOWN ***
+Opp096 shows [As Ah] (One pair : Aces)
+Opp022 shows [9s Th] (Straight Jack high)
+Opp022 collected 8.38€ from pot
+*** SUMMARY ***
+Total pot 8.38€ | Rake 0.29€
+Board: [8d 7h 4c Kc Jd]
+Seat 1: Opp022 showed [9s Th] and won 8.38€ with Straight Jack high
+Seat 2: Opp096 showed [As Ah] and lost with One pair : Aces
+
+
+Winamax Poker - CashGame - HandId: #20478190-435-1735914403 - Holdem no limit (0.01€/0.02€) - 2025/01/03 14:26:43 UTC
+Table: 'Aalen 17' 5-max (real money) Seat #2 is the button
+Seat 1: Opp022 (6.17€)
+Seat 2: Opp096 (2.44€)
+Seat 3: GTOverBet (2€)
+Seat 4: Opp154 (2€)
+Seat 5: Opp025 (2€)
+*** ANTE/BLINDS ***
+GTOverBet posts small blind 0.01€
+Opp154 posts big blind 0.02€
+Dealt to GTOverBet [3s Th]
+*** PRE-FLOP *** 
+Opp025 folds
+Opp022 calls 0.02€
+Opp096 calls 0.02€
+GTOverBet folds
+Opp154 checks
+*** FLOP *** [3c 4s 6h]
+Opp154 checks
+Opp022 checks
+Opp096 bets 0.07€
+Opp154 folds
+Opp022 folds
+Opp096 collected 0.14€ from pot
+*** SUMMARY ***
+Total pot 0.14€ | No rake
+Board: [3c 4s 6h]
+Seat 2: Opp096 (button) won 0.14€
+
+
+Winamax Poker - CashGame - HandId: #20478190-434-1735914368 - Holdem no limit (0.01€/0.02€) - 2025/01/03 14:26:08 UTC
+Table: 'Aalen 17' 5-max (real money) Seat #1 is the button
+Seat 1: Opp022 (6.23€)
+Seat 2: Opp096 (2.31€)
+Seat 3: GTOverBet (2€)
+Seat 4: Opp154 (2€)
+Seat 5: Opp025 (2€)
+*** ANTE/BLINDS ***
+Opp096 posts small blind 0.01€
+GTOverBet posts big blind 0.02€
+Dealt to GTOverBet [3d 8h]
+*** PRE-FLOP *** 
+Opp154 raises 0.04€ to 0.06€
+Opp025 folds
+Opp022 calls 0.06€
+Opp096 calls 0.05€
+GTOverBet folds
+*** FLOP *** [4c 5c Ks]
+Opp096 checks
+Opp154 checks
+Opp022 checks
+*** TURN *** [4c 5c Ks][5s]
+Opp096 bets 0.07€
+Opp154 folds
+Opp022 folds
+Opp096 collected 0.26€ from pot
+*** SUMMARY ***
+Total pot 0.26€ | Rake 0.01€
+Board: [4c 5c Ks 5s]
+Seat 2: Opp096 (small blind) won 0.26€
+
+

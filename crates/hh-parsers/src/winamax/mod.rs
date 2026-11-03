@@ -17,8 +17,18 @@
 //!   `Total pot` includes it — so `invested - collected` is the net result;
 //! * `Total pot N | No rake` in tournaments.
 //!
-//! Cash games, Expresso and Go Fast are **not supported yet**: no sample
-//! file has been provided. Their headers are rejected with a clear error.
+//! Added from the user's files (3 Nov. 2026):
+//!
+//! * tournaments **without ante** have `(<sb>/<bb>)` in the header
+//!   (Expresso, Starting Block, Tremplin…); Expresso = [`GameType::Spin`];
+//! * the level can be **negative** (`level: -21023`): stored as unknown;
+//! * **cash games**: `Winamax Poker - CashGame - HandId: #… - Holdem no limit
+//!   (0.01€/0.02€) - …`, amounts in euros, table name without tournament id,
+//!   `Total pot 0.74€ | Rake 0.04€` where the total is *after* rake, and a
+//!   newcomer may `posts big blind 0.02€ out of position`;
+//! * a player may `shows [..]` voluntarily after everyone folded.
+//!
+//! Go Fast has not been seen yet.
 
 pub mod summary;
 
@@ -38,7 +48,13 @@ const HEADER_PREFIX: &str = "Winamax Poker - ";
 
 static HEADER_MTT: LazyLock<Regex> = LazyLock::new(|| {
     Regex::new(
-        r#"^Winamax Poker - Tournament "(?P<name>.*)" buyIn: (?P<bi>[0-9.]+)€ \+ (?P<fee>[0-9.]+)€ level: (?P<lvl>\d+) - HandId: #(?P<id>[0-9-]+) - Holdem no limit \((?P<ante>\d+)/(?P<sb>\d+)/(?P<bb>\d+)\) - (?P<date>\d{4}/\d{2}/\d{2} \d{2}:\d{2}:\d{2}) UTC$"#,
+        r#"^Winamax Poker - Tournament "(?P<name>.*)" buyIn: (?P<bi>[0-9.]+)€ \+ (?P<fee>[0-9.]+)€ level: (?P<lvl>-?\d+) - HandId: #(?P<id>[0-9-]+) - Holdem no limit \((?:(?P<ante>\d+)/)?(?P<sb>\d+)/(?P<bb>\d+)\) - (?P<date>\d{4}/\d{2}/\d{2} \d{2}:\d{2}:\d{2}) UTC$"#,
+    )
+    .unwrap()
+});
+static HEADER_CASH: LazyLock<Regex> = LazyLock::new(|| {
+    Regex::new(
+        r#"^Winamax Poker - CashGame - HandId: #(?P<id>[0-9-]+) - Holdem no limit \((?P<sb>[0-9.]+)€/(?P<bb>[0-9.]+)€\) - (?P<date>\d{4}/\d{2}/\d{2} \d{2}:\d{2}:\d{2}) UTC$"#,
     )
     .unwrap()
 });
@@ -48,12 +64,14 @@ static TABLE: LazyLock<Regex> = LazyLock::new(|| {
 static TABLE_TOURNEY: LazyLock<Regex> =
     LazyLock::new(|| Regex::new(r"^(?P<name>.*)\((?P<id>\d+)\)#(?P<no>\d+)$").unwrap());
 static SEAT: LazyLock<Regex> = LazyLock::new(|| {
-    Regex::new(r"^Seat (?P<seat>\d+): (?P<name>.+) \((?P<stack>\d+)(?:, (?P<bounty>[0-9.]+)€ bounty)?\)$").unwrap()
+    Regex::new(r"^Seat (?P<seat>\d+): (?P<name>.+) \((?P<stack>[0-9.]+€?)(?:, (?P<bounty>[0-9.]+)€ bounty)?\)$").unwrap()
 });
 static DEALT: LazyLock<Regex> =
     LazyLock::new(|| Regex::new(r"^Dealt to (?P<name>.+) \[(?P<cards>[^\]]+)\]$").unwrap());
 static BOARD_LINE: LazyLock<Regex> = LazyLock::new(|| Regex::new(r"\[([^\]]+)\]").unwrap());
-static TOTAL_POT: LazyLock<Regex> = LazyLock::new(|| Regex::new(r"^Total pot (?P<pot>\d+) \| No rake$").unwrap());
+static TOTAL_POT: LazyLock<Regex> = LazyLock::new(|| {
+    Regex::new(r"^Total pot (?P<pot>[0-9.]+€?) \| (?:No rake|Rake (?P<rake>[0-9.]+€?))$").unwrap()
+});
 
 /// The Winamax parser.
 pub struct Winamax;
@@ -127,6 +145,9 @@ impl HandHistoryParser for Winamax {
 
 #[derive(Default)]
 struct HandBuilder {
+    /// Cash game: amounts are euros ("0.02€"), stored in cents.
+    cash: bool,
+    rake: i64,
     players: Vec<PlayerInHand>,
     /// Indices into `players`, longest names first (names may contain spaces).
     by_name_len: Vec<usize>,
@@ -156,32 +177,68 @@ impl HandBuilder {
 
         let (n, header) = lines.next().ok_or_else(|| ParseError::whole("empty hand"))?;
         let header = strip_bom(header);
-        let h = HEADER_MTT.captures(header).ok_or_else(|| {
-            let msg = if header.starts_with(HEADER_PREFIX) && !header.contains("Tournament") {
-                "Winamax cash games are not supported yet (no sample file provided)"
-            } else {
-                "unrecognised Winamax header"
-            };
-            ParseError::new(n, header, msg)
-        })?;
-        let num = |name: &str| -> i64 { h[name].parse().unwrap_or(0) };
-        let money = |name: &str| parse_cents(&h[name]).ok_or_else(|| ParseError::new(n, header, format!("bad amount in {name}")));
-        let buy_in_cents = money("bi")?;
-        let fee_cents = money("fee")?;
-        let played_at = parse_utc(&h["date"]).ok_or_else(|| ParseError::new(n, header, "bad date"))?;
-        let (ante, sb, bb) = (num("ante"), num("sb"), num("bb"));
-        let level = h["lvl"].parse().ok();
-        let hand_no = h["id"].to_string();
-        let tourney_name = h["name"].to_string();
+        struct Header {
+            hand_no: String,
+            played_at: i64,
+            ante: i64,
+            sb: i64,
+            bb: i64,
+            level: Option<u32>,
+            tourney: Option<(String, i64, i64)>, // name, buy-in, fee
+        }
+        let date = |d: &str| parse_utc(d).ok_or_else(|| ParseError::new(n, header, "bad date"));
+        let hd = if let Some(h) = HEADER_MTT.captures(header) {
+            let num = |name: &str| -> i64 { h.name(name).and_then(|m| m.as_str().parse().ok()).unwrap_or(0) };
+            let money = |name: &str| parse_cents(&h[name]).ok_or_else(|| ParseError::new(n, header, format!("bad amount in {name}")));
+            Header {
+                hand_no: h["id"].to_string(),
+                played_at: date(&h["date"])?,
+                ante: num("ante"),
+                sb: num("sb"),
+                bb: num("bb"),
+                // Negative levels exist (late registration?): unknown.
+                level: h["lvl"].parse::<i64>().ok().filter(|l| *l >= 0).map(|l| l as u32),
+                tourney: Some((h["name"].to_string(), money("bi")?, money("fee")?)),
+            }
+        } else if let Some(h) = HEADER_CASH.captures(header) {
+            self.cash = true;
+            let money = |name: &str| parse_cents(&h[name]).ok_or_else(|| ParseError::new(n, header, format!("bad amount in {name}")));
+            Header {
+                hand_no: h["id"].to_string(),
+                played_at: date(&h["date"])?,
+                ante: 0,
+                sb: money("sb")?,
+                bb: money("bb")?,
+                level: None,
+                tourney: None,
+            }
+        } else {
+            return Err(ParseError::new(n, header, "unrecognised Winamax header"));
+        };
+        let Header { hand_no, played_at, ante, sb, bb, level, tourney } = hd;
 
         let (n, tline) = lines.next().ok_or_else(|| ParseError::whole("missing table line"))?;
         let t = TABLE.captures(tline).ok_or_else(|| ParseError::new(n, tline, "unrecognised table line"))?;
         let table_name = t["table"].to_string();
         let max_seats: u8 = t["max"].parse().map_err(|_| ParseError::new(n, tline, "bad max seats"))?;
         let button_seat: u8 = t["btn"].parse().map_err(|_| ParseError::new(n, tline, "bad button seat"))?;
-        let (tourney_id, table_number) = match TABLE_TOURNEY.captures(&table_name) {
-            Some(c) => (c["id"].to_string(), c["no"].parse().ok()),
-            None => return Err(ParseError::new(n, tline, "tournament table name without (id)#number")),
+        let tournament = match tourney {
+            Some((name, buy_in_cents, fee_cents)) => match TABLE_TOURNEY.captures(&table_name) {
+                Some(c) => Some(TournamentRef {
+                    id: c["id"].to_string(),
+                    name,
+                    buy_in_cents,
+                    fee_cents,
+                    table_number: c["no"].parse().ok(),
+                }),
+                None => return Err(ParseError::new(n, tline, "tournament table name without (id)#number")),
+            },
+            None => None,
+        };
+        let game_type = match &tournament {
+            None => GameType::Cash,
+            Some(t) if t.name.starts_with("Expresso") => GameType::Spin,
+            Some(_) => GameType::Mtt,
         };
 
         let mut section = Section::Seats;
@@ -203,7 +260,7 @@ impl HandBuilder {
                     self.players.push(PlayerInHand {
                         seat: c["seat"].parse().map_err(|_| ParseError::new(n, line, "bad seat"))?,
                         name: c["name"].to_string(),
-                        stack: c["stack"].parse().map_err(|_| ParseError::new(n, line, "bad stack"))?,
+                        stack: self.amt(&c["stack"]).ok_or_else(|| ParseError::new(n, line, "bad stack"))?,
                         position: None,
                         hole_cards: vec![],
                         is_hero: false,
@@ -242,30 +299,24 @@ impl HandBuilder {
             room: ROOM.into(),
             hand_no,
             table_name,
-            game_type: GameType::Mtt,
+            game_type,
             variant: Variant::Holdem,
             limit: BettingLimit::NoLimit,
-            unit: Unit::Chips,
+            unit: if self.cash { Unit::Cents } else { Unit::Chips },
             currency: "EUR".into(),
             small_blind: sb,
             big_blind: bb,
             ante,
             straddle: None,
             level,
-            tournament: Some(TournamentRef {
-                id: tourney_id,
-                name: tourney_name,
-                buy_in_cents,
-                fee_cents,
-                table_number,
-            }),
+            tournament,
             max_seats,
             button_seat,
             players: self.players,
             board: self.board,
             actions: self.actions,
             total_pot,
-            rake: 0,
+            rake: self.rake,
             jackpot_fee: 0,
             showdown: self.showdown,
             played_at,
@@ -353,6 +404,15 @@ impl HandBuilder {
         }
     }
 
+    /// Parses an amount: chips ("1500") in tournaments, euros ("0.02€") in cash games.
+    fn amt(&self, s: &str) -> Option<i64> {
+        if self.cash {
+            s.strip_suffix('€').and_then(parse_cents)
+        } else {
+            s.parse().ok()
+        }
+    }
+
     fn index_names(&mut self) {
         let mut idx: Vec<usize> = (0..self.players.len()).collect();
         idx.sort_by_key(|&i| std::cmp::Reverse(self.players[i].name.len()));
@@ -392,7 +452,11 @@ impl HandBuilder {
             Some(r) => (r, true),
             None => (rest, false),
         };
-        let amount = |s: &str| s.parse::<i64>().map_err(|_| ParseError::new(n, line, "bad amount"));
+        let cash = self.cash;
+        let amount = |s: &str| {
+            let v = if cash { s.strip_suffix('€').and_then(parse_cents) } else { s.parse::<i64>().ok() };
+            v.ok_or_else(|| ParseError::new(n, line, "bad amount"))
+        };
         let seat = self.players[p].seat;
         if blinds {
             if let Some(a) = rest.strip_prefix("posts ante ") {
@@ -401,7 +465,14 @@ impl HandBuilder {
                 self.sb_seat.get_or_insert(seat);
                 self.push(p, street, ActionKind::PostSmallBlind, amount(a)?, None, all_in);
             } else if let Some(a) = rest.strip_prefix("posts big blind ") {
-                self.bb_seat.get_or_insert(seat);
+                // A newcomer posting "out of position" is not the big blind of the hand.
+                let (a, oop) = match a.strip_suffix(" out of position") {
+                    Some(x) => (x, true),
+                    None => (a, false),
+                };
+                if !oop {
+                    self.bb_seat.get_or_insert(seat);
+                }
                 self.push(p, street, ActionKind::PostBigBlind, amount(a)?, None, all_in);
             } else {
                 return Err(ParseError::new(n, line, "unknown post"));
@@ -427,6 +498,9 @@ impl HandBuilder {
                 } else if let Some(a) = rest.strip_prefix("collected ") {
                     // Everyone else folded: no showdown section.
                     self.collect(n, line, p, a)?;
+                } else if let Some(r) = rest.strip_prefix("shows [") {
+                    // Voluntary show after everyone folded (no showdown).
+                    self.show(n, line, p, r, false)?;
                 } else {
                     return Err(ParseError::new(n, line, "unknown action"));
                 }
@@ -441,22 +515,14 @@ impl HandBuilder {
         if !ok {
             return Err(ParseError::new(n, line, "unknown pot"));
         }
-        self.players[p].collected += amt.parse::<i64>().map_err(|_| ParseError::new(n, line, "bad amount"))?;
+        self.players[p].collected += self.amt(amt).ok_or_else(|| ParseError::new(n, line, "bad amount"))?;
         Ok(())
     }
 
     fn showdown_line(&mut self, n: usize, line: &str) -> Result<(), ParseError> {
         let (p, rest) = self.split_player(n, line)?;
         if let Some(r) = rest.strip_prefix("shows [") {
-            let (cards, _desc) = r.split_once(']').ok_or_else(|| ParseError::new(n, line, "bad shows line"))?;
-            let cards = parse_cards(cards).map_err(|e| ParseError::new(n, line, e.to_string()))?;
-            let pl = &mut self.players[p];
-            if !pl.hole_cards.is_empty() && pl.hole_cards != cards {
-                return Err(ParseError::new(n, line, "shown cards differ from dealt cards"));
-            }
-            pl.hole_cards = cards;
-            pl.went_to_showdown = true;
-            Ok(())
+            self.show(n, line, p, r, true)
         } else if let Some(r) = rest.strip_prefix("collected ") {
             self.collect(n, line, p, r)
         } else {
@@ -464,9 +530,29 @@ impl HandBuilder {
         }
     }
 
+    fn show(&mut self, n: usize, line: &str, p: usize, after_bracket: &str, at_showdown: bool) -> Result<(), ParseError> {
+        let (cards, _desc) = after_bracket.split_once(']').ok_or_else(|| ParseError::new(n, line, "bad shows line"))?;
+        let cards = parse_cards(cards).map_err(|e| ParseError::new(n, line, e.to_string()))?;
+        let pl = &mut self.players[p];
+        if !pl.hole_cards.is_empty() && pl.hole_cards != cards {
+            return Err(ParseError::new(n, line, "shown cards differ from dealt cards"));
+        }
+        pl.hole_cards = cards;
+        if at_showdown {
+            pl.went_to_showdown = true;
+        }
+        Ok(())
+    }
+
     fn summary_line(&mut self, n: usize, line: &str) -> Result<(), ParseError> {
         if let Some(c) = TOTAL_POT.captures(line) {
-            self.total_pot = Some(c["pot"].parse().map_err(|_| ParseError::new(n, line, "bad pot"))?);
+            let pot = self.amt(&c["pot"]).ok_or_else(|| ParseError::new(n, line, "bad pot"))?;
+            self.rake = match c.name("rake") {
+                Some(r) => self.amt(r.as_str()).ok_or_else(|| ParseError::new(n, line, "bad rake"))?,
+                None => 0,
+            };
+            // Winamax prints the pot after rake; we store the pot before rake.
+            self.total_pot = Some(pot + self.rake);
         } else if line.starts_with("Total pot ") {
             return Err(ParseError::new(n, line, "unsupported pot/rake format (no sample yet)"));
         } else if line.starts_with("Board: [") || line.starts_with("Seat ") {

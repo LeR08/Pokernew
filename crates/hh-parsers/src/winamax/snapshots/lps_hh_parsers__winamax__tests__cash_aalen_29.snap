@@ -1,0 +1,67 @@
+---
+source: crates/hh-parsers/src/winamax/tests.rs
+expression: render(&hands)
+---
+20478746-133-1735914792 L0 0/1/2 btn5 pot9
+  s1 SB   GTOverBet        221 net      -1 HERO [6h8s]
+  s3 BB   Opp029           200 net      -2
+  s4 CO   Opp136           302 net      +0
+  s5 BTN  Opp127           216 net      +3
+20478746-132-1735914714 L0 0/1/2 btn4 pot23 [6sTd8d5s]
+  s1 BB   GTOverBet        214 net      +7 HERO [8s9s]
+  s2 HJ   Opp035           203 net      -2
+  s3 CO   Opp029           200 net      +0
+  s4 BTN  Opp136           302 net      +0
+  s5 SB   Opp127           222 net      -6
+20478746-131-1735914696 L0 0/1/2 btn3 pot7
+  s1 HJ   GTOverBet        214 net      +0 HERO [Kh3s]
+  s2 CO   Opp035           200 net      +3
+  s3 BTN  Opp029           200 net      +0
+  s4 SB   Opp136           303 net      -1
+  s5 BB   Opp127           224 net      -2
+20478746-130-1735914673 L0 0/1/2 btn1 pot22 [9h2c5d]
+  s1 BTN  GTOverBet        208 net      +6 HERO [8hAh]
+  s3 SB   Opp029           200 net      -1
+  s4 BB   Opp136           309 net      -6
+  s5 CO   Opp127           224 net      +0
+20478746-129-1735914656 L0 0/1/2 btn5 pot8
+  s1 SB   GTOverBet        209 net      -1 HERO [3dTs]
+  s3 BB   Opp029           200 net      -2
+  s4 CO   Opp136           306 net      +3
+  s5 BTN  Opp127           224 net      +0
+20478746-128-1735914594 L0 0/1/2 btn4 pot36 [Ts5s4d3d]
+  s1 BB   GTOverBet        215 net      -6 HERO [9sAd]
+  s2 HJ   Opp071           512 net      +0
+  s3 CO   Opp029           200 net      -6
+  s4 BTN  Opp136           306 net      +0
+  s5 SB   Opp127           213 net     +11
+20478746-127-1735914541 L0 0/1/2 btn3 pot28
+  s1 HJ   GTOverBet        215 net      +0 HERO [6sQh]
+  s2 CO   Opp071           514 net      -2
+  s3 BTN  Opp029           200 net      -6
+  s4 SB   Opp136           307 net      -1
+  s5 BB   Opp127           204 net      +9
+20478746-126-1735914516 L0 0/1/2 btn2 pot9
+  s1 CO   GTOverBet        212 net      +3 HERO [3cAc]
+  s2 BTN  Opp071           514 net      +0
+  s3 SB   Opp029           200 net      -1
+  s4 BB   Opp136           309 net      -2
+  s5 HJ   Opp127           204 net      +0
+20478746-125-1735914461 L0 0/1/2 btn1 pot78 [8h7d2sTdAh] SD
+  s1 BTN  GTOverBet        218 net      -6 HERO [Ac9s]
+  s2 SB   Opp071           475 net     +39 [9h6s] sd
+  s3 BB   Opp029           200 net      -2
+  s4 HJ   Opp136           344 net     -35 [JsTs] sd
+  s5 CO   Opp127           204 net      +0
+20478746-124-1735914431 L0 0/1/2 btn5 pot58 [2h5c6c6s]
+  s1 SB   GTOverBet        200 net     +18 HERO [7h7d]
+  s2 BB   Opp071           490 net     -15
+  s3 HJ   Opp029           200 net      +0
+  s4 CO   Opp136           349 net      -5
+  s5 BTN  Opp127           204 net      +0
+20478746-123-1735914411 L0 0/1/2 btn4 pot8
+  s1 BB   GTOverBet        200 net      -2 HERO [6hKc]
+  s2 HJ   Opp071           490 net      +0
+  s3 CO   Opp029           200 net      +0
+  s4 BTN  Opp136           346 net      +3
+  s5 SB   Opp127           205 net      -1

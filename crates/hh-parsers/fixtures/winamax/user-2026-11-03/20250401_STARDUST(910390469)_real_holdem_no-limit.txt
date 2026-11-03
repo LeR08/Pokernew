@@ -1,0 +1,237 @@
+Winamax Poker - Tournament "STARDUST" buyIn: 0.90€ + 0.10€ level: -969590975 - HandId: #3910097290945101891-16-1743532332 - Holdem no limit (25/100/200) - 2025/04/01 18:32:12 UTC
+Table: 'STARDUST(910390469)#066' 6-max (real money) Seat #6 is the button
+Seat 1: GTOverBet (18205, 0.50€ bounty)
+Seat 2: Opp086 (3935, 0.50€ bounty)
+Seat 3: Opp068 (20900, 0.50€ bounty)
+Seat 4: Opp087 (19664, 0.50€ bounty)
+Seat 5: Opp124 (20000, 0.50€ bounty)
+Seat 6: Opp102 (17771, 0.50€ bounty)
+*** ANTE/BLINDS ***
+GTOverBet posts ante 25
+Opp086 posts ante 25
+Opp068 posts ante 25
+Opp087 posts ante 25
+Opp124 posts ante 25
+Opp102 posts ante 25
+GTOverBet posts small blind 100
+Opp086 posts big blind 200
+Dealt to GTOverBet [9h Qd]
+*** PRE-FLOP *** 
+Opp068 calls 200
+Opp087 folds
+Opp124 folds
+Opp102 folds
+GTOverBet raises 240 to 440
+Opp086 raises 3470 to 3910 and is all-in
+Opp068 calls 3710
+GTOverBet calls 3470
+*** FLOP *** [Ts Js Jh]
+GTOverBet checks
+Opp068 bets 4158
+GTOverBet calls 4158
+*** TURN *** [Ts Js Jh][3c]
+GTOverBet checks
+Opp068 checks
+*** RIVER *** [Ts Js Jh 3c][9s]
+GTOverBet bets 10112 and is all-in
+Opp068 calls 10112
+*** SHOW DOWN ***
+GTOverBet shows [9h Qd] (Two pairs : Jacks and 9)
+Opp086 shows [Jc Ac] (Trips of Jacks)
+Opp068 shows [Kc Tc] (Two pairs : Jacks and Tens)
+Opp068 collected 28540 from side pot 1
+Opp086 collected 11880 from main pot
+*** SUMMARY ***
+Total pot 40420 | No rake
+Board: [Ts Js Jh 3c 9s]
+Seat 1: GTOverBet (small blind) showed [9h Qd] and lost with Two pairs : Jacks and 9
+Seat 2: Opp086 (big blind) showed [Jc Ac] and won 11880 with Trips of Jacks
+Seat 3: Opp068 showed [Kc Tc] and won 28540 with Two pairs : Jacks and Tens
+
+
+Winamax Poker - Tournament "STARDUST" buyIn: 0.90€ + 0.10€ level: -969590975 - HandId: #3910097290945101891-15-1743532301 - Holdem no limit (25/100/200) - 2025/04/01 18:31:41 UTC
+Table: 'STARDUST(910390469)#066' 6-max (real money) Seat #4 is the button
+Seat 1: GTOverBet (18630, 0.50€ bounty)
+Seat 2: Opp086 (3960, 0.50€ bounty)
+Seat 3: Opp068 (20000, 0.50€ bounty)
+Seat 4: Opp087 (19689, 0.50€ bounty)
+Seat 5: Opp124 (20000, 0.50€ bounty)
+Seat 6: Opp102 (18196, 0.50€ bounty)
+*** ANTE/BLINDS ***
+Opp102 posts ante 25
+GTOverBet posts ante 25
+Opp086 posts ante 25
+Opp068 posts ante 25
+Opp087 posts ante 25
+Opp102 posts small blind 100
+GTOverBet posts big blind 200
+Dealt to GTOverBet [7d 9d]
+*** PRE-FLOP *** 
+Opp086 folds
+Opp068 raises 200 to 400
+Opp087 folds
+Opp102 calls 300
+GTOverBet calls 200
+*** FLOP *** [2h 5c 3h]
+Opp102 checks
+GTOverBet checks
+Opp068 bets 1325
+Opp102 folds
+GTOverBet folds
+Opp068 collected 2650 from pot
+*** SUMMARY ***
+Total pot 2650 | No rake
+Board: [2h 5c 3h]
+Seat 3: Opp068 won 2650
+
+
+Winamax Poker - Tournament "STARDUST" buyIn: 0.90€ + 0.10€ level: -969590975 - HandId: #3910097290945101891-14-1743532227 - Holdem no limit (25/100/200) - 2025/04/01 18:30:27 UTC
+Table: 'STARDUST(910390469)#066' 6-max (real money) Seat #2 is the button
+Seat 1: GTOverBet (18655, 0.50€ bounty)
+Seat 2: Opp086 (3985, 0.50€ bounty)
+Seat 3: Opp068 (20000, 0.50€ bounty)
+Seat 4: Opp087 (18585, 0.50€ bounty)
+Seat 6: Opp102 (19250, 0.50€ bounty)
+*** ANTE/BLINDS ***
+Opp087 posts ante 25
+Opp102 posts ante 25
+GTOverBet posts ante 25
+Opp086 posts ante 25
+Opp087 posts small blind 100
+Opp102 posts big blind 200
+Dealt to GTOverBet [7h Qh]
+*** PRE-FLOP *** 
+GTOverBet folds
+Opp086 folds
+Opp087 raises 400 to 600
+Opp102 calls 400
+*** FLOP *** [5c 4c 6s]
+Opp087 bets 429
+Opp102 calls 429
+*** TURN *** [5c 4c 6s][3h]
+Opp087 checks
+Opp102 checks
+*** RIVER *** [5c 4c 6s 3h][5h]
+Opp087 bets 712
+Opp102 folds
+Opp087 collected 2870 from pot
+*** SUMMARY ***
+Total pot 2870 | No rake
+Board: [5c 4c 6s 3h 5h]
+Seat 4: Opp087 (small blind) won 2870
+
+
+Winamax Poker - Tournament "STARDUST" buyIn: 0.90€ + 0.10€ level: -969590975 - HandId: #3910097290945101891-13-1743532190 - Holdem no limit (25/100/200) - 2025/04/01 18:29:50 UTC
+Table: 'STARDUST(910390469)#066' 6-max (real money) Seat #1 is the button
+Seat 1: GTOverBet (18680, 0.50€ bounty)
+Seat 2: Opp086 (4110, 0.50€ bounty)
+Seat 4: Opp087 (19110, 0.50€ bounty)
+Seat 5: Opp064 (25499, 0.50€ bounty)
+Seat 6: Opp102 (18550, 0.50€ bounty)
+*** ANTE/BLINDS ***
+Opp086 posts ante 25
+Opp087 posts ante 25
+GTOverBet posts ante 25
+Opp064 posts ante 25
+Opp102 posts ante 25
+Opp086 posts small blind 100
+Opp087 posts big blind 200
+Dealt to GTOverBet [7s 5d]
+*** PRE-FLOP *** 
+Opp064 folds
+Opp102 raises 300 to 500
+GTOverBet folds
+Opp086 folds
+Opp087 calls 300
+*** FLOP *** [Kh Ts 6d]
+Opp087 checks
+Opp102 bets 613
+Opp087 folds
+Opp102 collected 1838 from pot
+*** SUMMARY ***
+Total pot 1838 | No rake
+Board: [Kh Ts 6d]
+Seat 6: Opp102 won 1838
+
+
+Winamax Poker - Tournament "STARDUST" buyIn: 0.90€ + 0.10€ level: -969590975 - HandId: #3910097290945101891-12-1743532155 - Holdem no limit (25/100/200) - 2025/04/01 18:29:15 UTC
+Table: 'STARDUST(910390469)#066' 6-max (real money) Seat #6 is the button
+Seat 1: GTOverBet (18140, 0.50€ bounty)
+Seat 2: Opp086 (4575, 0.50€ bounty)
+Seat 4: Opp087 (19135, 0.50€ bounty)
+Seat 5: Opp064 (25524, 0.50€ bounty)
+Seat 6: Opp102 (18575, 0.50€ bounty)
+*** ANTE/BLINDS ***
+GTOverBet posts ante 25
+Opp086 posts ante 25
+Opp087 posts ante 25
+Opp064 posts ante 25
+Opp102 posts ante 25
+GTOverBet posts small blind 100
+Opp086 posts big blind 200
+Dealt to GTOverBet [Js 9s]
+*** PRE-FLOP *** 
+Opp087 folds
+Opp064 folds
+Opp102 folds
+GTOverBet raises 240 to 440
+Opp086 calls 240
+*** FLOP *** [9d Ac Ad]
+GTOverBet bets 352
+Opp086 folds
+GTOverBet collected 1357 from pot
+*** SUMMARY ***
+Total pot 1357 | No rake
+Board: [9d Ac Ad]
+Seat 1: GTOverBet (small blind) won 1357
+
+
+Winamax Poker - Tournament "STARDUST" buyIn: 0.90€ + 0.10€ level: -969590975 - HandId: #3910097290945101891-11-1743532052 - Holdem no limit (25/100/200) - 2025/04/01 18:27:32 UTC
+Table: 'STARDUST(910390469)#066' 6-max (real money) Seat #5 is the button
+Seat 1: GTOverBet (20000, 0.50€ bounty)
+Seat 2: Opp086 (4600, 0.50€ bounty)
+Seat 3: Opp121 (36850, 0.50€ bounty)
+Seat 4: Opp087 (19160, 0.50€ bounty)
+Seat 5: Opp064 (21629, 0.50€ bounty)
+Seat 6: Opp102 (18700, 0.50€ bounty)
+*** ANTE/BLINDS ***
+Opp102 posts ante 25
+GTOverBet posts ante 25
+Opp086 posts ante 25
+Opp121 posts ante 25
+Opp087 posts ante 25
+Opp064 posts ante 25
+Opp102 posts small blind 100
+GTOverBet posts big blind 200
+Dealt to GTOverBet [3c 3s]
+*** PRE-FLOP *** 
+Opp086 folds
+Opp121 calls 200
+Opp087 folds
+Opp064 raises 750 to 950
+Opp102 folds
+GTOverBet calls 750
+Opp121 calls 750
+*** FLOP *** [7c Qh Qc]
+GTOverBet checks
+Opp121 checks
+Opp064 bets 885
+GTOverBet calls 885
+Opp121 calls 885
+*** TURN *** [7c Qh Qc][Ad]
+GTOverBet checks
+Opp121 checks
+Opp064 checks
+*** RIVER *** [7c Qh Qc Ad][Kc]
+GTOverBet checks
+Opp121 checks
+Opp064 bets 5755
+GTOverBet folds
+Opp121 folds
+Opp064 collected 11510 from pot
+*** SUMMARY ***
+Total pot 11510 | No rake
+Board: [7c Qh Qc Ad Kc]
+Seat 5: Opp064 (button) won 11510
+
+

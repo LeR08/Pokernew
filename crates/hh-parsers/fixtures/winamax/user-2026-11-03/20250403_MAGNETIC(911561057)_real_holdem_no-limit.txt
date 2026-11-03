@@ -1,0 +1,359 @@
+Winamax Poker - Tournament "MAGNETIC" buyIn: 1.80€ + 0.20€ level: -1417619647 - HandId: #3915124928122192026-35-1743704941 - Holdem no limit (25/100/200) - 2025/04/03 18:29:01 UTC
+Table: 'MAGNETIC(911561057)#0153' 6-max (real money) Seat #2 is the button
+Seat 1: Opp001 (20855, 1€ bounty)
+Seat 2: Opp063 (24302, 1€ bounty)
+Seat 3: Opp120 (25424, 1€ bounty)
+Seat 4: Opp110 (30687, 1€ bounty)
+Seat 5: GTOverBet (114, 1€ bounty)
+Seat 6: Opp098 (79868, 1.60€ bounty)
+*** ANTE/BLINDS ***
+Opp120 posts ante 25
+Opp110 posts ante 25
+Opp001 posts ante 25
+Opp063 posts ante 25
+GTOverBet posts ante 25
+Opp098 posts ante 25
+Opp120 posts small blind 100
+Opp110 posts big blind 200
+Dealt to GTOverBet [3d 5h]
+*** PRE-FLOP *** 
+GTOverBet calls 89 and is all-in
+Opp098 folds
+Opp001 calls 200
+Opp063 folds
+Opp120 raises 400 to 600
+Opp110 calls 400
+Opp001 calls 400
+*** FLOP *** [8c Kh Th]
+Opp120 bets 1325
+Opp110 folds
+Opp001 folds
+*** TURN *** [8c Kh Th][Kd]
+*** RIVER *** [8c Kh Th Kd][Jd]
+*** SHOW DOWN ***
+GTOverBet shows [3d 5h] (One pair : Kings)
+Opp120 shows [8d Ac] (Two pairs : Kings and 8)
+Opp120 collected 3364 from pot
+*** SUMMARY ***
+Total pot 3364 | No rake
+Board: [8c Kh Th Kd Jd]
+Seat 3: Opp120 (small blind) showed [8d Ac] and won 3364 with Two pairs : Kings and 8
+Seat 5: GTOverBet showed [3d 5h] and lost with One pair : Kings
+
+
+Winamax Poker - Tournament "MAGNETIC" buyIn: 1.80€ + 0.20€ level: -1417619647 - HandId: #3915124928122192026-34-1743704889 - Holdem no limit (25/100/200) - 2025/04/03 18:28:09 UTC
+Table: 'MAGNETIC(911561057)#0153' 6-max (real money) Seat #1 is the button
+Seat 1: Opp001 (20880, 1€ bounty)
+Seat 2: Opp063 (24427, 1€ bounty)
+Seat 3: Opp120 (12612, 1€ bounty)
+Seat 4: Opp110 (30712, 1€ bounty)
+Seat 5: GTOverBet (12726, 1€ bounty)
+Seat 6: Opp098 (79893, 1.60€ bounty)
+*** ANTE/BLINDS ***
+Opp063 posts ante 25
+Opp120 posts ante 25
+Opp001 posts ante 25
+Opp110 posts ante 25
+GTOverBet posts ante 25
+Opp098 posts ante 25
+Opp063 posts small blind 100
+Opp120 posts big blind 200
+Dealt to GTOverBet [Tc Jd]
+*** PRE-FLOP *** 
+Opp110 folds
+GTOverBet raises 240 to 440
+Opp098 folds
+Opp001 folds
+Opp063 folds
+Opp120 raises 880 to 1320
+GTOverBet calls 880
+*** FLOP *** [Qc Jc Qh]
+Opp120 bets 1879
+GTOverBet calls 1879
+*** TURN *** [Qc Jc Qh][7s]
+Opp120 bets 4321
+GTOverBet raises 5181 to 9502 and is all-in
+Opp120 calls 5067 and is all-in
+*** RIVER *** [Qc Jc Qh 7s][Td]
+*** SHOW DOWN ***
+Opp120 shows [Kh Ad] (Straight Ace high)
+GTOverBet shows [Tc Jd] (Two pairs : Queens and Jacks)
+GTOverBet collected 114 from side pot 1
+Opp120 collected 25424 from main pot
+*** SUMMARY ***
+Total pot 25538 | No rake
+Board: [Qc Jc Qh 7s Td]
+Seat 3: Opp120 (big blind) showed [Kh Ad] and won 25424 with Straight Ace high
+Seat 5: GTOverBet showed [Tc Jd] and won 114 with Two pairs : Queens and Jacks
+
+
+Winamax Poker - Tournament "MAGNETIC" buyIn: 1.80€ + 0.20€ level: -1417619647 - HandId: #3915124928122192026-33-1743704876 - Holdem no limit (25/100/200) - 2025/04/03 18:27:56 UTC
+Table: 'MAGNETIC(911561057)#0153' 6-max (real money) Seat #6 is the button
+Seat 1: Opp001 (21005, 1€ bounty)
+Seat 2: Opp063 (24202, 1€ bounty)
+Seat 3: Opp120 (12637, 1€ bounty)
+Seat 4: Opp110 (30737, 1€ bounty)
+Seat 5: GTOverBet (12751, 1€ bounty)
+Seat 6: Opp098 (79918, 1.60€ bounty)
+*** ANTE/BLINDS ***
+Opp001 posts ante 25
+Opp063 posts ante 25
+Opp120 posts ante 25
+Opp110 posts ante 25
+GTOverBet posts ante 25
+Opp098 posts ante 25
+Opp001 posts small blind 100
+Opp063 posts big blind 200
+Dealt to GTOverBet [Jh 2d]
+*** PRE-FLOP *** 
+Opp120 folds
+Opp110 folds
+GTOverBet folds
+Opp098 folds
+Opp001 folds
+Opp063 collected 450 from pot
+*** SUMMARY ***
+Total pot 450 | No rake
+Seat 2: Opp063 (big blind) won 450
+
+
+Winamax Poker - Tournament "MAGNETIC" buyIn: 1.80€ + 0.20€ level: -1417619647 - HandId: #3915124928122192026-32-1743704813 - Holdem no limit (25/100/200) - 2025/04/03 18:26:53 UTC
+Table: 'MAGNETIC(911561057)#0153' 6-max (real money) Seat #5 is the button
+Seat 1: Opp001 (21230, 1€ bounty)
+Seat 2: Opp063 (24227, 1€ bounty)
+Seat 3: Opp120 (19911, 1€ bounty)
+Seat 4: Opp110 (15814, 1€ bounty)
+Seat 5: GTOverBet (20025, 1€ bounty)
+Seat 6: Opp098 (80043, 1.60€ bounty)
+*** ANTE/BLINDS ***
+Opp098 posts ante 25
+Opp001 posts ante 25
+Opp063 posts ante 25
+Opp120 posts ante 25
+Opp110 posts ante 25
+GTOverBet posts ante 25
+Opp098 posts small blind 100
+Opp001 posts big blind 200
+Dealt to GTOverBet [7s 7c]
+*** PRE-FLOP *** 
+Opp063 folds
+Opp120 calls 200
+Opp110 raises 500 to 700
+GTOverBet calls 700
+Opp098 folds
+Opp001 folds
+Opp120 calls 500
+*** FLOP *** [3d 9d 8c]
+Opp120 checks
+Opp110 checks
+GTOverBet bets 1658
+Opp120 calls 1658
+Opp110 calls 1658
+*** TURN *** [3d 9d 8c][2h]
+Opp120 checks
+Opp110 checks
+GTOverBet bets 4891
+Opp120 calls 4891
+Opp110 calls 4891
+*** RIVER *** [3d 9d 8c 2h][As]
+Opp120 checks
+Opp110 checks
+GTOverBet checks
+*** SHOW DOWN ***
+Opp120 shows [Qd Kd] (High card : Ace)
+GTOverBet shows [7s 7c] (One pair : 7)
+Opp110 shows [9h Kh] (One pair : 9)
+Opp110 collected 22197 from pot
+*** SUMMARY ***
+Total pot 22197 | No rake
+Board: [3d 9d 8c 2h As]
+Seat 3: Opp120 showed [Qd Kd] and lost with High card : Ace
+Seat 4: Opp110 showed [9h Kh] and won 22197 with One pair : 9
+Seat 5: GTOverBet (button) showed [7s 7c] and lost with One pair : 7
+
+
+Winamax Poker - Tournament "MAGNETIC" buyIn: 1.80€ + 0.20€ level: -1417619647 - HandId: #3915124928122192026-31-1743704785 - Holdem no limit (25/100/200) - 2025/04/03 18:26:25 UTC
+Table: 'MAGNETIC(911561057)#0153' 6-max (real money) Seat #4 is the button
+Seat 1: Opp001 (21255, 1€ bounty)
+Seat 2: Opp063 (24252, 1€ bounty)
+Seat 3: Opp120 (19936, 1€ bounty)
+Seat 4: Opp110 (15839, 1€ bounty)
+Seat 5: GTOverBet (19700, 1€ bounty)
+Seat 6: Opp098 (80268, 1.60€ bounty)
+*** ANTE/BLINDS ***
+GTOverBet posts ante 25
+Opp098 posts ante 25
+Opp001 posts ante 25
+Opp063 posts ante 25
+Opp120 posts ante 25
+Opp110 posts ante 25
+GTOverBet posts small blind 100
+Opp098 posts big blind 200
+Dealt to GTOverBet [Ad Qs]
+*** PRE-FLOP *** 
+Opp001 folds
+Opp063 folds
+Opp120 folds
+Opp110 folds
+GTOverBet raises 400 to 600
+Opp098 folds
+GTOverBet collected 950 from pot
+*** SUMMARY ***
+Total pot 950 | No rake
+Seat 5: GTOverBet (small blind) won 950
+
+
+Winamax Poker - Tournament "MAGNETIC" buyIn: 1.80€ + 0.20€ level: -1417619647 - HandId: #3915124928122192026-30-1743704751 - Holdem no limit (25/100/200) - 2025/04/03 18:25:51 UTC
+Table: 'MAGNETIC(911561057)#0153' 6-max (real money) Seat #3 is the button
+Seat 1: Opp001 (21280, 1€ bounty)
+Seat 2: Opp063 (24277, 1€ bounty)
+Seat 3: Opp120 (19511, 1€ bounty)
+Seat 4: Opp110 (15964, 1€ bounty)
+Seat 5: GTOverBet (19925, 1€ bounty)
+Seat 6: Opp098 (80293, 1.60€ bounty)
+*** ANTE/BLINDS ***
+Opp110 posts ante 25
+GTOverBet posts ante 25
+Opp001 posts ante 25
+Opp063 posts ante 25
+Opp120 posts ante 25
+Opp098 posts ante 25
+Opp110 posts small blind 100
+GTOverBet posts big blind 200
+Dealt to GTOverBet [Kh 3s]
+*** PRE-FLOP *** 
+Opp098 folds
+Opp001 folds
+Opp063 folds
+Opp120 raises 400 to 600
+Opp110 folds
+GTOverBet folds
+Opp120 collected 1050 from pot
+*** SUMMARY ***
+Total pot 1050 | No rake
+Seat 3: Opp120 (button) won 1050
+
+
+Winamax Poker - Tournament "MAGNETIC" buyIn: 1.80€ + 0.20€ level: -1417619647 - HandId: #3915124928122192026-29-1743704712 - Holdem no limit (25/100/200) - 2025/04/03 18:25:12 UTC
+Table: 'MAGNETIC(911561057)#0153' 6-max (real money) Seat #2 is the button
+Seat 1: Opp001 (21305, 1€ bounty)
+Seat 2: Opp063 (24302, 1€ bounty)
+Seat 3: Opp120 (20036, 1€ bounty)
+Seat 4: Opp110 (15339, 1€ bounty)
+Seat 5: GTOverBet (19950, 1€ bounty)
+Seat 6: Opp098 (80318, 1.60€ bounty)
+*** ANTE/BLINDS ***
+Opp120 posts ante 25
+Opp110 posts ante 25
+Opp001 posts ante 25
+Opp063 posts ante 25
+GTOverBet posts ante 25
+Opp098 posts ante 25
+Opp120 posts small blind 100
+Opp110 posts big blind 200
+Dealt to GTOverBet [Ac 6s]
+*** PRE-FLOP *** 
+GTOverBet folds
+Opp098 folds
+Opp001 folds
+Opp063 folds
+Opp120 calls 100
+Opp110 checks
+*** FLOP *** [3c Kd 7h]
+Opp120 checks
+Opp110 checks
+*** TURN *** [3c Kd 7h][4c]
+Opp120 checks
+Opp110 bets 300
+Opp120 calls 300
+*** RIVER *** [3c Kd 7h 4c][Th]
+Opp120 checks
+Opp110 checks
+*** SHOW DOWN ***
+Opp120 shows [Qc 3s] (One pair : 3)
+Opp110 shows [5s 4h] (One pair : 4)
+Opp110 collected 1150 from pot
+*** SUMMARY ***
+Total pot 1150 | No rake
+Board: [3c Kd 7h 4c Th]
+Seat 3: Opp120 (small blind) showed [Qc 3s] and lost with One pair : 3
+Seat 4: Opp110 (big blind) showed [5s 4h] and won 1150 with One pair : 4
+
+
+Winamax Poker - Tournament "MAGNETIC" buyIn: 1.80€ + 0.20€ level: -1417619647 - HandId: #3915124928122192026-28-1743704650 - Holdem no limit (25/100/200) - 2025/04/03 18:24:10 UTC
+Table: 'MAGNETIC(911561057)#0153' 6-max (real money) Seat #1 is the button
+Seat 1: Opp001 (21330, 1€ bounty)
+Seat 2: Opp063 (20877, 1€ bounty)
+Seat 3: Opp120 (21711, 1€ bounty)
+Seat 4: Opp110 (17014, 1€ bounty)
+Seat 5: GTOverBet (19975, 1€ bounty)
+Seat 6: Opp098 (80343, 1.60€ bounty)
+*** ANTE/BLINDS ***
+Opp063 posts ante 25
+Opp120 posts ante 25
+Opp001 posts ante 25
+Opp110 posts ante 25
+GTOverBet posts ante 25
+Opp098 posts ante 25
+Opp063 posts small blind 100
+Opp120 posts big blind 200
+Dealt to GTOverBet [4d 8h]
+*** PRE-FLOP *** 
+Opp110 raises 350 to 550
+GTOverBet folds
+Opp098 folds
+Opp001 folds
+Opp063 raises 1100 to 1650
+Opp120 calls 1450
+Opp110 calls 1100
+*** FLOP *** [Qs Jh Ac]
+Opp063 bets 3000
+Opp120 folds
+Opp110 folds
+Opp063 collected 8100 from pot
+*** SUMMARY ***
+Total pot 8100 | No rake
+Board: [Qs Jh Ac]
+Seat 2: Opp063 (small blind) won 8100
+
+
+Winamax Poker - Tournament "MAGNETIC" buyIn: 1.80€ + 0.20€ level: -1417619647 - HandId: #3915124928122192026-27-1743704562 - Holdem no limit (25/100/200) - 2025/04/03 18:22:42 UTC
+Table: 'MAGNETIC(911561057)#0153' 6-max (real money) Seat #6 is the button
+Seat 1: Opp001 (21455, 1€ bounty)
+Seat 2: Opp063 (21102, 1€ bounty)
+Seat 3: Opp120 (19975, 1€ bounty)
+Seat 4: Opp110 (18350, 1€ bounty)
+Seat 5: GTOverBet (20000, 1€ bounty)
+Seat 6: Opp098 (80368, 1.60€ bounty)
+*** ANTE/BLINDS ***
+Opp001 posts ante 25
+Opp063 posts ante 25
+Opp120 posts ante 25
+Opp110 posts ante 25
+GTOverBet posts ante 25
+Opp098 posts ante 25
+Opp001 posts small blind 100
+Opp063 posts big blind 200
+Dealt to GTOverBet [7d Qd]
+*** PRE-FLOP *** 
+Opp120 calls 200
+Opp110 raises 500 to 700
+GTOverBet folds
+Opp098 folds
+Opp001 folds
+Opp063 folds
+Opp120 calls 500
+*** FLOP *** [9d 8h As]
+Opp120 checks
+Opp110 bets 611
+Opp120 calls 611
+*** TURN *** [9d 8h As][9s]
+Opp120 bets 1997
+Opp110 folds
+Opp120 collected 5069 from pot
+*** SUMMARY ***
+Total pot 5069 | No rake
+Board: [9d 8h As 9s]
+Seat 3: Opp120 won 5069
+
+

@@ -30,6 +30,28 @@ pub enum DbError {
     Other(String),
 }
 
+/// Bumped whenever the parsers learn a new format: files that had errors are
+/// then parsed again automatically on the next start.
+pub const PARSER_VERSION: i64 = 3;
+
+fn requeue_errors_if_parsers_changed(conn: &Connection) -> Result<(), DbError> {
+    let stored: Option<i64> = conn
+        .query_row("SELECT value FROM meta WHERE key = 'parser_version'", [], |r| r.get::<_, String>(0))
+        .ok()
+        .and_then(|v| v.parse().ok());
+    if stored != Some(PARSER_VERSION) {
+        let n = import::retry_errors(conn)?;
+        if n > 0 {
+            log::info!("parsers updated: {n} file(s) with errors will be parsed again");
+        }
+        conn.execute(
+            "INSERT OR REPLACE INTO meta (key, value) VALUES ('parser_version', ?)",
+            [PARSER_VERSION.to_string()],
+        )?;
+    }
+    Ok(())
+}
+
 /// Opens (creating if needed) and migrates the database. Counters added
 /// since the last run are recomputed for every stored hand.
 pub fn open(path: &Path) -> Result<Connection, DbError> {
@@ -39,6 +61,7 @@ pub fn open(path: &Path) -> Result<Connection, DbError> {
     let mut conn = Connection::open(path)?;
     schema::configure(&conn)?;
     let added = schema::migrate(&mut conn)?;
+    requeue_errors_if_parsers_changed(&conn)?;
     if !added.is_empty() {
         log::info!("new counters {added:?}: recomputing");
         recompute_counters(&mut conn)?;

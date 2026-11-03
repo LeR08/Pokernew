@@ -155,11 +155,86 @@ fn unknown_lines_are_errors_not_skips() {
     assert_eq!(errs[0].line, "Tantaculejen dances");
 }
 
+/// Every hand that failed on the user's PC on 3 Nov. 2026 (exported from the
+/// app's error log, opponents anonymised) now parses and is consistent.
 #[test]
-fn cash_header_is_rejected_clearly() {
-    let raw = RawHand { text: "Winamax Poker - CashGame - HandId: #1 - Holdem no limit (0.01€/0.02€)", start: 0, end: 0, complete: true };
-    let e = Winamax.parse(&raw).unwrap_err();
-    assert!(e.message.contains("cash games are not supported yet"), "{e}");
+fn user_error_export_of_2026_11_03_parses() {
+    let dir = fixtures().join("user-2026-11-03");
+    let (mut hands, mut summaries) = (0, 0);
+    for e in std::fs::read_dir(&dir).unwrap().flatten() {
+        let text = std::fs::read_to_string(e.path()).unwrap();
+        let name = e.file_name().to_string_lossy().into_owned();
+        if name.ends_with("summary.txt") {
+            summaries += summary::parse_all(&text).unwrap_or_else(|err| panic!("{name}: {err}")).len();
+            continue;
+        }
+        for r in Winamax.split(&text) {
+            assert!(r.complete);
+            Winamax.parse(&r).unwrap_or_else(|err| panic!("{name} @ {}: {err}", r.start));
+            hands += 1;
+        }
+    }
+    assert_eq!((hands, summaries), (208, 2));
+}
+
+fn parse_user(name: &str) -> Vec<Hand> {
+    let text = std::fs::read_to_string(fixtures().join("user-2026-11-03").join(name)).unwrap();
+    Winamax.split(&text).iter().map(|r| Winamax.parse(r).unwrap()).collect()
+}
+
+#[test]
+fn cash_game_hands() {
+    let hands = parse_user("20250103_Aalen 29_real_holdem_no-limit.txt");
+    insta::assert_snapshot!("cash_aalen_29", render(&hands));
+    let h = &hands[0];
+    assert_eq!((h.game_type, h.unit, h.small_blind, h.big_blind), (GameType::Cash, Unit::Cents, 1, 2));
+    assert!(h.tournament.is_none());
+    assert_eq!(h.table_name, "Aalen 29");
+    // Raked hand: pot 0.74€ after a 0.04€ rake.
+    let r = hands.iter().find(|h| h.hand_no == "20478746-125-1735914461").unwrap();
+    assert_eq!((r.total_pot, r.rake), (78, 4));
+    assert_eq!(r.players.iter().map(|p| p.net_won()).sum::<i64>(), -4);
+    // A newcomer posting the big blind out of position is not the BB.
+    let oop = hands.iter().find(|h| h.hand_no == "20478746-131-1735914696").unwrap();
+    let bb: Vec<&str> = oop.players.iter().filter(|p| p.position == Some(Position::Bb)).map(|p| p.name.as_str()).collect();
+    assert_eq!(bb.len(), 1);
+    assert_ne!(bb[0], oop.players.iter().find(|p| p.seat == 2).unwrap().name);
+}
+
+#[test]
+fn expresso_without_ante_is_a_spin() {
+    let hands = parse_user("20250327_Expresso Nitro(921620907)_real_holdem_no-limit.txt");
+    let h = &hands[0];
+    assert_eq!((h.game_type, h.ante, h.small_blind, h.big_blind, h.max_seats), (GameType::Spin, 0, 10, 20, 3));
+    assert!(h.players.iter().all(|p| p.bounty_cents.is_none()));
+}
+
+#[test]
+fn negative_level_is_unknown() {
+    let h = &parse_user("20250405_ROTATION(912308558)_real_holdem_no-limit.txt")[0];
+    assert_eq!(h.level, None);
+    assert_eq!(h.big_blind, 200);
+}
+
+#[test]
+fn voluntary_show_without_showdown() {
+    let hands = parse_user("20250406_ROTATION(913224798)_real_holdem_no-limit.txt");
+    let h = hands.iter().find(|h| !h.showdown && h.players.iter().any(|p| !p.is_hero && p.hole_cards.len() == 2)).unwrap();
+    let shower = h.players.iter().find(|p| !p.is_hero && p.hole_cards.len() == 2).unwrap();
+    assert!(!shower.went_to_showdown);
+    assert!(shower.net_won() > 0);
+}
+
+#[test]
+fn satellite_summary_with_ticket() {
+    let text = std::fs::read_to_string(
+        fixtures().join("user-2026-11-03/20250401_PLANETE POK - ROAD TO WINAMAX SERIES 20 €(910389948)_real_holdem_no-limit_summary.txt"),
+    )
+    .unwrap();
+    let all = summary::parse_all(&text).unwrap();
+    let last = all.last().unwrap();
+    assert_eq!(last.name, "PLANETE POK - ROAD TO WINAMAX SERIES 20 €");
+    assert_eq!((last.won_cents, last.ticket_won_cents, last.bounty_won_cents), (19776, 2000, 20419));
 }
 
 #[test]

@@ -1,0 +1,180 @@
+Winamax Poker - Tournament "QUARK" buyIn: 1.80€ + 0.20€ level: -1939724479 - HandId: #3906467124456980576-28-1743345880 - Holdem no limit (25/100/200) - 2025/03/30 14:44:40 UTC
+Table: 'QUARK(909545255)#0095' 6-max (real money) Seat #6 is the button
+Seat 1: Opp075 (25589, 1€ bounty)
+Seat 2: GTOverBet (15386, 1€ bounty)
+Seat 3: Opp126 (24094, 1€ bounty)
+Seat 4: Opp042 (21034, 1€ bounty)
+Seat 5: Opp094 (57733, 1.40€ bounty)
+Seat 6: Opp139 (16148, 1€ bounty)
+*** ANTE/BLINDS ***
+Opp075 posts ante 25
+GTOverBet posts ante 25
+Opp126 posts ante 25
+Opp042 posts ante 25
+Opp094 posts ante 25
+Opp139 posts ante 25
+Opp075 posts small blind 100
+GTOverBet posts big blind 200
+Dealt to GTOverBet [3s Qs]
+*** PRE-FLOP *** 
+Opp126 raises 300 to 500
+Opp042 folds
+Opp094 calls 500
+Opp139 folds
+Opp075 folds
+GTOverBet folds
+*** FLOP *** [2h 2c 4h]
+Opp126 bets 507
+Opp094 calls 507
+*** TURN *** [2h 2c 4h][6s]
+Opp126 checks
+Opp094 checks
+*** RIVER *** [2h 2c 4h 6s][Qd]
+Opp126 bets 862
+Opp094 calls 862
+*** SHOW DOWN ***
+Opp126 shows [Jc Ad] (One pair : 2)
+Opp094 shows [6h 7h] (Two pairs : 6 and 2)
+Opp094 collected 4188 from pot
+*** SUMMARY ***
+Total pot 4188 | No rake
+Board: [2h 2c 4h 6s Qd]
+Seat 3: Opp126 showed [Jc Ad] and lost with One pair : 2
+Seat 5: Opp094 showed [6h 7h] and won 4188 with Two pairs : 6 and 2
+
+
+Winamax Poker - Tournament "QUARK" buyIn: 1.80€ + 0.20€ level: -1939724479 - HandId: #3906467124456980576-27-1743345792 - Holdem no limit (25/100/200) - 2025/03/30 14:43:12 UTC
+Table: 'QUARK(909545255)#0095' 6-max (real money) Seat #5 is the button
+Seat 1: Opp075 (25814, 1€ bounty)
+Seat 2: GTOverBet (15411, 1€ bounty)
+Seat 3: Opp126 (24319, 1€ bounty)
+Seat 4: Opp042 (21259, 1€ bounty)
+Seat 5: Opp094 (56908, 1.40€ bounty)
+Seat 6: Opp139 (16273, 1€ bounty)
+*** ANTE/BLINDS ***
+Opp139 posts ante 25
+Opp075 posts ante 25
+GTOverBet posts ante 25
+Opp126 posts ante 25
+Opp042 posts ante 25
+Opp094 posts ante 25
+Opp139 posts small blind 100
+Opp075 posts big blind 200
+Dealt to GTOverBet [Td Ks]
+*** PRE-FLOP *** 
+GTOverBet folds
+Opp126 calls 200
+Opp042 calls 200
+Opp094 calls 200
+Opp139 folds
+Opp075 checks
+*** FLOP *** [7s 9h 7h]
+Opp075 checks
+Opp126 checks
+Opp042 checks
+Opp094 checks
+*** TURN *** [7s 9h 7h][2h]
+Opp075 checks
+Opp126 checks
+Opp042 checks
+Opp094 bets 1050
+Opp075 folds
+Opp126 folds
+Opp042 folds
+Opp094 collected 2100 from pot
+*** SUMMARY ***
+Total pot 2100 | No rake
+Board: [7s 9h 7h 2h]
+Seat 5: Opp094 (button) won 2100
+
+
+Winamax Poker - Tournament "QUARK" buyIn: 1.80€ + 0.20€ level: -1939724479 - HandId: #3906467124456980576-26-1743345737 - Holdem no limit (25/100/200) - 2025/03/30 14:42:17 UTC
+Table: 'QUARK(909545255)#0095' 6-max (real money) Seat #4 is the button
+Seat 1: Opp075 (20850, 1€ bounty)
+Seat 2: GTOverBet (19975, 1€ bounty)
+Seat 3: Opp126 (24344, 1€ bounty)
+Seat 4: Opp042 (21284, 1€ bounty)
+Seat 5: Opp094 (57033, 1.40€ bounty)
+Seat 6: Opp139 (16498, 1€ bounty)
+*** ANTE/BLINDS ***
+Opp094 posts ante 25
+Opp139 posts ante 25
+Opp075 posts ante 25
+GTOverBet posts ante 25
+Opp126 posts ante 25
+Opp042 posts ante 25
+Opp094 posts small blind 100
+Opp139 posts big blind 200
+Dealt to GTOverBet [Ac 8c]
+*** PRE-FLOP *** 
+Opp075 raises 300 to 500
+GTOverBet calls 500
+Opp126 folds
+Opp042 folds
+Opp094 folds
+Opp139 folds
+*** FLOP *** [3d 5h 7h]
+Opp075 bets 363
+GTOverBet calls 363
+*** TURN *** [3d 5h 7h][Jh]
+Opp075 bets 3376
+GTOverBet calls 3376
+*** RIVER *** [3d 5h 7h Jh][Kc]
+Opp075 bets 300
+GTOverBet calls 300
+*** SHOW DOWN ***
+GTOverBet shows [Ac 8c] (High card : Ace)
+Opp075 shows [Qd Jd] (One pair : Jacks)
+Opp075 collected 9528 from pot
+*** SUMMARY ***
+Total pot 9528 | No rake
+Board: [3d 5h 7h Jh Kc]
+Seat 1: Opp075 showed [Qd Jd] and won 9528 with One pair : Jacks
+Seat 2: GTOverBet showed [Ac 8c] and lost with High card : Ace
+
+
+Winamax Poker - Tournament "QUARK" buyIn: 1.80€ + 0.20€ level: -1939724479 - HandId: #3906467124456980576-25-1743345653 - Holdem no limit (25/100/200) - 2025/03/30 14:40:53 UTC
+Table: 'QUARK(909545255)#0095' 6-max (real money) Seat #3 is the button
+Seat 1: Opp075 (20125, 1€ bounty)
+Seat 2: GTOverBet (20000, 1€ bounty)
+Seat 3: Opp126 (24369, 1€ bounty)
+Seat 4: Opp042 (21409, 1€ bounty)
+Seat 5: Opp094 (57558, 1.40€ bounty)
+Seat 6: Opp139 (16523, 1€ bounty)
+*** ANTE/BLINDS ***
+Opp042 posts ante 25
+Opp094 posts ante 25
+Opp075 posts ante 25
+GTOverBet posts ante 25
+Opp126 posts ante 25
+Opp139 posts ante 25
+Opp042 posts small blind 100
+Opp094 posts big blind 200
+Dealt to GTOverBet [5c 8h]
+*** PRE-FLOP *** 
+Opp139 folds
+Opp075 raises 300 to 500
+GTOverBet folds
+Opp126 folds
+Opp042 folds
+Opp094 calls 300
+*** FLOP *** [Kc Tc 8d]
+Opp094 checks
+Opp075 checks
+*** TURN *** [Kc Tc 8d][5h]
+Opp094 checks
+Opp075 checks
+*** RIVER *** [Kc Tc 8d 5h][4c]
+Opp094 checks
+Opp075 checks
+*** SHOW DOWN ***
+Opp094 shows [Jd 3s] (High card : King)
+Opp075 shows [7s Ad] (High card : Ace)
+Opp075 collected 1250 from pot
+*** SUMMARY ***
+Total pot 1250 | No rake
+Board: [Kc Tc 8d 5h 4c]
+Seat 1: Opp075 showed [7s Ad] and won 1250 with High card : Ace
+Seat 5: Opp094 (big blind) showed [Jd 3s] and lost with High card : King
+
+

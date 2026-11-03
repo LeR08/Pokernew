@@ -1,0 +1,302 @@
+Winamax Poker - Tournament "DESPERADO" buyIn: 4.50€ + 0.50€ level: -860693839 - HandId: #3741953693583409200-9-1735908878 - Holdem no limit (25/100/200) - 2025/01/03 12:54:38 UTC
+Table: 'DESPERADO(871241487)#0047' 6-max (real money) Seat #6 is the button
+Seat 1: Opp114 (30207, 2.25€ bounty)
+Seat 2: Opp069 (19525, 2.25€ bounty)
+Seat 3: Opp065 (19975, 2.25€ bounty)
+Seat 4: GTOverBet (55962, 4.49€ bounty)
+Seat 5: Opp066 (25696, 3.37€ bounty)
+Seat 6: Opp130 (17576, 2.25€ bounty)
+*** ANTE/BLINDS ***
+Opp114 posts ante 25
+Opp069 posts ante 25
+Opp065 posts ante 25
+GTOverBet posts ante 25
+Opp066 posts ante 25
+Opp130 posts ante 25
+Opp114 posts small blind 100
+Opp069 posts big blind 200
+Dealt to GTOverBet [6h 7s]
+*** PRE-FLOP *** 
+Opp065 folds
+GTOverBet folds
+Opp066 calls 200
+Opp130 calls 200
+Opp114 folds
+Opp069 checks
+*** FLOP *** [8d As Qh]
+Opp069 checks
+Opp066 checks
+Opp130 bets 850
+Opp069 folds
+Opp066 calls 850
+*** TURN *** [8d As Qh][Td]
+Opp066 checks
+Opp130 checks
+*** RIVER *** [8d As Qh Td][Kd]
+Opp066 bets 893
+Opp130 folds
+Opp066 collected 3443 from pot
+*** SUMMARY ***
+Total pot 3443 | No rake
+Board: [8d As Qh Td Kd]
+Seat 5: Opp066 won 3443
+
+
+Winamax Poker - Tournament "DESPERADO" buyIn: 4.50€ + 0.50€ level: -860693839 - HandId: #3741953693583409200-8-1735908849 - Holdem no limit (25/100/200) - 2025/01/03 12:54:09 UTC
+Table: 'DESPERADO(871241487)#0047' 6-max (real money) Seat #5 is the button
+Seat 1: Opp114 (29383, 2.25€ bounty)
+Seat 2: Opp069 (19550, 2.25€ bounty)
+Seat 3: Opp065 (20000, 2.25€ bounty)
+Seat 4: GTOverBet (55987, 4.49€ bounty)
+Seat 5: Opp066 (25696, 3.37€ bounty)
+Seat 6: Opp130 (18325, 2.25€ bounty)
+*** ANTE/BLINDS ***
+Opp130 posts ante 25
+Opp114 posts ante 25
+Opp069 posts ante 25
+Opp065 posts ante 25
+GTOverBet posts ante 25
+Opp130 posts small blind 100
+Opp114 posts big blind 200
+Dealt to GTOverBet [5d 4d]
+*** PRE-FLOP *** 
+Opp069 folds
+Opp065 folds
+GTOverBet folds
+Opp130 calls 100
+Opp114 checks
+*** FLOP *** [8s 7h Kc]
+Opp130 bets 200
+Opp114 calls 200
+*** TURN *** [8s 7h Kc][8h]
+Opp130 checks
+Opp114 checks
+*** RIVER *** [8s 7h Kc 8h][2h]
+Opp130 checks
+Opp114 bets 324
+Opp130 calls 324
+*** SHOW DOWN ***
+Opp130 shows [Ts 7d] (Two pairs : 8 and 7)
+Opp114 shows [Th Qh] (Flush Queen high)
+Opp114 collected 1573 from pot
+*** SUMMARY ***
+Total pot 1573 | No rake
+Board: [8s 7h Kc 8h 2h]
+Seat 1: Opp114 (big blind) showed [Th Qh] and won 1573 with Flush Queen high
+Seat 6: Opp130 (small blind) showed [Ts 7d] and lost with Two pairs : 8 and 7
+
+
+Winamax Poker - Tournament "DESPERADO" buyIn: 4.50€ + 0.50€ level: -860693839 - HandId: #3741953693583409200-7-1735908772 - Holdem no limit (25/100/200) - 2025/01/03 12:52:52 UTC
+Table: 'DESPERADO(871241487)#0047' 6-max (real money) Seat #4 is the button
+Seat 1: Opp114 (22873, 2.25€ bounty)
+Seat 2: Opp069 (19575, 2.25€ bounty)
+Seat 4: GTOverBet (62247, 4.49€ bounty)
+Seat 6: Opp130 (18550, 2.25€ bounty)
+*** ANTE/BLINDS ***
+Opp130 posts ante 25
+Opp114 posts ante 25
+Opp069 posts ante 25
+GTOverBet posts ante 25
+Opp130 posts big blind 200
+Dealt to GTOverBet [As 7c]
+*** PRE-FLOP *** 
+Opp114 raises 300 to 500
+Opp069 folds
+GTOverBet calls 500
+Opp130 folds
+*** FLOP *** [8s 7h 4c]
+Opp114 bets 400
+GTOverBet raises 700 to 1100
+Opp114 calls 700
+*** TURN *** [8s 7h 4c][Ah]
+Opp114 checks
+GTOverBet bets 2006
+Opp114 calls 2006
+*** RIVER *** [8s 7h 4c Ah][Td]
+Opp114 checks
+GTOverBet bets 2629
+Opp114 calls 2629
+*** SHOW DOWN ***
+GTOverBet shows [As 7c] (Two pairs : Aces and 7)
+Opp114 shows [8c Ad] (Two pairs : Aces and 8)
+Opp114 collected 12770 from pot
+*** SUMMARY ***
+Total pot 12770 | No rake
+Board: [8s 7h 4c Ah Td]
+Seat 1: Opp114 showed [8c Ad] and won 12770 with Two pairs : Aces and 8
+Seat 4: GTOverBet (button) showed [As 7c] and lost with Two pairs : Aces and 7
+
+
+Winamax Poker - Tournament "DESPERADO" buyIn: 4.50€ + 0.50€ level: -860693839 - HandId: #3741953693583409200-6-1735908702 - Holdem no limit (25/100/200) - 2025/01/03 12:51:42 UTC
+Table: 'DESPERADO(871241487)#0047' 6-max (real money) Seat #3 is the button
+Seat 1: Opp114 (22898, 2.25€ bounty)
+Seat 2: Opp069 (19600, 2.25€ bounty)
+Seat 3: Opp103 (19652, 2.25€ bounty)
+Seat 4: GTOverBet (20995, 2.25€ bounty)
+Seat 5: Opp108 (19050, 2.25€ bounty)
+Seat 6: Opp130 (21050, 2.25€ bounty)
+*** ANTE/BLINDS ***
+GTOverBet posts ante 25
+Opp108 posts ante 25
+Opp114 posts ante 25
+Opp069 posts ante 25
+Opp103 posts ante 25
+Opp130 posts ante 25
+GTOverBet posts small blind 100
+Opp108 posts big blind 200
+Dealt to GTOverBet [Qc Qh]
+*** PRE-FLOP *** 
+Opp130 calls 200
+Opp114 folds
+Opp069 folds
+Opp103 raises 600 to 800
+GTOverBet calls 700
+Opp108 calls 600
+Opp130 calls 600
+*** FLOP *** [4h Tc Jc]
+GTOverBet checks
+Opp108 checks
+Opp130 bets 1675
+Opp103 calls 1675
+GTOverBet raises 6365 to 8040
+Opp108 raises 10185 to 18225 and is all-in
+Opp130 folds
+Opp103 raises 602 to 18827 and is all-in
+GTOverBet calls 10787
+*** TURN *** [4h Tc Jc][6d]
+*** RIVER *** [4h Tc Jc 6d][2s]
+*** SHOW DOWN ***
+Opp103 shows [Ac Qs] (High card : Ace)
+Opp108 shows [Kc 8c] (High card : King)
+GTOverBet shows [Qc Qh] (One pair : Queens)
+GTOverBet collected 60904 from pot
+*** SUMMARY ***
+Total pot 60904 | No rake
+Board: [4h Tc Jc 6d 2s]
+Seat 3: Opp103 (button) showed [Ac Qs] and lost with High card : Ace
+Seat 4: GTOverBet (small blind) showed [Qc Qh] and won 60904 with One pair : Queens
+Seat 5: Opp108 (big blind) showed [Kc 8c] and lost with High card : King
+
+
+Winamax Poker - Tournament "DESPERADO" buyIn: 4.50€ + 0.50€ level: -860693839 - HandId: #3741953693583409200-5-1735908668 - Holdem no limit (25/100/200) - 2025/01/03 12:51:08 UTC
+Table: 'DESPERADO(871241487)#0047' 6-max (real money) Seat #2 is the button
+Seat 1: Opp114 (22923, 2.25€ bounty)
+Seat 2: Opp069 (19625, 2.25€ bounty)
+Seat 3: Opp103 (19127, 2.25€ bounty)
+Seat 4: GTOverBet (21220, 2.25€ bounty)
+Seat 5: Opp108 (19075, 2.25€ bounty)
+Seat 6: Opp130 (21275, 2.25€ bounty)
+*** ANTE/BLINDS ***
+Opp103 posts ante 25
+GTOverBet posts ante 25
+Opp114 posts ante 25
+Opp069 posts ante 25
+Opp108 posts ante 25
+Opp130 posts ante 25
+Opp103 posts small blind 100
+GTOverBet posts big blind 200
+Dealt to GTOverBet [5h 6c]
+*** PRE-FLOP *** 
+Opp108 folds
+Opp130 calls 200
+Opp114 folds
+Opp069 folds
+Opp103 raises 800 to 1000
+GTOverBet folds
+Opp130 folds
+Opp103 collected 1550 from pot
+*** SUMMARY ***
+Total pot 1550 | No rake
+Seat 3: Opp103 (small blind) won 1550
+
+
+Winamax Poker - Tournament "DESPERADO" buyIn: 4.50€ + 0.50€ level: -860693839 - HandId: #3741953693583409200-4-1735908594 - Holdem no limit (25/100/200) - 2025/01/03 12:49:54 UTC
+Table: 'DESPERADO(871241487)#0047' 6-max (real money) Seat #1 is the button
+Seat 1: Opp114 (20850, 2.25€ bounty)
+Seat 2: Opp069 (19750, 2.25€ bounty)
+Seat 3: Opp103 (20200, 2.25€ bounty)
+Seat 4: GTOverBet (21245, 2.25€ bounty)
+Seat 5: Opp108 (19500, 2.25€ bounty)
+Seat 6: Opp130 (21700, 2.25€ bounty)
+*** ANTE/BLINDS ***
+Opp069 posts ante 25
+Opp103 posts ante 25
+Opp114 posts ante 25
+GTOverBet posts ante 25
+Opp108 posts ante 25
+Opp130 posts ante 25
+Opp069 posts small blind 100
+Opp103 posts big blind 200
+Dealt to GTOverBet [9s 5d]
+*** PRE-FLOP *** 
+GTOverBet folds
+Opp108 raises 200 to 400
+Opp130 calls 400
+Opp114 calls 400
+Opp069 folds
+Opp103 calls 200
+*** FLOP *** [As Jd Kc]
+Opp103 checks
+Opp108 checks
+Opp130 checks
+Opp114 checks
+*** TURN *** [As Jd Kc][8d]
+Opp103 checks
+Opp108 checks
+Opp130 checks
+Opp114 checks
+*** RIVER *** [As Jd Kc 8d][8h]
+Opp103 bets 648
+Opp108 folds
+Opp130 folds
+Opp114 calls 648
+*** SHOW DOWN ***
+Opp103 shows [6c Ks] (Two pairs : Kings and 8)
+Opp114 shows [Ah 6s] (Two pairs : Aces and 8)
+Opp114 collected 3146 from pot
+*** SUMMARY ***
+Total pot 3146 | No rake
+Board: [As Jd Kc 8d 8h]
+Seat 1: Opp114 (button) showed [Ah 6s] and won 3146 with Two pairs : Aces and 8
+Seat 3: Opp103 (big blind) showed [6c Ks] and lost with Two pairs : Kings and 8
+
+
+Winamax Poker - Tournament "DESPERADO" buyIn: 4.50€ + 0.50€ level: -860693839 - HandId: #3741953693583409200-3-1735908559 - Holdem no limit (25/100/200) - 2025/01/03 12:49:19 UTC
+Table: 'DESPERADO(871241487)#0047' 6-max (real money) Seat #6 is the button
+Seat 1: Opp114 (20975, 2.25€ bounty)
+Seat 2: Opp069 (19975, 2.25€ bounty)
+Seat 3: Opp103 (20225, 2.25€ bounty)
+Seat 4: GTOverBet (21270, 2.25€ bounty)
+Seat 5: Opp108 (19525, 2.25€ bounty)
+Seat 6: Opp130 (21275, 2.25€ bounty)
+*** ANTE/BLINDS ***
+Opp114 posts ante 25
+Opp069 posts ante 25
+Opp103 posts ante 25
+GTOverBet posts ante 25
+Opp108 posts ante 25
+Opp130 posts ante 25
+Opp114 posts small blind 100
+Opp069 posts big blind 200
+Dealt to GTOverBet [Kd 9h]
+*** PRE-FLOP *** 
+Opp103 folds
+GTOverBet folds
+Opp108 folds
+Opp130 calls 200
+Opp114 folds
+Opp069 checks
+*** FLOP *** [7c Jh Js]
+Opp069 checks
+Opp130 checks
+*** TURN *** [7c Jh Js][4h]
+Opp069 checks
+Opp130 bets 650
+Opp069 folds
+Opp130 collected 1300 from pot
+*** SUMMARY ***
+Total pot 1300 | No rake
+Board: [7c Jh Js 4h]
+Seat 6: Opp130 (button) won 1300
+
+

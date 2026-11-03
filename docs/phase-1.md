@@ -1,6 +1,6 @@
 # Phase 1 — Import & base de données
 
-Statut : **implémentée pour Winamax MTT — en attente de ta validation** (cash et Expresso : en attente de fichiers) · Salle prioritaire : **Winamax** · Joueur : `Tantaculejen`
+Statut : **implémentée pour Winamax (MTT, KO, satellites, Expresso, cash) — en attente de ta validation** · Salle prioritaire : **Winamax** · Joueur : `Tantaculejen`
 
 ## Critères d'acceptation (spec)
 
@@ -91,7 +91,7 @@ Les 40 adversaires sont anonymisés (`Player01…`), ton pseudo est conservé.
 | Critère | Résultat |
 |---|---|
 | Fixtures Winamax MTT, 0 erreur | ✅ 288/288 mains, plus les 2 résumés. Chaque main passe les contrôles de cohérence : argent conservé, pot total = somme des mises, aucune carte en double, positions attribuées |
-| Fixtures Winamax cash / Expresso | ⏳ aucun fichier reçu ; ces en-têtes sont refusés avec un message clair, jamais devinés |
+| Fixtures Winamax cash / Expresso | ✅ à partir de l'export d'erreurs (voir plus bas) : 22 mains cash NL2, Expresso Nitro |
 | PokerStars | ➖ hors périmètre : l'utilisateur ne joue pas sur PokerStars (décision du 3 nov. 2026). Le critère de la phase 1 porte sur Winamax seul |
 | 100 000 mains à ≥ 3 000 mains/s | ✅ **≈ 4 000 mains/s** (100 224 mains en 24,8 s, conteneur à 4 vCPU, build release). Commande : `cargo test -p lps-db --release -- --ignored --nocapture bench` |
 | Ré-import : 0 doublon | ✅ fichier inchangé = 0 octet relu ; mêmes mains sous un autre nom = 288 doublons ignorés, 0 inséré |
@@ -137,3 +137,19 @@ Non fait dans cette phase :
     automatiquement avec le nouveau parseur.
   - Nouveau bouton « Exporter toutes les erreurs » : un fichier texte dans `logs/`, à envoyer pour
     corriger les cas restants.
+
+## Deuxième test — export des erreurs (3 nov. 2026)
+
+209 erreurs restantes, exportées depuis l'app et ajoutées en fixtures anonymisées
+(`fixtures/winamax/user-2026-11-03/`, 208 mains et 1 résumé à 2 entrées). Toutes passent maintenant :
+
+| Cas | Nombre | Correction |
+|---|---|---|
+| Tournoi sans ante : `(10/20)` au lieu de `(ante/sb/bb)` (Expresso, Starting Block, Tremplin) | 95 | ante = 0 ; Expresso = format Spin |
+| Niveau négatif `level: -21023` | 78 | niveau inconnu |
+| Cash game (montants en €, rake, « posts big blind … out of position ») | 22 | en centimes ; le pot est stocké avant rake ; le poster OOP n'est pas la BB |
+| `shows [..]` sans abattage, après que tout le monde s'est couché | 13 | cartes enregistrées, pas compté comme abattage |
+| `You won 197.76€ + Ticket 20€ + Bounty 204.19€` | 1 | nouvelle colonne `ticket_won_cents` |
+
+`PARSER_VERSION` (crate `db`) : à chaque nouveau format appris, les fichiers en erreur
+sont réimportés automatiquement au lancement suivant.

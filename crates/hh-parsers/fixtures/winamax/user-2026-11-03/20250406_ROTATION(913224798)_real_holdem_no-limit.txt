@@ -1,0 +1,47 @@
+Winamax Poker - Tournament "ROTATION" buyIn: 1.80€ + 0.20€ level: 3 - HandId: #3922270641306206253-41-1743943966 - Holdem no limit (35/150/300) - 2025/04/06 12:52:46 UTC
+Table: 'ROTATION(913224798)#044' 6-max (real money) Seat #4 is the button
+Seat 1: Opp061 (23490, 1€ bounty)
+Seat 2: Opp131 (69926, 2.75€ bounty)
+Seat 3: Opp032 (20007, 1€ bounty)
+Seat 4: Opp084 (52188, 1.20€ bounty)
+Seat 5: GTOverBet (15712, 1€ bounty)
+Seat 6: Opp083 (37802, 1.20€ bounty)
+*** ANTE/BLINDS ***
+GTOverBet posts ante 35
+Opp083 posts ante 35
+Opp061 posts ante 35
+Opp131 posts ante 35
+Opp032 posts ante 35
+Opp084 posts ante 35
+GTOverBet posts small blind 150
+Opp083 posts big blind 300
+Dealt to GTOverBet [2c 9c]
+*** PRE-FLOP *** 
+Opp061 raises 450 to 750
+Opp131 calls 750
+Opp032 folds
+Opp084 folds
+GTOverBet folds
+Opp083 calls 450
+*** FLOP *** [Td 9h 9d]
+Opp083 checks
+Opp061 bets 1697
+Opp131 calls 1697
+Opp083 calls 1697
+*** TURN *** [Td 9h 9d][Th]
+Opp083 checks
+Opp061 checks
+Opp131 checks
+*** RIVER *** [Td 9h 9d Th][6c]
+Opp083 checks
+Opp061 bets 5006
+Opp131 folds
+Opp083 folds
+Opp061 shows [6s 6h] (Full of 6 and Tens)
+Opp061 collected 12707 from pot
+*** SUMMARY ***
+Total pot 12707 | No rake
+Board: [Td 9h 9d Th 6c]
+Seat 1: Opp061 showed [6s 6h] and won 12707 with Full of 6 and Tens
+
+

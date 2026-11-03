@@ -1,0 +1,965 @@
+Winamax Poker - Tournament "Tremplin Dijon" buyIn: 0€ + 0€ level: 3 - HandId: #3490909805705429344-27-1735154439 - Holdem no limit (20/40) - 2024/12/25 19:20:39 UTC
+Table: 'Tremplin Dijon(812790777)#0351' 8-max (real money) Seat #2 is the button
+Seat 1: Opp091 (2820)
+Seat 2: Opp115 (2841)
+Seat 3: Opp100 (300)
+Seat 4: Opp006 (2865)
+Seat 5: Opp012 (3045)
+Seat 6: GTOverBet (3020)
+Seat 7: Opp140 (3064)
+Seat 8: Opp055 (6075)
+*** ANTE/BLINDS ***
+Opp100 posts small blind 20
+Opp006 posts big blind 40
+Dealt to GTOverBet [Ts Tc]
+*** PRE-FLOP *** 
+Opp012 calls 40
+GTOverBet raises 60 to 100
+Opp140 folds
+Opp055 folds
+Opp091 folds
+Opp115 folds
+Opp100 raises 200 to 300 and is all-in
+Opp006 folds
+Opp012 calls 260
+GTOverBet calls 200
+*** FLOP *** [7s Qs 5d]
+Opp012 bets 940
+GTOverBet raises 1780 to 2720 and is all-in
+Opp012 calls 1780
+*** TURN *** [7s Qs 5d][4h]
+*** RIVER *** [7s Qs 5d 4h][6d]
+*** SHOW DOWN ***
+Opp100 shows [9h Ah] (High card : Ace)
+GTOverBet shows [Ts Tc] (One pair : Tens)
+Opp012 shows [Qh 3h] (Straight 7 high)
+Opp012 collected 6380 from pot
+*** SUMMARY ***
+Total pot 6380 | No rake
+Board: [7s Qs 5d 4h 6d]
+Seat 3: Opp100 (small blind) showed [9h Ah] and lost with High card : Ace
+Seat 5: Opp012 showed [Qh 3h] and won 6380 with Straight 7 high
+Seat 6: GTOverBet showed [Ts Tc] and lost with One pair : Tens
+
+
+Winamax Poker - Tournament "Tremplin Dijon" buyIn: 0€ + 0€ level: 3 - HandId: #3490909805705429344-26-1735154365 - Holdem no limit (20/40) - 2024/12/25 19:19:25 UTC
+Table: 'Tremplin Dijon(812790777)#0351' 8-max (real money) Seat #1 is the button
+Seat 1: Opp091 (2820)
+Seat 2: Opp115 (2881)
+Seat 3: Opp100 (340)
+Seat 4: Opp006 (2865)
+Seat 5: Opp012 (2925)
+Seat 6: GTOverBet (3020)
+Seat 7: Opp140 (3104)
+Seat 8: Opp055 (6075)
+*** ANTE/BLINDS ***
+Opp115 posts small blind 20
+Opp100 posts big blind 40
+Dealt to GTOverBet [4d Kd]
+*** PRE-FLOP *** 
+Opp006 folds
+Opp012 calls 40
+GTOverBet folds
+Opp140 calls 40
+Opp055 folds
+Opp091 folds
+Opp115 calls 20
+Opp100 checks
+*** FLOP *** [8s As 3d]
+Opp115 checks
+Opp100 checks
+Opp012 checks
+Opp140 checks
+*** TURN *** [8s As 3d][7d]
+Opp115 checks
+Opp100 checks
+Opp012 checks
+Opp140 checks
+*** RIVER *** [8s As 3d 7d][9s]
+Opp115 checks
+Opp100 checks
+Opp012 checks
+Opp140 folds
+*** SHOW DOWN ***
+Opp115 shows [Qh 4h] (High card : Ace)
+Opp100 shows [6s 9c] (One pair : 9)
+Opp012 shows [Jc Th] (Straight Jack high)
+Opp012 collected 160 from pot
+*** SUMMARY ***
+Total pot 160 | No rake
+Board: [8s As 3d 7d 9s]
+Seat 2: Opp115 (small blind) showed [Qh 4h] and lost with High card : Ace
+Seat 3: Opp100 (big blind) showed [6s 9c] and lost with One pair : 9
+Seat 5: Opp012 showed [Jc Th] and won 160 with Straight Jack high
+
+
+Winamax Poker - Tournament "Tremplin Dijon" buyIn: 0€ + 0€ level: 3 - HandId: #3490909805705429344-25-1735154351 - Holdem no limit (20/40) - 2024/12/25 19:19:11 UTC
+Table: 'Tremplin Dijon(812790777)#0351' 8-max (real money) Seat #8 is the button
+Seat 1: Opp091 (2840)
+Seat 2: Opp115 (2921)
+Seat 3: Opp100 (340)
+Seat 4: Opp006 (2865)
+Seat 5: Opp012 (2865)
+Seat 6: GTOverBet (3020)
+Seat 7: Opp140 (3104)
+Seat 8: Opp055 (6075)
+*** ANTE/BLINDS ***
+Opp091 posts small blind 20
+Opp115 posts big blind 40
+Dealt to GTOverBet [8s 7d]
+*** PRE-FLOP *** 
+Opp100 folds
+Opp006 folds
+Opp012 raises 2825 to 2865 and is all-in
+GTOverBet folds
+Opp140 folds
+Opp055 folds
+Opp091 folds
+Opp115 folds
+Opp012 collected 2925 from pot
+*** SUMMARY ***
+Total pot 2925 | No rake
+Seat 5: Opp012 won 2925
+
+
+Winamax Poker - Tournament "Tremplin Dijon" buyIn: 0€ + 0€ level: 3 - HandId: #3490909805705429344-24-1735154330 - Holdem no limit (20/40) - 2024/12/25 19:18:50 UTC
+Table: 'Tremplin Dijon(812790777)#0351' 8-max (real money) Seat #7 is the button
+Seat 1: Opp091 (2880)
+Seat 2: Opp115 (2921)
+Seat 3: Opp100 (140)
+Seat 4: Opp006 (2865)
+Seat 5: Opp012 (2865)
+Seat 6: GTOverBet (3160)
+Seat 7: Opp140 (3104)
+Seat 8: Opp055 (6095)
+*** ANTE/BLINDS ***
+Opp055 posts small blind 20
+Opp091 posts big blind 40
+Dealt to GTOverBet [6s 7s]
+*** PRE-FLOP *** 
+Opp115 folds
+Opp100 raises 100 to 140 and is all-in
+Opp006 folds
+Opp012 folds
+GTOverBet calls 140
+Opp140 folds
+Opp055 folds
+Opp091 folds
+*** FLOP *** [Kc Qc Ks]
+*** TURN *** [Kc Qc Ks][Ah]
+*** RIVER *** [Kc Qc Ks Ah][6d]
+*** SHOW DOWN ***
+GTOverBet shows [6s 7s] (Two pairs : Kings and 6)
+Opp100 shows [Qs Tc] (Two pairs : Kings and Queens)
+Opp100 collected 340 from pot
+*** SUMMARY ***
+Total pot 340 | No rake
+Board: [Kc Qc Ks Ah 6d]
+Seat 3: Opp100 showed [Qs Tc] and won 340 with Two pairs : Kings and Queens
+Seat 6: GTOverBet showed [6s 7s] and lost with Two pairs : Kings and 6
+
+
+Winamax Poker - Tournament "Tremplin Dijon" buyIn: 0€ + 0€ level: 3 - HandId: #3490909805705429344-23-1735154247 - Holdem no limit (20/40) - 2024/12/25 19:17:27 UTC
+Table: 'Tremplin Dijon(812790777)#0351' 8-max (real money) Seat #6 is the button
+Seat 1: Opp091 (2880)
+Seat 2: Opp115 (2961)
+Seat 3: Opp100 (30)
+Seat 4: Opp006 (2865)
+Seat 5: Opp012 (2865)
+Seat 6: GTOverBet (3170)
+Seat 7: Opp140 (3124)
+Seat 8: Opp055 (6135)
+*** ANTE/BLINDS ***
+Opp140 posts small blind 20
+Opp055 posts big blind 40
+Dealt to GTOverBet [Qc Qd]
+*** PRE-FLOP *** 
+Opp091 folds
+Opp115 calls 40
+Opp100 calls 30 and is all-in
+Opp006 folds
+Opp012 folds
+GTOverBet raises 60 to 100
+Opp140 folds
+Opp055 folds
+Opp115 folds
+*** FLOP *** [5c 3h 4h]
+*** TURN *** [5c 3h 4h][2s]
+*** RIVER *** [5c 3h 4h 2s][8s]
+*** SHOW DOWN ***
+Opp100 shows [Ac 4c] (Straight 5 high)
+GTOverBet shows [Qc Qd] (One pair : Queens)
+GTOverBet collected 90 from side pot 1
+Opp100 collected 140 from main pot
+*** SUMMARY ***
+Total pot 230 | No rake
+Board: [5c 3h 4h 2s 8s]
+Seat 3: Opp100 showed [Ac 4c] and won 140 with Straight 5 high
+Seat 6: GTOverBet (button) showed [Qc Qd] and won 90 with One pair : Queens
+
+
+Winamax Poker - Tournament "Tremplin Dijon" buyIn: 0€ + 0€ level: 3 - HandId: #3490909805705429344-22-1735154201 - Holdem no limit (20/40) - 2024/12/25 19:16:41 UTC
+Table: 'Tremplin Dijon(812790777)#0351' 8-max (real money) Seat #5 is the button
+Seat 1: Opp091 (2880)
+Seat 2: Opp115 (3081)
+Seat 3: Opp100 (30)
+Seat 4: Opp006 (2865)
+Seat 5: Opp012 (2865)
+Seat 6: GTOverBet (3190)
+Seat 7: Opp140 (2984)
+Seat 8: Opp055 (6135)
+*** ANTE/BLINDS ***
+GTOverBet posts small blind 20
+Opp140 posts big blind 40
+Dealt to GTOverBet [Qs 6c]
+*** PRE-FLOP *** 
+Opp055 folds
+Opp091 folds
+Opp115 calls 40
+Opp100 folds
+Opp006 folds
+Opp012 folds
+GTOverBet folds
+Opp140 checks
+*** FLOP *** [6s 5c 2d]
+Opp140 checks
+Opp115 bets 40
+Opp140 calls 40
+*** TURN *** [6s 5c 2d][Qc]
+Opp140 checks
+Opp115 bets 40
+Opp140 calls 40
+*** RIVER *** [6s 5c 2d Qc][6h]
+Opp140 checks
+Opp115 checks
+*** SHOW DOWN ***
+Opp115 shows [2s As] (Two pairs : 6 and 2)
+Opp140 shows [Ts 5d] (Two pairs : 6 and 5)
+Opp140 collected 260 from pot
+*** SUMMARY ***
+Total pot 260 | No rake
+Board: [6s 5c 2d Qc 6h]
+Seat 2: Opp115 showed [2s As] and lost with Two pairs : 6 and 2
+Seat 7: Opp140 (big blind) showed [Ts 5d] and won 260 with Two pairs : 6 and 5
+
+
+Winamax Poker - Tournament "Tremplin Dijon" buyIn: 0€ + 0€ level: 2 - HandId: #3490909805705429344-21-1735154157 - Holdem no limit (15/30) - 2024/12/25 19:15:57 UTC
+Table: 'Tremplin Dijon(812790777)#0351' 8-max (real money) Seat #4 is the button
+Seat 1: Opp091 (2880)
+Seat 2: Opp115 (3081)
+Seat 3: Opp100 (3030)
+Seat 4: Opp006 (2865)
+Seat 5: Opp012 (2880)
+Seat 6: GTOverBet (3220)
+Seat 7: Opp140 (3074)
+Seat 8: Opp055 (3000)
+*** ANTE/BLINDS ***
+Opp012 posts small blind 15
+GTOverBet posts big blind 30
+Dealt to GTOverBet [As 7d]
+*** PRE-FLOP *** 
+Opp140 raises 60 to 90
+Opp055 raises 60 to 150
+Opp091 folds
+Opp115 folds
+Opp100 raises 435 to 585
+Opp006 folds
+Opp012 folds
+GTOverBet folds
+Opp140 folds
+Opp055 calls 435
+*** FLOP *** [Ts 7s Qh]
+Opp055 checks
+Opp100 bets 848
+Opp055 raises 1567 to 2415 and is all-in
+Opp100 calls 1567
+*** TURN *** [Ts 7s Qh][Kh]
+*** RIVER *** [Ts 7s Qh Kh][9c]
+*** SHOW DOWN ***
+Opp100 shows [Ah Ad] (One pair : Aces)
+Opp055 shows [Qc Kc] (Two pairs : Kings and Queens)
+Opp055 collected 6135 from pot
+*** SUMMARY ***
+Total pot 6135 | No rake
+Board: [Ts 7s Qh Kh 9c]
+Seat 3: Opp100 showed [Ah Ad] and lost with One pair : Aces
+Seat 8: Opp055 showed [Qc Kc] and won 6135 with Two pairs : Kings and Queens
+
+
+Winamax Poker - Tournament "Tremplin Dijon" buyIn: 0€ + 0€ level: 2 - HandId: #3490909805705429344-20-1735154110 - Holdem no limit (15/30) - 2024/12/25 19:15:10 UTC
+Table: 'Tremplin Dijon(812790777)#0351' 8-max (real money) Seat #3 is the button
+Seat 1: Opp091 (2880)
+Seat 2: Opp115 (2916)
+Seat 3: Opp100 (3030)
+Seat 4: Opp006 (2880)
+Seat 5: Opp012 (2910)
+Seat 6: GTOverBet (3220)
+Seat 7: Opp140 (3194)
+Seat 8: Opp055 (3000)
+*** ANTE/BLINDS ***
+Opp006 posts small blind 15
+Opp012 posts big blind 30
+Dealt to GTOverBet [Qd Th]
+*** PRE-FLOP *** 
+GTOverBet folds
+Opp140 raises 30 to 60
+Opp055 folds
+Opp091 folds
+Opp115 raises 30 to 90
+Opp100 folds
+Opp006 folds
+Opp012 folds
+Opp140 calls 30
+*** FLOP *** [3d 5d Qc]
+Opp140 checks
+Opp115 checks
+*** TURN *** [3d 5d Qc][4h]
+Opp140 checks
+Opp115 bets 30
+Opp140 calls 30
+*** RIVER *** [3d 5d Qc 4h][Jc]
+Opp140 checks
+Opp115 bets 2796 and is all-in
+Opp140 folds
+Opp115 collected 3081 from pot
+*** SUMMARY ***
+Total pot 3081 | No rake
+Board: [3d 5d Qc 4h Jc]
+Seat 2: Opp115 won 3081
+
+
+Winamax Poker - Tournament "Tremplin Dijon" buyIn: 0€ + 0€ level: 2 - HandId: #3490909805705429344-19-1735154098 - Holdem no limit (15/30) - 2024/12/25 19:14:58 UTC
+Table: 'Tremplin Dijon(812790777)#0351' 8-max (real money) Seat #2 is the button
+Seat 1: Opp091 (2880)
+Seat 2: Opp115 (2916)
+Seat 3: Opp100 (3045)
+Seat 4: Opp006 (2910)
+Seat 5: Opp012 (2910)
+Seat 6: GTOverBet (3175)
+Seat 7: Opp140 (3194)
+*** ANTE/BLINDS ***
+Opp100 posts small blind 15
+Opp006 posts big blind 30
+Dealt to GTOverBet [8h Js]
+*** PRE-FLOP *** 
+Opp012 folds
+GTOverBet raises 45 to 75
+Opp140 folds
+Opp091 folds
+Opp115 folds
+Opp100 folds
+Opp006 folds
+GTOverBet collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | No rake
+Seat 6: GTOverBet won 120
+
+
+Winamax Poker - Tournament "Tremplin Dijon" buyIn: 0€ + 0€ level: 2 - HandId: #3490909805705429344-18-1735154081 - Holdem no limit (15/30) - 2024/12/25 19:14:41 UTC
+Table: 'Tremplin Dijon(812790777)#0351' 8-max (real money) Seat #1 is the button
+Seat 1: Opp091 (2880)
+Seat 2: Opp115 (2946)
+Seat 3: Opp100 (3015)
+Seat 4: Opp006 (2910)
+Seat 5: Opp012 (2910)
+Seat 6: GTOverBet (3175)
+Seat 7: Opp140 (3194)
+*** ANTE/BLINDS ***
+Opp115 posts small blind 15
+Opp100 posts big blind 30
+Dealt to GTOverBet [7c Ks]
+*** PRE-FLOP *** 
+Opp006 folds
+Opp012 folds
+GTOverBet folds
+Opp140 folds
+Opp091 folds
+Opp115 calls 15
+Opp100 raises 60 to 90
+Opp115 folds
+Opp100 collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | No rake
+Seat 3: Opp100 (big blind) won 120
+
+
+Winamax Poker - Tournament "Tremplin Dijon" buyIn: 0€ + 0€ level: 2 - HandId: #3490909805705429344-17-1735154052 - Holdem no limit (15/30) - 2024/12/25 19:14:12 UTC
+Table: 'Tremplin Dijon(812790777)#0351' 8-max (real money) Seat #7 is the button
+Seat 1: Opp091 (2895)
+Seat 2: Opp115 (3036)
+Seat 3: Opp100 (2910)
+Seat 4: Opp006 (2910)
+Seat 5: Opp012 (2910)
+Seat 6: GTOverBet (3175)
+Seat 7: Opp140 (3194)
+*** ANTE/BLINDS ***
+Opp091 posts small blind 15
+Opp115 posts big blind 30
+Dealt to GTOverBet [5h 4h]
+*** PRE-FLOP *** 
+Opp100 raises 60 to 90
+Opp006 folds
+Opp012 folds
+GTOverBet folds
+Opp140 folds
+Opp091 folds
+Opp115 calls 60
+*** FLOP *** [Jh Qc 2s]
+Opp115 checks
+Opp100 bets 127
+Opp115 folds
+Opp100 collected 322 from pot
+*** SUMMARY ***
+Total pot 322 | No rake
+Board: [Jh Qc 2s]
+Seat 3: Opp100 won 322
+
+
+Winamax Poker - Tournament "Tremplin Dijon" buyIn: 0€ + 0€ level: 2 - HandId: #3490909805705429344-16-1735154016 - Holdem no limit (15/30) - 2024/12/25 19:13:36 UTC
+Table: 'Tremplin Dijon(812790777)#0351' 8-max (real money) Seat #6 is the button
+Seat 1: Opp091 (2925)
+Seat 2: Opp115 (3194)
+Seat 3: Opp100 (2910)
+Seat 4: Opp006 (2910)
+Seat 5: Opp012 (2910)
+Seat 6: GTOverBet (3175)
+Seat 7: Opp140 (3006)
+*** ANTE/BLINDS ***
+Opp140 posts small blind 15
+Opp091 posts big blind 30
+Dealt to GTOverBet [6h 3d]
+*** PRE-FLOP *** 
+Opp115 calls 30
+Opp100 folds
+Opp006 folds
+Opp012 folds
+GTOverBet folds
+Opp140 raises 30 to 60
+Opp091 folds
+Opp115 calls 30
+*** FLOP *** [Qc Td 6s]
+Opp140 checks
+Opp115 checks
+*** TURN *** [Qc Td 6s][2c]
+Opp140 bets 98
+Opp115 calls 98
+*** RIVER *** [Qc Td 6s 2c][8c]
+Opp140 bets 225
+Opp115 folds
+Opp140 collected 571 from pot
+*** SUMMARY ***
+Total pot 571 | No rake
+Board: [Qc Td 6s 2c 8c]
+Seat 7: Opp140 (small blind) won 571
+
+
+Winamax Poker - Tournament "Tremplin Dijon" buyIn: 0€ + 0€ level: 2 - HandId: #3490909805705429344-15-1735154001 - Holdem no limit (15/30) - 2024/12/25 19:13:21 UTC
+Table: 'Tremplin Dijon(812790777)#0351' 8-max (real money) Seat #5 is the button
+Seat 1: Opp091 (2925)
+Seat 2: Opp115 (3194)
+Seat 3: Opp100 (2910)
+Seat 4: Opp006 (2910)
+Seat 5: Opp012 (2910)
+Seat 6: GTOverBet (3145)
+Seat 7: Opp140 (3036)
+*** ANTE/BLINDS ***
+GTOverBet posts small blind 15
+Opp140 posts big blind 30
+Dealt to GTOverBet [Ac Qs]
+*** PRE-FLOP *** 
+Opp091 folds
+Opp115 folds
+Opp100 folds
+Opp006 folds
+Opp012 folds
+GTOverBet raises 45 to 75
+Opp140 folds
+GTOverBet collected 105 from pot
+*** SUMMARY ***
+Total pot 105 | No rake
+Seat 6: GTOverBet (small blind) won 105
+
+
+Winamax Poker - Tournament "Tremplin Dijon" buyIn: 0€ + 0€ level: 2 - HandId: #3490909805705429344-14-1735153981 - Holdem no limit (15/30) - 2024/12/25 19:13:01 UTC
+Table: 'Tremplin Dijon(812790777)#0351' 8-max (real money) Seat #4 is the button
+Seat 1: Opp091 (2925)
+Seat 2: Opp115 (3119)
+Seat 3: Opp100 (2910)
+Seat 4: Opp006 (2910)
+Seat 5: Opp012 (2925)
+Seat 6: GTOverBet (3175)
+Seat 7: Opp140 (3066)
+*** ANTE/BLINDS ***
+Opp012 posts small blind 15
+GTOverBet posts big blind 30
+Dealt to GTOverBet [7c 9s]
+*** PRE-FLOP *** 
+Opp140 calls 30
+Opp091 folds
+Opp115 raises 105 to 135
+Opp100 folds
+Opp006 folds
+Opp012 folds
+GTOverBet folds
+Opp140 folds
+Opp115 collected 210 from pot
+*** SUMMARY ***
+Total pot 210 | No rake
+Seat 2: Opp115 won 210
+
+
+Winamax Poker - Tournament "Tremplin Dijon" buyIn: 0€ + 0€ level: 2 - HandId: #3490909805705429344-13-1735153961 - Holdem no limit (15/30) - 2024/12/25 19:12:41 UTC
+Table: 'Tremplin Dijon(812790777)#0351' 8-max (real money) Seat #3 is the button
+Seat 1: Opp091 (2925)
+Seat 2: Opp115 (3119)
+Seat 3: Opp100 (2910)
+Seat 4: Opp006 (2925)
+Seat 5: Opp012 (2955)
+Seat 6: GTOverBet (3175)
+Seat 7: Opp140 (3021)
+*** ANTE/BLINDS ***
+Opp006 posts small blind 15
+Opp012 posts big blind 30
+Dealt to GTOverBet [5c Jh]
+*** PRE-FLOP *** 
+GTOverBet folds
+Opp140 raises 30 to 60
+Opp091 folds
+Opp115 folds
+Opp100 folds
+Opp006 folds
+Opp012 folds
+Opp140 collected 105 from pot
+*** SUMMARY ***
+Total pot 105 | No rake
+Seat 7: Opp140 won 105
+
+
+Winamax Poker - Tournament "Tremplin Dijon" buyIn: 0€ + 0€ level: 2 - HandId: #3490909805705429344-12-1735153941 - Holdem no limit (15/30) - 2024/12/25 19:12:21 UTC
+Table: 'Tremplin Dijon(812790777)#0351' 8-max (real money) Seat #2 is the button
+Seat 1: Opp091 (2925)
+Seat 2: Opp115 (3119)
+Seat 3: Opp100 (2925)
+Seat 4: Opp006 (2955)
+Seat 5: Opp012 (2955)
+Seat 6: GTOverBet (3175)
+Seat 7: Opp140 (2976)
+*** ANTE/BLINDS ***
+Opp100 posts small blind 15
+Opp006 posts big blind 30
+Dealt to GTOverBet [Th 2d]
+*** PRE-FLOP *** 
+Opp012 folds
+GTOverBet folds
+Opp140 calls 30
+Opp091 folds
+Opp115 folds
+Opp100 folds
+Opp006 folds
+Opp140 collected 75 from pot
+*** SUMMARY ***
+Total pot 75 | No rake
+Seat 7: Opp140 won 75
+
+
+Winamax Poker - Tournament "Tremplin Dijon" buyIn: 0€ + 0€ level: 2 - HandId: #3490909805705429344-11-1735153911 - Holdem no limit (15/30) - 2024/12/25 19:11:51 UTC
+Table: 'Tremplin Dijon(812790777)#0351' 8-max (real money) Seat #1 is the button
+Seat 1: Opp091 (2925)
+Seat 2: Opp115 (3029)
+Seat 3: Opp100 (2955)
+Seat 4: Opp006 (2955)
+Seat 5: Opp012 (2955)
+Seat 6: GTOverBet (3175)
+Seat 7: Opp140 (3036)
+*** ANTE/BLINDS ***
+Opp115 posts small blind 15
+Opp100 posts big blind 30
+Dealt to GTOverBet [Qh 2d]
+*** PRE-FLOP *** 
+Opp006 folds
+Opp012 folds
+GTOverBet folds
+Opp140 raises 30 to 60
+Opp091 folds
+Opp115 calls 45
+Opp100 folds
+*** FLOP *** [Ks Jd 4c]
+Opp115 checks
+Opp140 checks
+*** TURN *** [Ks Jd 4c][4d]
+Opp115 checks
+Opp140 checks
+*** RIVER *** [Ks Jd 4c 4d][Ac]
+Opp115 bets 53
+Opp140 folds
+Opp115 collected 203 from pot
+*** SUMMARY ***
+Total pot 203 | No rake
+Board: [Ks Jd 4c 4d Ac]
+Seat 2: Opp115 (small blind) won 203
+
+
+Winamax Poker - Tournament "Tremplin Dijon" buyIn: 0€ + 0€ level: 2 - HandId: #3490909805705429344-10-1735153871 - Holdem no limit (15/30) - 2024/12/25 19:11:11 UTC
+Table: 'Tremplin Dijon(812790777)#0351' 8-max (real money) Seat #7 is the button
+Seat 1: Opp091 (2940)
+Seat 2: Opp115 (3314)
+Seat 3: Opp100 (2955)
+Seat 4: Opp006 (2955)
+Seat 5: Opp012 (2955)
+Seat 6: GTOverBet (2875)
+Seat 7: Opp140 (3036)
+*** ANTE/BLINDS ***
+Opp091 posts small blind 15
+Opp115 posts big blind 30
+Dealt to GTOverBet [Js Jd]
+*** PRE-FLOP *** 
+Opp100 folds
+Opp006 folds
+Opp012 folds
+GTOverBet raises 45 to 75
+Opp140 folds
+Opp091 folds
+Opp115 calls 45
+*** FLOP *** [5s Qd 9h]
+Opp115 checks
+GTOverBet bets 75
+Opp115 calls 75
+*** TURN *** [5s Qd 9h][Kh]
+Opp115 checks
+GTOverBet bets 135
+Opp115 calls 135
+*** RIVER *** [5s Qd 9h Kh][Kd]
+Opp115 checks
+GTOverBet checks
+*** SHOW DOWN ***
+Opp115 shows [8h Th] (One pair : Kings)
+GTOverBet shows [Js Jd] (Two pairs : Kings and Jacks)
+GTOverBet collected 585 from pot
+*** SUMMARY ***
+Total pot 585 | No rake
+Board: [5s Qd 9h Kh Kd]
+Seat 2: Opp115 (big blind) showed [8h Th] and lost with One pair : Kings
+Seat 6: GTOverBet showed [Js Jd] and won 585 with Two pairs : Kings and Jacks
+
+
+Winamax Poker - Tournament "Tremplin Dijon" buyIn: 0€ + 0€ level: 2 - HandId: #3490909805705429344-9-1735153839 - Holdem no limit (15/30) - 2024/12/25 19:10:39 UTC
+Table: 'Tremplin Dijon(812790777)#0351' 8-max (real money) Seat #6 is the button
+Seat 1: Opp091 (2970)
+Seat 2: Opp115 (3134)
+Seat 3: Opp100 (2955)
+Seat 4: Opp006 (2955)
+Seat 5: Opp012 (2955)
+Seat 6: GTOverBet (2950)
+Seat 7: Opp140 (3111)
+*** ANTE/BLINDS ***
+Opp140 posts small blind 15
+Opp091 posts big blind 30
+Dealt to GTOverBet [8d Qc]
+*** PRE-FLOP *** 
+Opp115 calls 30
+Opp100 folds
+Opp006 folds
+Opp012 folds
+GTOverBet raises 45 to 75
+Opp140 calls 60
+Opp091 folds
+Opp115 calls 45
+*** FLOP *** [Jh Ac 7h]
+Opp140 checks
+Opp115 bets 89
+GTOverBet folds
+Opp140 folds
+Opp115 collected 344 from pot
+*** SUMMARY ***
+Total pot 344 | No rake
+Board: [Jh Ac 7h]
+Seat 2: Opp115 won 344
+
+
+Winamax Poker - Tournament "Tremplin Dijon" buyIn: 0€ + 0€ level: 2 - HandId: #3490909805705429344-8-1735153816 - Holdem no limit (15/30) - 2024/12/25 19:10:16 UTC
+Table: 'Tremplin Dijon(812790777)#0351' 8-max (real money) Seat #5 is the button
+Seat 1: Opp091 (2970)
+Seat 2: Opp115 (3209)
+Seat 3: Opp100 (2955)
+Seat 4: Opp006 (2955)
+Seat 5: Opp012 (2955)
+Seat 6: GTOverBet (2845)
+Seat 7: Opp140 (3141)
+*** ANTE/BLINDS ***
+GTOverBet posts small blind 15
+Opp140 posts big blind 30
+Dealt to GTOverBet [Jh 8h]
+*** PRE-FLOP *** 
+Opp091 folds
+Opp115 calls 30
+Opp100 folds
+Opp006 folds
+Opp012 folds
+GTOverBet raises 45 to 75
+Opp140 folds
+Opp115 calls 45
+*** FLOP *** [Td Qd 5d]
+GTOverBet bets 75
+Opp115 folds
+GTOverBet collected 255 from pot
+*** SUMMARY ***
+Total pot 255 | No rake
+Board: [Td Qd 5d]
+Seat 6: GTOverBet (small blind) won 255
+
+
+Winamax Poker - Tournament "Tremplin Dijon" buyIn: 0€ + 0€ level: 2 - HandId: #3490909805705429344-7-1735153789 - Holdem no limit (15/30) - 2024/12/25 19:09:49 UTC
+Table: 'Tremplin Dijon(812790777)#0351' 8-max (real money) Seat #4 is the button
+Seat 1: Opp091 (2970)
+Seat 2: Opp115 (3164)
+Seat 3: Opp100 (2955)
+Seat 4: Opp006 (2955)
+Seat 5: Opp012 (2970)
+Seat 6: GTOverBet (2875)
+Seat 7: Opp140 (3141)
+Seat 8: Opp104 (2970)
+*** ANTE/BLINDS ***
+Opp012 posts small blind 15
+GTOverBet posts big blind 30
+Dealt to GTOverBet [7h Qs]
+*** PRE-FLOP *** 
+Opp140 folds
+Opp104 folds
+Opp091 folds
+Opp115 calls 30
+Opp100 folds
+Opp006 folds
+Opp012 folds
+GTOverBet checks
+*** FLOP *** [6s 3c 8h]
+GTOverBet checks
+Opp115 checks
+*** TURN *** [6s 3c 8h][Jh]
+GTOverBet checks
+Opp115 bets 30
+GTOverBet folds
+Opp115 collected 105 from pot
+*** SUMMARY ***
+Total pot 105 | No rake
+Board: [6s 3c 8h Jh]
+Seat 2: Opp115 won 105
+
+
+Winamax Poker - Tournament "Tremplin Dijon" buyIn: 0€ + 0€ level: 2 - HandId: #3490909805705429344-6-1735153752 - Holdem no limit (15/30) - 2024/12/25 19:09:12 UTC
+Table: 'Tremplin Dijon(812790777)#0351' 8-max (real money) Seat #3 is the button
+Seat 1: Opp091 (2970)
+Seat 2: Opp115 (2969)
+Seat 3: Opp100 (2955)
+Seat 4: Opp006 (2970)
+Seat 5: Opp012 (3000)
+Seat 6: GTOverBet (2950)
+Seat 7: Opp140 (3216)
+Seat 8: Opp104 (2970)
+*** ANTE/BLINDS ***
+Opp006 posts small blind 15
+Opp012 posts big blind 30
+Dealt to GTOverBet [7d 8s]
+*** PRE-FLOP *** 
+GTOverBet raises 45 to 75
+Opp140 calls 75
+Opp104 folds
+Opp091 folds
+Opp115 calls 75
+Opp100 folds
+Opp006 folds
+Opp012 folds
+*** FLOP *** [Tc 3c 5c]
+GTOverBet checks
+Opp140 checks
+Opp115 bets 95
+GTOverBet folds
+Opp140 folds
+Opp115 collected 365 from pot
+*** SUMMARY ***
+Total pot 365 | No rake
+Board: [Tc 3c 5c]
+Seat 2: Opp115 won 365
+
+
+Winamax Poker - Tournament "Tremplin Dijon" buyIn: 0€ + 0€ level: 2 - HandId: #3490909805705429344-5-1735153740 - Holdem no limit (15/30) - 2024/12/25 19:09:00 UTC
+Table: 'Tremplin Dijon(812790777)#0351' 8-max (real money) Seat #2 is the button
+Seat 1: Opp091 (2970)
+Seat 2: Opp115 (2924)
+Seat 3: Opp100 (2970)
+Seat 4: Opp006 (3000)
+Seat 5: Opp012 (3000)
+Seat 6: GTOverBet (2950)
+Seat 7: Opp140 (3216)
+Seat 8: Opp104 (2970)
+*** ANTE/BLINDS ***
+Opp100 posts small blind 15
+Opp006 posts big blind 30
+Dealt to GTOverBet [7d 2s]
+*** PRE-FLOP *** 
+Opp012 folds
+GTOverBet folds
+Opp140 folds
+Opp104 folds
+Opp091 folds
+Opp115 raises 30 to 60
+Opp100 folds
+Opp006 folds
+Opp115 collected 105 from pot
+*** SUMMARY ***
+Total pot 105 | No rake
+Seat 2: Opp115 (button) won 105
+
+
+Winamax Poker - Tournament "Tremplin Dijon" buyIn: 0€ + 0€ level: 2 - HandId: #3490909805705429344-4-1735153721 - Holdem no limit (15/30) - 2024/12/25 19:08:41 UTC
+Table: 'Tremplin Dijon(812790777)#0351' 8-max (real money) Seat #1 is the button
+Seat 1: Opp091 (2970)
+Seat 2: Opp115 (2894)
+Seat 3: Opp100 (3000)
+Seat 4: Opp006 (3000)
+Seat 5: Opp012 (3000)
+Seat 6: GTOverBet (2950)
+Seat 7: Opp140 (3216)
+Seat 8: Opp104 (2970)
+*** ANTE/BLINDS ***
+Opp115 posts small blind 15
+Opp100 posts big blind 30
+Dealt to GTOverBet [9c 3h]
+*** PRE-FLOP *** 
+Opp006 folds
+Opp012 folds
+GTOverBet folds
+Opp140 folds
+Opp104 folds
+Opp091 folds
+Opp115 calls 15
+Opp100 checks
+*** FLOP *** [7d Js 7c]
+Opp115 bets 30
+Opp100 folds
+Opp115 collected 90 from pot
+*** SUMMARY ***
+Total pot 90 | No rake
+Board: [7d Js 7c]
+Seat 2: Opp115 (small blind) won 90
+
+
+Winamax Poker - Tournament "Tremplin Dijon" buyIn: 0€ + 0€ level: 1 - HandId: #3490909805705429344-3-1735153667 - Holdem no limit (10/20) - 2024/12/25 19:07:47 UTC
+Table: 'Tremplin Dijon(812790777)#0351' 8-max (real money) Seat #8 is the button
+Seat 1: Opp091 (2980)
+Seat 2: Opp115 (2914)
+Seat 3: Opp100 (3000)
+Seat 4: Opp006 (3000)
+Seat 5: Opp012 (3000)
+Seat 6: GTOverBet (2950)
+Seat 7: Opp140 (3186)
+Seat 8: Opp104 (2970)
+*** ANTE/BLINDS ***
+Opp091 posts small blind 10
+Opp115 posts big blind 20
+Dealt to GTOverBet [5h 3s]
+*** PRE-FLOP *** 
+Opp100 folds
+Opp006 folds
+Opp012 folds
+GTOverBet folds
+Opp140 calls 20
+Opp104 folds
+Opp091 folds
+Opp115 checks
+*** FLOP *** [5c 9h 6d]
+Opp115 checks
+Opp140 checks
+*** TURN *** [5c 9h 6d][9d]
+Opp115 checks
+Opp140 checks
+*** RIVER *** [5c 9h 6d 9d][5s]
+Opp115 checks
+Opp140 checks
+*** SHOW DOWN ***
+Opp115 shows [Td 8c] (Two pairs : 9 and 5)
+Opp140 shows [Kd 3d] (Two pairs : 9 and 5)
+Opp140 collected 50 from pot
+*** SUMMARY ***
+Total pot 50 | No rake
+Board: [5c 9h 6d 9d 5s]
+Seat 2: Opp115 (big blind) showed [Td 8c] and lost with Two pairs : 9 and 5
+Seat 7: Opp140 showed [Kd 3d] and won 50 with Two pairs : 9 and 5
+
+
+Winamax Poker - Tournament "Tremplin Dijon" buyIn: 0€ + 0€ level: 1 - HandId: #3490909805705429344-2-1735153635 - Holdem no limit (10/20) - 2024/12/25 19:07:15 UTC
+Table: 'Tremplin Dijon(812790777)#0351' 8-max (real money) Seat #7 is the button
+Seat 1: Opp091 (3000)
+Seat 2: Opp115 (2980)
+Seat 3: Opp100 (3000)
+Seat 4: Opp006 (3000)
+Seat 5: Opp012 (3000)
+Seat 6: GTOverBet (2950)
+Seat 7: Opp140 (3090)
+Seat 8: Opp104 (2980)
+*** ANTE/BLINDS ***
+Opp104 posts small blind 10
+Opp091 posts big blind 20
+Dealt to GTOverBet [9s 5c]
+*** PRE-FLOP *** 
+Opp115 calls 20
+Opp100 folds
+Opp006 folds
+Opp012 folds
+GTOverBet folds
+Opp140 calls 20
+Opp104 folds
+Opp091 checks
+*** FLOP *** [4h 5d Ac]
+Opp091 checks
+Opp115 checks
+Opp140 bets 46
+Opp091 folds
+Opp115 calls 46
+*** TURN *** [4h 5d Ac][6h]
+Opp115 checks
+Opp140 checks
+*** RIVER *** [4h 5d Ac 6h][4d]
+Opp115 checks
+Opp140 checks
+*** SHOW DOWN ***
+Opp115 shows [Qc Th] (One pair : 4)
+Opp140 shows [9h As] (Two pairs : Aces and 4)
+Opp140 collected 162 from pot
+*** SUMMARY ***
+Total pot 162 | No rake
+Board: [4h 5d Ac 6h 4d]
+Seat 2: Opp115 showed [Qc Th] and lost with One pair : 4
+Seat 7: Opp140 (button) showed [9h As] and won 162 with Two pairs : Aces and 4
+
+
+Winamax Poker - Tournament "Tremplin Dijon" buyIn: 0€ + 0€ level: 1 - HandId: #3490909805705429344-1-1735153225 - Holdem no limit (10/20) - 2024/12/25 19:00:25 UTC
+Table: 'Tremplin Dijon(812790777)#0351' 8-max (real money) Seat #6 is the button
+Seat 1: Opp091 (3000)
+Seat 2: Opp115 (3000)
+Seat 3: Opp100 (3000)
+Seat 4: Opp006 (3000)
+Seat 5: Opp012 (3000)
+Seat 6: GTOverBet (3000)
+Seat 7: Opp140 (3000)
+Seat 8: Opp104 (3000)
+*** ANTE/BLINDS ***
+Opp140 posts small blind 10
+Opp104 posts big blind 20
+Dealt to GTOverBet [9s Td]
+*** PRE-FLOP *** 
+Opp091 folds
+Opp115 calls 20
+Opp100 folds
+Opp006 folds
+Opp012 folds
+GTOverBet raises 30 to 50
+Opp140 raises 140 to 190
+Opp104 folds
+Opp115 folds
+GTOverBet folds
+Opp140 collected 280 from pot
+*** SUMMARY ***
+Total pot 280 | No rake
+Seat 7: Opp140 (small blind) won 280
+
+
