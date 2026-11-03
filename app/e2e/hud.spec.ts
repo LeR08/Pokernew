@@ -24,7 +24,9 @@ test("HUD overlay drag and popup", async ({ page }) => {
   // The mock keeps edit mode per page load: turn it on from the overlay's own backend.
   await page.goto("/#/hud/1000000");
   await page.evaluate(async () => {
-    const m = await import("/src/lib/backend.ts");
+    // Runs in the browser, against the Vite dev server's module graph.
+    const path = "/src/lib/backend.ts";
+    const m = (await import(/* @vite-ignore */ path)) as { getBackend: () => Promise<{ hudSetEdit: (e: boolean) => Promise<void> }> };
     const b = await m.getBackend();
     await b.hudSetEdit(true);
   });
