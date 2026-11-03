@@ -690,7 +690,8 @@
     "copy_windows": "Copy the list",
     "inspector_help": "Open windows that match no table (program · class · title). If a Winamax table is not recognised, copy this list and send it to me.",
     "layout_help": "The layout (stats shown, positions, opacity) is in hud/standard.toml, chosen by the active profile:",
-    "profiles": "Settings → Profiles"
+    "profiles": "Settings → Profiles",
+    "show_hero": "Show my own panel"
   },
   "playmode": {
     "title": "Locked while playing",

@@ -41,3 +41,11 @@ test("HUD overlay drag and popup", async ({ page }) => {
   await page.mouse.up();
   await expect.poll(async () => (await page.getByTestId("hud-panel").first().boundingBox())!.x).toBeGreaterThan(before!.x + 100);
 });
+
+test("show my own HUD panel", async ({ page }) => {
+  await page.goto("/#/m/hud");
+  const box = page.getByTestId("hud-show-hero");
+  await expect(box).toBeChecked(); // default layout shows the hero
+  await box.uncheck();
+  await expect(box).not.toBeChecked();
+});

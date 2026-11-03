@@ -202,6 +202,16 @@ ALTER TABLE hands ADD COLUMN flop_texture INTEGER;
 CREATE INDEX hand_players_class ON hand_players (hand_class);
 ALTER TABLE notes ADD COLUMN rule TEXT;
 "#,
+    // v6 — players seated but not dealt in (for the HUD).
+    r#"
+CREATE TABLE hand_waiting (
+    hand_id INTEGER NOT NULL REFERENCES hands(id) ON DELETE CASCADE,
+    player_id INTEGER NOT NULL REFERENCES players(id),
+    seat INTEGER NOT NULL,
+    stack INTEGER NOT NULL,
+    PRIMARY KEY (hand_id, player_id)
+) WITHOUT ROWID;
+"#,
 ];
 
 /// Connection pragmas: WAL so the UI can read while the importer writes.

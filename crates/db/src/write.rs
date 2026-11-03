@@ -154,6 +154,11 @@ pub fn insert_hand(tx: &Transaction<'_>, cache: &mut IdCache, hand: &Hand, file_
             ])?;
         }
     }
+    for w in &hand.waiting {
+        let pid = player_id(tx, cache, &hand.room, &w.name, false)?;
+        tx.prepare_cached("INSERT OR IGNORE INTO hand_waiting (hand_id, player_id, seat, stack) VALUES (?, ?, ?, ?)")?
+            .execute(params![hand_id, pid, w.seat, w.stack])?;
+    }
     write_counters(tx, hand_id, &ids, hand)?;
     write_derived(tx, hand_id, &ids, hand)?;
     Ok(true)

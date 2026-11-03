@@ -30,7 +30,7 @@ import type {
 export type JsonValue = null | boolean | number | string | JsonValue[] | { [k: string]: JsonValue };
 export type JsonObject = { [k: string]: JsonValue };
 
-export type Family = "settings" | "hotkeys" | "themes" | "profiles" | "rooms" | "stats";
+export type Family = "settings" | "hotkeys" | "themes" | "profiles" | "rooms" | "stats" | "leaks" | "notes" | "hud";
 
 export interface Issue {
   family: string;

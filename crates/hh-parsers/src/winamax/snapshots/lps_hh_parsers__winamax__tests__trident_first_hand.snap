@@ -90,6 +90,7 @@ Hand {
             went_to_showdown: true,
         },
     ],
+    waiting: [],
     board: [
         Ac,
         4c,

@@ -146,9 +146,17 @@ export function HudOverlay() {
     load();
     let off: (() => void) | undefined;
     void getBackend().then((b) => {
-      off = b.onHudEvent((k) => {
+      const offHud = b.onHudEvent((k) => {
         if (k === "hud-refresh" || k === "hud-edit") load();
       });
+      // Layout edited (settings, HUD page, text editor): redraw.
+      const offCfg = b.onConfigEvent((e) => {
+        if (e.kind === "changed" && (e.family === "hud" || e.family === "stats" || e.family === "profiles")) load();
+      });
+      off = () => {
+        offHud();
+        offCfg();
+      };
     });
     return () => off?.();
   }, [load]);

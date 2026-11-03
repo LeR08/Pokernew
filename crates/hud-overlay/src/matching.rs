@@ -46,6 +46,14 @@ pub struct TableWindow {
 
 fn keys(t: &ActiveTable) -> Vec<String> {
     let mut k = vec![t.table_name.clone()];
+    // Winamax window titles (seen on the user's PC, Nov. 2026):
+    // "TRIDENT SPACE KO #0114 - 0,50 € - No Limit Holdem" for the table
+    // "TRIDENT SPACE KO(1195602081)#0114" of the hand histories.
+    if let (Some(name), Some(no)) = (t.table_name.split_once('(').map(|(n, _)| n.trim_end()), t.table_number) {
+        k.push(format!("{name} #{no:04}"));
+        k.push(format!("{name} #{no:03}"));
+        k.push(format!("{name} #{no}"));
+    }
     // "SPACE KO(1195603616)#0043" may be shown as "SPACE KO … 1195603616 … 43".
     if let (Some(id), Some(no)) = (&t.tournament_id, t.table_number) {
         k.push(format!("{id}#{no:04}"));
@@ -136,6 +144,16 @@ mod tests {
         let m = match_tables(&wins, &tables, &rules());
         let pairs: Vec<(u64, &str)> = m.iter().map(|x| (x.window.id, x.table.table_name.as_str())).collect();
         assert_eq!(pairs, [(1, "SPACE KO(1195603616)#0043"), (2, "TRIDENT SPACE KO(1195602081)#0053")]);
+    }
+
+    #[test]
+    fn real_winamax_title() {
+        // Title copied from the user's screenshot (3 Nov. 2026).
+        let tables = [table("TRIDENT SPACE KO(1195602081)#0114", "1195602081", 114), table("TRIDENT SPACE KO(1195602081)#0053", "1195602081", 53)];
+        let m = match_tables(&[win(7, "TRIDENT SPACE KO #0114 - 0,50 € - No Limit Holdem", "Winamax.exe")], &tables, &rules());
+        assert_eq!(m.len(), 1);
+        assert_eq!(m[0].table.table_name, "TRIDENT SPACE KO(1195602081)#0114");
+        assert_eq!(m[0].matched_by, "TRIDENT SPACE KO #0114");
     }
 
     #[test]

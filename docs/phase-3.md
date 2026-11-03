@@ -69,3 +69,15 @@ Choix techniques :
 À confirmer avec tes captures et l'inspecteur de fenêtres :
 - que les titres des fenêtres de table Winamax contiennent bien le nom de la table ;
 - l'ordre des sièges (sens horaire, héros en bas) pour les positions par défaut.
+
+## Premier test sur le PC de l'utilisateur (3 nov. 2026)
+
+Capture d'une table réelle. Le titre de la fenêtre Winamax est
+`TRIDENT SPACE KO #0114 - 0,50 € - No Limit Holdem`, pour la table `TRIDENT SPACE KO(1195602081)#0114`
+des historiques : le nom du tournoi, puis ` #` et le numéro de table sur 4 chiffres. Le numéro de tournoi
+n'apparaît pas. Corrections :
+- clé de rapprochement `<nom> #<numéro>` (test `real_winamax_title`, avec le titre réel) ;
+- les joueurs assis mais pas encore servis (nouveaux arrivants) sont gardés (`hand_waiting`, migration v6)
+  et reçoivent un panneau : c'est la cause probable du vilain sans HUD ;
+- case « Afficher mon propre panneau » dans le module HUD, cochée par défaut dans les nouvelles dispositions ;
+- le HUD se redessine dès que la disposition, les stats ou le profil changent.

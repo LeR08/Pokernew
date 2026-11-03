@@ -13,7 +13,7 @@ name = "Standard"
 opacity = 0.85
 font_scale = 1.0
 # Afficher le panneau du héros / show the hero's own panel
-show_hero = false
+show_hero = true
 # Griser les stats avec moins de N mains / dim stats with fewer than N hands
 min_hands = 20
 rows = [

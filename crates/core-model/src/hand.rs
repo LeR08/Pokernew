@@ -177,6 +177,15 @@ impl PlayerInHand {
     }
 }
 
+/// A player seated at the table but not dealt into this hand (just arrived,
+/// waiting for the big blind…). Not part of the hand; kept for the HUD.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct WaitingPlayer {
+    pub seat: u8,
+    pub name: String,
+    pub stack: i64,
+}
+
 /// Tournament the hand belongs to.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct TournamentRef {
@@ -211,6 +220,9 @@ pub struct Hand {
     pub max_seats: u8,
     pub button_seat: u8,
     pub players: Vec<PlayerInHand>,
+    /// Seated but not dealt in.
+    #[serde(default)]
+    pub waiting: Vec<WaitingPlayer>,
     /// Board cards in order (flop, turn, river).
     pub board: Vec<Card>,
     pub actions: Vec<Action>,

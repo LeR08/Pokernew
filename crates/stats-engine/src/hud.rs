@@ -92,9 +92,17 @@ pub fn table(conn: &Connection, room: &str, table_name: &str, stats: &[CompiledS
         "SELECT hp.seat, p.name, hp.is_hero, hp.position, p.colour, p.id FROM hand_players hp JOIN players p ON p.id = hp.player_id
          WHERE hp.hand_id = ? ORDER BY hp.seat",
     )?;
-    let people: Vec<Person> = st
+    let mut people: Vec<Person> = st
         .query_map([hand_id], |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?, r.get(3)?, r.get(4)?, r.get(5)?)))?
         .collect::<rusqlite::Result<_>>()?;
+    // Players seated but not dealt in the last hand (new arrivals) get a panel too.
+    let mut wst = conn.prepare_cached(
+        "SELECT w.seat, p.name, 0, NULL, p.colour, p.id FROM hand_waiting w JOIN players p ON p.id = w.player_id WHERE w.hand_id = ?",
+    )?;
+    let waiting: Vec<Person> =
+        wst.query_map([hand_id], |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?, r.get(3)?, r.get(4)?, r.get(5)?)))?.collect::<rusqlite::Result<_>>()?;
+    people.extend(waiting);
+    people.sort_by_key(|p| p.0);
     let sl = slots(&people.iter().map(|p| (p.0, p.2)).collect::<Vec<_>>(), max_seats, rotate);
     let mut seats = Vec::with_capacity(people.len());
     for ((seat, name, is_hero, position, colour, pid), slot) in people.into_iter().zip(sl) {

@@ -40,6 +40,9 @@ const SCHEMA_OF: Record<Family, string> = {
   profiles: "profile",
   rooms: "room",
   stats: "stats",
+  leaks: "leaks",
+  notes: "notes",
+  hud: "hud",
 };
 
 /** "../../../config/defaults/themes/dark.toml" -> ["themes", "dark"] */
@@ -50,8 +53,8 @@ function keyOf(path: string): [Family, string] | null {
   if (parts.length === 1 && (parts[0] === "settings" || parts[0] === "hotkeys")) {
     return [parts[0], parts[0]];
   }
-  if (parts.length === 2 && (parts[0] === "themes" || parts[0] === "profiles" || parts[0] === "rooms" || parts[0] === "stats")) {
-    return [parts[0], parts[1]];
+  if (parts.length === 2 && (parts[0] === "themes" || parts[0] === "profiles" || ["rooms", "stats", "leaks", "notes", "hud"].includes(parts[0]))) {
+    return [parts[0] as Family, parts[1]];
   }
   return null;
 }

@@ -6,7 +6,9 @@ import { ClipboardCopy, Eye, EyeOff, Lock, MonitorPlay, Move, Trash2 } from "luc
 import { getBackend } from "@/lib/backend";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { useConfig } from "@/lib/config";
+import { useConfig, useSaveValue, useSettings, type Profile } from "@/lib/config";
+import type { JsonObject } from "@/lib/backend";
+import type { HudLayout } from "@/lib/tracker";
 import { cn } from "@/lib/utils";
 import type { ModuleManifest } from "../types";
 
@@ -15,6 +17,11 @@ export function HudPage({ manifest }: { manifest: ModuleManifest }) {
   const qc = useQueryClient();
   const status = useQuery({ queryKey: ["hud", "status"], queryFn: async () => (await getBackend()).hudStatus(), refetchInterval: 2000 }).data;
   const room = useConfig<{ hud_allowed: boolean }>("rooms", "winamax").data;
+  const settings = useSettings().data;
+  const profile = useConfig<Profile & { hud?: string }>("profiles", settings?.general.profile ?? "", !!settings).data;
+  const layoutId = profile?.hud ?? "standard";
+  const layout = useConfig<HudLayout>("hud", layoutId).data;
+  const saveLayout = useSaveValue("hud", layoutId);
   const [msg, setMsg] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   useEffect(() => {
@@ -70,6 +77,21 @@ export function HudPage({ manifest }: { manifest: ModuleManifest }) {
             {status.visible ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
             {status.visible ? t("hud.hide") : t("hud.show")}
           </Button>
+          <label className="flex items-center gap-d2 text-sm">
+            <input
+              type="checkbox"
+              checked={layout?.show_hero ?? false}
+              disabled={!layout}
+              data-testid="hud-show-hero"
+              onChange={(e) =>
+                layout &&
+                saveLayout.mutate({ ...layout, show_hero: e.target.checked } as unknown as JsonObject, {
+                  onSuccess: () => void getBackend().then((b) => b.hudSetVisible(status.visible)),
+                })
+              }
+            />
+            {t("hud.show_hero")}
+          </label>
           <Button
             variant={status.edit ? "default" : "outline"}
             size="sm"

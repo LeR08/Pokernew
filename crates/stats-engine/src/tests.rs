@@ -367,3 +367,20 @@ fn hud_table_has_every_player_with_stats() {
     assert!(villain.stats.iter().any(|s| s.id == "vpip" && s.value.is_some()));
     assert!(crate::hud::recent_tables(&conn, i64::MAX).unwrap().is_empty());
 }
+
+/// A player seated but not dealt in (just arrived) still gets a HUD panel.
+#[test]
+fn hud_includes_players_waiting_for_a_hand() {
+    let conn = db();
+    let stats = core();
+    // SPACE KO hand #70: Player05 sits in seat 5 but is not dealt in.
+    let id = lps_db::write::hand_id(&conn, "winamax", "5135078429699342380-70-1793648640").unwrap().unwrap();
+    let (h, _) = lps_db::load::load_hand(&conn, id).unwrap();
+    assert_eq!(h.waiting.iter().map(|w| (w.seat, w.name.as_str())).collect::<Vec<_>>(), [(5, "Player05")]);
+    assert!(h.players.iter().all(|p| p.name != "Player05"));
+    // Make it the last hand of its table and check the HUD lists the waiting player.
+    conn.execute("UPDATE hands SET played_at = 4000000000 WHERE id = ?", [id]).unwrap();
+    let t = crate::hud::table(&conn, "winamax", &h.table_name, &stats, true).unwrap().unwrap();
+    assert!(t.seats.iter().any(|s| s.name == "Player05" && s.seat == 5));
+    assert_eq!(t.seats.len(), h.players.len() + 1);
+}

@@ -102,6 +102,7 @@ pub fn load_hand(conn: &Connection, hand_id: i64) -> Result<(Hand, Vec<i64>), Db
                 max_seats: r.get(11)?,
                 button_seat: r.get(12)?,
                 players: vec![],
+                waiting: vec![],
                 board: compact_cards(&r.get::<_, String>(13)?),
                 actions: vec![],
                 total_pot: r.get(14)?,
@@ -140,6 +141,17 @@ pub fn load_hand(conn: &Connection, hand_id: i64) -> Result<(Hand, Vec<i64>), Db
             let (id, p) = row?;
             ids.push(id);
             hand.players.push(p);
+        }
+    }
+    {
+        let mut st = conn.prepare_cached(
+            "SELECT w.seat, p.name, w.stack FROM hand_waiting w JOIN players p ON p.id = w.player_id WHERE w.hand_id = ? ORDER BY w.seat",
+        )?;
+        let rows = st.query_map([hand_id], |r| {
+            Ok(lps_core_model::WaitingPlayer { seat: r.get(0)?, name: r.get(1)?, stack: r.get(2)? })
+        })?;
+        for row in rows {
+            hand.waiting.push(row?);
         }
     }
     let mut st = conn.prepare_cached(

@@ -690,7 +690,8 @@
     "copy_windows": "Copier la liste",
     "inspector_help": "Les fenêtres ouvertes qui ne correspondent à aucune table (programme · classe · titre). Si une table Winamax n'est pas reconnue, copie cette liste et envoie-la-moi.",
     "layout_help": "La disposition (stats affichées, positions, opacité) est dans hud/standard.toml, choisie par le profil actif :",
-    "profiles": "Réglages → Profils"
+    "profiles": "Réglages → Profils",
+    "show_hero": "Afficher mon propre panneau"
   },
   "playmode": {
     "title": "Verrouillé pendant le jeu",

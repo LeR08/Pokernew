@@ -145,6 +145,7 @@ impl HandHistoryParser for Winamax {
 
 #[derive(Default)]
 struct HandBuilder {
+    waiting: Vec<lps_core_model::WaitingPlayer>,
     /// Cash game: amounts are euros ("0.02€"), stored in cents.
     cash: bool,
     rake: i64,
@@ -313,6 +314,7 @@ impl HandBuilder {
             max_seats,
             button_seat,
             players: self.players,
+            waiting: self.waiting,
             board: self.board,
             actions: self.actions,
             total_pot,
@@ -392,6 +394,11 @@ impl HandBuilder {
             if keep {
                 remap[i] = next;
                 next += 1;
+            }
+        }
+        for (p, keep) in self.players.iter().zip(&active) {
+            if !keep {
+                self.waiting.push(lps_core_model::WaitingPlayer { seat: p.seat, name: p.name.clone(), stack: p.stack });
             }
         }
         let mut i = 0;
