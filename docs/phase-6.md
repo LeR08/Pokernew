@@ -1,6 +1,6 @@
 # Phase 6 — Solveur postflop
 
-Statut : **en cours** · remplace PioSOLVER, GTO+ et TexasSolver.
+Statut : **implémentée — à tester sur ton PC** (référence TexasSolver en attente, voir plus bas) · remplace PioSOLVER, GTO+ et TexasSolver.
 
 ## Critères d'acceptation (spec)
 - 5 spots de référence donnent la même EV que TexasSolver, à 1 % du pot près ;
@@ -60,3 +60,30 @@ commande dans `crates/solver/tests/texassolver/`) :
 - cache : aller-retour à l'identique, rechargement en moins d'une seconde ;
 - performances : exemple `bench` (flop SRP 100 bb, 2 tailles) mesuré ici ;
 - front : vitest et Playwright (réglages, calcul, visionneuse, verrouillage, cache).
+
+## Résultats (3-4 nov. 2026)
+- **Moteur intégré** : il compile avec le Rust actuel (3 petites adaptations, listées dans `FORK.md`). Ses
+  propres tests passent (39).
+- **Plafond de relances** ajouté à l'arbre, car le moteur n'en a pas. Sur le flop SRP 100 bb (QsJh2h), avec
+  33 % et 75 % sur chaque street et une relance 3x :
+
+  | relances max par street | nœuds | mémoire | compressée |
+  |---|---|---|---|
+  | sans limite | 1 968 | 13,0 Go | 6,8 Go |
+  | 1 | 860 | 6,0 Go | 3,1 Go |
+
+- **Performance** (exemple `bench`, ce flop, préréglage « SRP 100bb · 2 tailles ») : **0,435 % du pot en
+  272 s** sur les 4 cœurs de la machine de build, et 295 s en compression 16 bits. Sur un vrai PC 8 cœurs,
+  ça donnerait environ 2 à 2,5 minutes, donc juste au-dessus de l'objectif de 2 minutes. Sur ton portable
+  (4 cœurs / 8 threads, 16 Go), compte 4 à 5 minutes, et il faut la compression pour cet arbre. Le
+  préréglage « SRP 100bb · simple » (0,9 Go) va bien plus vite.
+- **Verrouillage** : un adversaire bloqué en fold à 100 % fait miser QQ à 100 %, alors qu'à l'équilibre
+  QQ ne bluffe qu'environ un tiers du temps (test).
+- **Cache** : l'aller-retour est identique et le rechargement prend moins d'une seconde (test).
+- **Tâche de fond** : pause, reprise et annulation testées ; le plafond mémoire refuse bien le départ.
+- **Tests** : cargo test, clippy -D warnings, vitest (60) et Playwright (39) sont verts.
+
+## En attente : référence TexasSolver
+Les 5 spots sont prêts dans `crates/solver/tests/texassolver/` : 2 river, 1 turn, 2 flops, au format
+TexasSolver (`.txt`) et au nôtre (`.json`). Il me manque les résultats de TexasSolver lui-même. Je n'ai pas
+le droit de compiler et lancer un programme externe ici sans ton accord.

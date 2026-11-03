@@ -1,0 +1,48 @@
+{
+  "oopRange": "66+,A8s+,A5s-A4s,AJo+,K9s+,KQo,QTs+,JTs,96s+,85s+,75s+,65s,54s",
+  "ipRange": "QQ-22,AQs-A2s,ATo+,K5s+,KJo+,Q8s+,J8s+,T7s+,96s+,86s+,75s+,64s+,53s+",
+  "board": "AhKd7s",
+  "pot": 20,
+  "stack": 90,
+  "rake": 0,
+  "rakeCap": 0,
+  "tree": {
+    "flop": {
+      "oop": {
+        "bet": "33%, a",
+        "raise": "a"
+      },
+      "ip": {
+        "bet": "33%, a",
+        "raise": "a"
+      },
+      "donk": ""
+    },
+    "turn": {
+      "oop": {
+        "bet": "33%, a",
+        "raise": "a"
+      },
+      "ip": {
+        "bet": "33%, a",
+        "raise": "a"
+      },
+      "donk": ""
+    },
+    "river": {
+      "oop": {
+        "bet": "33%, a",
+        "raise": "a"
+      },
+      "ip": {
+        "bet": "33%, a",
+        "raise": "a"
+      },
+      "donk": ""
+    },
+    "add_allin_threshold": 0.0,
+    "force_allin_threshold": 0.0,
+    "merging_threshold": 0.0,
+    "max_raises": 1
+  }
+}

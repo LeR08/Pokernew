@@ -1,3 +1,4 @@
+#![allow(warnings, clippy::all)] // upstream code (see FORK.md)
 extern crate postflop_solver;
 use postflop_solver::*;
 use std::mem::MaybeUninit;

@@ -213,3 +213,20 @@ fn bad_spots_are_rejected() {
     assert_ne!(turn_spot().hash(), river_spot().hash());
     assert_eq!(turn_spot().hash(), turn_spot().hash());
 }
+
+/// The TexasSolver reference spots (tests/texassolver/*.json) are valid and build.
+#[test]
+fn reference_spots_build() {
+    let dir = concat!(env!("CARGO_MANIFEST_DIR"), "/tests/texassolver");
+    let mut n = 0;
+    for e in std::fs::read_dir(dir).unwrap().flatten() {
+        if e.path().extension().is_some_and(|x| x == "json") {
+            let spot: SpotConfig =
+                serde_json::from_str(&std::fs::read_to_string(e.path()).unwrap()).unwrap();
+            let est = estimate(&spot).unwrap();
+            assert!(est.tree_nodes > 0, "{:?}", e.path());
+            n += 1;
+        }
+    }
+    assert_eq!(n, 5);
+}

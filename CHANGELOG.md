@@ -2,7 +2,25 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/). Versions follow the roadmap phases.
 
-## [Unreleased] — Phase 5 : ICM & push/fold
+## [Unreleased] — Phase 6 : Solveur postflop
+
+### Ajouté / Added
+- Moteur `postflop-solver` (Discounted CFR, AGPL) intégré dans `crates/solver/engine` : c'est désormais notre fork (`FORK.md`).
+- `lps-solver` :
+  - spot (ranges dans la notation d'Equity Lab, board, pot, tapis, rake) et arbre de mises (tailles par street et par joueur, donks, seuils de tapis, **plafond de relances par street**) ;
+  - estimation de la mémoire et refus au-delà du plafond réglé ;
+  - calcul en tâche de fond avec pause, reprise et annulation ;
+  - verrouillage de nœuds ;
+  - cache compressé `solver-cache/` ;
+  - export CSV et JSON ;
+  - batch sur une sélection de flops.
+- Arbres prédéfinis `solver_trees/*.toml` : « SRP 100bb · 2 tailles », « SRP 100bb · simple », « 3BP · 2 tailles ».
+- Module Solveur :
+  - nouveau calcul (éditeur de range, aperçu de l'arbre, courbe d'exploitabilité) ;
+  - visionneuse (fil des actions, grille 13×13 par action, combos, EV, équité et EQR, décomposition de la range, verrouillage, export) ;
+  - bibliothèque, comparaison côte à côte, batch avec rapport par texture.
+
+## Phase 5 : ICM & push/fold
 
 ### Ajouté / Added
 - `icm` : ICM Malmuth-Harville exact (jusqu'à 16 joueurs avec des jetons), chip EV, bubble factors, primes de risque, FGS sur 1 à 3 mains, bounties (KO).

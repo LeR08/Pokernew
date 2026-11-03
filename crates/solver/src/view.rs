@@ -124,7 +124,7 @@ fn player_view(game: &PostFlopGame, player: usize, actor: Option<usize>, pot: f6
         vec![]
     };
     let n = cards.len();
-    let na = if n > 0 { strat.len() / n } else { 0 };
+    let na = strat.len().checked_div(n).unwrap_or(0);
     let mut grid: Vec<ClassCell> = (0..NUM_CLASSES)
         .map(|cell| ClassCell {
             cell,

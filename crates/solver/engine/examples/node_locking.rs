@@ -1,3 +1,4 @@
+#![allow(warnings, clippy::all)] // upstream code (see FORK.md)
 use postflop_solver::*;
 
 fn main() {

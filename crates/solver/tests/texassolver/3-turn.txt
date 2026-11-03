@@ -1,0 +1,22 @@
+set_pot 20
+set_effective_stack 90
+set_board Td,9d,6h,Qc
+set_range_oop 66+,A8s+,A5s-A4s,AJo+,K9s+,KQo,QTs+,JTs,96s+,85s+,75s+,65s,54s
+set_range_ip QQ-22,AQs-A2s,ATo+,K5s+,KJo+,Q8s+,J8s+,T7s+,96s+,86s+,75s+,64s+,53s+
+set_bet_sizes oop,turn,bet,50
+set_bet_sizes oop,turn,allin
+set_bet_sizes ip,turn,bet,50
+set_bet_sizes ip,turn,allin
+set_bet_sizes oop,river,bet,50
+set_bet_sizes oop,river,allin
+set_bet_sizes ip,river,bet,50
+set_bet_sizes ip,river,allin
+build_tree
+set_thread_num 8
+set_accuracy 0.3
+set_max_iteration 1000
+set_print_interval 10
+set_use_isomorphism 1
+start_solve
+set_dump_rounds 2
+dump_result 3-turn_result.json
