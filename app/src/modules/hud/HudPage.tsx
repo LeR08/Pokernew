@@ -22,6 +22,11 @@ export function HudPage({ manifest }: { manifest: ModuleManifest }) {
   const layoutId = profile?.hud ?? "standard";
   const layout = useConfig<HudLayout>("hud", layoutId).data;
   const saveLayout = useSaveValue("hud", layoutId);
+  // Local copy so the box answers at once while the file is being saved.
+  const [heroOn, setHeroOn] = useState<boolean | null>(null);
+  useEffect(() => {
+    if (layout) setHeroOn(layout.show_hero ?? false);
+  }, [layout]);
   const [msg, setMsg] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   useEffect(() => {
@@ -80,15 +85,16 @@ export function HudPage({ manifest }: { manifest: ModuleManifest }) {
           <label className="flex items-center gap-d2 text-sm">
             <input
               type="checkbox"
-              checked={layout?.show_hero ?? false}
-              disabled={!layout}
+              checked={heroOn ?? false}
+              disabled={!layout || heroOn === null}
               data-testid="hud-show-hero"
-              onChange={(e) =>
-                layout &&
+              onChange={(e) => {
+                if (!layout) return;
+                setHeroOn(e.target.checked);
                 saveLayout.mutate({ ...layout, show_hero: e.target.checked } as unknown as JsonObject, {
                   onSuccess: () => void getBackend().then((b) => b.hudSetVisible(status.visible)),
-                })
-              }
+                });
+              }}
             />
             {t("hud.show_hero")}
           </label>
