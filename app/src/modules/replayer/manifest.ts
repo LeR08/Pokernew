@@ -1,6 +1,6 @@
 import { Play } from "lucide-react";
-import { ComingSoon } from "../ComingSoon";
 import type { ModuleManifest } from "../types";
+import { ReplayerPage } from "./ReplayerPage";
 
 export const manifest: ModuleManifest = {
   id: "replayer",
@@ -9,5 +9,8 @@ export const manifest: ModuleManifest = {
   icon: Play,
   phase: 2,
   replaces: ["PokerTracker 4", "Hand2Note"],
-  routes: [{ path: "", component: ComingSoon }],
+  routes: [
+    { path: "", component: ReplayerPage },
+    { path: ":handId", component: ReplayerPage },
+  ],
 };

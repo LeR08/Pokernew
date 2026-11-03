@@ -2,7 +2,16 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/). Versions follow the roadmap phases.
 
-## [Unreleased] — Phase 1 : Import & base de données
+## [Unreleased] — Phase 2 : Tracker (première partie)
+
+### Ajouté / Added
+- `stats-engine` : langage de formules (`+ - * /`, comparaisons, `and/or/not`, `if()`) compilé en SQL avec paramètres liés ; stats en TOML (`stats/*.toml`, rechargées à chaud).
+- 13 stats par défaut, chacune avec une explication en français et en anglais.
+- Tracker : vue d'ensemble (résultat d'abord), rapports par position / format / mois / limite / compte, graphique (bb ; « Afficher en € » pour le cash et les tournois), tournois avec ROI et ITM, liste des mains, éditeur de stats avec aperçu en direct.
+- Replayer : table, cartes, mises, pot, pas à pas, lecture automatique, flèches du clavier, montants en bb ou en jetons / €.
+- Référence indépendante pour les stats (`tools/reference_stats.py`).
+
+## Phase 1 : Import & base de données
 
 ### Ajouté / Added
 - `core-model` : cartes, positions (dead small blind et dead button gérés), modèle de main normalisé avec contrôles de cohérence.

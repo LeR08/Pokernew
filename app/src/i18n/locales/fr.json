@@ -189,6 +189,10 @@
       "hero_names": "Mes pseudos",
       "hud_allowed": "HUD autorisé sur cette salle",
       "hud_allowed_help": "À régler selon les conditions d'utilisation de la salle. Le tracker importe les mains dans tous les cas."
+    },
+    "stats": {
+      "title": "Stats",
+      "stat": "Stats"
     }
   },
   "enum": {
@@ -272,5 +276,148 @@
     "toast_other": "{{count}} nouvelles mains importées ({{dups}} doublons, {{errors}} erreurs).",
     "export_errors": "Exporter toutes les erreurs",
     "exported": "Erreurs exportées dans {{path}}"
+  },
+  "tracker": {
+    "filter": {
+      "period": "Période",
+      "format": "Format",
+      "account": "Compte"
+    },
+    "period": {
+      "all": "Tout",
+      "7d": "7 derniers jours",
+      "30d": "30 derniers jours",
+      "90d": "90 derniers jours",
+      "year": "Cette année"
+    },
+    "format": {
+      "all": "Tous",
+      "cash": "Cash game",
+      "mtt": "Tournois",
+      "spin": "Expresso",
+      "sng": "Sit & Go"
+    },
+    "all_accounts": "Tous les comptes",
+    "show_euros": "Afficher en €",
+    "euros_help": "Cash : gains réels en €. Tournois : résultat de chaque tournoi (gains + bounties + tickets − buy-ins). Sinon : en big blinds.",
+    "sample": "sur {{n}} occasions",
+    "no_hands": "Aucune main pour ces filtres.",
+    "hands": "Mains",
+    "cash_result": "Résultat cash",
+    "cash_result_sub": "gains réels en cash game",
+    "tourney_result": "Résultat tournois",
+    "tourney_result_sub": "sur {{n}} tournois avec résumé",
+    "roi": "ROI",
+    "itm": "ITM {{v}}",
+    "net_bb": "Résultat (bb)",
+    "bb100_sub": "big blinds gagnées pour 100 mains",
+    "verdict": "Bilan",
+    "winning": "En bénéfice",
+    "losing": "En perte",
+    "group_by": "Regrouper par",
+    "group": {
+      "position": "Position",
+      "game_type": "Format",
+      "month": "Mois",
+      "stake": "Limite",
+      "account": "Compte"
+    },
+    "col_cash_eur": "Cash (€)",
+    "col_net_bb": "Résultat (bb)",
+    "eur_cash_only": "En €, seules les mains de cash ont une valeur directe ; les tournois sont comptés par tournoi (onglet Tournois).",
+    "graph": {
+      "total": "Résultat",
+      "showdown": "À l'abattage",
+      "non_showdown": "Sans abattage",
+      "cash_eur": "Cash (€)",
+      "tourney_eur": "Tournois (€)",
+      "title_bb": "Résultat cumulé (big blinds)",
+      "help_bb": "« À l'abattage » = mains allées jusqu'à l'abattage ; « Sans abattage » = pots gagnés ou perdus avant. Une courbe sans abattage qui descend = tu abandonnes trop de pots.",
+      "title_cash": "Cash game : gains cumulés (€)",
+      "title_tourney": "Tournois : résultat cumulé (€), tournoi par tournoi",
+      "help_eur": "Résultat réel de chaque tournoi : gains + bounties + tickets − (buy-in + frais) × entrées. Les tournois sans résumé Winamax ne sont pas comptés."
+    },
+    "tournaments": "Tournois",
+    "no_tourney_results": "Aucun résultat de tournoi (résumés Winamax) pour ces filtres.",
+    "cost": "Coût",
+    "won": "Gagné",
+    "profit": "Bénéfice",
+    "tourney_help": "Résultats connus pour {{n}} tournois sur {{total}} (ceux qui ont un fichier résumé Winamax).",
+    "col": {
+      "date": "Date",
+      "tournament": "Tournoi",
+      "entries": "Entrées",
+      "finish": "Place",
+      "table": "Table",
+      "position": "Position",
+      "cards": "Cartes",
+      "board": "Board",
+      "result": "Résultat"
+    },
+    "hands_count": "{{n}} mains — clique sur une main pour la rejouer",
+    "tabs": {
+      "overview": "Vue d'ensemble",
+      "report": "Rapports",
+      "graph": "Graphique",
+      "tournaments": "Tournois",
+      "hands": "Mains",
+      "stats": "Mes stats"
+    },
+    "editor": {
+      "new": "Nouvelle stat",
+      "id": "Identifiant (minuscules, chiffres, _)",
+      "name": "Nom affiché",
+      "formula": "Formule",
+      "where": "Seulement les mains où… (optionnel)",
+      "format": "Affichage",
+      "formats": {
+        "pct0": "Pourcentage (12 %)",
+        "pct1": "Pourcentage (12,3 %)",
+        "dec1": "Nombre (1,2)",
+        "dec2": "Nombre (1,23)",
+        "int": "Entier",
+        "bb100": "bb/100"
+      },
+      "preview": "Valeur sur tes mains",
+      "help_title": "Comment écrire une formule ?",
+      "help": "Une stat est un rapport : « nombre de fois / nombre d'occasions ». Exemple : cnt_3bet / opp_3bet = tes 3-bets divisés par tes occasions de 3-bet. Opérations : + - * / ( ) et if(condition, alors, sinon). Compteurs disponibles :",
+      "help_where": "Condition : position = 'BTN', game_type = 'cash', stack_bb < 20, players = 3… combinées avec and / or / not.",
+      "saved": "Enregistré dans stats/{{file}}.toml",
+      "pick": "Choisis une stat à gauche pour la modifier, ou crée la tienne.",
+      "custom_file_header": "Mes stats personnelles"
+    }
+  },
+  "replayer": {
+    "level": "niveau {{n}}",
+    "in_bb": "En big blinds",
+    "pot": "Pot",
+    "first": "Début",
+    "prev": "Action précédente",
+    "pause": "Pause",
+    "play": "Lecture",
+    "next": "Action suivante",
+    "last": "Fin",
+    "street": {
+      "preflop": "Préflop",
+      "flop": "Flop",
+      "turn": "Turn",
+      "river": "River"
+    },
+    "action": {
+      "post_ante": "ante",
+      "post_small_blind": "petite blinde",
+      "post_big_blind": "grosse blinde",
+      "post_straddle": "straddle",
+      "post_dead": "blinde morte",
+      "fold": "se couche",
+      "check": "check",
+      "call": "suit",
+      "bet": "mise",
+      "raise": "relance à"
+    },
+    "all_in": "tapis",
+    "result": "Résultat",
+    "pick_other": "Choisir une autre main",
+    "pick": "Choisis une main à rejouer."
   }
 }

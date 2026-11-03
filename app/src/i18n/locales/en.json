@@ -189,6 +189,10 @@
       "hud_allowed": "HUD allowed on this room",
       "hud_allowed_help": "Set according to the room's terms of use. Hands are imported either way.",
       "hero_names": "My screen names"
+    },
+    "stats": {
+      "title": "Stats",
+      "stat": "Stats"
     }
   },
   "enum": {
@@ -272,5 +276,148 @@
     "toast_other": "{{count}} new hands imported ({{dups}} duplicates, {{errors}} errors).",
     "export_errors": "Export all errors",
     "exported": "Errors exported to {{path}}"
+  },
+  "tracker": {
+    "filter": {
+      "period": "Period",
+      "format": "Format",
+      "account": "Account"
+    },
+    "period": {
+      "all": "All",
+      "7d": "Last 7 days",
+      "30d": "Last 30 days",
+      "90d": "Last 90 days",
+      "year": "This year"
+    },
+    "format": {
+      "all": "All",
+      "cash": "Cash game",
+      "mtt": "Tournaments",
+      "spin": "Expresso",
+      "sng": "Sit & Go"
+    },
+    "all_accounts": "All accounts",
+    "show_euros": "Show in €",
+    "euros_help": "Cash: real winnings in €. Tournaments: result of each tournament (prizes + bounties + tickets − buy-ins). Otherwise: in big blinds.",
+    "sample": "over {{n}} opportunities",
+    "no_hands": "No hands for these filters.",
+    "hands": "Hands",
+    "cash_result": "Cash result",
+    "cash_result_sub": "real cash-game winnings",
+    "tourney_result": "Tournament result",
+    "tourney_result_sub": "over {{n}} tournaments with a summary",
+    "roi": "ROI",
+    "itm": "ITM {{v}}",
+    "net_bb": "Result (bb)",
+    "bb100_sub": "big blinds won per 100 hands",
+    "verdict": "Bottom line",
+    "winning": "Winning",
+    "losing": "Losing",
+    "group_by": "Group by",
+    "group": {
+      "position": "Position",
+      "game_type": "Format",
+      "month": "Month",
+      "stake": "Stake",
+      "account": "Account"
+    },
+    "col_cash_eur": "Cash (€)",
+    "col_net_bb": "Result (bb)",
+    "eur_cash_only": "In €, only cash hands have a direct value; tournaments are counted per tournament (Tournaments tab).",
+    "graph": {
+      "total": "Result",
+      "showdown": "At showdown",
+      "non_showdown": "Without showdown",
+      "cash_eur": "Cash (€)",
+      "tourney_eur": "Tournaments (€)",
+      "title_bb": "Cumulative result (big blinds)",
+      "help_bb": "\"At showdown\" = hands that reached showdown; \"Without showdown\" = pots won or lost before. A falling non-showdown line means you give up too many pots.",
+      "title_cash": "Cash game: cumulative winnings (€)",
+      "title_tourney": "Tournaments: cumulative result (€), tournament by tournament",
+      "help_eur": "Real result of each tournament: prizes + bounties + tickets − (buy-in + fee) × entries. Tournaments without a Winamax summary are not counted."
+    },
+    "tournaments": "Tournaments",
+    "no_tourney_results": "No tournament results (Winamax summaries) for these filters.",
+    "cost": "Cost",
+    "won": "Won",
+    "profit": "Profit",
+    "tourney_help": "Known results for {{n}} of {{total}} tournaments (those with a Winamax summary file).",
+    "col": {
+      "date": "Date",
+      "tournament": "Tournament",
+      "entries": "Entries",
+      "finish": "Finish",
+      "table": "Table",
+      "position": "Position",
+      "cards": "Cards",
+      "board": "Board",
+      "result": "Result"
+    },
+    "hands_count": "{{n}} hands — click a hand to replay it",
+    "tabs": {
+      "overview": "Overview",
+      "report": "Reports",
+      "graph": "Graph",
+      "tournaments": "Tournaments",
+      "hands": "Hands",
+      "stats": "My stats"
+    },
+    "editor": {
+      "new": "New stat",
+      "id": "Id (lowercase, digits, _)",
+      "name": "Display name",
+      "formula": "Formula",
+      "where": "Only hands where… (optional)",
+      "format": "Display",
+      "formats": {
+        "pct0": "Percent (12 %)",
+        "pct1": "Percent (12.3 %)",
+        "dec1": "Number (1.2)",
+        "dec2": "Number (1.23)",
+        "int": "Integer",
+        "bb100": "bb/100"
+      },
+      "preview": "Value on your hands",
+      "help_title": "How to write a formula?",
+      "help": "A stat is a ratio: \"times / opportunities\". Example: cnt_3bet / opp_3bet = your 3-bets divided by your 3-bet opportunities. Operations: + - * / ( ) and if(condition, then, else). Available counters:",
+      "help_where": "Condition: position = 'BTN', game_type = 'cash', stack_bb < 20, players = 3… combined with and / or / not.",
+      "saved": "Saved to stats/{{file}}.toml",
+      "pick": "Pick a stat on the left to edit it, or create your own.",
+      "custom_file_header": "My own stats"
+    }
+  },
+  "replayer": {
+    "level": "level {{n}}",
+    "in_bb": "In big blinds",
+    "pot": "Pot",
+    "first": "Start",
+    "prev": "Previous action",
+    "pause": "Pause",
+    "play": "Play",
+    "next": "Next action",
+    "last": "End",
+    "street": {
+      "preflop": "Preflop",
+      "flop": "Flop",
+      "turn": "Turn",
+      "river": "River"
+    },
+    "action": {
+      "post_ante": "ante",
+      "post_small_blind": "small blind",
+      "post_big_blind": "big blind",
+      "post_straddle": "straddle",
+      "post_dead": "dead blind",
+      "fold": "folds",
+      "check": "checks",
+      "call": "calls",
+      "bet": "bets",
+      "raise": "raises to"
+    },
+    "all_in": "all-in",
+    "result": "Result",
+    "pick_other": "Pick another hand",
+    "pick": "Pick a hand to replay."
   }
 }

@@ -296,6 +296,10 @@ mod tests {
         assert_eq!(store.list("themes"), vec!["dark", "light"]);
         assert_eq!(store.list("profiles"), vec!["cash-6max", "mtt", "spin"]);
         assert_eq!(store.get("settings", "settings").unwrap()["general"]["language"], "fr");
+        // Tables keep the file order (stats are shown in the order they are written).
+        let stats = store.get("stats", "core").unwrap();
+        let ids: Vec<&String> = stats["stat"].as_object().unwrap().keys().collect();
+        assert_eq!(ids[..3], ["bb100", "vpip", "pfr"]);
     }
 
     #[test]

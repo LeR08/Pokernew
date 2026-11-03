@@ -30,6 +30,9 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y libwebkit2gtk-4.1-dev libsoup-3.0-dev libjavascriptcoregtk-4.1-dev librsvg2-dev
       - run: pnpm install --frozen-lockfile
+      - name: Export fixture hands for the replayer test
+        shell: bash
+        run: tools/export_fixture_hands.sh
       - name: Front end (typecheck, unit tests, build)
         run: |
           pnpm --filter app typecheck

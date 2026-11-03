@@ -1,6 +1,6 @@
 # Phase 1 — Import & base de données
 
-Statut : **implémentée pour Winamax (MTT, KO, satellites, Expresso, cash) — en attente de ta validation** · Salle prioritaire : **Winamax** · Joueur : `Tantaculejen`
+Statut : **validée par l'utilisateur le 3 nov. 2026** (0 erreur sur son PC) · Salle prioritaire : **Winamax** · Joueur : `Tantaculejen`
 
 ## Critères d'acceptation (spec)
 

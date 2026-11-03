@@ -1,0 +1,539 @@
+[
+  {
+    "room": "winamax",
+    "hand_no": "5135071836924543030-33-1793644483",
+    "table_name": "TRIDENT SPACE KO(1195602081)#0053",
+    "game_type": "mtt",
+    "variant": "holdem",
+    "limit": "no_limit",
+    "unit": "chips",
+    "currency": "EUR",
+    "small_blind": 20,
+    "big_blind": 40,
+    "ante": 5,
+    "straddle": null,
+    "level": 5,
+    "tournament": {
+      "id": "1195602081",
+      "name": "TRIDENT SPACE KO",
+      "buy_in_cents": 45,
+      "fee_cents": 5,
+      "table_number": 53
+    },
+    "max_seats": 3,
+    "button_seat": 3,
+    "players": [
+      {
+        "seat": 1,
+        "name": "Player10",
+        "stack": 2611,
+        "position": "SB",
+        "hole_cards": [
+          "9h",
+          "9s"
+        ],
+        "is_hero": false,
+        "bounty_cents": 74,
+        "invested": 922,
+        "collected": 33,
+        "went_to_showdown": true
+      },
+      {
+        "seat": 2,
+        "name": "Tantaculejen",
+        "stack": 500,
+        "position": "BB",
+        "hole_cards": [
+          "8h",
+          "Qd"
+        ],
+        "is_hero": true,
+        "bounty_cents": 25,
+        "invested": 45,
+        "collected": 0,
+        "went_to_showdown": false
+      },
+      {
+        "seat": 3,
+        "name": "Player34",
+        "stack": 889,
+        "position": "BTN",
+        "hole_cards": [
+          "Tc",
+          "7c"
+        ],
+        "is_hero": false,
+        "bounty_cents": 100,
+        "invested": 889,
+        "collected": 1823,
+        "went_to_showdown": true
+      }
+    ],
+    "board": [
+      "Ac",
+      "4c",
+      "8d",
+      "Js",
+      "9d"
+    ],
+    "actions": [
+      {
+        "player": 0,
+        "street": "preflop",
+        "kind": "post_ante",
+        "amount": 5,
+        "raise_to": null,
+        "is_all_in": false,
+        "pot_before": 0
+      },
+      {
+        "player": 1,
+        "street": "preflop",
+        "kind": "post_ante",
+        "amount": 5,
+        "raise_to": null,
+        "is_all_in": false,
+        "pot_before": 5
+      },
+      {
+        "player": 2,
+        "street": "preflop",
+        "kind": "post_ante",
+        "amount": 5,
+        "raise_to": null,
+        "is_all_in": false,
+        "pot_before": 10
+      },
+      {
+        "player": 0,
+        "street": "preflop",
+        "kind": "post_small_blind",
+        "amount": 20,
+        "raise_to": null,
+        "is_all_in": false,
+        "pot_before": 15
+      },
+      {
+        "player": 1,
+        "street": "preflop",
+        "kind": "post_big_blind",
+        "amount": 40,
+        "raise_to": null,
+        "is_all_in": false,
+        "pot_before": 35
+      },
+      {
+        "player": 2,
+        "street": "preflop",
+        "kind": "call",
+        "amount": 40,
+        "raise_to": null,
+        "is_all_in": false,
+        "pot_before": 75
+      },
+      {
+        "player": 0,
+        "street": "preflop",
+        "kind": "raise",
+        "amount": 80,
+        "raise_to": 100,
+        "is_all_in": false,
+        "pot_before": 115
+      },
+      {
+        "player": 1,
+        "street": "preflop",
+        "kind": "fold",
+        "amount": 0,
+        "raise_to": null,
+        "is_all_in": false,
+        "pot_before": 195
+      },
+      {
+        "player": 2,
+        "street": "preflop",
+        "kind": "call",
+        "amount": 60,
+        "raise_to": null,
+        "is_all_in": false,
+        "pot_before": 195
+      },
+      {
+        "player": 0,
+        "street": "flop",
+        "kind": "bet",
+        "amount": 166,
+        "raise_to": null,
+        "is_all_in": false,
+        "pot_before": 255
+      },
+      {
+        "player": 2,
+        "street": "flop",
+        "kind": "call",
+        "amount": 166,
+        "raise_to": null,
+        "is_all_in": false,
+        "pot_before": 421
+      },
+      {
+        "player": 0,
+        "street": "turn",
+        "kind": "bet",
+        "amount": 382,
+        "raise_to": null,
+        "is_all_in": false,
+        "pot_before": 587
+      },
+      {
+        "player": 2,
+        "street": "turn",
+        "kind": "call",
+        "amount": 382,
+        "raise_to": null,
+        "is_all_in": false,
+        "pot_before": 969
+      },
+      {
+        "player": 0,
+        "street": "river",
+        "kind": "bet",
+        "amount": 269,
+        "raise_to": null,
+        "is_all_in": false,
+        "pot_before": 1351
+      },
+      {
+        "player": 2,
+        "street": "river",
+        "kind": "call",
+        "amount": 236,
+        "raise_to": null,
+        "is_all_in": true,
+        "pot_before": 1620
+      }
+    ],
+    "total_pot": 1856,
+    "rake": 0,
+    "jackpot_fee": 0,
+    "showdown": true,
+    "played_at": 1793644483
+  },
+  {
+    "room": "winamax",
+    "hand_no": "5135071836924543030-34-1793644523",
+    "table_name": "TRIDENT SPACE KO(1195602081)#0053",
+    "game_type": "mtt",
+    "variant": "holdem",
+    "limit": "no_limit",
+    "unit": "chips",
+    "currency": "EUR",
+    "small_blind": 25,
+    "big_blind": 50,
+    "ante": 6,
+    "straddle": null,
+    "level": 6,
+    "tournament": {
+      "id": "1195602081",
+      "name": "TRIDENT SPACE KO",
+      "buy_in_cents": 45,
+      "fee_cents": 5,
+      "table_number": 53
+    },
+    "max_seats": 3,
+    "button_seat": 1,
+    "players": [
+      {
+        "seat": 1,
+        "name": "Player10",
+        "stack": 1722,
+        "position": "BTN",
+        "hole_cards": [
+          "4d",
+          "Td"
+        ],
+        "is_hero": false,
+        "bounty_cents": 74,
+        "invested": 455,
+        "collected": 0,
+        "went_to_showdown": true
+      },
+      {
+        "seat": 2,
+        "name": "Tantaculejen",
+        "stack": 455,
+        "position": "SB",
+        "hole_cards": [
+          "Kc",
+          "6c"
+        ],
+        "is_hero": true,
+        "bounty_cents": 25,
+        "invested": 455,
+        "collected": 966,
+        "went_to_showdown": true
+      },
+      {
+        "seat": 3,
+        "name": "Player34",
+        "stack": 1823,
+        "position": "BB",
+        "hole_cards": [],
+        "is_hero": false,
+        "bounty_cents": 100,
+        "invested": 56,
+        "collected": 0,
+        "went_to_showdown": false
+      }
+    ],
+    "board": [
+      "3c",
+      "7h",
+      "Jd",
+      "Qc",
+      "3d"
+    ],
+    "actions": [
+      {
+        "player": 1,
+        "street": "preflop",
+        "kind": "post_ante",
+        "amount": 6,
+        "raise_to": null,
+        "is_all_in": false,
+        "pot_before": 0
+      },
+      {
+        "player": 2,
+        "street": "preflop",
+        "kind": "post_ante",
+        "amount": 6,
+        "raise_to": null,
+        "is_all_in": false,
+        "pot_before": 6
+      },
+      {
+        "player": 0,
+        "street": "preflop",
+        "kind": "post_ante",
+        "amount": 6,
+        "raise_to": null,
+        "is_all_in": false,
+        "pot_before": 12
+      },
+      {
+        "player": 1,
+        "street": "preflop",
+        "kind": "post_small_blind",
+        "amount": 25,
+        "raise_to": null,
+        "is_all_in": false,
+        "pot_before": 18
+      },
+      {
+        "player": 2,
+        "street": "preflop",
+        "kind": "post_big_blind",
+        "amount": 50,
+        "raise_to": null,
+        "is_all_in": false,
+        "pot_before": 43
+      },
+      {
+        "player": 0,
+        "street": "preflop",
+        "kind": "call",
+        "amount": 50,
+        "raise_to": null,
+        "is_all_in": false,
+        "pot_before": 93
+      },
+      {
+        "player": 1,
+        "street": "preflop",
+        "kind": "raise",
+        "amount": 424,
+        "raise_to": 449,
+        "is_all_in": true,
+        "pot_before": 143
+      },
+      {
+        "player": 2,
+        "street": "preflop",
+        "kind": "fold",
+        "amount": 0,
+        "raise_to": null,
+        "is_all_in": false,
+        "pot_before": 567
+      },
+      {
+        "player": 0,
+        "street": "preflop",
+        "kind": "call",
+        "amount": 399,
+        "raise_to": null,
+        "is_all_in": false,
+        "pot_before": 567
+      }
+    ],
+    "total_pot": 966,
+    "rake": 0,
+    "jackpot_fee": 0,
+    "showdown": true,
+    "played_at": 1793644523
+  },
+  {
+    "room": "winamax",
+    "hand_no": "5135071836924543030-35-1793644560",
+    "table_name": "TRIDENT SPACE KO(1195602081)#0053",
+    "game_type": "mtt",
+    "variant": "holdem",
+    "limit": "no_limit",
+    "unit": "chips",
+    "currency": "EUR",
+    "small_blind": 25,
+    "big_blind": 50,
+    "ante": 6,
+    "straddle": null,
+    "level": 6,
+    "tournament": {
+      "id": "1195602081",
+      "name": "TRIDENT SPACE KO",
+      "buy_in_cents": 45,
+      "fee_cents": 5,
+      "table_number": 53
+    },
+    "max_seats": 3,
+    "button_seat": 2,
+    "players": [
+      {
+        "seat": 1,
+        "name": "Player10",
+        "stack": 1267,
+        "position": "BB",
+        "hole_cards": [],
+        "is_hero": false,
+        "bounty_cents": 74,
+        "invested": 1267,
+        "collected": 1329,
+        "went_to_showdown": false
+      },
+      {
+        "seat": 2,
+        "name": "Tantaculejen",
+        "stack": 966,
+        "position": "BTN",
+        "hole_cards": [
+          "9d",
+          "5d"
+        ],
+        "is_hero": true,
+        "bounty_cents": 25,
+        "invested": 6,
+        "collected": 0,
+        "went_to_showdown": false
+      },
+      {
+        "seat": 3,
+        "name": "Player34",
+        "stack": 1767,
+        "position": "SB",
+        "hole_cards": [],
+        "is_hero": false,
+        "bounty_cents": 100,
+        "invested": 56,
+        "collected": 0,
+        "went_to_showdown": false
+      }
+    ],
+    "board": [],
+    "actions": [
+      {
+        "player": 2,
+        "street": "preflop",
+        "kind": "post_ante",
+        "amount": 6,
+        "raise_to": null,
+        "is_all_in": false,
+        "pot_before": 0
+      },
+      {
+        "player": 0,
+        "street": "preflop",
+        "kind": "post_ante",
+        "amount": 6,
+        "raise_to": null,
+        "is_all_in": false,
+        "pot_before": 6
+      },
+      {
+        "player": 1,
+        "street": "preflop",
+        "kind": "post_ante",
+        "amount": 6,
+        "raise_to": null,
+        "is_all_in": false,
+        "pot_before": 12
+      },
+      {
+        "player": 2,
+        "street": "preflop",
+        "kind": "post_small_blind",
+        "amount": 25,
+        "raise_to": null,
+        "is_all_in": false,
+        "pot_before": 18
+      },
+      {
+        "player": 0,
+        "street": "preflop",
+        "kind": "post_big_blind",
+        "amount": 50,
+        "raise_to": null,
+        "is_all_in": false,
+        "pot_before": 43
+      },
+      {
+        "player": 1,
+        "street": "preflop",
+        "kind": "fold",
+        "amount": 0,
+        "raise_to": null,
+        "is_all_in": false,
+        "pot_before": 93
+      },
+      {
+        "player": 2,
+        "street": "preflop",
+        "kind": "call",
+        "amount": 25,
+        "raise_to": null,
+        "is_all_in": false,
+        "pot_before": 93
+      },
+      {
+        "player": 0,
+        "street": "preflop",
+        "kind": "raise",
+        "amount": 1211,
+        "raise_to": 1261,
+        "is_all_in": true,
+        "pot_before": 118
+      },
+      {
+        "player": 2,
+        "street": "preflop",
+        "kind": "fold",
+        "amount": 0,
+        "raise_to": null,
+        "is_all_in": false,
+        "pot_before": 1329
+      }
+    ],
+    "total_pot": 1329,
+    "rake": 0,
+    "jackpot_fee": 0,
+    "showdown": false,
+    "played_at": 1793644560
+  }
+]

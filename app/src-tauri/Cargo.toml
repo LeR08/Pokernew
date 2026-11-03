@@ -28,6 +28,8 @@ tokio = { version = "1", features = ["sync"] }
 lps-config = { path = "../../crates/config" }
 lps-db = { path = "../../crates/db" }
 lps-hh-parsers = { path = "../../crates/hh-parsers" }
+lps-stats-engine = { path = "../../crates/stats-engine" }
+lps-core-model = { path = "../../crates/core-model" }
 rusqlite = "0.37"
 dirs = "6"
 tauri-plugin-dialog = "2"

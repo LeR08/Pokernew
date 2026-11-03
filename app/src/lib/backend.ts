@@ -5,11 +5,22 @@
  * config/defaults, so the UI can be developed and tested without Tauri.
  */
 import type { JSONSchema } from "./schema";
+import type {
+  Filter,
+  Graph,
+  Group,
+  Hand,
+  HandsResponse,
+  Preview,
+  ReportResponse,
+  StatDef,
+  TournamentsResponse,
+} from "./tracker";
 
 export type JsonValue = null | boolean | number | string | JsonValue[] | { [k: string]: JsonValue };
 export type JsonObject = { [k: string]: JsonValue };
 
-export type Family = "settings" | "hotkeys" | "themes" | "profiles" | "rooms";
+export type Family = "settings" | "hotkeys" | "themes" | "profiles" | "rooms" | "stats";
 
 export interface Issue {
   family: string;
@@ -134,6 +145,15 @@ export interface Backend {
   /** Native file/folder picker; null when cancelled. */
   pickPaths(opts: { directory: boolean; multiple: boolean; title: string }): Promise<string[] | null>;
   onImportEvent(cb: (e: ImportEvent) => void): () => void;
+
+  // ---- Tracker & replayer (phase 2) ----
+  trackerReport(filter: Filter, group: Group): Promise<ReportResponse>;
+  trackerGraph(filter: Filter): Promise<Graph>;
+  trackerTournaments(filter: Filter): Promise<TournamentsResponse>;
+  trackerHands(filter: Filter, limit: number, offset: number): Promise<HandsResponse>;
+  trackerAccounts(): Promise<string[]>;
+  handGet(handId: number): Promise<Hand>;
+  statPreview(def: StatDef, filter: Filter): Promise<Preview>;
 }
 
 export const isTauri = (): boolean =>

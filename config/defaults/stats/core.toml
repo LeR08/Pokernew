@@ -1,0 +1,88 @@
+# Stats de base / core stats
+#
+# FR : chaque stat est une formule sur des compteurs (liste : docs/counters.md).
+#      Une division `a / b` est un pourcentage : b = nombre d'occasions, a = nombre de fois.
+#      `where` restreint aux mains qui vérifient la condition (ex. position = 'BB').
+#      Formats : pct0, pct1 (pourcentages), dec1, dec2, int, bb100.
+#      Ce fichier est rechargé à chaud ; tu peux le copier pour créer tes propres stats.
+# EN : every stat is a formula over counters; `where` restricts the hands.
+
+[stat.bb100]
+name = "bb/100"
+formula = "net_won_bb * 100 / cnt_hands"
+format = "bb100"
+description = { fr = "Ton gain moyen pour 100 mains, en big blinds. Au-dessus de 0 = tu gagnes.", en = "Average result per 100 hands, in big blinds. Above 0 = winning." }
+colour_ranges = [{ max = 0, colour = "red" }, { min = 0, colour = "green" }]
+
+[stat.vpip]
+name = "VPIP"
+formula = "cnt_vpip / cnt_hands"
+format = "pct1"
+description = { fr = "Combien de mains tu joues : % de mains où tu mets de l'argent volontairement avant le flop (suivre ou relancer ; les blindes ne comptent pas).", en = "How many hands you play: % of hands where you voluntarily put money in preflop." }
+colour_ranges = [{ max = 0.15, colour = "blue" }, { min = 0.15, max = 0.30, colour = "green" }, { min = 0.40, colour = "red" }]
+
+[stat.pfr]
+name = "PFR"
+formula = "cnt_pfr / cnt_hands"
+format = "pct1"
+description = { fr = "Combien de mains tu joues en relançant avant le flop. Proche du VPIP = jeu agressif ; très en dessous = trop de suivis.", en = "% of hands you raise preflop. Close to VPIP = aggressive; far below = too much calling." }
+
+[stat.three_bet]
+name = "3-Bet"
+formula = "cnt_3bet / opp_3bet"
+format = "pct1"
+description = { fr = "Quand quelqu'un a relancé avant toi, combien de fois tu sur-relances.", en = "When someone raised before you, how often you re-raise." }
+
+[stat.fold_to_3bet]
+name = "Fold to 3-Bet"
+formula = "cnt_fold_to_3bet / opp_fold_to_3bet"
+format = "pct0"
+description = { fr = "Quand tu as ouvert et qu'on te sur-relance, combien de fois tu te couches. Très haut (> 70 %) = facile à exploiter.", en = "After opening and facing a 3-bet, how often you fold." }
+
+[stat.steal]
+name = "Vol (ATS)"
+formula = "cnt_steal / opp_steal"
+format = "pct0"
+description = { fr = "Quand tout le monde s'est couché jusqu'à toi au CO, au bouton ou en SB, combien de fois tu relances pour voler les blindes.", en = "When folded to you in CO, BTN or SB, how often you raise to steal." }
+
+[stat.fold_to_steal]
+name = "Fold to steal"
+formula = "cnt_fold_to_steal / opp_fold_to_steal"
+format = "pct0"
+description = { fr = "En blinde, face à une tentative de vol, combien de fois tu te couches.", en = "In the blinds facing a steal, how often you fold." }
+
+[stat.cbet_flop]
+name = "C-Bet flop"
+formula = "cnt_cbet_flop / opp_cbet_flop"
+format = "pct0"
+description = { fr = "Quand tu as relancé avant le flop, combien de fois tu mises au flop (mise de continuation).", en = "When you raised preflop, how often you bet the flop." }
+
+[stat.fold_to_cbet_flop]
+name = "Fold to C-Bet"
+formula = "cnt_fold_to_cbet_flop / opp_fold_to_cbet_flop"
+format = "pct0"
+description = { fr = "Face à une mise de continuation au flop, combien de fois tu te couches.", en = "Facing a flop continuation bet, how often you fold." }
+
+[stat.wtsd]
+name = "WTSD"
+formula = "cnt_wtsd / cnt_saw_flop"
+format = "pct0"
+description = { fr = "Quand tu vois le flop, combien de fois tu vas jusqu'à l'abattage. Haut = tu paies trop ; bas = tu abandonnes trop.", en = "When you see the flop, how often you go to showdown." }
+
+[stat.wsd]
+name = "W$SD"
+formula = "cnt_wsd / cnt_wtsd"
+format = "pct0"
+description = { fr = "Quand tu vas à l'abattage, combien de fois tu gagnes de l'argent.", en = "When you go to showdown, how often you win money." }
+
+[stat.wwsf]
+name = "WWSF"
+formula = "cnt_wwsf / cnt_saw_flop"
+format = "pct0"
+description = { fr = "Quand tu vois le flop, combien de fois tu finis gagnant sur la main (avec ou sans abattage).", en = "When you see the flop, how often you win money." }
+
+[stat.af]
+name = "AF"
+formula = "cnt_postflop_bets_raises / cnt_postflop_calls"
+format = "dec1"
+description = { fr = "Agressivité après le flop : mises et relances divisées par les suivis. 1 = équilibré ; au-dessus de 2 = agressif.", en = "Postflop aggression: (bets + raises) / calls." }

@@ -6,6 +6,7 @@ pub mod commands;
 pub mod import_commands;
 pub mod import_service;
 pub mod state;
+pub mod tracker_commands;
 
 use std::time::Instant;
 
@@ -99,6 +100,13 @@ pub fn run(started: Instant) {
             import_commands::backup_now,
             import_commands::backup_restore,
             import_commands::app_restart,
+            tracker_commands::tracker_report,
+            tracker_commands::tracker_graph,
+            tracker_commands::tracker_tournaments,
+            tracker_commands::tracker_hands,
+            tracker_commands::tracker_accounts,
+            tracker_commands::hand_get,
+            tracker_commands::stat_preview,
         ])
         .run(tauri::generate_context!())
         .expect("error while running Local Poker Suite");

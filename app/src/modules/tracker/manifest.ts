@@ -1,6 +1,6 @@
 import { ChartLine } from "lucide-react";
-import { ComingSoon } from "../ComingSoon";
 import type { ModuleManifest } from "../types";
+import { TrackerPage } from "./TrackerPage";
 
 export const manifest: ModuleManifest = {
   id: "tracker",
@@ -9,5 +9,8 @@ export const manifest: ModuleManifest = {
   icon: ChartLine,
   phase: 2,
   replaces: ["PokerTracker 4", "Holdem Manager 3", "DriveHUD", "Poker Copilot"],
-  routes: [{ path: "", component: ComingSoon }],
+  routes: [
+    { path: "", component: TrackerPage },
+    { path: ":tab", component: TrackerPage },
+  ],
 };

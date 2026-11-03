@@ -19,6 +19,8 @@ import type {
 } from "./backend";
 import { BackendError } from "./backend";
 import type { JSONSchema } from "./schema";
+import { mockTracker } from "./backend.mock.tracker";
+import type { StatMeta } from "./tracker";
 
 const rawDefaults = import.meta.glob("../../../config/defaults/**/*.toml", {
   query: "?raw",
@@ -37,6 +39,7 @@ const SCHEMA_OF: Record<Family, string> = {
   themes: "theme",
   profiles: "profile",
   rooms: "room",
+  stats: "stats",
 };
 
 /** "../../../config/defaults/themes/dark.toml" -> ["themes", "dark"] */
@@ -47,7 +50,7 @@ function keyOf(path: string): [Family, string] | null {
   if (parts.length === 1 && (parts[0] === "settings" || parts[0] === "hotkeys")) {
     return [parts[0], parts[0]];
   }
-  if (parts.length === 2 && (parts[0] === "themes" || parts[0] === "profiles" || parts[0] === "rooms")) {
+  if (parts.length === 2 && (parts[0] === "themes" || parts[0] === "profiles" || parts[0] === "rooms" || parts[0] === "stats")) {
     return [parts[0], parts[1]];
   }
   return null;
@@ -137,7 +140,28 @@ export function createMockBackend(opts: MockOptions = defaultOptions()): Backend
     return text;
   };
 
+  const statsMeta = (): StatMeta[] => {
+    const out: StatMeta[] = [];
+    for (const [k, text] of files) {
+      if (!k.startsWith("stats/")) continue;
+      const parsed = parseToml(text) as { stat?: Record<string, Record<string, unknown>> };
+      for (const [id, d] of Object.entries(parsed.stat ?? {})) {
+        out.push({
+          id,
+          name: String(d.name),
+          format: String(d.format ?? "pct1"),
+          description: (d.description as StatMeta["description"]) ?? null,
+          colourRanges: (d.colour_ranges as StatMeta["colourRanges"]) ?? [],
+          minSample: (d.min_sample as number) ?? null,
+          file: k.slice(6),
+        });
+      }
+    }
+    return out;
+  };
+
   const backend: Backend = {
+    ...mockTracker(statsMeta),
     async appInfo() {
       return {
         version: "0.1.0-dev",

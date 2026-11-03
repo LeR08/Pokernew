@@ -14,6 +14,7 @@ import type {
 } from "./backend";
 import { BackendError } from "./backend";
 import type { JSONSchema } from "./schema";
+import type { Graph, Hand, HandsResponse, Preview, ReportResponse, TournamentsResponse } from "./tracker";
 
 /** Shape of errors returned by src-tauri commands. */
 interface CommandError {
@@ -80,6 +81,13 @@ export function createTauriBackend(): Backend {
       if (r === null) return null;
       return Array.isArray(r) ? r : [r];
     },
+    trackerReport: (filter, group) => call<ReportResponse>("tracker_report", { filter, group }),
+    trackerGraph: (filter) => call<Graph>("tracker_graph", { filter }),
+    trackerTournaments: (filter) => call<TournamentsResponse>("tracker_tournaments", { filter }),
+    trackerHands: (filter, limit, offset) => call<HandsResponse>("tracker_hands", { filter, limit, offset }),
+    trackerAccounts: () => call<string[]>("tracker_accounts"),
+    handGet: (handId) => call<Hand>("hand_get", { handId }),
+    statPreview: (def, filter) => call<Preview>("stat_preview", { def, filter }),
     markReady() {
       void invoke("frontend_ready").catch(() => undefined);
     },

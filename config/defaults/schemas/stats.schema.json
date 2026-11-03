@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lps://schemas/stats",
+  "title": "schema.stats.title",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "stat"
+  ],
+  "properties": {
+    "stat": {
+      "title": "schema.stats.stat",
+      "type": "object",
+      "x-widget": "hidden",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "formula"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "formula": {
+            "type": "string",
+            "minLength": 1
+          },
+          "where": {
+            "type": "string"
+          },
+          "format": {
+            "type": "string",
+            "enum": [
+              "pct0",
+              "pct1",
+              "dec1",
+              "dec2",
+              "int",
+              "bb100"
+            ]
+          },
+          "sample": {
+            "type": "string"
+          },
+          "min_sample": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "description": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "fr",
+                  "en"
+                ],
+                "properties": {
+                  "fr": {
+                    "type": "string"
+                  },
+                  "en": {
+                    "type": "string"
+                  }
+                }
+              }
+            ]
+          },
+          "colour_ranges": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "colour"
+              ],
+              "properties": {
+                "min": {
+                  "type": "number"
+                },
+                "max": {
+                  "type": "number"
+                },
+                "colour": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
