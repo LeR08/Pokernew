@@ -81,6 +81,13 @@ export function Opponents() {
                   ))}
                 </tr>
               )}
+              {data && data.rows.length === 0 && (
+                <tr>
+                  <td colSpan={2 + stats.length} className="px-d3 py-d4 text-center text-muted" data-testid="opponents-empty">
+                    {t("opponents.empty", { n: minHands })}
+                  </td>
+                </tr>
+              )}
               {data?.rows.map((r) => (
                 <tr
                   key={r.key}

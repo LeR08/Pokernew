@@ -329,3 +329,24 @@ fn auto_notes_follow_rules_and_replace_previous_ones() {
     // The hero never gets auto-notes.
     assert!(notes.iter().all(|n| n.player != "Tantaculejen" && n.player != "GTOverBet"));
 }
+
+/// Regression (user, 3 Nov. 2026): with "Account = Tantaculejen", the opponents tab was empty.
+#[test]
+fn opponents_of_one_hero_account() {
+    let conn = db();
+    let stats = core();
+    let f = Filter { who: Some("opponents".into()), accounts: vec!["Tantaculejen".into()], ..Default::default() };
+    let rows = query::report(&conn, &f, &stats, Group::None).unwrap();
+    let expected: i64 = conn
+        .query_row(
+            "SELECT COUNT(*) FROM hand_players hp WHERE hp.is_hero = 0 AND hp.hand_id IN
+               (SELECT hand_id FROM hand_players x JOIN players p ON p.id = x.player_id WHERE x.is_hero = 1 AND p.name = 'Tantaculejen')",
+            [],
+            |r| r.get(0),
+        )
+        .unwrap();
+    assert!(expected > 0);
+    assert_eq!(rows[0].hands, expected);
+    let players = query::report_limited(&conn, &f, &stats, Group::Player, 10, 100).unwrap();
+    assert!(!players.is_empty());
+}

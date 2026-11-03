@@ -638,6 +638,7 @@
     "autonotes_done_one": "{{count}} auto-note written",
     "autonotes_done_other": "{{count}} auto-notes written",
     "help": "In brackets: the gap in points to the population when it exceeds 5 points. Click a player to see and add notes. Auto-notes are set in notes/auto.toml.",
-    "pick": "Click an opponent to see their notes."
+    "pick": "Click an opponent to see their notes.",
+    "empty": "No opponent with at least {{n}} hands for these filters: lower the minimum or widen the filters."
   }
 }

@@ -1,6 +1,6 @@
 # Phase 2 — Tracker (stats, rapports, graphiques, replayer)
 
-Statut : **terminée — en attente de ta validation** (parties 1 et 2 validées le 3 nov. 2026) · Choix de l'utilisateur (3 nov. 2026) :
+Statut : **validée par l'utilisateur le 3 nov. 2026** · Choix de l'utilisateur (3 nov. 2026) :
 - stats **simples**, chacune avec une explication en clair dans l'app ;
 - objectif : **être en bénéfice** → le gain est la première chose affichée partout ;
 - gains en **jetons / big blinds** par défaut, case à cocher **« Afficher en € »**.

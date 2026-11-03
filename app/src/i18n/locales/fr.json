@@ -638,6 +638,7 @@
     "autonotes_done_one": "{{count}} auto-note écrite",
     "autonotes_done_other": "{{count}} auto-notes écrites",
     "help": "Entre parenthèses : l'écart en points avec la population quand il dépasse 5 points. Clique sur un joueur pour voir et ajouter des notes. Les auto-notes se règlent dans le fichier notes/auto.toml.",
-    "pick": "Clique sur un adversaire pour voir ses notes."
+    "pick": "Clique sur un adversaire pour voir ses notes.",
+    "empty": "Aucun adversaire avec au moins {{n}} mains pour ces filtres : baisse le minimum ou élargis les filtres."
   }
 }

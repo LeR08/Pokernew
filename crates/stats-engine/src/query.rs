@@ -71,6 +71,9 @@ impl Filter {
             parts.push("h.played_at < ?".into());
             params.push(Value::Integer(t));
         }
+        // Hero accounts: for the hero's own rows, the row's player; for opponents
+        // (or one named player), the hands that account played.
+        let others = self.who.as_deref() == Some("opponents") || self.player.is_some();
         let mut list = |col: &str, values: &[String]| {
             if !values.is_empty() {
                 parts.push(format!("{col} IN ({})", vec!["?"; values.len()].join(", ")));
@@ -79,8 +82,18 @@ impl Filter {
         };
         list("h.game_type", &self.game_types);
         list("h.room", &self.rooms);
-        list("p.name", &self.accounts);
+        if !others {
+            list("p.name", &self.accounts);
+        }
         list("hp.position", &self.positions);
+        if others && !self.accounts.is_empty() {
+            parts.push(format!(
+                "h.id IN (SELECT hp2.hand_id FROM hand_players hp2 JOIN players p2 ON p2.id = hp2.player_id
+                          WHERE hp2.is_hero = 1 AND p2.name IN ({}))",
+                vec!["?"; self.accounts.len()].join(", ")
+            ));
+            params.extend(self.accounts.iter().map(|v| Value::Text(v.clone())));
+        }
         if let Some(t) = self.tournament {
             parts.push("h.tournament_id = ?".into());
             params.push(Value::Integer(t));
