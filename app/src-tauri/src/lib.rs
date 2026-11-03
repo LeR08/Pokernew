@@ -240,6 +240,10 @@ pub fn run(started: Instant) {
             solver_commands::solver_breakdown,
             solver_commands::solver_export,
             solver_commands::solver_loaded_spot,
+            solver_commands::solver_flops,
+            solver_commands::solver_batch_start,
+            solver_commands::solver_batch_progress,
+            solver_commands::solver_batch_cancel,
         ])
         .run(tauri::generate_context!())
         .expect("error while running Local Poker Suite");

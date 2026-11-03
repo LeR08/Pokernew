@@ -970,7 +970,8 @@
       "new": "New solve",
       "viewer": "Viewer",
       "library": "Library",
-      "compare": "Compare"
+      "compare": "Compare",
+      "batch": "Batch"
     },
     "oop_range": "OOP range (out of position)",
     "ip_range": "IP range (in position)",
@@ -1073,6 +1074,27 @@
       "a": "Solution A",
       "b": "Solution B (picked with \"Compare\" in the library)",
       "help": "Open one solution with \"Open\" (A) and another with \"Compare\" (B), e.g. two bet trees on the same spot."
+    },
+    "batch": {
+      "default_name": "Batch",
+      "help": "The spot of the \"New solve\" tab (ranges, pot, stack, tree) is solved on each chosen flop, one after another. Every solution goes to the library. Allow time: run many flops overnight.",
+      "max": "At most flops",
+      "count": "{{n}} flops of {{of}} (evenly spread)",
+      "start": "Start the batch",
+      "uses": "Ranges, pot, stack and tree come from \"New solve\" (the board {{board}} is replaced by each flop).",
+      "progress": "{{done}} / {{total}} flops solved",
+      "by_texture": "OOP's first action by texture",
+      "flops_n": "{{n}} flop(s)",
+      "first_action": "OOP's first action",
+      "ev": "OOP EV (bb)",
+      "tex": {
+        "monotone": "Monotone",
+        "two_tone": "Two-tone",
+        "rainbow": "Rainbow",
+        "monotone_paired": "Monotone paired",
+        "two_tone_paired": "Two-tone paired",
+        "rainbow_paired": "Rainbow paired"
+      }
     }
   }
 }

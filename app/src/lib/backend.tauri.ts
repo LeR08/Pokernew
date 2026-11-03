@@ -16,7 +16,7 @@ import { BackendError } from "./backend";
 import type { JSONSchema } from "./schema";
 import type { Breakdown, EquityResult, TextureReport } from "./equity";
 import type { BatchRow, IcmResult, Review, Solution } from "./icm";
-import type { CacheEntry, Estimate, NodeView, Progress, SpotConfig } from "./solver";
+import type { BatchProgress, CacheEntry, Estimate, NodeView, Progress, SpotConfig } from "./solver";
 import type {
   HudStatus,
   OverlayData,
@@ -167,6 +167,10 @@ export function createTauriBackend(): Backend {
     solverBreakdown: (slot, path, player) => call<Breakdown>("solver_breakdown", { slot, path, player }),
     solverExport: (slot, path, format) => call<string>("solver_export", { slot, path, format }),
     solverLoadedSpot: (slot) => call<[string, SpotConfig] | null>("solver_loaded_spot", { slot }),
+    solverFlops: (filter) => call<string[]>("solver_flops", { filter }),
+    solverBatchStart: (spot, params, flops, name) => call("solver_batch_start", { spot, params, flops, name }),
+    solverBatchProgress: () => call<BatchProgress | null>("solver_batch_progress"),
+    solverBatchCancel: () => call("solver_batch_cancel"),
     markReady() {
       void invoke("frontend_ready").catch(() => undefined);
     },

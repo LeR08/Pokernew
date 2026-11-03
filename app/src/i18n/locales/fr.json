@@ -970,7 +970,8 @@
       "new": "Nouveau calcul",
       "viewer": "Visionneuse",
       "library": "Bibliothèque",
-      "compare": "Comparer"
+      "compare": "Comparer",
+      "batch": "Batch"
     },
     "oop_range": "Range OOP (hors position)",
     "ip_range": "Range IP (en position)",
@@ -1073,6 +1074,27 @@
       "a": "Solution A",
       "b": "Solution B (choisie avec « Comparer » dans la bibliothèque)",
       "help": "Ouvre une solution avec « Ouvrir » (A) et une autre avec « Comparer » (B), par exemple deux arbres de mises sur le même spot."
+    },
+    "batch": {
+      "default_name": "Batch",
+      "help": "Le spot de l'onglet « Nouveau calcul » (ranges, pot, tapis, arbre) est résolu sur chaque flop choisi, à la suite. Chaque solution va dans la bibliothèque. Prévois du temps : laisse tourner la nuit pour beaucoup de flops.",
+      "max": "Flops au plus",
+      "count": "{{n}} flops sur {{of}} (répartis régulièrement)",
+      "start": "Lancer le batch",
+      "uses": "Ranges, pot, tapis et arbre : ceux de « Nouveau calcul » (le board {{board}} est remplacé par chaque flop).",
+      "progress": "{{done}} / {{total}} flops résolus",
+      "by_texture": "Première action OOP par texture",
+      "flops_n": "{{n}} flop(s)",
+      "first_action": "Première action OOP",
+      "ev": "EV OOP (bb)",
+      "tex": {
+        "monotone": "Monocolores",
+        "two_tone": "Deux couleurs",
+        "rainbow": "Arc-en-ciel",
+        "monotone_paired": "Monocolores pairés",
+        "two_tone_paired": "Deux couleurs pairés",
+        "rainbow_paired": "Arc-en-ciel pairés"
+      }
     }
   }
 }

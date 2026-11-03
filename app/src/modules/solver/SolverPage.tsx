@@ -5,12 +5,13 @@ import { Card } from "@/components/ui/card";
 import { getBackend } from "@/lib/backend";
 import { cn } from "@/lib/utils";
 import type { ModuleManifest } from "../types";
+import { BatchTab } from "./BatchTab";
 import { Library } from "./Library";
 import { NewSolve } from "./NewSolve";
 import { useSolverUi } from "./store";
 import { Viewer } from "./Viewer";
 
-const TABS = ["new", "viewer", "library", "compare"] as const;
+const TABS = ["new", "viewer", "library", "compare", "batch"] as const;
 
 export function SolverPage({ manifest }: { manifest: ModuleManifest }) {
   const { t } = useTranslation();
@@ -58,6 +59,7 @@ export function SolverPage({ manifest }: { manifest: ModuleManifest }) {
         </Card>
       )}
       {current === "library" && <Library />}
+      {current === "batch" && <BatchTab />}
       {current === "compare" && (
         <div className="grid grid-cols-1 gap-d4 xl:grid-cols-2">
           {([0, 1] as const).map((s) => (

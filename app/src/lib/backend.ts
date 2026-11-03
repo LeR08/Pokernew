@@ -7,7 +7,7 @@
 import type { JSONSchema } from "./schema";
 import type { Breakdown, CalcRequest, EquityResult, FlopFilter, TextureReport } from "./equity";
 import type { BatchRow, IcmResult, Review, ReviewRequest, Solution, SolveOptions, Spot } from "./icm";
-import type { CacheEntry, Estimate, Lock, NodeView, Progress, SolveParams, SpotConfig } from "./solver";
+import type { BatchProgress, CacheEntry, Estimate, Lock, NodeView, Progress, SolveParams, SpotConfig } from "./solver";
 import type {
   HudStatus,
   OverlayData,
@@ -232,6 +232,11 @@ export interface Backend {
   /** Writes the node's strategy to <data>/exports; returns the file. */
   solverExport(slot: 0 | 1, path: number[], format: "csv" | "json"): Promise<string>;
   solverLoadedSpot(slot: 0 | 1): Promise<[string, SpotConfig] | null>;
+  /** One representative flop per suit-equivalent class matching the filter. */
+  solverFlops(filter: FlopFilter): Promise<string[]>;
+  solverBatchStart(spot: SpotConfig, params: SolveParams, flops: string[], name: string): Promise<void>;
+  solverBatchProgress(): Promise<BatchProgress | null>;
+  solverBatchCancel(): Promise<void>;
 }
 
 export const isTauri = (): boolean =>

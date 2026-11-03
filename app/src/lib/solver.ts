@@ -124,3 +124,21 @@ export const DEFAULT_PARAMS: SolveParams = { targetPct: 0.5, maxIterations: 1000
 export function actionLabel(a: ActionInfo, t: (k: string, o?: Record<string, unknown>) => string): string {
   return a.amount > 0 ? t(`solver.action.${a.kind}_n`, { n: +a.amount.toFixed(2) }) : t(`solver.action.${a.kind}`);
 }
+
+export interface BatchRow {
+  flop: string;
+  hash: string;
+  exploitabilityPct: number;
+  actions: ActionInfo[];
+  totals: number[];
+  evOop: number;
+  equityOop: number;
+}
+export interface BatchProgress {
+  total: number;
+  done: number;
+  current: string | null;
+  running: boolean;
+  rows: BatchRow[];
+  errors: string[];
+}

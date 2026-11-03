@@ -9,7 +9,9 @@ use std::sync::atomic::Ordering;
 use std::sync::{Arc, Mutex};
 
 use lps_equity::breakdown::{breakdown, Breakdown};
+use lps_equity::texture::FlopFilter;
 use lps_equity::Range;
+use lps_solver::batch::{self, Batch, BatchProgress};
 use lps_solver::cache::{self, Entry};
 use lps_solver::job::{Job, Lock, Progress, SolveParams, State as JobState};
 use lps_solver::{estimate, view, Estimate, NodeView, SpotConfig};
@@ -42,6 +44,7 @@ struct Loaded {
 #[derive(Default)]
 pub struct SolverState {
     job: Mutex<Option<(Arc<Job>, String)>>,
+    batch: Mutex<Option<Arc<Batch>>>,
     slots: Mutex<[Option<Loaded>; 2]>,
 }
 
@@ -276,4 +279,58 @@ pub fn solver_loaded_spot(st: State<'_, SolverState>, slot: usize) -> Option<(St
         .get(slot)
         .and_then(|x| x.as_ref())
         .map(|l| (l.hash.clone(), l.spot.clone()))
+}
+
+/// Representative flops matching a texture filter (one per suit-equivalent class).
+#[tauri::command]
+pub fn solver_flops(filter: FlopFilter) -> Vec<String> {
+    batch::flops(&filter)
+}
+
+#[tauri::command]
+pub fn solver_batch_start(
+    hud: State<'_, Arc<HudService>>,
+    s: State<'_, AppState>,
+    st: State<'_, SolverState>,
+    spot: SpotConfig,
+    params: SolveParams,
+    flops: Vec<String>,
+    name: String,
+) -> Res<()> {
+    study_guard(&hud)?;
+    let mut b = st.batch.lock().unwrap();
+    if b.as_ref().is_some_and(|x| x.progress().running) {
+        return Err(e("a batch is already running"));
+    }
+    if flops.is_empty() {
+        return Err(e("no flop selected"));
+    }
+    // ranges, tree and every board checked before starting
+    SpotConfig {
+        board: flops[0].clone(),
+        ..spot.clone()
+    }
+    .build()
+    .map_err(e)?;
+    for f in &flops {
+        lps_solver::spot::board_cards(f).map_err(e)?;
+    }
+    let now = std::time::SystemTime::now()
+        .duration_since(std::time::UNIX_EPOCH)
+        .map(|d| d.as_secs() as i64)
+        .unwrap_or(0);
+    *b = Some(Batch::start(spot, params, flops, name, cache_dir(&s), now));
+    Ok(())
+}
+
+#[tauri::command]
+pub fn solver_batch_progress(st: State<'_, SolverState>) -> Option<BatchProgress> {
+    st.batch.lock().unwrap().as_ref().map(|b| b.progress())
+}
+
+#[tauri::command]
+pub fn solver_batch_cancel(st: State<'_, SolverState>) {
+    if let Some(b) = st.batch.lock().unwrap().as_ref() {
+        b.cancel();
+    }
 }

@@ -6,6 +6,7 @@
 //! * [`view`]: strategy, EV, equity and 13×13 grids at any node;
 //! * [`cache`]: compressed solutions on disk, reloaded without solving.
 
+pub mod batch;
 pub mod cache;
 pub mod job;
 pub mod spot;

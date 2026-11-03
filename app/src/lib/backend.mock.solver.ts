@@ -8,7 +8,7 @@ import { BackendError } from "./backend";
 import type { Breakdown } from "./equity";
 import { DRAW_IDS, MADE_IDS } from "./equity";
 import { cellOf, comboStr, COMBOS, NUM_COMBOS, parseCards, RANKED_CELLS, tryParseRange } from "./range";
-import type { ActionInfo, CacheEntry, Lock, NodeView, PlayerView, Progress, SpotConfig } from "./solver";
+import type { ActionInfo, BatchProgress, CacheEntry, Lock, NodeView, PlayerView, Progress, SpotConfig } from "./solver";
 
 type SolverPart = Pick<
   Backend,
@@ -25,6 +25,10 @@ type SolverPart = Pick<
   | "solverBreakdown"
   | "solverExport"
   | "solverLoadedSpot"
+  | "solverFlops"
+  | "solverBatchStart"
+  | "solverBatchProgress"
+  | "solverBatchCancel"
 >;
 
 const strength = (i: number) => 1 - RANKED_CELLS.indexOf(cellOf(i)) / 169;
@@ -61,6 +65,7 @@ export function mockSolver(): SolverPart {
   let job: { spot: SpotConfig; locks: Lock[]; name: string; start: number; paused: boolean; cancelled: boolean; max: number } | null = null;
   const cache: CacheEntry[] = [];
   const slots: (CacheEntry | null)[] = [null, null];
+  let batch: { flops: string[]; start: number; cancelled: boolean } | null = null;
   const progress = (): Progress | null => {
     if (!job) return null;
     const t = Math.min(1, (Date.now() - job.start) / 900);
@@ -180,6 +185,31 @@ export function mockSolver(): SolverPart {
     },
     async solverExport(_slot, path, format) {
       return `(browser mock)/exports/solver-${path.join("-") || "root"}.${format}`;
+    },
+    async solverFlops(filter) {
+      const all = ["AsKdQc", "Ks7d2c", "7s7d2c", "AsKsQs", "9h8h7d", "Th6d2s"];
+      return filter.suits === "monotone" ? ["AsKsQs"] : filter.pairing === "paired" ? ["7s7d2c"] : all;
+    },
+    async solverBatchStart(spot, _params, flops) {
+      check({ ...spot, board: flops[0] ?? "" });
+      batch = { flops, start: Date.now(), cancelled: false };
+    },
+    async solverBatchProgress(): Promise<BatchProgress | null> {
+      if (!batch) return null;
+      const done = batch.cancelled ? 0 : Math.min(batch.flops.length, Math.floor((Date.now() - batch.start) / 200));
+      const rows = batch.flops.slice(0, done).map((flop, k) => ({
+        flop,
+        hash: `batch${k}`.padEnd(16, "0"),
+        exploitabilityPct: 0.4,
+        actions: [{ kind: "check", amount: 0 }, { kind: "bet", amount: 1.82 }, { kind: "bet", amount: 4.13 }] as ActionInfo[],
+        totals: [0.5 - k * 0.05, 0.3 + k * 0.03, 0.2 + k * 0.02],
+        evOop: 2.4 + k * 0.1,
+        equityOop: 0.48,
+      }));
+      return { total: batch.flops.length, done, current: done < batch.flops.length ? batch.flops[done] : null, running: !batch.cancelled && done < batch.flops.length, rows, errors: [] };
+    },
+    async solverBatchCancel() {
+      if (batch) batch.cancelled = true;
     },
     async solverLoadedSpot(slot) {
       const e = slots[slot];
