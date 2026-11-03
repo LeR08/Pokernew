@@ -5,7 +5,7 @@
 Suite poker 100 % locale (tracker + HUD, solveur, équité, ICM) pour un seul joueur sur un seul PC.
 Aucun compte, aucune télémétrie, aucun appel réseau.
 
-> État : **phase 4 (Equity Lab)** : import Winamax, tracker, replayer, HUD, équité et analyse de ranges. Voir `docs/phase-*.md` et [`CHANGELOG.md`](CHANGELOG.md).
+> État : **phase 5 (ICM & push/fold)** : import Winamax, tracker, replayer, HUD, Equity Lab, ICM et push/fold. Voir `docs/phase-*.md` et [`CHANGELOG.md`](CHANGELOG.md).
 
 ## Installer sans compiler
 
@@ -120,6 +120,11 @@ bibliothèque de ranges dans `<données>/ranges/**.txt`. Maths et définitions :
 cargo run --release -p lps-equity --example bench
 ```
 
+## ICM & push/fold
+
+ICM Malmuth-Harville, FGS, KO, solveur push/fold Nash (2 à 10 joueurs), revue de tes mains de tournoi et quiz.
+Les structures de gains se saisissent dans le module (`<données>/payouts/*.toml`). Maths : [`docs/icm.md`](docs/icm.md).
+
 ## Fair-play
 
 C'est un outil d'**étude et de revue**. Aucun module ne donne de conseil en temps réel pendant le jeu.
@@ -137,7 +142,7 @@ AGPL-3.0-or-later. Le solveur s'appuiera sur `postflop-solver`, qui est sous AGP
 100 % local poker suite (tracker + HUD, solver, equity, ICM) for one player on one PC.
 No account, no telemetry, no network calls.
 
-> Status: **phase 4 (Equity Lab)**: Winamax import, tracker, replayer, HUD, equity and range analysis. See `docs/phase-*.md` and [`CHANGELOG.md`](CHANGELOG.md).
+> Status: **phase 5 (ICM & push/fold)**: Winamax import, tracker, replayer, HUD, Equity Lab, ICM and push/fold. See `docs/phase-*.md` and [`CHANGELOG.md`](CHANGELOG.md).
 
 ### Build and run on Windows 10/11
 

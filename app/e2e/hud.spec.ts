@@ -21,17 +21,6 @@ test("HUD page: detected table, per-table edit and hide", async ({ page }) => {
   await expect(page.getByTestId("hud-edit")).toContainText("Quitter");
 });
 
-async function editTable(page: import("@playwright/test").Page, id: number | null) {
-  await page.evaluate(async (windowId) => {
-    // Runs in the browser, against the Vite dev server's module graph.
-    const path = "/src/lib/backend.ts";
-    const m = (await import(/* @vite-ignore */ path)) as {
-      getBackend: () => Promise<{ hudSetEditTable: (id: number | null) => Promise<void> }>;
-    };
-    await (await m.getBackend()).hudSetEditTable(windowId);
-  }, id);
-}
-
 test("HUD overlay: one panel per opponent, no edit bar outside edit mode", async ({ page }) => {
   await page.goto("/#/hud/1");
   await expect(page.getByTestId("hud-panel")).toHaveCount(2); // the mock layout hides the hero
@@ -39,9 +28,12 @@ test("HUD overlay: one panel per opponent, no edit bar outside edit mode", async
 });
 
 test("HUD overlay: per-table edit, drag, popup, done", async ({ page }) => {
+  // Edit mode is turned on from the HUD module, then the overlay route is opened in the same page.
+  await page.goto("/#/m/hud");
+  await page.getByTestId("hud-table-edit").click();
+  await expect(page.getByTestId("hud-table-edit")).toContainText("Terminer");
   await page.goto("/#/hud/1");
   await expect(page.getByTestId("hud-panel")).toHaveCount(2);
-  await editTable(page, 1);
   await expect(page.getByTestId("hud-edit-bar")).toBeVisible();
   const panel = page.getByTestId("hud-panel").first();
   await expect(panel).toHaveCSS("cursor", "move");

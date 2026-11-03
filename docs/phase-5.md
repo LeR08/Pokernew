@@ -1,6 +1,6 @@
 # Phase 5 — ICM & push/fold
 
-Statut : **plan — à valider** · remplace ICMIZER et HRC.
+Statut : **implémentée — à tester sur ton PC** · remplace ICMIZER et HRC.
 
 ## Critères d'acceptation (spec)
 - les ranges de push/fold Nash en tête-à-tête sont identiques aux tableaux Nash publiés ;
@@ -45,12 +45,35 @@ Statut : **plan — à valider** · remplace ICMIZER et HRC.
 - Revue : depuis une main de la fixture Winamax (tapis, niveau, gains) jusqu'à l'EV de la décision.
 - Front : vitest et Playwright (calculateur, solveur, revue depuis le tracker, verrou en mode jeu).
 
-## Questions pour toi
-1. **Structures de gains** : les historiques et les résumés Winamax donnent le prize pool, mais pas la
-   répartition par place. Pour la revue ICM de tes MTT, il me faut la répartition :
-   - soit tu me donnes une capture (ou une copie) de l'onglet « Gains » du lobby d'un tournoi type ;
-   - soit tu les saisis toi-même dans l'app : un tableau ou un CSV `place;gain`, enregistré pour être
-     réutilisé.
-   Pour les **Expresso**, tu peux me donner la grille de gains (multiplicateurs et répartition) ? Je ne veux
-   pas l'inventer.
-2. Les formats que tu joues le plus : MTT KO (PKO), Expresso, autres ? Ça fixe l'ordre des préréglages.
+## Réponse de l'utilisateur
+Les répartitions de gains changent avec le nombre d'inscrits : tu les saisis à la main dans **ICM >
+Structures de gains** (montants ou pourcentages, ou un CSV collé). Aucune structure n'est livrée.
+
+## Résultats (3 nov. 2026)
+- **Nash tête-à-tête** contre les tableaux publiés de HoldemResources (sans ante), sur 12 tapis de 2 à
+  19,5 bb : **4 003 décisions vérifiées, 3 999 identiques**. Les 4 autres (53s à 4 bb, 96o à 5 bb, 94s à
+  6 bb, 84s à 9 bb) sont des mains **indifférentes** : pousser ou se coucher y diffère de moins de 0,01 bb
+  dans notre solution convergée (exploitabilité de 0,00002 bb). Le test ne tolère que ce cas, et sous 1 %.
+- **ICM** : la somme des $EV est égale au prize pool sur 180 cas tirés au hasard (2 à 10 joueurs), plus
+  des cas calculés à la main ; les joueurs éliminés se partagent les dernières places.
+- **Table d'équité préflop** : 169 × 169 classes, exacte (93 769 situations différentes énumérées sur
+  tous les boards).
+- **Revue** : elle trouve et évalue tes décisions push/fold dans les mains Winamax de la fixture (tapis,
+  call, fold). Elle s'ouvre depuis le replayer (« Revue ICM ») et depuis la liste des tournois
+  (« Revue push/fold »).
+- **Tests** : cargo test, clippy -D warnings, vitest et Playwright sont verts.
+
+## Limites
+- Push/fold : seul le premier qui paie va à l'abattage (pas de sur-call).
+- L'ICM de la revue ne voit que la table : c'est exact en Expresso et en table finale, et une
+  approximation avant. Tu peux ajouter les tapis des autres tables à la main.
+
+## À tester sur ton PC
+1. **Structures de gains** : saisis la répartition d'un de tes tournois.
+2. **Push/fold** : tête-à-tête à 10 bb, puis 6 joueurs en ICM avec ta structure ; bouge les curseurs « Et
+   si… » ; fixe la range d'un adversaire (mode exploitant).
+3. **Calculateur ICM** : tapis et gains, bubble factors.
+4. **Revue** : depuis le replayer, sur une main de tournoi courte (« Revue ICM »), puis un tournoi entier
+   depuis Tracker > Tournois (« Revue push/fold »).
+5. **Quiz** : quelques spots.
+6. Ouvre une table : le module ICM se verrouille.

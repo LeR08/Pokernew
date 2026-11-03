@@ -29,6 +29,9 @@
 //! summed over their decisions and weighted by how often they are reached) is
 //! small enough, or after `max_iterations`.
 
+// The maths reads best with explicit indices (players p, q and hand classes a, b).
+#![allow(clippy::needless_range_loop)]
+
 use std::collections::HashMap;
 
 use lps_equity::combo::{class_size, NUM_CLASSES};

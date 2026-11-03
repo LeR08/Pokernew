@@ -2,7 +2,17 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/). Versions follow the roadmap phases.
 
-## [Unreleased] — Phase 4 : Equity Lab
+## [Unreleased] — Phase 5 : ICM & push/fold
+
+### Ajouté / Added
+- `icm` : ICM Malmuth-Harville exact (jusqu'à 16 joueurs avec des jetons), chip EV, bubble factors, primes de risque, FGS sur 1 à 3 mains, bounties (KO).
+- Solveur push/fold Nash de 2 à 10 joueurs (fictitious play), en chip EV ou en ICM, avec antes, ante BB et bounties. Mode exploitant (ranges fixées) et exploitabilité affichée.
+- Table exacte d'équité préflop 169 × 169 (`crates/equity/data/preflop_matrix.txt`).
+- Tête-à-tête identique aux tableaux Nash publiés (HoldemResources) sur 3 999 des 4 003 décisions ; les 4 autres sont des mains indifférentes (moins de 0,01 bb d'écart).
+- Module ICM : push/fold (grilles 13×13 par décision, EV par main, curseurs « et si »), calculateur ICM, revue de mains (une main ou un tournoi entier, triés par EV perdue), quiz, structures de gains saisies par toi (`payouts/*.toml`, import CSV).
+- Liens « Revue ICM » dans le replayer et « Revue push/fold » dans la liste des tournois.
+
+## Phase 4 : Equity Lab
 
 ### Ajouté / Added
 - `evaluator` : notre évaluateur de mains de 5 à 7 cartes (masques de bits et table de quintes). Il compte juste toutes les mains de 5 et de 7 cartes et donne le même gagnant qu'eval7 sur 20 000 paires.
@@ -14,6 +24,9 @@ Format: [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/). Versions follo
 
 ### Fair-play
 - Equity Lab est verrouillé en mode jeu (tuile et commandes).
+
+### Corrigé / Fixed
+- Replayer : le lien vers Equity Lab prend toujours le board complet de la main jouée.
 
 ## Phase 3 : HUD
 
