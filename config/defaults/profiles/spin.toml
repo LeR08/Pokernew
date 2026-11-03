@@ -5,6 +5,9 @@
 name = "Spin & Expresso"
 description = "Spin & Go / Expresso, 3-handed"
 
+# Disposition du HUD (fichier de hud/) / HUD layout (file in hud/)
+hud = "standard"
+
 # Décommenter pour imposer un thème avec ce profil.
 # Uncomment to force a theme with this profile.
 # theme = "dark"

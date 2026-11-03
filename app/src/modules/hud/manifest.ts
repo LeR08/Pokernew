@@ -1,6 +1,6 @@
 import { LayoutDashboard } from "lucide-react";
-import { ComingSoon } from "../ComingSoon";
 import type { ModuleManifest } from "../types";
+import { HudPage } from "./HudPage";
 
 export const manifest: ModuleManifest = {
   id: "hud",
@@ -9,5 +9,5 @@ export const manifest: ModuleManifest = {
   icon: LayoutDashboard,
   phase: 3,
   replaces: ["PokerTracker 4", "Hand2Note", "Holdem Manager 3"],
-  routes: [{ path: "", component: ComingSoon }],
+  routes: [{ path: "", component: HudPage }],
 };

@@ -16,6 +16,17 @@ folders = []
 # Pseudo(s) du joueur sur cette salle / your screen name(s) on this room
 hero_names = []
 
+# Détection des tables pour le HUD / table detection for the HUD
+# FR : une fenêtre est une table quand son titre contient le nom d'une table des
+#      mains importées récemment. On peut en plus exiger un programme et un motif
+#      de titre (expression régulière) : voir l'inspecteur de fenêtres du module HUD.
+# EN : a window is a table when its title contains a recent table name.
+processes = []
+title_pattern = ""
+# Le client place-t-il le héros en bas de la table ? (à confirmer)
+# Does the client rotate the hero to the bottom? (to be confirmed)
+rotate_hero_to_bottom = true
+
 # HUD autorisé par les conditions de la salle (utilisé à partir de la phase 3).
 # À confirmer dans l'assistant. / HUD allowed by the room's terms (phase 3).
 hud_allowed = true

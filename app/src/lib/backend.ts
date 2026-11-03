@@ -6,6 +6,8 @@
  */
 import type { JSONSchema } from "./schema";
 import type {
+  HudStatus,
+  OverlayData,
   OpponentsResponse,
   Bankroll,
   GridCell,
@@ -176,6 +178,18 @@ export interface Backend {
   bankrollTxDelete(id: number): Promise<void>;
   trackerOpponents(filter: Filter, minHands: number, limit: number): Promise<OpponentsResponse>;
   autonotesRun(): Promise<number>;
+
+  // ---- HUD (phase 3) ----
+  hudStatus(): Promise<HudStatus>;
+  playModeGet(): Promise<boolean>;
+  hudSetVisible(visible: boolean): Promise<void>;
+  hudSetEdit(edit: boolean): Promise<void>;
+  hudSimulate(seats: number): Promise<string>;
+  hudClearSimulated(): Promise<void>;
+  hudOverlay(windowId: number): Promise<OverlayData>;
+  hudSaveSeat(tableSize: number, slot: number, x: number, y: number): Promise<void>;
+  /** "playmode" (bool), "hud-refresh", "hud-edit" (bool), "hud-status". */
+  onHudEvent(cb: (kind: "playmode" | "hud-refresh" | "hud-edit" | "hud-status", payload: unknown) => void): () => void;
   /** Writes a CSV file in <data>/exports; returns its path. */
   exportCsv(name: string, rows: string[][]): Promise<string>;
 }

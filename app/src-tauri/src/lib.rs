@@ -3,6 +3,8 @@
 
 pub mod bus;
 pub mod commands;
+pub mod hud;
+pub mod hud_commands;
 pub mod import_commands;
 pub mod import_service;
 pub mod state;
@@ -36,6 +38,35 @@ pub fn run(started: Instant) {
         .plugin(tauri_plugin_opener::init())
         .manage(state)
         .setup(|app| {
+            // HUD: window tracking, overlays, play mode, global hotkeys.
+            let hud = hud::HudService::start(app.handle().clone());
+            app.manage(hud.clone());
+            {
+                use tauri_plugin_global_shortcut::{GlobalShortcutExt, Shortcut, ShortcutState};
+                let st = app.state::<state::AppState>();
+                let toggle: Option<Shortcut> = hud::shortcut_string(&hud::hotkey(&st, "toggle_hud", "Ctrl+Alt+H")).parse().ok();
+                let edit: Option<Shortcut> = hud::shortcut_string(&hud::hotkey(&st, "hud_edit", "Ctrl+Alt+E")).parse().ok();
+                let (t2, e2, h2) = (toggle, edit, hud.clone());
+                app.handle().plugin(
+                    tauri_plugin_global_shortcut::Builder::new()
+                        .with_handler(move |app, sc, ev| {
+                            if ev.state() != ShortcutState::Pressed {
+                                return;
+                            }
+                            if Some(sc) == t2.as_ref() {
+                                h2.toggle_visible(app);
+                            } else if Some(sc) == e2.as_ref() {
+                                h2.toggle_edit(app);
+                            }
+                        })
+                        .build(),
+                )?;
+                for sc in [toggle, edit].into_iter().flatten() {
+                    if let Err(e) = app.global_shortcut().register(sc) {
+                        log::warn!("global hotkey unavailable: {e}");
+                    }
+                }
+            }
             // Forward the internal bus to every window.
             let handle = app.handle().clone();
             let mut rx = app.state::<state::AppState>().bus.subscribe();
@@ -43,6 +74,7 @@ pub fn run(started: Instant) {
             let import = st.import.clone();
             let store = st.store.clone();
             let app_handle = app.handle().clone();
+            let hud_handle = app.handle().clone();
             let last_autonotes = std::sync::Arc::new(std::sync::Mutex::new(std::time::Instant::now() - std::time::Duration::from_secs(3600)));
             tauri::async_runtime::spawn(async move {
                 loop {
@@ -64,6 +96,12 @@ pub fn run(started: Instant) {
                                 }
                             }
                             // New hands: refresh the auto-notes, at most once a minute.
+                            if let Some(h) = hud_handle.try_state::<std::sync::Arc<hud::HudService>>() {
+                                match &ev {
+                                    bus::AppEvent::HandsImported(_) => h.send(hud::Msg::Data),
+                                    bus::AppEvent::Config(_) => h.send(hud::Msg::Config),
+                                }
+                            }
                             if let bus::AppEvent::HandsImported(w) = &ev {
                                 let due = last_autonotes
                                     .lock()
@@ -147,6 +185,14 @@ pub fn run(started: Instant) {
             tracker_commands::export_csv,
             tracker_commands::tracker_opponents,
             tracker_commands::autonotes_run,
+            hud_commands::hud_status,
+            hud_commands::play_mode_get,
+            hud_commands::hud_set_visible,
+            hud_commands::hud_set_edit,
+            hud_commands::hud_simulate,
+            hud_commands::hud_clear_simulated,
+            hud_commands::hud_overlay,
+            hud_commands::hud_save_seat,
         ])
         .run(tauri::generate_context!())
         .expect("error while running Local Poker Suite");

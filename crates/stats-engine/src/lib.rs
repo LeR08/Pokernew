@@ -7,6 +7,7 @@ pub mod compile;
 pub mod defs;
 pub mod expr;
 pub mod grid;
+pub mod hud;
 pub mod leaks;
 pub mod query;
 pub mod review;

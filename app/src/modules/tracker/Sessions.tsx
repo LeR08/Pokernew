@@ -10,6 +10,8 @@ import type { Finding, Session } from "@/lib/tracker";
 import { useTracker } from "@/stores/tracker";
 import { cn } from "@/lib/utils";
 import { useFilter, useSessionReview, useSessions } from "./api";
+import { StudyLock } from "@/components/StudyLock";
+import { usePlayMode } from "@/stores/playMode";
 
 function duration(s: Session): string {
   const m = Math.max(1, Math.round((s.end - s.start) / 60));
@@ -46,6 +48,12 @@ function FindingCard({ f }: { f: Finding }) {
 }
 
 function Review({ s }: { s: Session }) {
+  const playing = usePlayMode((p) => p.on);
+  if (playing) return <StudyLock />;
+  return <ReviewBody s={s} />;
+}
+
+function ReviewBody({ s }: { s: Session }) {
   const { t, i18n } = useTranslation();
   const lang = i18n.language;
   const filter = useFilter();

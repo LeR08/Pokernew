@@ -4,17 +4,39 @@
   "title": "schema.hotkeys.title",
   "type": "object",
   "additionalProperties": false,
-  "required": ["actions"],
+  "required": [
+    "actions"
+  ],
   "properties": {
     "actions": {
       "title": "schema.hotkeys.actions",
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "go_home": { "$ref": "#/$defs/hotkey", "title": "hotkey.go_home" },
-        "open_settings": { "$ref": "#/$defs/hotkey", "title": "hotkey.open_settings" },
-        "toggle_sidebar": { "$ref": "#/$defs/hotkey", "title": "hotkey.toggle_sidebar" },
-        "next_profile": { "$ref": "#/$defs/hotkey", "title": "hotkey.next_profile" }
+        "go_home": {
+          "$ref": "#/$defs/hotkey",
+          "title": "hotkey.go_home"
+        },
+        "open_settings": {
+          "$ref": "#/$defs/hotkey",
+          "title": "hotkey.open_settings"
+        },
+        "toggle_sidebar": {
+          "$ref": "#/$defs/hotkey",
+          "title": "hotkey.toggle_sidebar"
+        },
+        "next_profile": {
+          "$ref": "#/$defs/hotkey",
+          "title": "hotkey.next_profile"
+        },
+        "toggle_hud": {
+          "$ref": "#/$defs/hotkey",
+          "title": "hotkey.toggle_hud"
+        },
+        "hud_edit": {
+          "$ref": "#/$defs/hotkey",
+          "title": "hotkey.hud_edit"
+        }
       }
     }
   },

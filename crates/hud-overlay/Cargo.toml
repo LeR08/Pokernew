@@ -4,8 +4,22 @@ version.workspace = true
 edition.workspace = true
 license.workspace = true
 publish = false
+description = "Poker table window tracking (Win32) and window <-> table matching for the HUD."
 
 [lib]
 name = "lps_hud_overlay"
 
 [dependencies]
+serde.workspace = true
+regex = "1"
+log.workspace = true
+
+[target.'cfg(windows)'.dependencies]
+windows = { version = "0.62", features = [
+    "Win32_Foundation",
+    "Win32_Graphics_Gdi",
+    "Win32_System_Threading",
+    "Win32_UI_Accessibility",
+    "Win32_UI_HiDpi",
+    "Win32_UI_WindowsAndMessaging",
+] }

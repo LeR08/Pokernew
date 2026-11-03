@@ -350,3 +350,20 @@ fn opponents_of_one_hero_account() {
     let players = query::report_limited(&conn, &f, &stats, Group::Player, 10, 100).unwrap();
     assert!(!players.is_empty());
 }
+
+#[test]
+fn hud_table_has_every_player_with_stats() {
+    let conn = db();
+    let stats = core();
+    let tables = crate::hud::recent_tables(&conn, 0).unwrap();
+    let t = tables.iter().find(|t| t.table_name == "TRIDENT SPACE KO(1195602081)#0053").unwrap();
+    assert_eq!((t.tournament_id.as_deref(), t.table_number, t.max_seats), (Some("1195602081"), Some(53), 3));
+    let h = crate::hud::table(&conn, "winamax", &t.table_name, &stats, true).unwrap().unwrap();
+    assert_eq!(h.seats.len(), 3);
+    let hero = h.seats.iter().find(|s| s.is_hero).unwrap();
+    assert_eq!(hero.slot, 0);
+    let villain = h.seats.iter().find(|s| !s.is_hero).unwrap();
+    assert_eq!(villain.hands, 24, "all hands of this player in the room");
+    assert!(villain.stats.iter().any(|s| s.id == "vpip" && s.value.is_some()));
+    assert!(crate::hud::recent_tables(&conn, i64::MAX).unwrap().is_empty());
+}

@@ -1,6 +1,6 @@
 # Phase 3 — HUD
 
-Statut : **en cours** · PC cible : Windows 11, Dell Latitude 5590 (écran tactile)
+Statut : **implémentée — à tester sur ton PC Windows** · PC cible : Windows 11, Dell Latitude 5590 (écran tactile)
 
 ## Critères d'acceptation (spec)
 - suit 6 tables déplacées et redimensionnées sur 2 écrans ;
@@ -39,3 +39,33 @@ et leur programme. Tu pourras me le copier pour régler la détection exactement
 ## Limites
 Le suivi des fenêtres est écrit pour Windows. Ici sous Linux, je vérifie la compilation Windows et je teste la
 logique de rapprochement et la table simulée. Le comportement réel sur tes tables Winamax devra être confirmé par toi.
+
+## Résultats (3 nov. 2026)
+
+| Critère | État |
+|---|---|
+| Suit 6 tables déplacées et redimensionnées sur 2 écrans | Code en place : SetWinEventHook sur création, déplacement, taille, titre, réduction, premier plan, hors processus et sans notre propre processus ; position et taille en pixels physiques ; DPI par fenêtre. **À vérifier par toi sous Windows** |
+| Stats rafraîchies < 1 s après la fin d'une main | Import ≈ 0,3 s (phase 1), puis l'événement `hud://refresh` et une seule requête par siège (index joueur + date). **À mesurer chez toi** |
+| Modifications de disposition conservées | ✅ vérifié dans la vraie app (table simulée) : le panneau déplacé est enregistré dans `hud/standard.toml`, commentaires conservés |
+| `hud_allowed = false` masque le HUD | ✅ aucune fenêtre HUD n'est ouverte pour une salle sans autorisation ; le tracker continue d'importer |
+
+Vérifié ici (Linux, vraie app Tauri) :
+- la table simulée ouvre une fenêtre HUD avec un panneau par adversaire et ses vraies stats ;
+- le mode édition, le glisser-déposer et le popup détaillé avec les notes fonctionnent ;
+- le raccourci global Ctrl+Alt+H masque puis réaffiche le HUD.
+
+Testé :
+- le rapprochement fenêtre ↔ table (6 tests) ;
+- la règle du mode jeu (verrouillé pendant le jeu, déverrouillé 60 s après) ;
+- la rotation des sièges (héros en slot 0) ;
+- les stats par siège ;
+- le verrouillage des modules d'étude dans l'interface ;
+- le refus du bilan de session côté serveur en mode jeu.
+
+Choix techniques :
+- **HUD transparent aux clics** : en mode normal, la fenêtre laisse passer tous les clics vers la table, pour ne jamais gêner le client. Le popup et le déplacement ne marchent qu'en mode édition (Ctrl+Alt+E).
+- **Uniquement des stats historiques** dans le HUD : pas d'équité, de range ni de conseil sur la main en cours (fair-play).
+
+À confirmer avec tes captures et l'inspecteur de fenêtres :
+- que les titres des fenêtres de table Winamax contiennent bien le nom de la table ;
+- l'ordre des sièges (sens horaire, héros en bas) pour les positions par défaut.

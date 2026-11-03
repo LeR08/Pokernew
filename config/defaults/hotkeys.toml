@@ -9,3 +9,7 @@ go_home = "Ctrl+H"
 open_settings = "Ctrl+,"
 toggle_sidebar = "Ctrl+B"
 next_profile = "Ctrl+P"
+# Raccourcis globaux (fonctionnent même quand le client poker a le focus)
+# Global hotkeys (work while the poker client has the focus)
+toggle_hud = "Ctrl+Alt+H"
+hud_edit = "Ctrl+Alt+E"

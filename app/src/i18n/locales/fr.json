@@ -124,7 +124,9 @@
     "go_home": "Aller à l'accueil",
     "open_settings": "Ouvrir les réglages",
     "toggle_sidebar": "Afficher/masquer la barre latérale",
-    "next_profile": "Profil suivant"
+    "next_profile": "Profil suivant",
+    "toggle_hud": "Afficher/masquer le HUD (global)",
+    "hud_edit": "Mode édition du HUD (global)"
   },
   "color": {
     "background": "Fond",
@@ -178,7 +180,8 @@
       "title": "Profil",
       "name": "Nom",
       "description": "Description",
-      "theme": "Thème imposé"
+      "theme": "Thème imposé",
+      "hud": "Disposition du HUD"
     },
     "room": {
       "title": "Salle",
@@ -188,7 +191,13 @@
       "folders_help": "Surveillés en continu : les nouvelles mains sont importées en moins d'une seconde.",
       "hero_names": "Mes pseudos",
       "hud_allowed": "HUD autorisé sur cette salle",
-      "hud_allowed_help": "À régler selon les conditions d'utilisation de la salle. Le tracker importe les mains dans tous les cas."
+      "hud_allowed_help": "À régler selon les conditions d'utilisation de la salle. Le tracker importe les mains dans tous les cas.",
+      "processes": "Programmes du client",
+      "processes_help": "Optionnel : noms d'exécutables qui affichent les tables (voir l'inspecteur du module HUD).",
+      "title_pattern": "Motif du titre des tables",
+      "title_pattern_help": "Optionnel : expression régulière que doit vérifier le titre d'une fenêtre de table.",
+      "rotate": "Héros toujours en bas",
+      "rotate_help": "Coche si le client place ta place en bas de l'écran (la disposition du HUD suit)."
     },
     "stats": {
       "title": "Stats",
@@ -201,6 +210,17 @@
     "notes": {
       "title": "Auto-notes",
       "rule": "Règles"
+    },
+    "hud": {
+      "title": "Disposition du HUD",
+      "name": "Nom",
+      "opacity": "Opacité",
+      "font_scale": "Taille du texte",
+      "show_hero": "Afficher mon propre panneau",
+      "min_hands": "Griser sous N mains",
+      "rows": "Lignes",
+      "popup": "Popup",
+      "seats": "Positions"
     }
   },
   "enum": {
@@ -640,5 +660,41 @@
     "help": "Entre parenthèses : l'écart en points avec la population quand il dépasse 5 points. Clique sur un joueur pour voir et ajouter des notes. Les auto-notes se règlent dans le fichier notes/auto.toml.",
     "pick": "Clique sur un adversaire pour voir ses notes.",
     "empty": "Aucun adversaire avec au moins {{n}} mains pour ces filtres : baisse le minimum ou élargis les filtres."
+  },
+  "hud": {
+    "hands": "mains",
+    "hands_n": "{{n}} mains",
+    "simulation": "SIMULATION",
+    "unsupported": "Le suivi des tables n'existe que sous Windows. Ici, utilise la table simulée pour voir et régler le HUD.",
+    "not_allowed": "Le HUD est désactivé pour Winamax (hud_allowed = false). Le tracker continue d'importer tes mains.",
+    "settings_rooms": "Réglages → Salles",
+    "tables": "Tables suivies",
+    "play_mode": "Mode",
+    "playing": "Jeu en cours : modules d'étude verrouillés",
+    "unlock_in": "Déverrouillage dans {{s}} s",
+    "studying": "Étude (aucune table ouverte)",
+    "hide": "Masquer le HUD",
+    "show": "Afficher le HUD",
+    "edit_on": "Mode édition (déplacer les panneaux)",
+    "edit_off": "Quitter le mode édition",
+    "hotkeys_help": "Raccourcis globaux, même quand Winamax a le focus : Ctrl+Alt+H pour afficher ou masquer le HUD, Ctrl+Alt+E pour le mode édition. En dehors du mode édition, le HUD laisse passer tous les clics vers la table.",
+    "simulate_title": "Table simulée",
+    "simulate_help": "Ouvre le HUD sur une fausse table, avec les joueurs de ta dernière table de cette taille, pour régler la disposition sans jouer. Passe en mode édition pour déplacer les panneaux : les positions sont enregistrées dans la disposition du profil. Une table simulée ne verrouille pas les modules d'étude.",
+    "simulate_n": "{{n}} joueurs",
+    "clear_simulated": "Fermer les tables simulées",
+    "simulated": "Table simulée : {{name}}",
+    "detected": "Tables détectées",
+    "none": "Aucune table ouverte. Une table est reconnue quand le titre de sa fenêtre contient le nom d'une table de tes mains des 15 dernières minutes : il faut donc qu'au moins une main y soit terminée.",
+    "max": "{{n}} places",
+    "inspector": "Inspecteur de fenêtres",
+    "copy_windows": "Copier la liste",
+    "inspector_help": "Les fenêtres ouvertes qui ne correspondent à aucune table (programme · classe · titre). Si une table Winamax n'est pas reconnue, copie cette liste et envoie-la-moi.",
+    "layout_help": "La disposition (stats affichées, positions, opacité) est dans hud/standard.toml, choisie par le profil actif :",
+    "profiles": "Réglages → Profils"
+  },
+  "playmode": {
+    "title": "Verrouillé pendant le jeu",
+    "why": "Une table de poker est ouverte. Les outils d'étude (solveur, entraîneur, ICM, ranges préflop, bilan de session) sont verrouillés pendant le jeu, parce que l'aide en temps réel est interdite par les salles. Ils se déverrouillent 60 secondes après la fermeture de la dernière table.",
+    "locked": "Verrouillé"
   }
 }

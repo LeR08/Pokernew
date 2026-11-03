@@ -9,12 +9,15 @@ import type { ModuleManifest } from "@/modules/types";
 import { useSaveValue, useSettings } from "@/lib/config";
 import { getBackend, type JsonObject } from "@/lib/backend";
 import { Card } from "@/components/ui/card";
+import { usePlayMode } from "@/stores/playMode";
+import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
 function Tile({ m }: { m: ModuleManifest }) {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id: m.id });
+  const locked = usePlayMode((s) => s.on) && !!m.studyOnly;
   const openWindow = () => void getBackend().then((b) => b.openModuleWindow(m.id));
   return (
     <div
@@ -36,7 +39,8 @@ function Tile({ m }: { m: ModuleManifest }) {
           e.preventDefault();
           openWindow();
         }}
-        className="group relative flex h-full cursor-pointer flex-col gap-d2 p-d4 transition hover:border-primary"
+        className={cn("group relative flex h-full cursor-pointer flex-col gap-d2 p-d4 transition hover:border-primary", locked && "opacity-50")}
+        data-locked={locked || undefined}
       >
         <div className="flex items-start justify-between">
           <m.icon className="h-7 w-7 text-primary" aria-hidden />
@@ -59,6 +63,7 @@ function Tile({ m }: { m: ModuleManifest }) {
         <div className="flex-1 text-sm text-muted">{t(m.description)}</div>
         <div className="flex items-center gap-d2 text-xs text-muted">
           <span className="rounded bg-surface-alt px-d2 py-0.5">{t("launcher.phase", { phase: m.phase })}</span>
+          {locked && <span className="rounded bg-warning px-d2 py-0.5 text-black">{t("playmode.locked")}</span>}
           {m.studyOnly && (
             <span className="inline-flex items-center gap-1 rounded bg-surface-alt px-d2 py-0.5">
               <Lock className="h-3 w-3" aria-hidden />

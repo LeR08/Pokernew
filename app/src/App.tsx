@@ -9,6 +9,8 @@ import { Launcher } from "@/shell/Launcher";
 import { ModulePage } from "@/shell/ModulePage";
 import { SettingsCentre } from "@/settings/SettingsCentre";
 import { Welcome } from "@/shell/Welcome";
+import { HudOverlay } from "@/hud/HudOverlay";
+import { usePlayModeSync } from "@/stores/playMode";
 
 let readySent = false;
 
@@ -17,6 +19,7 @@ function Root() {
     if (e.kind === "invalid") console.warn("invalid config", e);
   }, []);
   useConfigEvents(onEvent);
+  usePlayModeSync();
   useEffect(() => {
     // Once per page load (StrictMode runs effects twice in development).
     if (readySent) return;
@@ -34,6 +37,7 @@ function Root() {
             <Route path="settings/:tab?" element={<SettingsCentre />} />
           </Route>
           <Route path="welcome" element={<Welcome />} />
+          <Route path="hud/:id" element={<HudOverlay />} />
           <Route path="window/:id/*" element={<WindowShell />}>
             <Route path="*" element={<ModulePage />} />
           </Route>

@@ -15,6 +15,8 @@ import type {
 import { BackendError } from "./backend";
 import type { JSONSchema } from "./schema";
 import type {
+  HudStatus,
+  OverlayData,
   OpponentsResponse,
   Bankroll,
   Graph,
@@ -118,6 +120,23 @@ export function createTauriBackend(): Backend {
     exportCsv: (name, rows) => call<string>("export_csv", { name, rows }),
     trackerOpponents: (filter, minHands, limit) => call<OpponentsResponse>("tracker_opponents", { filter, minHands, limit }),
     autonotesRun: () => call<number>("autonotes_run"),
+    hudStatus: () => call<HudStatus>("hud_status"),
+    playModeGet: () => call<boolean>("play_mode_get"),
+    hudSetVisible: (visible) => call("hud_set_visible", { visible }),
+    hudSetEdit: (edit) => call("hud_set_edit", { edit }),
+    hudSimulate: (seats) => call<string>("hud_simulate", { seats }),
+    hudClearSimulated: () => call("hud_clear_simulated"),
+    hudOverlay: (windowId) => call<OverlayData>("hud_overlay", { windowId }),
+    hudSaveSeat: (tableSize, slot, x, y) => call("hud_save_seat", { tableSize, slot, x, y }),
+    onHudEvent(cb) {
+      const offs = [
+        subscribe<boolean>("playmode://changed", (p) => cb("playmode", p)),
+        subscribe<null>("hud://refresh", (p) => cb("hud-refresh", p)),
+        subscribe<boolean>("hud://edit", (p) => cb("hud-edit", p)),
+        subscribe<null>("hud://status", (p) => cb("hud-status", p)),
+      ];
+      return () => offs.forEach((o) => o());
+    },
     markReady() {
       void invoke("frontend_ready").catch(() => undefined);
     },

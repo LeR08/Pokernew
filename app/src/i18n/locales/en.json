@@ -124,7 +124,9 @@
     "go_home": "Go to home",
     "open_settings": "Open settings",
     "toggle_sidebar": "Show/hide sidebar",
-    "next_profile": "Next profile"
+    "next_profile": "Next profile",
+    "toggle_hud": "Show/hide the HUD (global)",
+    "hud_edit": "HUD edit mode (global)"
   },
   "color": {
     "background": "Background",
@@ -178,7 +180,8 @@
       "title": "Profile",
       "name": "Name",
       "description": "Description",
-      "theme": "Forced theme"
+      "theme": "Forced theme",
+      "hud": "HUD layout"
     },
     "room": {
       "title": "Room",
@@ -188,7 +191,13 @@
       "folders_help": "Watched continuously: new hands are imported within a second.",
       "hud_allowed": "HUD allowed on this room",
       "hud_allowed_help": "Set according to the room's terms of use. Hands are imported either way.",
-      "hero_names": "My screen names"
+      "hero_names": "My screen names",
+      "processes": "Client programs",
+      "processes_help": "Optional: executable names that show the tables (see the HUD module's inspector).",
+      "title_pattern": "Table title pattern",
+      "title_pattern_help": "Optional: regular expression a table window title must match.",
+      "rotate": "Hero always at the bottom",
+      "rotate_help": "Tick if the client puts your seat at the bottom of the screen (the HUD layout follows)."
     },
     "stats": {
       "title": "Stats",
@@ -201,6 +210,17 @@
     "notes": {
       "title": "Auto-notes",
       "rule": "Rules"
+    },
+    "hud": {
+      "title": "HUD layout",
+      "name": "Name",
+      "opacity": "Opacity",
+      "font_scale": "Text size",
+      "show_hero": "Show my own panel",
+      "min_hands": "Dim under N hands",
+      "rows": "Rows",
+      "popup": "Popup",
+      "seats": "Positions"
     }
   },
   "enum": {
@@ -640,5 +660,41 @@
     "help": "In brackets: the gap in points to the population when it exceeds 5 points. Click a player to see and add notes. Auto-notes are set in notes/auto.toml.",
     "pick": "Click an opponent to see their notes.",
     "empty": "No opponent with at least {{n}} hands for these filters: lower the minimum or widen the filters."
+  },
+  "hud": {
+    "hands": "hands",
+    "hands_n": "{{n}} hands",
+    "simulation": "SIMULATION",
+    "unsupported": "Table tracking only exists on Windows. Here, use the simulated table to see and set up the HUD.",
+    "not_allowed": "The HUD is off for Winamax (hud_allowed = false). The tracker still imports your hands.",
+    "settings_rooms": "Settings → Rooms",
+    "tables": "Tracked tables",
+    "play_mode": "Mode",
+    "playing": "Playing: study modules locked",
+    "unlock_in": "Unlocks in {{s}} s",
+    "studying": "Study (no table open)",
+    "hide": "Hide the HUD",
+    "show": "Show the HUD",
+    "edit_on": "Edit mode (move panels)",
+    "edit_off": "Leave edit mode",
+    "hotkeys_help": "Global hotkeys, even when Winamax has the focus: Ctrl+Alt+H shows or hides the HUD, Ctrl+Alt+E toggles edit mode. Outside edit mode the HUD lets every click through to the table.",
+    "simulate_title": "Simulated table",
+    "simulate_help": "Opens the HUD over a fake table, with the players of your last table of that size, to set up the layout without playing. Use edit mode to move panels: positions are saved to the profile's layout. A simulated table does not lock study modules.",
+    "simulate_n": "{{n}} players",
+    "clear_simulated": "Close simulated tables",
+    "simulated": "Simulated table: {{name}}",
+    "detected": "Detected tables",
+    "none": "No table open. A table is recognised when its window title contains the name of a table from your hands of the last 15 minutes: at least one hand must have finished there.",
+    "max": "{{n}} seats",
+    "inspector": "Window inspector",
+    "copy_windows": "Copy the list",
+    "inspector_help": "Open windows that match no table (program · class · title). If a Winamax table is not recognised, copy this list and send it to me.",
+    "layout_help": "The layout (stats shown, positions, opacity) is in hud/standard.toml, chosen by the active profile:",
+    "profiles": "Settings → Profiles"
+  },
+  "playmode": {
+    "title": "Locked while playing",
+    "why": "A poker table is open. Study tools (solver, trainer, ICM, preflop ranges, session review) are locked while playing, because real-time assistance is banned by the rooms. They unlock 60 seconds after the last table closes.",
+    "locked": "Locked"
   }
 }

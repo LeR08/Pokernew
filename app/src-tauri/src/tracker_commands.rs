@@ -178,7 +178,17 @@ pub fn tracker_sessions(s: State<'_, AppState>, filter: Filter) -> Res<Vec<Sessi
 
 /// Post-session review: rules of thumb on the finished hands of a session.
 #[tauri::command]
-pub fn session_review(s: State<'_, AppState>, filter: Filter, start: i64, end: i64) -> Res<SessionReview> {
+pub fn session_review(
+    s: State<'_, AppState>,
+    hud: State<'_, std::sync::Arc<crate::hud::HudService>>,
+    filter: Filter,
+    start: i64,
+    end: i64,
+) -> Res<SessionReview> {
+    // Fair-play: no hand analysis while a poker table is open.
+    if hud.play_mode.load(std::sync::atomic::Ordering::SeqCst) {
+        return Err(CommandError::from("play_mode".to_string()));
+    }
     svc(&s)?.with_reader(|c| lps_stats_engine::review::review_session(c, &filter, start, end)).map_err(err)
 }
 

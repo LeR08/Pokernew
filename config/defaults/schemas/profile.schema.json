@@ -4,10 +4,30 @@
   "title": "schema.profile.title",
   "type": "object",
   "additionalProperties": false,
-  "required": ["name"],
+  "required": [
+    "name"
+  ],
   "properties": {
-    "name": { "title": "schema.profile.name", "type": "string", "minLength": 1 },
-    "description": { "title": "schema.profile.description", "type": "string" },
-    "theme": { "title": "schema.profile.theme", "type": "string", "minLength": 1, "x-ref-family": "themes" }
+    "name": {
+      "title": "schema.profile.name",
+      "type": "string",
+      "minLength": 1
+    },
+    "description": {
+      "title": "schema.profile.description",
+      "type": "string"
+    },
+    "theme": {
+      "title": "schema.profile.theme",
+      "type": "string",
+      "minLength": 1,
+      "x-ref-family": "themes"
+    },
+    "hud": {
+      "title": "schema.profile.hud",
+      "type": "string",
+      "minLength": 1,
+      "x-ref-family": "hud"
+    }
   }
 }

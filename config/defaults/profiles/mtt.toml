@@ -5,6 +5,9 @@
 name = "MTT"
 description = "Tournois multi-tables / multi-table tournaments"
 
+# Disposition du HUD (fichier de hud/) / HUD layout (file in hud/)
+hud = "standard"
+
 # Décommenter pour imposer un thème avec ce profil.
 # Uncomment to force a theme with this profile.
 # theme = "dark"

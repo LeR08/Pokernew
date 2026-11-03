@@ -4,12 +4,65 @@
   "title": "schema.room.title",
   "type": "object",
   "additionalProperties": false,
-  "required": ["name", "enabled", "folders", "hero_names", "hud_allowed"],
+  "required": [
+    "name",
+    "enabled",
+    "folders",
+    "hero_names",
+    "hud_allowed"
+  ],
   "properties": {
-    "name": { "title": "schema.room.name", "type": "string", "minLength": 1 },
-    "enabled": { "title": "schema.room.enabled", "type": "boolean" },
-    "folders": { "title": "schema.room.folders", "description": "schema.room.folders_help", "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true, "x-widget": "folder-list" },
-    "hero_names": { "title": "schema.room.hero_names", "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
-    "hud_allowed": { "title": "schema.room.hud_allowed", "description": "schema.room.hud_allowed_help", "type": "boolean" }
+    "name": {
+      "title": "schema.room.name",
+      "type": "string",
+      "minLength": 1
+    },
+    "enabled": {
+      "title": "schema.room.enabled",
+      "type": "boolean"
+    },
+    "folders": {
+      "title": "schema.room.folders",
+      "description": "schema.room.folders_help",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true,
+      "x-widget": "folder-list"
+    },
+    "hero_names": {
+      "title": "schema.room.hero_names",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "hud_allowed": {
+      "title": "schema.room.hud_allowed",
+      "description": "schema.room.hud_allowed_help",
+      "type": "boolean"
+    },
+    "processes": {
+      "title": "schema.room.processes",
+      "description": "schema.room.processes_help",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "title_pattern": {
+      "title": "schema.room.title_pattern",
+      "description": "schema.room.title_pattern_help",
+      "type": "string"
+    },
+    "rotate_hero_to_bottom": {
+      "title": "schema.room.rotate",
+      "description": "schema.room.rotate_help",
+      "type": "boolean"
+    }
   }
 }

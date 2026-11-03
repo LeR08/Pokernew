@@ -57,7 +57,21 @@ export function mockTracker(statsMeta: () => StatMeta[]): Pick<
   | "exportCsv"
   | "trackerOpponents"
   | "autonotesRun"
+  | "hudStatus"
+  | "playModeGet"
+  | "hudSetVisible"
+  | "hudSetEdit"
+  | "hudSimulate"
+  | "hudClearSimulated"
+  | "hudOverlay"
+  | "hudSaveSeat"
+  | "onHudEvent"
 > {
+  let hudVisible = true;
+  let hudEdit = false;
+  let simulated = 0;
+  const hudListeners = new Set<(k: "playmode" | "hud-refresh" | "hud-edit" | "hud-status", p: unknown) => void>();
+  const savedSeats: Record<string, [number, number][]> = {};
   const notes = new Map<string, Note[]>();
   const colours = new Map<string, string | null>();
   const txs: Tx[] = [];
@@ -231,6 +245,81 @@ export function mockTracker(statsMeta: () => StatMeta[]): Pick<
       const k = "winamax/Player10";
       notes.set(k, [{ id: nextId++, text: "Joue beaucoup de mains en suivant (VPIP 42 %, PFR 12 %)", auto: true, createdAt: Math.floor(Date.now() / 1000) }, ...(notes.get(k) ?? []).filter((n) => !n.auto)]);
       return 1;
+    },
+    async hudStatus() {
+      const h = HANDS[0];
+      const tables = Array.from({ length: simulated }, (_, i) => ({
+        window: { id: 1000000 + i, title: `[simulation] ${h.table_name}`, class: "simulation", process: "local-poker-suite", client: { x: 80, y: 80, w: 800, h: 560 }, scale: 1, minimized: false, visible: true, simulated: true },
+        table: { room: "winamax", tableName: h.table_name, tournamentId: "1195602081", tableNumber: 53, maxSeats: h.max_seats, lastHandAt: h.played_at },
+        matchedBy: h.table_name,
+      }));
+      return { supported: false, visible: hudVisible, edit: hudEdit, playMode: false, unlockIn: 0, tables, windows: [] };
+    },
+    async playModeGet() {
+      return false;
+    },
+    async hudSetVisible(v) {
+      hudVisible = v;
+      hudListeners.forEach((l) => l("hud-status", null));
+    },
+    async hudSetEdit(e) {
+      hudEdit = e;
+      hudListeners.forEach((l) => l("hud-edit", e));
+    },
+    async hudSimulate() {
+      simulated += 1;
+      hudListeners.forEach((l) => l("hud-status", null));
+      return HANDS[0].table_name;
+    },
+    async hudClearSimulated() {
+      simulated = 0;
+    },
+    async hudOverlay() {
+      const h = HANDS[0];
+      const stats = statsMeta();
+      const layout = {
+        name: "Standard",
+        opacity: 0.85,
+        min_hands: 20,
+        show_hero: false,
+        rows: [["vpip", "pfr", "three_bet", "hands"], ["af", "cbet_flop", "fold_to_cbet_flop", "wtsd"]],
+        popup: ["vpip", "pfr", "three_bet", "fold_to_3bet", "steal", "wtsd", "af"],
+        seats: { "3": savedSeats["3"] ?? [[0.42, 0.74], [0.04, 0.3], [0.78, 0.3]] },
+      };
+      const heroSeat = h.players.find((p) => p.is_hero)!.seat;
+      return {
+        layout,
+        layoutId: "standard",
+        edit: hudEdit,
+        simulated: true,
+        stats: stats.filter((m) => layout.rows.flat().includes(m.id) || layout.popup.includes(m.id)),
+        table: {
+          room: "winamax",
+          tableName: h.table_name,
+          maxSeats: h.max_seats,
+          lastHandAt: h.played_at,
+          seats: h.players.map((p, i) => ({
+            seat: p.seat,
+            slot: (((p.seat - heroSeat) % 3) + 3) % 3,
+            name: p.name,
+            isHero: p.is_hero,
+            position: p.position,
+            hands: [24, 288, 24][i] ?? 10,
+            stats: stats.map((m) => ({ id: m.id, value: m.id in VALUES ? VALUES[m.id] * (0.8 + 0.15 * i) : 0.3, sample: 20 })),
+            colour: i === 0 ? "red" : null,
+            notes: i === 0 ? ["Relance large en SB", "Joue beaucoup de mains en suivant (VPIP 42 %, PFR 12 %)"] : [],
+          })),
+        },
+      };
+    },
+    async hudSaveSeat(size, slot, x, y) {
+      const s = savedSeats[String(size)] ?? [[0.42, 0.74], [0.04, 0.3], [0.78, 0.3]];
+      s[slot] = [x, y];
+      savedSeats[String(size)] = s;
+    },
+    onHudEvent(cb) {
+      hudListeners.add(cb);
+      return () => hudListeners.delete(cb);
     },
     async exportCsv(name) {
       return `(browser mock)/exports/${name}.csv`;

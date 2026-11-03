@@ -2,7 +2,19 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/). Versions follow the roadmap phases.
 
-## [Unreleased] — Phase 2 : Tracker
+## [Unreleased] — Phase 3 : HUD
+
+### Ajouté / Added
+- Suivi des fenêtres de table sous Windows (EnumWindows + SetWinEventHook) et rapprochement avec les tables des mains récentes, sans deviner le format des titres.
+- Une fenêtre HUD transparente, toujours au-dessus et transparente aux clics par table ; stats historiques par siège, rafraîchies à chaque import ; popup détaillé avec les notes.
+- Dispositions `hud/*.toml` (stats, positions par taille de table, opacité…), mode édition par glisser-déposer, raccourcis globaux (Ctrl+Alt+H, Ctrl+Alt+E).
+- Mode jeu (fair-play) : modules d'étude verrouillés quand une table est ouverte, déverrouillés 60 s après la dernière.
+- Module HUD : table simulée, tables détectées, inspecteur de fenêtres.
+
+### Corrigé / Fixed
+- Onglet Adversaires vide quand un compte héros était sélectionné.
+
+## Phase 2 : Tracker
 
 ### Ajouté / Added
 - `stats-engine` : langage de formules (`+ - * /`, comparaisons, `and/or/not`, `if()`) compilé en SQL avec paramètres liés ; stats en TOML (`stats/*.toml`, rechargées à chaud).

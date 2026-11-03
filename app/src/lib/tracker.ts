@@ -338,3 +338,64 @@ export function parseClasses(text: string): string[] {
     .map((x) => (x.length === 3 ? x.slice(0, 2).toUpperCase() + x[2].toLowerCase() : x.toUpperCase()))
     .filter((x) => set.has(x));
 }
+
+// ---- Phase 3: HUD ----
+export interface WindowInfo {
+  id: number;
+  title: string;
+  class: string;
+  process: string;
+  client: { x: number; y: number; w: number; h: number };
+  scale: number;
+  minimized: boolean;
+  visible: boolean;
+  simulated: boolean;
+}
+
+export interface TableWindow {
+  window: WindowInfo;
+  table: { room: string; tableName: string; tournamentId: string | null; tableNumber: number | null; maxSeats: number; lastHandAt: number };
+  matchedBy: string;
+}
+
+export interface HudStatus {
+  supported: boolean;
+  visible: boolean;
+  edit: boolean;
+  playMode: boolean;
+  unlockIn: number;
+  tables: TableWindow[];
+  windows: WindowInfo[];
+}
+
+export interface HudSeat {
+  seat: number;
+  slot: number;
+  name: string;
+  isHero: boolean;
+  position: string | null;
+  hands: number;
+  stats: StatValue[];
+  colour: string | null;
+  notes: string[];
+}
+
+export interface HudLayout {
+  name: string;
+  opacity?: number;
+  font_scale?: number;
+  show_hero?: boolean;
+  min_hands?: number;
+  rows: string[][];
+  popup?: string[];
+  seats: Record<string, [number, number][]>;
+}
+
+export interface OverlayData {
+  table: { room: string; tableName: string; maxSeats: number; lastHandAt: number; seats: HudSeat[] } | null;
+  layout: HudLayout;
+  layoutId: string;
+  edit: boolean;
+  simulated: boolean;
+  stats: StatMeta[];
+}

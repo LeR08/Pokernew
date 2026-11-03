@@ -1,15 +1,40 @@
-//! Poker table window tracking (Win32) for the HUD overlay.
+//! Finds poker table windows and follows them, for the HUD overlay.
 //!
-//! Placeholder created in phase 0 to fix the workspace layout.
-//! Implementation lands in phase 3 (see `docs/phase-3.md`).
+//! * [`WindowInfo`]: a top-level window as the OS reports it (title, class,
+//!   program, client rectangle in physical pixels, DPI scale);
+//! * [`source`]: where windows come from — Win32 on Windows (EnumWindows +
+//!   SetWinEventHook), nothing elsewhere, plus simulated tables;
+//! * [`matching`]: which window is which table, from the tables of the
+//!   recently imported hands (pure logic, tested).
 
-/// Phase in which this crate gets its implementation.
-pub const IMPLEMENTED_IN_PHASE: u8 = 3;
+pub mod matching;
+pub mod source;
 
-#[cfg(test)]
-mod tests {
-    #[test]
-    fn placeholder_phase_is_set() {
-        assert_eq!(super::IMPLEMENTED_IN_PHASE, 3);
-    }
+use serde::Serialize;
+
+/// Rectangle in physical screen pixels.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Default, Serialize)]
+pub struct Rect {
+    pub x: i32,
+    pub y: i32,
+    pub w: i32,
+    pub h: i32,
+}
+
+#[derive(Debug, Clone, PartialEq, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct WindowInfo {
+    /// Native handle (HWND) or a simulated id.
+    pub id: u64,
+    pub title: String,
+    pub class: String,
+    /// Executable file name, e.g. "Winamax Poker.exe" (lowercase comparison).
+    pub process: String,
+    /// Client area (without the title bar and borders).
+    pub client: Rect,
+    /// DPI / 96.
+    pub scale: f64,
+    pub minimized: bool,
+    pub visible: bool,
+    pub simulated: bool,
 }

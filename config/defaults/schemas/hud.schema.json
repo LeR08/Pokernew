@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lps://schemas/hud",
+  "title": "schema.hud.title",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "name",
+    "rows",
+    "seats"
+  ],
+  "properties": {
+    "name": {
+      "title": "schema.hud.name",
+      "type": "string",
+      "minLength": 1
+    },
+    "opacity": {
+      "title": "schema.hud.opacity",
+      "type": "number",
+      "minimum": 0.2,
+      "maximum": 1
+    },
+    "font_scale": {
+      "title": "schema.hud.font_scale",
+      "type": "number",
+      "minimum": 0.6,
+      "maximum": 2
+    },
+    "show_hero": {
+      "title": "schema.hud.show_hero",
+      "type": "boolean"
+    },
+    "min_hands": {
+      "title": "schema.hud.min_hands",
+      "type": "integer",
+      "minimum": 0
+    },
+    "rows": {
+      "title": "schema.hud.rows",
+      "type": "array",
+      "x-widget": "hidden",
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "popup": {
+      "title": "schema.hud.popup",
+      "type": "array",
+      "x-widget": "hidden",
+      "items": {
+        "type": "string"
+      }
+    },
+    "seats": {
+      "title": "schema.hud.seats",
+      "type": "object",
+      "x-widget": "hidden",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "minItems": 2,
+          "maxItems": 2
+        }
+      }
+    }
+  }
+}
