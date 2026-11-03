@@ -14,6 +14,7 @@ import type {
 } from "./backend";
 import { BackendError } from "./backend";
 import type { JSONSchema } from "./schema";
+import type { Breakdown, EquityResult, TextureReport } from "./equity";
 import type {
   HudStatus,
   OverlayData,
@@ -137,6 +138,15 @@ export function createTauriBackend(): Backend {
       ];
       return () => offs.forEach((o) => o());
     },
+    equityCalc: (req) => call<EquityResult>("equity_calc", { req }),
+    equityCancel: () => call("equity_cancel"),
+    rangeBreakdown: (rangeText, board, dead) => call<Breakdown>("range_breakdown", { rangeText, board, dead }),
+    rangeFilter: (rangeText, board, dead, made, draws) => call<number[]>("range_filter", { rangeText, board, dead, made, draws }),
+    flopTexture: (rangeText, filter) => call<TextureReport>("flop_texture", { rangeText, filter }),
+    rangesList: () => call<string[]>("ranges_list"),
+    rangeLoad: (name) => call<string>("range_load", { name }),
+    rangeSave: (name, text) => call("range_save", { name, text }),
+    rangeDelete: (name) => call("range_delete", { name }),
     markReady() {
       void invoke("frontend_ready").catch(() => undefined);
     },

@@ -1,0 +1,337 @@
+[
+  {
+    "name": "AA vs KK",
+    "players": [
+      "AsAh",
+      "KsKh"
+    ],
+    "eval7": [
+      "AsAh",
+      "KsKh"
+    ],
+    "board": "",
+    "equity": [
+      0.826366,
+      0.173634
+    ]
+  },
+  {
+    "name": "AKs vs 22",
+    "players": [
+      "AcKc",
+      "2d2h"
+    ],
+    "eval7": [
+      "AcKc",
+      "2d2h"
+    ],
+    "board": "",
+    "equity": [
+      0.500842,
+      0.499158
+    ]
+  },
+  {
+    "name": "AKo vs QQ",
+    "players": [
+      "AhKd",
+      "QsQc"
+    ],
+    "eval7": [
+      "AhKd",
+      "QsQc"
+    ],
+    "board": "",
+    "equity": [
+      0.428352,
+      0.571648
+    ]
+  },
+  {
+    "name": "72o vs AA",
+    "players": [
+      "7c2d",
+      "AsAd"
+    ],
+    "eval7": [
+      "7c2d",
+      "AsAd"
+    ],
+    "board": "",
+    "equity": [
+      0.118063,
+      0.881937
+    ]
+  },
+  {
+    "name": "JTs vs AKo",
+    "players": [
+      "JhTh",
+      "AsKd"
+    ],
+    "eval7": [
+      "JhTh",
+      "AsKd"
+    ],
+    "board": "",
+    "equity": [
+      0.411799,
+      0.588201
+    ]
+  },
+  {
+    "name": "AKs vs AQs same suit",
+    "players": [
+      "AsKs",
+      "AcQc"
+    ],
+    "eval7": [
+      "AsKs",
+      "AcQc"
+    ],
+    "board": "",
+    "equity": [
+      0.712772,
+      0.287228
+    ]
+  },
+  {
+    "name": "54s vs AA",
+    "players": [
+      "5s4s",
+      "AhAd"
+    ],
+    "eval7": [
+      "5s4s",
+      "AhAd"
+    ],
+    "board": "",
+    "equity": [
+      0.216488,
+      0.783512
+    ]
+  },
+  {
+    "name": "KQs vs ATo",
+    "players": [
+      "KhQh",
+      "AcTd"
+    ],
+    "eval7": [
+      "KhQh",
+      "AcTd"
+    ],
+    "board": "",
+    "equity": [
+      0.440737,
+      0.559263
+    ]
+  },
+  {
+    "name": "AA vs KK vs QQ",
+    "players": [
+      "AsAh",
+      "KsKh",
+      "QsQh"
+    ],
+    "eval7": [
+      "AsAh",
+      "KsKh",
+      "QsQh"
+    ],
+    "board": "",
+    "equity": [
+      0.676703,
+      0.172317,
+      0.15098
+    ]
+  },
+  {
+    "name": "AKo vs JTs vs 88",
+    "players": [
+      "AcKd",
+      "JhTh",
+      "8s8d"
+    ],
+    "eval7": [
+      "AcKd",
+      "JhTh",
+      "8s8d"
+    ],
+    "board": "",
+    "equity": [
+      0.35521,
+      0.335498,
+      0.309292
+    ]
+  },
+  {
+    "name": "4-way",
+    "players": [
+      "AhAd",
+      "KcKs",
+      "9h8h",
+      "6c6d"
+    ],
+    "eval7": [
+      "AhAd",
+      "KcKs",
+      "9h8h",
+      "6c6d"
+    ],
+    "board": "",
+    "equity": [
+      0.512548,
+      0.18153,
+      0.170549,
+      0.135373
+    ]
+  },
+  {
+    "name": "flush draw vs set",
+    "players": [
+      "AhKh",
+      "QsQd"
+    ],
+    "eval7": [
+      "AhKh",
+      "QsQd"
+    ],
+    "board": "Qh7h2c",
+    "equity": [
+      0.255556,
+      0.744444
+    ]
+  },
+  {
+    "name": "OESD vs top pair",
+    "players": [
+      "JcTc",
+      "Ad9d"
+    ],
+    "eval7": [
+      "JcTc",
+      "Ad9d"
+    ],
+    "board": "9c8d2h",
+    "equity": [
+      0.49798,
+      0.50202
+    ]
+  },
+  {
+    "name": "turn: draw vs overpair",
+    "players": [
+      "6s5s",
+      "8c8d"
+    ],
+    "eval7": [
+      "6s5s",
+      "8c8d"
+    ],
+    "board": "7d4c2hKh",
+    "equity": [
+      0.136364,
+      0.863636
+    ]
+  },
+  {
+    "name": "hand vs range preflop",
+    "players": [
+      "AhAd",
+      "QQ+,AKs"
+    ],
+    "eval7": [
+      "AhAd",
+      "QQ+, AKs"
+    ],
+    "board": "",
+    "equity": [
+      0.804452,
+      0.195548
+    ]
+  },
+  {
+    "name": "range vs range preflop",
+    "players": [
+      "AKs",
+      "TT,JJ"
+    ],
+    "eval7": [
+      "AKs",
+      "TT, JJ"
+    ],
+    "board": "",
+    "equity": [
+      0.459491,
+      0.540509
+    ]
+  },
+  {
+    "name": "weighted range preflop",
+    "players": [
+      "KQo:40%,AJs",
+      "88-66"
+    ],
+    "eval7": [
+      "40%(KQo), AJs",
+      "88-66"
+    ],
+    "board": "",
+    "equity": [
+      0.470433,
+      0.529567
+    ]
+  },
+  {
+    "name": "range vs random, flop",
+    "players": [
+      "AA,KK,AK",
+      "random"
+    ],
+    "eval7": [
+      "AA, KK, AK",
+      "22+, A2+, K2+, Q2+, J2+, T2+, 92+, 82+, 72+, 62+, 52+, 42+, 32"
+    ],
+    "board": "Ah7c2d",
+    "equity": [
+      0.875845,
+      0.124155
+    ]
+  },
+  {
+    "name": "3 ranges, turn",
+    "players": [
+      "AA,KK",
+      "QQ,JJ",
+      "AK"
+    ],
+    "eval7": [
+      "AA, KK",
+      "QQ, JJ",
+      "AK"
+    ],
+    "board": "Ks9h4d2c",
+    "equity": [
+      0.928571,
+      0.035714,
+      0.035714
+    ]
+  },
+  {
+    "name": "weighted ranges, river",
+    "players": [
+      "TT+,AQ:50%",
+      "JJ,99,KQs"
+    ],
+    "eval7": [
+      "TT+, 50%(AQ)",
+      "JJ, 99, KQs"
+    ],
+    "board": "Qs9d4c2h7s",
+    "equity": [
+      0.521739,
+      0.478261
+    ]
+  }
+]

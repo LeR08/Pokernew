@@ -2,7 +2,20 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/). Versions follow the roadmap phases.
 
-## [Unreleased] — Phase 3 : HUD
+## [Unreleased] — Phase 4 : Equity Lab
+
+### Ajouté / Added
+- `evaluator` : notre évaluateur de mains de 5 à 7 cartes (masques de bits et table de quintes). Il compte juste toutes les mains de 5 et de 7 cartes et donne le même gagnant qu'eval7 sur 20 000 paires.
+- `equity` : ranges pondérées et notation standard (`TT+`, `A5s-A2s`, `KQo:50%`, `AhKh`, `random`, `15%`) ; équité de 2 à 10 joueurs, exhaustive ou Monte-Carlo multi-cœur avec arrêt à la précision demandée ; décomposition d'une range sur un board (mains faites et tirages, combos exacts) ; filtre pour la street suivante ; textures sur les 1 755 flops ; classement préflop pour « top X % ».
+- 20 cas de référence calculés avec eval7 : écart maximal de 0,033 % (critère : ±0,1 %).
+- Module Equity Lab : calculateur (résultats, courbe de distribution), analyse de range (tableau, sélection → street suivante, histogramme d'équité contre une range adverse), textures de flop.
+- Éditeur de range partagé : grille 13×13 (clic, glisser, souris ou tactile), poids, couleurs par case, texte, top X %, compteur de combos qui tient compte du board et des cartes mortes, bibliothèque `ranges/**.txt`.
+- Replayer : lien « Ouvrir dans Equity Lab », qui pré-remplit ta main, les mains montrées et le board.
+
+### Fair-play
+- Equity Lab est verrouillé en mode jeu (tuile et commandes).
+
+## Phase 3 : HUD
 
 ### Ajouté / Added
 - Suivi des fenêtres de table sous Windows (EnumWindows + SetWinEventHook) et rapprochement avec les tables des mains récentes, sans deviner le format des titres.

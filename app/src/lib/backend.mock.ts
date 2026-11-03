@@ -20,6 +20,7 @@ import type {
 import { BackendError } from "./backend";
 import type { JSONSchema } from "./schema";
 import { mockTracker } from "./backend.mock.tracker";
+import { mockEquity } from "./backend.mock.equity";
 import type { StatMeta } from "./tracker";
 
 const rawDefaults = import.meta.glob("../../../config/defaults/**/*.toml", {
@@ -165,6 +166,7 @@ export function createMockBackend(opts: MockOptions = defaultOptions()): Backend
 
   const backend: Backend = {
     ...mockTracker(statsMeta),
+    ...mockEquity(),
     async appInfo() {
       return {
         version: "0.1.0-dev",

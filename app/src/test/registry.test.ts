@@ -30,6 +30,6 @@ describe("module registry", () => {
 
   it("marks study modules (fair-play lock from phase 3)", () => {
     const study = allModules.filter((m) => m.studyOnly).map((m) => m.id).sort();
-    expect(study).toEqual(["icm", "preflop", "solver", "trainer"]);
+    expect(study).toEqual(["equity", "icm", "preflop", "solver", "trainer"]);
   });
 });

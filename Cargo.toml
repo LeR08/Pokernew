@@ -28,3 +28,10 @@ strip = true
 
 [profile.dev.package."*"]
 opt-level = 2
+
+# The maths crates are slow without optimisations, even in tests.
+[profile.dev.package.lps-evaluator]
+opt-level = 3
+
+[profile.dev.package.lps-equity]
+opt-level = 3

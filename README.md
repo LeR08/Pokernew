@@ -5,7 +5,7 @@
 Suite poker 100 % locale (tracker + HUD, solveur, équité, ICM) pour un seul joueur sur un seul PC.
 Aucun compte, aucune télémétrie, aucun appel réseau.
 
-> État : **phase 1 (import Winamax + base de données)**, voir [`docs/phase-0.md`](docs/phase-0.md) et [`CHANGELOG.md`](CHANGELOG.md).
+> État : **phase 4 (Equity Lab)** : import Winamax, tracker, replayer, HUD, équité et analyse de ranges. Voir `docs/phase-*.md` et [`CHANGELOG.md`](CHANGELOG.md).
 
 ## Installer sans compiler
 
@@ -109,10 +109,21 @@ Structure : `crates/` (cœur Rust, sans Tauri), `app/src-tauri/` (seul code qui 
 Ajouter un module : créer `app/src/modules/<id>/manifest.ts`, puis ajouter les clés i18n `modules.<id>.*`.
 Le launcher, la barre latérale et les routes le prennent en compte automatiquement.
 
+## Equity Lab
+
+Calculateur d'équité (2 à 10 joueurs, mains ou ranges, exhaustif ou Monte-Carlo), éditeur de range partagé
+(grille, poids, couleurs, texte, top X %), analyse d'une range sur un board, textures de flop et
+bibliothèque de ranges dans `<données>/ranges/**.txt`. Maths et définitions : [`docs/equity.md`](docs/equity.md),
+[`docs/evaluator.md`](docs/evaluator.md).
+
+```bash
+cargo run --release -p lps-equity --example bench
+```
+
 ## Fair-play
 
 C'est un outil d'**étude et de revue**. Aucun module ne donne de conseil en temps réel pendant le jeu.
-Les modules d'étude seront verrouillés tant qu'une table est ouverte (à partir de la phase 3).
+Les modules d'étude (Equity Lab, ICM, solveur, préflop, entraîneur) sont verrouillés tant qu'une table est ouverte, et 60 s après.
 Le HUD n'affiche que des statistiques historiques. Pas d'OCR, pas d'automatisation.
 
 ## Licence
@@ -126,7 +137,7 @@ AGPL-3.0-or-later. Le solveur s'appuiera sur `postflop-solver`, qui est sous AGP
 100 % local poker suite (tracker + HUD, solver, equity, ICM) for one player on one PC.
 No account, no telemetry, no network calls.
 
-> Status: **phase 1 (Winamax import + database)**, see [`docs/phase-0.md`](docs/phase-0.md) and [`CHANGELOG.md`](CHANGELOG.md).
+> Status: **phase 4 (Equity Lab)**: Winamax import, tracker, replayer, HUD, equity and range analysis. See `docs/phase-*.md` and [`CHANGELOG.md`](CHANGELOG.md).
 
 ### Build and run on Windows 10/11
 
@@ -196,7 +207,7 @@ To add a module, create `app/src/modules/<id>/manifest.ts` and the `modules.<id>
 ### Fair play
 
 This is a **study and review** tool. No module gives live advice during play.
-Study modules will be locked while a table is open (from phase 3). The HUD only shows historical stats.
+Study modules (Equity Lab, ICM, solver, preflop, trainer) are locked while a table is open, and for 60 s after. The HUD only shows historical stats.
 
 ### License
 

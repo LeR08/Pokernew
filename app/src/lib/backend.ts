@@ -5,6 +5,7 @@
  * config/defaults, so the UI can be developed and tested without Tauri.
  */
 import type { JSONSchema } from "./schema";
+import type { Breakdown, CalcRequest, EquityResult, FlopFilter, TextureReport } from "./equity";
 import type {
   HudStatus,
   OverlayData,
@@ -193,6 +194,19 @@ export interface Backend {
   onHudEvent(cb: (kind: "playmode" | "hud-refresh" | "hud-edit" | "hud-status", payload: unknown) => void): () => void;
   /** Writes a CSV file in <data>/exports; returns its path. */
   exportCsv(name: string, rows: string[][]): Promise<string>;
+
+  // ---- Equity Lab (phase 4; refused in play mode) ----
+  equityCalc(req: CalcRequest): Promise<EquityResult>;
+  equityCancel(): Promise<void>;
+  rangeBreakdown(range: string, board: string, dead: string): Promise<Breakdown>;
+  /** The combos having one of the classes/draws, as 1 326 weights. */
+  rangeFilter(range: string, board: string, dead: string, made: string[], draws: string[]): Promise<number[]>;
+  flopTexture(range: string, filter: FlopFilter): Promise<TextureReport>;
+  /** Saved ranges, as "folder/sub/name". */
+  rangesList(): Promise<string[]>;
+  rangeLoad(name: string): Promise<string>;
+  rangeSave(name: string, text: string): Promise<void>;
+  rangeDelete(name: string): Promise<void>;
 }
 
 export const isTauri = (): boolean =>

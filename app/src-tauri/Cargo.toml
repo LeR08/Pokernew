@@ -36,6 +36,8 @@ tauri-plugin-dialog = "2"
 tauri-plugin-opener = "2"
 tauri-plugin-global-shortcut = "2"
 lps-hud-overlay = { path = "../../crates/hud-overlay" }
+lps-equity = { path = "../../crates/equity" }
+lps-evaluator = { path = "../../crates/evaluator" }
 regex = "1"
 
 [dev-dependencies]

@@ -9,3 +9,8 @@ publish = false
 name = "lps_equity"
 
 [dependencies]
+lps-evaluator = { path = "../evaluator" }
+rayon = "1"
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }

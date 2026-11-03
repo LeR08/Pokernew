@@ -15,6 +15,18 @@ import { FilterBar } from "../tracker/FilterBar";
 import type { ModuleManifest } from "../types";
 import { stateAt, totalSteps } from "./replay";
 import { NotesPanel } from "./NotesPanel";
+import { usePlayMode } from "@/stores/playMode";
+
+/** Equity Lab pre-filled with this spot: hero's cards, shown cards of the players still in, board. */
+function equityLink(hand: Hand, heroIdx: number, board: (string | undefined)[], seats: { folded?: boolean }[]): string {
+  const players = [hand.players[heroIdx].hole_cards.join("")];
+  hand.players.forEach((p, i) => {
+    if (i !== heroIdx && !seats[i]?.folded) players.push(p.hole_cards.length === 2 ? p.hole_cards.join("") : "random");
+  });
+  if (players.length < 2) players.push("random");
+  const q = new URLSearchParams({ players: players.slice(0, 10).join("|"), board: board.filter(Boolean).join("") });
+  return `/m/equity/calc?${q.toString()}`;
+}
 
 function useAmount(h: Hand | undefined, inBb: boolean, lang: string) {
   return useMemo(() => {
@@ -43,6 +55,8 @@ function Replayer({ hand }: { hand: Hand }) {
   const fmt = useAmount(hand, inBb, i18n.language);
   const last = totalSteps(hand);
   const st = stateAt(hand, step);
+  // Fair play: no equity link while a table is open.
+  const playMode = usePlayMode((x) => x.on);
 
   useEffect(() => {
     setStep(0);
@@ -169,6 +183,11 @@ function Replayer({ hand }: { hand: Hand }) {
           <span className="ml-d2 text-sm tabular-nums text-muted" data-testid="step">
             {step} / {last}
           </span>
+          {!playMode && hand.players[heroIdx]?.hole_cards.length === 2 && (
+            <Link className="ml-d3 text-sm text-primary underline" to={equityLink(hand, heroIdx, st.board, st.seats)} data-testid="to-equity">
+              {t("replayer.to_equity")}
+            </Link>
+          )}
         </div>
       </div>
       <div className="flex flex-col gap-d3">

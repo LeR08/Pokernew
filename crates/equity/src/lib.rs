@@ -1,15 +1,14 @@
-//! Range vs range equity: exhaustive enumeration and Monte Carlo.
+//! Equity Lab maths: ranges, equity (exhaustive and Monte Carlo), range
+//! breakdown on a board, flop textures and the preflop ranking.
 //!
-//! Placeholder created in phase 0 to fix the workspace layout.
-//! Implementation lands in phase 4 (see `docs/phase-4.md`).
+//! See `docs/equity.md` for the definitions and the maths.
 
-/// Phase in which this crate gets its implementation.
-pub const IMPLEMENTED_IN_PHASE: u8 = 4;
+pub mod breakdown;
+pub mod calc;
+pub mod combo;
+pub mod range;
+pub mod ranking;
+pub mod texture;
 
-#[cfg(test)]
-mod tests {
-    #[test]
-    fn placeholder_phase_is_set() {
-        assert_eq!(super::IMPLEMENTED_IN_PHASE, 4);
-    }
-}
+pub use calc::{equity, CalcError, EquityResult, Mode, Options};
+pub use range::{Range, RangeError};

@@ -2421,6 +2421,8 @@ dependencies = [
  "lps-config",
  "lps-core-model",
  "lps-db",
+ "lps-equity",
+ "lps-evaluator",
  "lps-hh-parsers",
  "lps-hud-overlay",
  "lps-stats-engine",
@@ -2498,6 +2500,13 @@ dependencies = [
 [[package]]
 name = "lps-equity"
 version = "0.1.0"
+dependencies = [
+ "lps-evaluator",
+ "rayon",
+ "serde",
+ "serde_json",
+ "thiserror 2.0.21",
+]
 
 [[package]]
 name = "lps-evaluator"

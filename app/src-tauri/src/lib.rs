@@ -3,6 +3,7 @@
 
 pub mod bus;
 pub mod commands;
+pub mod equity_commands;
 pub mod hud;
 pub mod hud_commands;
 pub mod import_commands;
@@ -37,6 +38,7 @@ pub fn run(started: Instant) {
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_opener::init())
         .manage(state)
+        .manage(equity_commands::EquityJobs::default())
         .setup(|app| {
             // HUD: window tracking, overlays, play mode, global hotkeys.
             let hud = hud::HudService::start(app.handle().clone());
@@ -209,6 +211,15 @@ pub fn run(started: Instant) {
             hud_commands::hud_set_table_hidden,
             hud_commands::hud_overlay,
             hud_commands::hud_save_seat,
+            equity_commands::equity_calc,
+            equity_commands::equity_cancel,
+            equity_commands::range_breakdown,
+            equity_commands::range_filter,
+            equity_commands::flop_texture,
+            equity_commands::ranges_list,
+            equity_commands::range_load,
+            equity_commands::range_save,
+            equity_commands::range_delete,
         ])
         .run(tauri::generate_context!())
         .expect("error while running Local Poker Suite");

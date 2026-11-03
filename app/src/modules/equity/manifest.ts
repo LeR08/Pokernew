@@ -1,6 +1,6 @@
 import { Percent } from "lucide-react";
-import { ComingSoon } from "../ComingSoon";
 import type { ModuleManifest } from "../types";
+import { EquityPage } from "./EquityPage";
 
 export const manifest: ModuleManifest = {
   id: "equity",
@@ -9,5 +9,10 @@ export const manifest: ModuleManifest = {
   icon: Percent,
   phase: 4,
   replaces: ["Equilab", "PokerStove", "Flopzilla"],
-  routes: [{ path: "", component: ComingSoon }],
+  routes: [
+    { path: "", component: EquityPage },
+    { path: ":tab", component: EquityPage },
+  ],
+  // Fair play: equity during a hand is live assistance — locked while a table is open.
+  studyOnly: true,
 };
