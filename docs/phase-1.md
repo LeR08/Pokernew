@@ -92,7 +92,7 @@ Les 40 adversaires sont anonymisés (`Player01…`), ton pseudo est conservé.
 |---|---|
 | Fixtures Winamax MTT, 0 erreur | ✅ 288/288 mains, plus les 2 résumés. Chaque main passe les contrôles de cohérence : argent conservé, pot total = somme des mises, aucune carte en double, positions attribuées |
 | Fixtures Winamax cash / Expresso | ⏳ aucun fichier reçu ; ces en-têtes sont refusés avec un message clair, jamais devinés |
-| PokerStars | ⏳ pas de réponse sur PokerStars : reporté à la phase 9 tant qu'il n'y a pas de fichiers |
+| PokerStars | ➖ hors périmètre : l'utilisateur ne joue pas sur PokerStars (décision du 3 nov. 2026). Le critère de la phase 1 porte sur Winamax seul |
 | 100 000 mains à ≥ 3 000 mains/s | ✅ **≈ 4 000 mains/s** (100 224 mains en 24,8 s, conteneur à 4 vCPU, build release). Commande : `cargo test -p lps-db --release -- --ignored --nocapture bench` |
 | Ré-import : 0 doublon | ✅ fichier inchangé = 0 octet relu ; mêmes mains sous un autre nom = 288 doublons ignorés, 0 inséré |
 | Reprise du watcher après redémarrage | ✅ test : après redémarrage, seule la main ajoutée au fichier est lue (offset stocké par fichier) |
@@ -112,3 +112,12 @@ Non fait dans cette phase :
 - EV all-in ajustée : la colonne `allin_ev` existe, elle sera remplie en phase 4 avec l'évaluateur.
 - Sessions auto-groupées : prévu avec le module Bankroll en phase 2.
 - Démarrage : les lancements suivant le premier sont encore à mesurer sur ton PC (2,77 s au premier).
+
+## Décision du 3 nov. 2026 — salles
+
+- **Pas de PokerStars.**
+- Demande de l'utilisateur, pour plus tard : **détecter automatiquement tous les clients poker installés**
+  et leurs dossiers d'historiques, avec une recherche automatique sur le disque au moment de l'import.
+  Le mécanisme existe déjà (`crates/hh-parsers/src/install.rs`, utilisé par l'assistant). Il s'étendra
+  salle par salle quand chaque parseur arrivera avec ses fichiers d'exemple, et il faudra lui ajouter
+  un bouton « Rechercher des historiques » dans l'écran Import. Planifié au plus tard en phase 9.
