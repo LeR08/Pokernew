@@ -17,7 +17,10 @@ import { stateAt, totalSteps } from "./replay";
 import { NotesPanel } from "./NotesPanel";
 import { usePlayMode } from "@/stores/playMode";
 
-/** Equity Lab pre-filled with this spot: hero's cards, shown cards of the players still in, board. */
+/**
+ * Equity Lab pre-filled with the hand as played, whatever the replay step: hero's cards, the players still
+ * in at the end (their cards when shown, otherwise a random hand) and the full board.
+ */
 function equityLink(hand: Hand, heroIdx: number, board: (string | undefined)[], seats: { folded?: boolean }[]): string {
   const players = [hand.players[heroIdx].hole_cards.join("")];
   hand.players.forEach((p, i) => {
@@ -184,7 +187,7 @@ function Replayer({ hand }: { hand: Hand }) {
             {step} / {last}
           </span>
           {!playMode && hand.players[heroIdx]?.hole_cards.length === 2 && (
-            <Link className="ml-d3 text-sm text-primary underline" to={equityLink(hand, heroIdx, st.board, st.seats)} data-testid="to-equity">
+            <Link className="ml-d3 text-sm text-primary underline" to={equityLink(hand, heroIdx, hand.board, stateAt(hand, last).seats)} data-testid="to-equity">
               {t("replayer.to_equity")}
             </Link>
           )}

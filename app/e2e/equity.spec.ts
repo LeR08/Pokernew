@@ -100,9 +100,9 @@ test("flop textures", async ({ page }) => {
 test("replayer opens the spot in Equity Lab", async ({ page }) => {
   await page.goto("/#/m/tracker/hands");
   await page.getByTestId("hand-row").first().click();
-  await page.getByTestId("step-last").click();
+  // no need to play the hand: the link always carries the board as played
   await page.getByTestId("to-equity").click();
   await expect(page).toHaveURL(/#\/m\/equity\/calc/);
-  await expect(page.getByTestId("calc-board")).not.toHaveValue("");
+  await expect(page.getByTestId("calc-board")).toHaveValue(/^([2-9TJQKA][cdhs]){5}$/);
   await expect(page.getByTestId("player-input").first()).toHaveValue(/^[2-9TJQKA][cdhs][2-9TJQKA][cdhs]$/);
 });
