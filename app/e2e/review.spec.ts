@@ -44,6 +44,7 @@ test("notes on a player from the replayer", async ({ page }) => {
 
 test("report CSV export", async ({ page }) => {
   await page.goto("/#/m/tracker/report");
+  await expect(page.getByTestId("report-table").locator("tbody tr")).toHaveCount(6);
   await page.getByTestId("export-report").click();
   await expect(page.getByText("Exporté :")).toBeVisible();
 });

@@ -44,7 +44,7 @@ export function Positions() {
           ))}
         </Select>
       </label>
-        <Button variant="outline" size="sm" onClick={() => void toCsv()} data-testid="export-report">
+        <Button variant="outline" size="sm" onClick={() => void toCsv()} disabled={!report} data-testid="export-report">
           <FileDown className="h-4 w-4" />
           {t("tracker.export_csv")}
         </Button>
