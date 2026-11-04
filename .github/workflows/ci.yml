@@ -71,6 +71,7 @@ jobs:
           New-Item -ItemType Directory -Force portable | Out-Null
           Copy-Item target/release/local-poker-suite.exe portable/LocalPokerSuite.exe
           New-Item -ItemType File portable/portable.flag | Out-Null
+          Copy-Item README.md, LICENSE, THIRD_PARTY.md, CHANGELOG.md portable/
           Compress-Archive -Path portable/* -DestinationPath LocalPokerSuite-portable.zip
       - uses: actions/upload-artifact@v4
         with:

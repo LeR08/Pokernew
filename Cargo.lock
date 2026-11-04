@@ -2444,7 +2444,7 @@ checksum = "47d9d19d1d6efa0109d2f65ff4c85cddd50bd572e5a00127ab10987290bcefae"
 
 [[package]]
 name = "local-poker-suite"
-version = "0.1.0"
+version = "1.0.0"
 dependencies = [
  "dirs 6.0.0",
  "env_logger",
@@ -2492,7 +2492,7 @@ checksum = "5d15f86d12da44cd8d4ec3c73984537eb7f4cadcb9776a575a0a8a05ca11005c"
 
 [[package]]
 name = "lps-config"
-version = "0.1.0"
+version = "1.0.0"
 dependencies = [
  "dirs 6.0.0",
  "include_dir",
@@ -2509,7 +2509,7 @@ dependencies = [
 
 [[package]]
 name = "lps-core-model"
-version = "0.1.0"
+version = "1.0.0"
 dependencies = [
  "serde",
  "thiserror 2.0.21",
@@ -2517,7 +2517,7 @@ dependencies = [
 
 [[package]]
 name = "lps-db"
-version = "0.1.0"
+version = "1.0.0"
 dependencies = [
  "log",
  "lps-core-model",
@@ -2535,7 +2535,7 @@ dependencies = [
 
 [[package]]
 name = "lps-equity"
-version = "0.1.0"
+version = "1.0.0"
 dependencies = [
  "lps-evaluator",
  "rayon",
@@ -2546,11 +2546,11 @@ dependencies = [
 
 [[package]]
 name = "lps-evaluator"
-version = "0.1.0"
+version = "1.0.0"
 
 [[package]]
 name = "lps-hh-parsers"
-version = "0.1.0"
+version = "1.0.0"
 dependencies = [
  "insta",
  "lps-core-model",
@@ -2562,7 +2562,7 @@ dependencies = [
 
 [[package]]
 name = "lps-hud-overlay"
-version = "0.1.0"
+version = "1.0.0"
 dependencies = [
  "log",
  "regex",
@@ -2572,7 +2572,7 @@ dependencies = [
 
 [[package]]
 name = "lps-icm"
-version = "0.1.0"
+version = "1.0.0"
 dependencies = [
  "lps-core-model",
  "lps-equity",
@@ -2585,7 +2585,7 @@ dependencies = [
 
 [[package]]
 name = "lps-preflop"
-version = "0.1.0"
+version = "1.0.0"
 dependencies = [
  "lps-equity",
  "lps-icm",
@@ -2596,7 +2596,7 @@ dependencies = [
 
 [[package]]
 name = "lps-solver"
-version = "0.1.0"
+version = "1.0.0"
 dependencies = [
  "lps-equity",
  "lps-evaluator",
@@ -2610,7 +2610,7 @@ dependencies = [
 
 [[package]]
 name = "lps-stats-engine"
-version = "0.1.0"
+version = "1.0.0"
 dependencies = [
  "indexmap 2.14.2",
  "lps-core-model",
@@ -2625,7 +2625,7 @@ dependencies = [
 
 [[package]]
 name = "lps-trainer"
-version = "0.1.0"
+version = "1.0.0"
 dependencies = [
  "lps-core-model",
  "lps-equity",

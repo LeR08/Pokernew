@@ -2,7 +2,16 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/). Versions follow the roadmap phases.
 
-## [Unreleased] — Phase 8 : Entraîneur et analyse
+## [1.0.0] — 2026-11-04 — Phase 9 : Finitions
+
+### Ajouté / Added
+- Version 1.0.0. README réécrit en français et en anglais, `THIRD_PARTY.md` (composants tiers et références de test).
+- Le zip portable contient aussi le README, la licence, `THIRD_PARTY.md` et le CHANGELOG.
+
+### Salles / Rooms
+- Winamax seulement : aucun lecteur n'est écrit pour une salle sans vrais fichiers (règle de la spec). La marche à suivre pour en ajouter une est dans `docs/phase-9.md`.
+
+## Phase 8 : Entraîneur et analyse
 
 ### Ajouté / Added
 - `lps-trainer` :

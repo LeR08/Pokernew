@@ -179,7 +179,7 @@ export function createMockBackend(opts: MockOptions = defaultOptions()): Backend
     ...mockTrainer(),
     async appInfo() {
       return {
-        version: "0.1.0-dev",
+        version: "1.0.0-dev",
         dataDir: "(browser mock)",
         dataDirSource: "default",
         backendReadyMs: 0,
