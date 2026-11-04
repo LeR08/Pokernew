@@ -2457,6 +2457,7 @@ dependencies = [
  "lps-hh-parsers",
  "lps-hud-overlay",
  "lps-icm",
+ "lps-preflop",
  "lps-solver",
  "lps-stats-engine",
  "postflop-solver",
@@ -2584,6 +2585,13 @@ dependencies = [
 [[package]]
 name = "lps-preflop"
 version = "0.1.0"
+dependencies = [
+ "lps-equity",
+ "lps-icm",
+ "serde",
+ "serde_json",
+ "thiserror 2.0.21",
+]
 
 [[package]]
 name = "lps-solver"

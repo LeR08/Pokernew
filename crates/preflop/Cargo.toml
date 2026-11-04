@@ -9,3 +9,10 @@ publish = false
 name = "lps_preflop"
 
 [dependencies]
+lps-equity = { path = "../equity" }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+
+[dev-dependencies]
+lps-icm = { path = "../icm" }

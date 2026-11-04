@@ -39,6 +39,7 @@ lps-hud-overlay = { path = "../../crates/hud-overlay" }
 lps-equity = { path = "../../crates/equity" }
 lps-icm = { path = "../../crates/icm" }
 lps-solver = { path = "../../crates/solver" }
+lps-preflop = { path = "../../crates/preflop" }
 postflop-solver = { path = "../../crates/solver/engine" }
 lps-evaluator = { path = "../../crates/evaluator" }
 regex = "1"

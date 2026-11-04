@@ -9,6 +9,7 @@ pub mod hud_commands;
 pub mod icm_commands;
 pub mod import_commands;
 pub mod import_service;
+pub mod preflop_commands;
 pub mod solver_commands;
 pub mod state;
 pub mod tracker_commands;
@@ -244,6 +245,9 @@ pub fn run(started: Instant) {
             solver_commands::solver_batch_start,
             solver_commands::solver_batch_progress,
             solver_commands::solver_batch_cancel,
+            preflop_commands::preflop_solve,
+            preflop_commands::ranges_export,
+            preflop_commands::ranges_import,
         ])
         .run(tauri::generate_context!())
         .expect("error while running Local Poker Suite");

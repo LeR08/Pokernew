@@ -44,3 +44,6 @@ opt-level = 3
 
 [profile.dev.package.lps-solver]
 opt-level = 3
+
+[profile.dev.package.lps-preflop]
+opt-level = 3
