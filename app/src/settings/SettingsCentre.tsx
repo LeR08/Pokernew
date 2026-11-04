@@ -8,6 +8,7 @@ import { allModules } from "@/modules/registry";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Select } from "@/components/ui/input";
+import { ThemeGallery } from "./ThemeGallery";
 import { cn } from "@/lib/utils";
 import { FileEditor, useFormContext } from "./FileEditor";
 import { SchemaForm } from "./SchemaForm";
@@ -17,10 +18,10 @@ const TABS = ["general", "rooms", "hotkeys", "themes", "profiles", "modules", "a
 type Tab = (typeof TABS)[number];
 
 /** Editor for a folder family (themes, profiles): pick a file, copy, delete. */
-function FolderEditor({ family }: { family: Family }) {
+function FolderEditor({ family, initial, header }: { family: Family; initial?: string; header?: (open: (id: string) => void) => React.ReactNode }) {
   const { t } = useTranslation();
   const ids = useConfigList(family).data ?? [];
-  const [id, setId] = useState("");
+  const [id, setId] = useState(initial ?? "");
   useEffect(() => {
     if (ids.length && !ids.includes(id)) setId(ids[0]);
   }, [ids, id]);
@@ -39,6 +40,7 @@ function FolderEditor({ family }: { family: Family }) {
 
   return (
     <div className="flex flex-col gap-d4">
+      {header?.(setId)}
       <div className="flex flex-wrap items-center gap-d2">
         <Select aria-label={t("settings.file")} value={id} onChange={(e) => setId(e.target.value)} className="w-56" data-testid="file-select">
           {ids.map((x) => (
@@ -139,7 +141,7 @@ export function SettingsCentre() {
       {current === "general" && <FileEditor family="settings" id="settings" />}
       {current === "rooms" && <FolderEditor family="rooms" />}
       {current === "hotkeys" && <FileEditor family="hotkeys" id="hotkeys" />}
-      {current === "themes" && <FolderEditor family="themes" />}
+      {current === "themes" && <FolderEditor family="themes" header={(open) => <ThemeGallery onEdit={open} />} />}
       {current === "profiles" && <FolderEditor family="profiles" />}
       {current === "modules" && <ModuleSettings />}
       {current === "about" && <About />}

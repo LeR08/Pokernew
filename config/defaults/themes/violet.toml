@@ -1,0 +1,18 @@
+# Violet, accents rose / purple, pink accents
+# Couleurs en hexadécimal #rrggbb / colours as #rrggbb hex
+name = "Améthyste / Amethyst"
+base = "dark"
+
+[colors]
+background = "#110d1a"
+surface = "#1a1427"
+surface_alt = "#231b35"
+border = "#33284b"
+text = "#ede8f7"
+text_muted = "#9f94b8"
+primary = "#a855f7"
+primary_text = "#ffffff"
+accent = "#ec4899"
+success = "#4ade80"
+warning = "#fbbf24"
+danger = "#f87171"

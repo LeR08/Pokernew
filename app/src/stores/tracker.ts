@@ -14,6 +14,9 @@ export interface Advanced {
   allinPreflop: "" | "yes" | "no";
   buyInMin: number | null;
   buyInMax: number | null;
+  withPlayer: string;
+  result: "" | "won" | "lost";
+  minBb: number | null;
 }
 
 export const EMPTY_ADVANCED: Advanced = {
@@ -28,6 +31,9 @@ export const EMPTY_ADVANCED: Advanced = {
   allinPreflop: "",
   buyInMin: null,
   buyInMax: null,
+  withPlayer: "",
+  result: "",
+  minBb: null,
 };
 
 /** Number of active advanced filters (for the badge). */
@@ -42,6 +48,9 @@ export function activeCount(a: Advanced): number {
     a.showdown !== "",
     a.allinPreflop !== "",
     a.buyInMin !== null || a.buyInMax !== null,
+    a.withPlayer.trim() !== "",
+    a.result !== "",
+    a.minBb !== null,
   ].filter(Boolean).length;
 }
 
@@ -127,6 +136,9 @@ export function toFilter(
     if (a.allinPreflop) f.allinPreflop = a.allinPreflop === "yes";
     if (a.buyInMin !== null) f.buyInMin = Math.round(a.buyInMin * 100);
     if (a.buyInMax !== null) f.buyInMax = Math.round(a.buyInMax * 100);
+    if (a.withPlayer.trim()) f.withPlayer = a.withPlayer.trim();
+    if (a.result) f.result = a.result;
+    if (a.minBb !== null) f.minBb = a.minBb;
   }
   return f;
 }

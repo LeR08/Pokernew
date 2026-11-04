@@ -1,0 +1,18 @@
+# Clair et chaud / warm light
+# Couleurs en hexadécimal #rrggbb / colours as #rrggbb hex
+name = "Sable / Sand"
+base = "light"
+
+[colors]
+background = "#f6f1e7"
+surface = "#fffbf3"
+surface_alt = "#efe6d6"
+border = "#dccfb8"
+text = "#2b2418"
+text_muted = "#6f6350"
+primary = "#b45309"
+primary_text = "#ffffff"
+accent = "#0f766e"
+success = "#15803d"
+warning = "#c2410c"
+danger = "#b91c1c"

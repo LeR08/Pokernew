@@ -1,0 +1,18 @@
+# Rouge profond, accents or / deep red, gold accents
+# Couleurs en hexadécimal #rrggbb / colours as #rrggbb hex
+name = "Bordeaux / Burgundy"
+base = "dark"
+
+[colors]
+background = "#150b0e"
+surface = "#211216"
+surface_alt = "#2d191f"
+border = "#41242c"
+text = "#f4e6e9"
+text_muted = "#b0919a"
+primary = "#e11d48"
+primary_text = "#ffffff"
+accent = "#f5b942"
+success = "#4ade80"
+warning = "#fbbf24"
+danger = "#fb7185"

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
 import { ChevronFirst, ChevronLast, ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
@@ -16,6 +16,7 @@ import type { ModuleManifest } from "../types";
 import { stateAt, totalSteps } from "./replay";
 import { NotesPanel } from "./NotesPanel";
 import { usePlayMode } from "@/stores/playMode";
+import { QuickFilters, recallList } from "./QuickFilters";
 
 /**
  * Equity Lab pre-filled with the hand as played, whatever the replay step: hero's cards, the players still
@@ -230,6 +231,34 @@ function Replayer({ hand }: { hand: Hand }) {
   );
 }
 
+/** Previous / next hand of the list the hand was picked from. */
+function HandNav({ id }: { id: number }) {
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+  const list = useMemo(() => recallList(), []);
+  const i = list.indexOf(id);
+  return (
+    <div className="flex items-center gap-d2 text-sm">
+      {i >= 0 && (
+        <>
+          <Button variant="outline" size="sm" disabled={i === 0} onClick={() => navigate(`/m/replayer/${list[i - 1]}`)} data-testid="prev-hand">
+            <ChevronLeft className="h-4 w-4" />
+            {t("replayer.prev_hand")}
+          </Button>
+          <span className="tabular-nums text-muted">{t("replayer.hand_pos", { i: i + 1, n: list.length })}</span>
+          <Button variant="outline" size="sm" disabled={i + 1 >= list.length} onClick={() => navigate(`/m/replayer/${list[i + 1]}`)} data-testid="next-hand">
+            {t("replayer.next_hand")}
+            <ChevronRight className="h-4 w-4" />
+          </Button>
+        </>
+      )}
+      <Link className="ml-d2 text-primary underline" to="/m/replayer">
+        {t("replayer.pick_other")}
+      </Link>
+    </div>
+  );
+}
+
 export function ReplayerPage({ manifest }: { manifest: ModuleManifest }) {
   const { t } = useTranslation();
   const { handId } = useParams();
@@ -243,16 +272,13 @@ export function ReplayerPage({ manifest }: { manifest: ModuleManifest }) {
     <div className="mx-auto flex max-w-7xl flex-col gap-d4 p-d6">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-semibold">{t(manifest.name)}</h1>
-        {id !== null && (
-          <Link className="text-sm text-primary underline" to="/m/replayer">
-            {t("replayer.pick_other")}
-          </Link>
-        )}
+        {id !== null && <HandNav id={id} />}
       </div>
       {id === null ? (
         <>
           <p className="text-sm text-muted">{t("replayer.pick")}</p>
           <FilterBar />
+          <QuickFilters />
           <HandsList />
         </>
       ) : hand.isError ? (

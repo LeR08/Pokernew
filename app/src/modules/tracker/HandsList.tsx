@@ -10,6 +10,7 @@ import { FileDown } from "lucide-react";
 import { getBackend } from "@/lib/backend";
 import { exportCsv, useFilter, useHands } from "./api";
 import { usePlayMode } from "@/stores/playMode";
+import { rememberList } from "../replayer/QuickFilters";
 
 const PAGE = 50;
 
@@ -94,7 +95,10 @@ export function HandsList() {
               <tr
                 key={h.handId}
                 className="cursor-pointer border-t border-border hover:bg-surface-alt"
-                onClick={() => navigate(`/m/replayer/${h.handId}`)}
+                onClick={() => {
+                  rememberList(data.rows.map((r) => r.handId));
+                  navigate(`/m/replayer/${h.handId}`);
+                }}
                 data-testid="hand-row"
               >
                 <td className="px-d3 py-d2 whitespace-nowrap">{formatDate(h.playedAt, lang)}</td>

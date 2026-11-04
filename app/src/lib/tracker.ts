@@ -23,6 +23,11 @@ export interface Filter {
   allinPreflop?: boolean | null;
   buyInMin?: number | null;
   buyInMax?: number | null;
+  /** Hands where this player (name contains) was seated. */
+  withPlayer?: string | null;
+  result?: "won" | "lost" | null;
+  /** Minimum |result| in big blinds. */
+  minBb?: number | null;
 }
 
 export interface StatValue {

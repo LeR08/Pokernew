@@ -1,0 +1,18 @@
+# Noir et blanc, contraste élevé / black and white, high contrast
+# Couleurs en hexadécimal #rrggbb / colours as #rrggbb hex
+name = "Graphite (contraste) / Graphite (contrast)"
+base = "dark"
+
+[colors]
+background = "#000000"
+surface = "#0d0d0d"
+surface_alt = "#1a1a1a"
+border = "#4d4d4d"
+text = "#ffffff"
+text_muted = "#c4c4c4"
+primary = "#facc15"
+primary_text = "#000000"
+accent = "#38bdf8"
+success = "#4ade80"
+warning = "#fb923c"
+danger = "#ff5c5c"

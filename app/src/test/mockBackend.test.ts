@@ -4,7 +4,7 @@ import { BackendError } from "@/lib/backend";
 describe("mock backend (same schemas as Rust)", () => {
   it("serves every default file as valid", async () => {
     const b = createMockBackend();
-    expect(await b.configList("themes")).toEqual(["dark", "light"]);
+    expect(await b.configList("themes")).toEqual(["bordeaux", "custom", "dark", "feutre", "graphite", "light", "ocean", "sable", "violet"]);
     expect(await b.configList("profiles")).toEqual(["cash-6max", "mtt", "spin"]);
     const s = await b.configGet("settings", "settings");
     expect((s.performance as Record<string, number>).worker_threads).toBe(6);

@@ -90,7 +90,9 @@
     "file": "Fichier",
     "file_path": "Emplacement : {{path}}",
     "no_module_settings": "Aucun module n'a de réglages propres pour l'instant.",
-    "external_change": "Le fichier a été modifié sur le disque et rechargé."
+    "external_change": "Le fichier a été modifié sur le disque et rechargé.",
+    "theme_customise": "Personnaliser",
+    "theme_customise_hint": "Crée ou ouvre « custom » : chaque couleur se règle ci-dessous et s'applique tout de suite."
   },
   "profile": {
     "label": "Profil",
@@ -507,7 +509,16 @@
     "pick_other": "Choisir une autre main",
     "pick": "Choisis une main à rejouer.",
     "to_equity": "Ouvrir dans Equity Lab",
-    "to_icm": "Revue ICM"
+    "to_icm": "Revue ICM",
+    "quick_player": "Joueur à la table",
+    "quick_result": "Résultat",
+    "quick_any": "Tous",
+    "quick_won": "Gagnées",
+    "quick_lost": "Perdues",
+    "quick_min_bb": "Gain/perte min. (bb)",
+    "prev_hand": "Main précédente",
+    "next_hand": "Main suivante",
+    "hand_pos": "Main {{i}} / {{n}}"
   },
   "review": {
     "title": "Bilan de la session",

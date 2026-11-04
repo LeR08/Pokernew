@@ -130,8 +130,10 @@ export function mockTracker(statsMeta: () => StatMeta[]): Pick<
           byBuyIn: [{ key: "a:<1", tournaments: 2, costCents: 100, wonCents: 103, profitCents: 3, roi: 0.03, itm: 0.5 }] },
       };
     },
-    async trackerHands(_filter, limit, offset) {
-      const rows: HandRow[] = HANDS.map((h, i) => {
+    async trackerHands(filter, limit, offset) {
+      const wp = filter.withPlayer?.trim().toLowerCase();
+      const rows: HandRow[] = HANDS.flatMap((h, i) => {
+        if (wp && !h.players.some((p) => p.name.toLowerCase().includes(wp))) return [];
         const hero = h.players.find((p) => p.is_hero)!;
         const net = hero.collected - hero.invested;
         return {
@@ -149,7 +151,12 @@ export function mockTracker(statsMeta: () => StatMeta[]): Pick<
           unit: h.unit,
           showdown: hero.went_to_showdown,
         };
-      });
+      }).filter(
+        (r) =>
+          (filter.result !== "won" || r.netWon > 0) &&
+          (filter.result !== "lost" || r.netWon < 0) &&
+          (!filter.minBb || Math.abs(r.netWonBb) >= filter.minBb),
+      );
       return { rows: rows.slice(offset, offset + limit), total: rows.length };
     },
     async trackerAccounts() {

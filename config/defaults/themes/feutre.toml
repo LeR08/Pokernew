@@ -1,0 +1,18 @@
+# Vert table de poker / poker table green
+# Couleurs en hexadécimal #rrggbb / colours as #rrggbb hex
+name = "Feutre / Felt"
+base = "dark"
+
+[colors]
+background = "#0b1510"
+surface = "#12201a"
+surface_alt = "#192c23"
+border = "#244034"
+text = "#e4f1ea"
+text_muted = "#8fae9f"
+primary = "#22c55e"
+primary_text = "#04140b"
+accent = "#eab308"
+success = "#4ade80"
+warning = "#f59e0b"
+danger = "#f43f5e"

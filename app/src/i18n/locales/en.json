@@ -90,7 +90,9 @@
     "file": "File",
     "file_path": "Location: {{path}}",
     "no_module_settings": "No module has its own settings yet.",
-    "external_change": "The file changed on disk and was reloaded."
+    "external_change": "The file changed on disk and was reloaded.",
+    "theme_customise": "Customise",
+    "theme_customise_hint": "Creates or opens “custom”: set each colour below, it applies immediately."
   },
   "profile": {
     "label": "Profile",
@@ -507,7 +509,16 @@
     "pick_other": "Pick another hand",
     "pick": "Pick a hand to replay.",
     "to_equity": "Open in Equity Lab",
-    "to_icm": "ICM review"
+    "to_icm": "ICM review",
+    "quick_player": "Player at the table",
+    "quick_result": "Result",
+    "quick_any": "All",
+    "quick_won": "Won",
+    "quick_lost": "Lost",
+    "quick_min_bb": "Min. result (bb)",
+    "prev_hand": "Previous hand",
+    "next_hand": "Next hand",
+    "hand_pos": "Hand {{i}} / {{n}}"
   },
   "review": {
     "title": "Session review",
