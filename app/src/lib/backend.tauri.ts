@@ -16,6 +16,7 @@ import { BackendError } from "./backend";
 import type { JSONSchema } from "./schema";
 import type { Breakdown, EquityResult, TextureReport } from "./equity";
 import type { BatchRow, IcmResult, Review, Solution } from "./icm";
+import type { PreflopSolution } from "./preflop";
 import type { BatchProgress, CacheEntry, Estimate, NodeView, Progress, SpotConfig } from "./solver";
 import type {
   HudStatus,
@@ -171,6 +172,10 @@ export function createTauriBackend(): Backend {
     solverBatchStart: (spot, params, flops, name) => call("solver_batch_start", { spot, params, flops, name }),
     solverBatchProgress: () => call<BatchProgress | null>("solver_batch_progress"),
     solverBatchCancel: () => call("solver_batch_cancel"),
+    preflopSolve: (config, target, maxIterations) => call<PreflopSolution>("preflop_solve", { config, target, maxIterations }),
+    rangesExport: (prefix) => call<string>("ranges_export", { prefix }),
+    rangesExportFile: (prefix) => call<string>("ranges_export_file", { prefix }),
+    rangesImport: (text, prefix, overwrite) => call<number>("ranges_import", { text, prefix, overwrite }),
     markReady() {
       void invoke("frontend_ready").catch(() => undefined);
     },

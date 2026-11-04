@@ -1096,5 +1096,64 @@
         "rainbow_paired": "Rainbow paired"
       }
     }
+  },
+  "preflop": {
+    "tabs": {
+      "charts": "Charts",
+      "solver": "Preflop solver"
+    },
+    "new_format": "Create a chart folder",
+    "pick_format": "Pick a format…",
+    "root": "(root)",
+    "empty_folder": "No range in this folder.",
+    "pick_chart": "Pick a situation on the left, or create a chart folder for a format.",
+    "save": "Save",
+    "saved": "\"{{name}}\" saved",
+    "created": "{{n}} situation(s) created in \"{{folder}}\", empty: fill them with the editor.",
+    "transfer": "Import / export",
+    "export": "Export \"{{folder}}\"",
+    "export_file": "Save as a file",
+    "exported": "File written: {{path}}",
+    "open_file": "Open a file…",
+    "import_into": "Import into folder",
+    "overwrite": "Replace existing ranges",
+    "import": "Import",
+    "imported": "{{n}} range(s) imported",
+    "transfer_help": "Format: a \"[name]\" line with the range below. PioSOLVER / GTO+ ranges (\"AA:1.0, AKs:0.5\") are accepted. No range ships with the app: everything comes from you or the solver.",
+    "act": {
+      "fold": "Fold",
+      "check": "Check",
+      "call": "Call",
+      "limp": "Limp",
+      "raise": "Raise to {{n}}",
+      "all_in": "All-in ({{n}})"
+    },
+    "solver": {
+      "players": "Players",
+      "stack": "Stack (bb)",
+      "ante": "Ante (bb)",
+      "open": "Open (bb)",
+      "three_bet": "3-bet (× open)",
+      "four_bet": "4-bet (× 3-bet)",
+      "limp": "SB limp",
+      "allin": "All-in at every step",
+      "real_ip": "Equity realised IP",
+      "real_oop": "Equity realised OOP",
+      "target": "Target (bb/hand)",
+      "max_it": "Max iterations",
+      "run": "Solve",
+      "running": "Solving…",
+      "help": "Simplified tree: open, 3-bet, 4-bet and all-in with fixed sizes. Heads-up it is exact; with more players, the first one to answer the open is the only opponent left (approximation). When the flop is seen without an all-in, each player realises the given share of their equity (1 = all of it).",
+      "status": "{{it}} iterations, exploitability {{e}} bb/hand · EV: {{v}}",
+      "to_act": "{{who}} to act ({{p}} % of hands get here)",
+      "end_fold": "End: {{who}} takes the pot.",
+      "end_showdown": "End: all-in and showdown, pot {{pot}} bb.",
+      "end_flop": "End: the flop is seen, pot {{pot}} bb.",
+      "reach": "present at {{p}} % here",
+      "grid_help": "Each cell's height is how much of the hand is still played here; the colours are its action mix.",
+      "save_name": "Name in the library",
+      "save": "Save every situation",
+      "saved": "{{n}} range(s) saved in \"{{folder}}\""
+    }
   }
 }

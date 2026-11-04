@@ -2,7 +2,16 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/). Versions follow the roadmap phases.
 
-## [Unreleased] — Phase 6 : Solveur postflop
+## [Unreleased] — Phase 7 : Ranges et solveur préflop
+
+### Ajouté / Added
+- `lps-preflop` : arbre préflop simplifié (open, limp de la SB, 3-bet, 4-bet, tapis) résolu par CFR+ sur les 169 mains, avec les équités exactes et les cartes bloquées. Tête-à-tête exact, approximation à 6 joueurs au plus, réalisation d'équité IP/OOP réglable, exploitabilité exacte du modèle.
+- Bibliothèque de ranges : export et import d'un dossier entier (`.lpsranges`), import des ranges PioSOLVER / GTO+, aller-retour à l'identique.
+- Module Préflop :
+  - Charts : dossiers par format (cash 6-max 100 bb, MTT de 10 à 100 bb, Spin), situations vides créées pour toi, édition, import et export ;
+  - Solveur : réglages, arbre cliquable, grille 13×13 par action, enregistrement de toutes les situations dans la bibliothèque.
+
+## Phase 6 : Solveur postflop
 
 ### Ajouté / Added
 - Moteur `postflop-solver` (Discounted CFR, AGPL) intégré dans `crates/solver/engine` : c'est désormais notre fork (`FORK.md`).

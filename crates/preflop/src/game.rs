@@ -20,6 +20,9 @@
 
 use serde::{Deserialize, Serialize};
 
+/// An action and the function building the subtree it leads to.
+type Opt<'a> = (Act, Box<dyn FnOnce(&mut Tree) -> usize + 'a>);
+
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 #[serde(default, rename_all = "camelCase")]
 pub struct Config {
@@ -162,11 +165,6 @@ impl Tree {
         Ok(t)
     }
 
-    /// Stack left behind the chips already in, for player i (antes paid).
-    fn behind(&self, i: usize, st: &St) -> f64 {
-        self.config.stacks[i] - self.antes[i] - st.bets[i]
-    }
-
     fn cap(&self, i: usize) -> f64 {
         self.config.stacks[i] - self.antes[i]
     }
@@ -187,12 +185,7 @@ impl Tree {
         })
     }
 
-    fn decision(
-        &mut self,
-        player: usize,
-        st: &St,
-        options: Vec<(Act, Box<dyn FnOnce(&mut Tree) -> usize + '_>)>,
-    ) -> usize {
+    fn decision(&mut self, player: usize, st: &St, options: Vec<Opt<'_>>) -> usize {
         let id = self.push(Node {
             player: Some(player),
             actions: vec![],
@@ -219,7 +212,7 @@ impl Tree {
             return self.end(End::Fold { winner: k }, &st);
         }
         let c = self.config.clone();
-        let mut opts: Vec<(Act, Box<dyn FnOnce(&mut Tree) -> usize + '_>)> = vec![];
+        let mut opts: Vec<Opt<'_>> = vec![];
         let mut fold = st.clone();
         fold.active.retain(|&x| x != k);
         opts.push((
@@ -287,7 +280,7 @@ impl Tree {
         let level = st.bets[p];
         let p_allin = (level - self.cap(p)).abs() < 1e-9;
         let eff = self.cap(p).min(self.cap(q));
-        let mut opts: Vec<(Act, Box<dyn FnOnce(&mut Tree) -> usize + '_>)> = vec![];
+        let mut opts: Vec<Opt<'_>> = vec![];
         let mut fold = st.clone();
         fold.active.retain(|&x| x != q);
         opts.push((
@@ -387,7 +380,7 @@ impl Tree {
         let c = self.config.clone();
         let level = st.bets[q];
         let eff = self.cap(p).min(self.cap(q));
-        let mut opts: Vec<(Act, Box<dyn FnOnce(&mut Tree) -> usize + '_>)> = vec![];
+        let mut opts: Vec<Opt<'_>> = vec![];
         let mut fold = st.clone();
         fold.active = vec![q];
         opts.push((
@@ -478,7 +471,7 @@ impl Tree {
         let (sb, bb) = (n - 2, n - 1);
         let c = self.config.clone();
         let eff = self.cap(sb).min(self.cap(bb));
-        let mut opts: Vec<(Act, Box<dyn FnOnce(&mut Tree) -> usize + '_>)> = vec![];
+        let mut opts: Vec<Opt<'_>> = vec![];
         let check = st.clone();
         opts.push((
             Act {
@@ -522,7 +515,7 @@ impl Tree {
         let mut jam = st.clone();
         jam.bets[sb] = self.cap(sb);
         let to = jam.bets[sb];
-        let mut opts: Vec<(Act, Box<dyn FnOnce(&mut Tree) -> usize + '_>)> = vec![
+        let mut opts: Vec<Opt<'_>> = vec![
             (
                 Act {
                     kind: Kind::Fold,

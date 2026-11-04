@@ -1096,5 +1096,64 @@
         "rainbow_paired": "Arc-en-ciel pairés"
       }
     }
+  },
+  "preflop": {
+    "tabs": {
+      "charts": "Charts",
+      "solver": "Solveur préflop"
+    },
+    "new_format": "Créer un dossier de charts",
+    "pick_format": "Choisis un format…",
+    "root": "(racine)",
+    "empty_folder": "Aucune range dans ce dossier.",
+    "pick_chart": "Choisis une situation à gauche, ou crée un dossier de charts pour un format.",
+    "save": "Enregistrer",
+    "saved": "« {{name}} » enregistrée",
+    "created": "{{n}} situation(s) créée(s) dans « {{folder}} », vides : à remplir avec l'éditeur.",
+    "transfer": "Importer / exporter",
+    "export": "Exporter « {{folder}} »",
+    "export_file": "Enregistrer en fichier",
+    "exported": "Fichier écrit : {{path}}",
+    "open_file": "Ouvrir un fichier…",
+    "import_into": "Importer dans le dossier",
+    "overwrite": "Remplacer les ranges existantes",
+    "import": "Importer",
+    "imported": "{{n}} range(s) importée(s)",
+    "transfer_help": "Format : une ligne « [nom] » puis la range en dessous. Les ranges PioSOLVER / GTO+ (« AA:1.0, AKs:0.5 ») sont acceptées. Aucune range n'est livrée avec l'app : tout vient de toi ou du solveur.",
+    "act": {
+      "fold": "Fold",
+      "check": "Check",
+      "call": "Call",
+      "limp": "Limp",
+      "raise": "Relance à {{n}}",
+      "all_in": "Tapis ({{n}})"
+    },
+    "solver": {
+      "players": "Joueurs",
+      "stack": "Tapis (bb)",
+      "ante": "Ante (bb)",
+      "open": "Open (bb)",
+      "three_bet": "3-bet (× l'open)",
+      "four_bet": "4-bet (× le 3-bet)",
+      "limp": "Limp de la SB",
+      "allin": "Tapis à chaque étape",
+      "real_ip": "Équité réalisée IP",
+      "real_oop": "Équité réalisée OOP",
+      "target": "Cible (bb/main)",
+      "max_it": "Itérations max",
+      "run": "Résoudre",
+      "running": "Calcul…",
+      "help": "Arbre simplifié : open, 3-bet, 4-bet et tapis, à tailles fixes. En tête-à-tête, c'est exact. À plusieurs, le premier joueur qui répond à l'open reste seul face à lui (approximation). Quand on voit le flop sans être à tapis, chacun réalise la part d'équité indiquée (1 = toute son équité).",
+      "status": "{{it}} itérations, exploitabilité {{e}} bb/main · EV : {{v}}",
+      "to_act": "À {{who}} de jouer ({{p}} % des mains passent ici)",
+      "end_fold": "Fin : {{who}} ramasse le pot.",
+      "end_showdown": "Fin : tapis et abattage, pot {{pot}} bb.",
+      "end_flop": "Fin : on voit le flop, pot {{pot}} bb.",
+      "reach": "présente à {{p}} % ici",
+      "grid_help": "La hauteur de chaque case donne la part de la main encore jouée ici, et les couleurs son mélange d'actions.",
+      "save_name": "Nom dans la bibliothèque",
+      "save": "Enregistrer toutes les situations",
+      "saved": "{{n}} range(s) enregistrée(s) dans « {{folder}} »"
+    }
   }
 }

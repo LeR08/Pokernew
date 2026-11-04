@@ -103,6 +103,22 @@ pub fn ranges_import(
     import_bundle(&s.data_dir.path, &text, &prefix, overwrite)
 }
 
+/// Writes a bundle to <data>/exports/<name>.lpsranges; returns the file.
+#[tauri::command]
+pub fn ranges_export_file(s: State<'_, AppState>, prefix: String) -> Res<String> {
+    let text = export_bundle(&s.data_dir.path, &prefix)?;
+    let dir = s.data_dir.path.join("exports");
+    std::fs::create_dir_all(&dir).map_err(e)?;
+    let stem: String = if prefix.trim().is_empty() {
+        "ranges".into()
+    } else {
+        prefix.replace(['/', '\\', ' '], "_")
+    };
+    let file = dir.join(format!("{stem}.lpsranges"));
+    std::fs::write(&file, text).map_err(e)?;
+    Ok(file.display().to_string())
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

@@ -7,6 +7,7 @@
 import type { JSONSchema } from "./schema";
 import type { Breakdown, CalcRequest, EquityResult, FlopFilter, TextureReport } from "./equity";
 import type { BatchRow, IcmResult, Review, ReviewRequest, Solution, SolveOptions, Spot } from "./icm";
+import type { PreflopConfig, PreflopSolution } from "./preflop";
 import type { BatchProgress, CacheEntry, Estimate, Lock, NodeView, Progress, SolveParams, SpotConfig } from "./solver";
 import type {
   HudStatus,
@@ -237,6 +238,15 @@ export interface Backend {
   solverBatchStart(spot: SpotConfig, params: SolveParams, flops: string[], name: string): Promise<void>;
   solverBatchProgress(): Promise<BatchProgress | null>;
   solverBatchCancel(): Promise<void>;
+
+  // ---- Preflop (phase 7; refused in play mode) ----
+  preflopSolve(config: PreflopConfig, target: number, maxIterations: number): Promise<PreflopSolution>;
+  /** The saved ranges under `prefix` as one bundle text. */
+  rangesExport(prefix: string): Promise<string>;
+  /** Writes the bundle to <data>/exports; returns the file. */
+  rangesExportFile(prefix: string): Promise<string>;
+  /** Saves every range of a bundle under `prefix`; returns how many were written. */
+  rangesImport(text: string, prefix: string, overwrite: boolean): Promise<number>;
 }
 
 export const isTauri = (): boolean =>

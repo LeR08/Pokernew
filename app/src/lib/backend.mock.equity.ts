@@ -10,7 +10,18 @@ import { cellOf, COMBOS, NUM_COMBOS, parseCards, RANKED_CELLS, rankOf, tryParseR
 
 type EquityPart = Pick<
   Backend,
-  "equityCalc" | "equityCancel" | "rangeBreakdown" | "rangeFilter" | "flopTexture" | "rangesList" | "rangeLoad" | "rangeSave" | "rangeDelete"
+  | "equityCalc"
+  | "equityCancel"
+  | "rangeBreakdown"
+  | "rangeFilter"
+  | "flopTexture"
+  | "rangesList"
+  | "rangeLoad"
+  | "rangeSave"
+  | "rangeDelete"
+  | "rangesExport"
+  | "rangesExportFile"
+  | "rangesImport"
 >;
 
 const strength = (i: number) => 1 - RANKED_CELLS.indexOf(cellOf(i)) / 169;
@@ -150,6 +161,34 @@ export function mockEquity(): EquityPart {
     },
     async rangeDelete(name) {
       library.delete(name);
+    },
+    async rangesExport(prefix) {
+      const p = prefix.trim().replace(/\/+$/, "");
+      const names = [...library.keys()].filter((n) => !p || n === p || n.startsWith(`${p}/`)).sort();
+      return ["# Local Poker Suite ranges v1", ...names.map((n) => `[${n}]\n${library.get(n)}`)].join("\n") + "\n";
+    },
+    async rangesExportFile(prefix) {
+      return `(browser mock)/exports/${prefix.replace(/[/ ]/g, "_") || "ranges"}.lpsranges`;
+    },
+    async rangesImport(text, prefix, overwrite) {
+      const out: [string, string][] = [];
+      for (const raw of text.split("\n")) {
+        const l = raw.trim();
+        if (!l || l.startsWith("#")) continue;
+        const m = /^\[(.+)\]$/.exec(l);
+        if (m) out.push([m[1].trim(), ""]);
+        else if (out.length) out[out.length - 1][1] += (out[out.length - 1][1] ? "," : "") + l.replace(/:\s+/g, ":");
+        else throw new BackendError("range text before any [name]");
+      }
+      for (const [n, t] of out) if (!tryParseRange(t)) throw new BackendError(`[${n}]: invalid range`);
+      let k = 0;
+      for (const [n, t] of out) {
+        const full = prefix.trim() ? `${prefix.trim().replace(/\/+$/, "")}/${n}` : n;
+        if (library.has(full) && !overwrite) continue;
+        library.set(full, t);
+        k++;
+      }
+      return k;
     },
   };
 }

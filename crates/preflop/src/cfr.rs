@@ -27,6 +27,9 @@
 //! Exploitability = mean over players of (best-response value − actual value),
 //! in bb per hand.
 
+// The maths reads best with explicit class indices (a, b) and action indices (k).
+#![allow(clippy::needless_range_loop)]
+
 use lps_equity::combo::{class_size, NUM_CLASSES};
 use lps_equity::preflop::matrix;
 use serde::Serialize;
@@ -313,7 +316,7 @@ impl Solver {
         let mut e = f64::INFINITY;
         while self.iterations < max_iterations {
             self.iterate();
-            if self.iterations % every == 0 || self.iterations == max_iterations {
+            if self.iterations.is_multiple_of(every) || self.iterations == max_iterations {
                 e = self.exploitability();
                 if !progress(&Progress {
                     iterations: self.iterations,

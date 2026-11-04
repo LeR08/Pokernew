@@ -1,6 +1,6 @@
 import { Grid3x3 } from "lucide-react";
-import { ComingSoon } from "../ComingSoon";
 import type { ModuleManifest } from "../types";
+import { PreflopPage } from "./PreflopPage";
 
 export const manifest: ModuleManifest = {
   id: "preflop",
@@ -9,6 +9,9 @@ export const manifest: ModuleManifest = {
   icon: Grid3x3,
   phase: 7,
   replaces: ["GTO Wizard"],
-  routes: [{ path: "", component: ComingSoon }],
+  routes: [
+    { path: "", component: PreflopPage },
+    { path: ":tab", component: PreflopPage },
+  ],
   studyOnly: true,
 };

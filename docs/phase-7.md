@@ -1,6 +1,6 @@
 # Phase 7 — Ranges et solveur préflop
 
-Statut : **en cours** · remplace la partie préflop de GTO Wizard.
+Statut : **implémentée — à tester sur ton PC** · remplace la partie préflop de GTO Wizard.
 
 ## Critères d'acceptation (spec)
 - l'import et l'export de la bibliothèque de ranges font l'aller-retour à l'identique ;
@@ -38,3 +38,18 @@ Statut : **en cours** · remplace la partie préflop de GTO Wizard.
   push/fold de la phase 5 (lui-même vérifié contre les tableaux Nash publiés) ;
 - multi-joueurs : l'exploitabilité baisse et chaque situation somme à 100 % ;
 - front : vitest et Playwright (charts, import et export, calcul, enregistrement).
+
+## Résultats (4 nov. 2026)
+- **Aller-retour export → import** : mêmes poids combo par combo, testé côté Rust (bundle et dossiers de la
+  bibliothèque) et dans l'interface (Playwright).
+- **Tête-à-tête** : 0,0048 bb/main d'exploitabilité en 250 itérations, pour une cible de 0,005 (critère
+  atteint).
+- **Recoupement** : en tapis seulement, on retrouve les ranges du solveur push/fold de la phase 5.
+- **6-max** (approximation) : l'exploitabilité tombe de 0,34 à 0,0038 bb/main en 300 itérations.
+- **Tests** : cargo test, clippy -D warnings, vitest et Playwright sont verts.
+
+## Limites
+- Une seule taille par étape (open, 3-bet, 4-bet) en plus du tapis. Pas de cold call à plusieurs, ni de
+  squeeze.
+- La réalisation d'équité postflop est un simple facteur (IP/OOP), pas un vrai calcul postflop. Pour ça, il
+  y a le solveur postflop.

@@ -5,7 +5,7 @@
 Suite poker 100 % locale (tracker + HUD, solveur, équité, ICM) pour un seul joueur sur un seul PC.
 Aucun compte, aucune télémétrie, aucun appel réseau.
 
-> État : **phase 6 (solveur postflop)** : import Winamax, tracker, replayer, HUD, Equity Lab, ICM, push/fold et solveur. Voir `docs/phase-*.md` et [`CHANGELOG.md`](CHANGELOG.md).
+> État : **phase 7 (ranges et solveur préflop)** : import Winamax, tracker, replayer, HUD, Equity Lab, ICM, push/fold, solveurs postflop et préflop. Voir `docs/phase-*.md` et [`CHANGELOG.md`](CHANGELOG.md).
 
 ## Installer sans compiler
 
@@ -130,6 +130,11 @@ Les structures de gains se saisissent dans le module (`<données>/payouts/*.toml
 Moteur postflop-solver (Discounted CFR) intégré dans `crates/solver/engine`, visionneuse, verrouillage de nœuds,
 cache `<données>/solver-cache/`, batch. Maths : [`docs/solver.md`](docs/solver.md). Mesure : `cargo run --release -p lps-solver --example bench`.
 
+## Préflop
+
+Charts par format dans la bibliothèque de ranges (import / export `.lpsranges`, ranges PioSOLVER acceptées) et solveur préflop
+CFR+ (tête-à-tête exact, approximation jusqu'à 6 joueurs). Maths : [`docs/preflop.md`](docs/preflop.md).
+
 ## Fair-play
 
 C'est un outil d'**étude et de revue**. Aucun module ne donne de conseil en temps réel pendant le jeu.
@@ -147,7 +152,7 @@ AGPL-3.0-or-later. Le solveur s'appuiera sur `postflop-solver`, qui est sous AGP
 100 % local poker suite (tracker + HUD, solver, equity, ICM) for one player on one PC.
 No account, no telemetry, no network calls.
 
-> Status: **phase 6 (postflop solver)**: Winamax import, tracker, replayer, HUD, Equity Lab, ICM, push/fold and solver. See `docs/phase-*.md` and [`CHANGELOG.md`](CHANGELOG.md).
+> Status: **phase 7 (preflop ranges & solver)**: Winamax import, tracker, replayer, HUD, Equity Lab, ICM, push/fold, postflop and preflop solvers. See `docs/phase-*.md` and [`CHANGELOG.md`](CHANGELOG.md).
 
 ### Build and run on Windows 10/11
 

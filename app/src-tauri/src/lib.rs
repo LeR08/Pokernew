@@ -248,6 +248,7 @@ pub fn run(started: Instant) {
             preflop_commands::preflop_solve,
             preflop_commands::ranges_export,
             preflop_commands::ranges_import,
+            preflop_commands::ranges_export_file,
         ])
         .run(tauri::generate_context!())
         .expect("error while running Local Poker Suite");

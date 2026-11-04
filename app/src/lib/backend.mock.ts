@@ -23,6 +23,7 @@ import { mockTracker } from "./backend.mock.tracker";
 import { mockEquity } from "./backend.mock.equity";
 import { mockIcm } from "./backend.mock.icm";
 import { mockSolver } from "./backend.mock.solver";
+import { mockPreflop } from "./backend.mock.preflop";
 import type { StatMeta } from "./tracker";
 
 const rawDefaults = import.meta.glob("../../../config/defaults/**/*.toml", {
@@ -173,6 +174,7 @@ export function createMockBackend(opts: MockOptions = defaultOptions()): Backend
     ...mockEquity(),
     ...mockIcm(),
     ...mockSolver(),
+    ...mockPreflop(),
     async appInfo() {
       return {
         version: "0.1.0-dev",
