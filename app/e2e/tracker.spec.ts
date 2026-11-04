@@ -46,3 +46,20 @@ test("hand list opens the replayer, which plays to the result", async ({ page })
   await expect(page.getByTestId("board").locator("[data-card]")).toHaveCount(5);
   await expect(page.getByTestId("action-log")).toContainText("Résultat");
 });
+
+test("replayer quick filters and previous / next hand", async ({ page }) => {
+  await page.goto("/#/m/replayer");
+  const rows = page.getByTestId("hand-row");
+  await expect(rows.first()).toBeVisible();
+  const all = await rows.count();
+  expect(all).toBeGreaterThan(1);
+  await page.getByTestId("quick-player").fill("zzz-nobody");
+  await expect(rows).toHaveCount(0);
+  await page.getByTestId("quick-player").fill("");
+  await expect(rows).toHaveCount(all);
+  await rows.first().click();
+  await expect(page.getByTestId("prev-hand")).toBeDisabled();
+  await page.getByTestId("next-hand").click();
+  await expect(page).toHaveURL(/#\/m\/replayer\/2$/);
+  await expect(page.getByTestId("prev-hand")).toBeEnabled();
+});

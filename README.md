@@ -6,7 +6,7 @@ Suite poker 100 % locale pour un seul joueur sur un seul PC. Elle remplace un tr
 Hand2Note), un solveur postflop (PioSOLVER, GTO+), un outil d'équité (Equilab, Flopzilla) et un outil ICM (ICMIZER,
 HRC). Aucun compte, aucune télémétrie, aucun appel réseau.
 
-> Version **1.0.0**. Les 10 phases de la feuille de route sont faites, voir `docs/phase-*.md` et [`CHANGELOG.md`](CHANGELOG.md).
+> Version **1.1.0** (retours de la v1.0). Les 10 phases de la feuille de route sont faites, voir `docs/phase-*.md` et [`CHANGELOG.md`](CHANGELOG.md).
 
 ## Les modules
 
@@ -41,7 +41,7 @@ Chaque push construit l'app sur GitHub Actions :
 3. télécharge l'artefact **windows**.
 
 Il contient :
-- `Local Poker Suite_1.0.0_x64-setup.exe` (installeur) et le `.msi` ;
+- `Local Poker Suite_1.1.0_x64-setup.exe` (installeur) et le `.msi` ;
 - `LocalPokerSuite-portable.zip` : à dézipper n'importe où. Les données restent dans `data\` à côté de
   l'exécutable.
 
@@ -146,7 +146,7 @@ AGPL-3.0-or-later. Le moteur de solveur postflop est **postflop-solver** de Wata
 100 % local poker suite for one player on one PC: tracker + HUD, postflop solver, equity tools, ICM / push-fold,
 preflop charts and solver, trainer and hand analysis. No account, no telemetry, no network calls.
 
-> Version **1.0.0**: the 10 roadmap phases are done, see `docs/phase-*.md` and [`CHANGELOG.md`](CHANGELOG.md).
+> Version **1.1.0** (v1.0 feedback): the 10 roadmap phases are done, see `docs/phase-*.md` and [`CHANGELOG.md`](CHANGELOG.md).
 
 ### Modules
 

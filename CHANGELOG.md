@@ -2,6 +2,37 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/). Versions follow the roadmap phases.
 
+## [1.1.0] — 2026-11-04 — Retours de la v1.0 / v1.0 feedback
+
+### HUD
+- Les panneaux sont cliquables sans gêner la table : seul le panneau prend la souris quand le curseur passe dessus, tout le reste laisse passer les clics vers Winamax.
+- Survol = panneau détaillé. **Double-clic = l'app s'ouvre sur la fiche du joueur.** Clic droit = menu (fiche joueur, modifier ce HUD, masquer le HUD de cette table).
+- Taille des panneaux **par format de table** (2 à 10 places) : poignée bleue en mode édition ou boutons − / +, enregistrée dans `hud/*.toml` (`panel_scale`). Les panneaux suivent aussi la taille de la fenêtre de table (`auto_scale`).
+- Format de table choisi à la main pour une table (si le format détecté est faux), depuis la barre d'édition.
+- Masquer le HUD d'une table depuis la table elle-même. Positions par défaut pour 4, 5, 7 et 8 places.
+
+### Tracker
+- Adversaires : bandeau du haut figé, recherche, ↑ / ↓ pour passer d'un joueur à l'autre, fiche joueur et notes figées à droite.
+- **Fiche joueur** : stats contre la moyenne du pool, range estimée d'après ses stats (open, call, 3-bet, VPIP), ouverture dans Equity Lab, enregistrement dans la bibliothèque (`joueurs/<pseudo>/…`). Masquée pendant le jeu (fair-play).
+- Tournois : récapitulatif complet : % ITM, entrées et re-entries, KO, bounties, place moyenne, meilleure place, victoires, top 10 %, plus gros gain, buy-in moyen, et tableaux par type et par tranche de buy-in.
+
+### Replayer & notes
+- Filtres rapides : joueur présent à la table, mains gagnées ou perdues, gain ou perte minimum en bb.
+- Main précédente / suivante dans la liste choisie.
+
+### Bankroll
+- Filtre par compte (transactions, résultats cash et tournois). Les transactions peuvent être liées à un compte.
+
+### Equity Lab
+- La bibliothèque de ranges propose directement les charts prédéfinis (format puis situation) et la range estimée d'un joueur suivi par le tracker.
+
+### Apparence
+- 6 nouveaux thèmes : Océan, Feutre, Bordeaux, Améthyste, Graphite (contraste élevé), Sable (clair). Choix en un clic dans Réglages → Thèmes.
+- Thème **Personnalisé** : bouton « Personnaliser », chaque couleur se règle au sélecteur et s'applique tout de suite.
+
+### Corrigé / Fixed
+- La couleur d'un joueur choisie dans les notes pouvait ne pas être enregistrée.
+
 ## [1.0.0] — 2026-11-04 — Phase 9 : Finitions
 
 ### Ajouté / Added

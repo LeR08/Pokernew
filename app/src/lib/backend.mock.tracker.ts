@@ -66,6 +66,11 @@ export function mockTracker(statsMeta: () => StatMeta[]): Pick<
   | "hudOverlay"
   | "hudSaveSeat"
   | "onHudEvent"
+  | "hudSaveScale"
+  | "hudPanelRects"
+  | "hudSetTableSeats"
+  | "hudOpenPlayer"
+  | "onNavigate"
 > {
   let hudVisible = true;
   let hudEdit = false;
@@ -73,6 +78,9 @@ export function mockTracker(statsMeta: () => StatMeta[]): Pick<
   const hiddenTables = new Set<number>();
   const hudListeners = new Set<(k: "playmode" | "hud-refresh" | "hud-edit" | "hud-status", p: unknown) => void>();
   const savedSeats: Record<string, [number, number][]> = {};
+  const panelScale: Record<string, number> = {};
+  let seatsOverride: number | null = null;
+  const navListeners = new Set<(path: string) => void>();
   const notes = new Map<string, Note[]>();
   const colours = new Map<string, string | null>();
   const txs: Tx[] = [];
@@ -301,22 +309,26 @@ export function mockTracker(statsMeta: () => StatMeta[]): Pick<
         rows: [["vpip", "pfr", "three_bet", "hands"], ["af", "cbet_flop", "fold_to_cbet_flop", "wtsd"]],
         popup: ["vpip", "pfr", "three_bet", "fold_to_3bet", "steal", "wtsd", "af"],
         seats: { "3": savedSeats["3"] ?? [[0.42, 0.74], [0.04, 0.3], [0.78, 0.3]] },
+        panel_scale: { ...panelScale },
+        auto_scale: false,
       };
+      const n = seatsOverride ?? 3;
       const heroSeat = h.players.find((p) => p.is_hero)!.seat;
       return {
         layout,
         layoutId: "standard",
         edit: hudEdit || editTable === 1,
         windowId: 1,
+        seatsOverride,
         stats: stats.filter((m) => layout.rows.flat().includes(m.id) || layout.popup.includes(m.id)),
         table: {
           room: "winamax",
           tableName: h.table_name,
-          maxSeats: h.max_seats,
+          maxSeats: seatsOverride ?? h.max_seats,
           lastHandAt: h.played_at,
           seats: h.players.map((p, i) => ({
             seat: p.seat,
-            slot: (((p.seat - heroSeat) % 3) + 3) % 3,
+            slot: (((p.seat - heroSeat) % n) + n) % n,
             name: p.name,
             isHero: p.is_hero,
             position: p.position,
@@ -332,6 +344,21 @@ export function mockTracker(statsMeta: () => StatMeta[]): Pick<
       const s = savedSeats[String(size)] ?? [[0.42, 0.74], [0.04, 0.3], [0.78, 0.3]];
       s[slot] = [x, y];
       savedSeats[String(size)] = s;
+    },
+    async hudSaveScale(size, scale) {
+      panelScale[String(size)] = Math.round(scale * 100) / 100;
+    },
+    async hudPanelRects() {},
+    async hudSetTableSeats(_id, seats) {
+      seatsOverride = seats;
+      hudListeners.forEach((l) => l("hud-refresh", null));
+    },
+    async hudOpenPlayer(name) {
+      navListeners.forEach((l) => l(`/m/tracker/opponents?player=${encodeURIComponent(name)}`));
+    },
+    onNavigate(cb) {
+      navListeners.add(cb);
+      return () => navListeners.delete(cb);
     },
     onHudEvent(cb) {
       hudListeners.add(cb);

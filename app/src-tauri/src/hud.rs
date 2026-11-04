@@ -72,6 +72,12 @@ struct Inner {
     windows: Vec<WindowInfo>,
     edit_table: Option<u64>,
     hidden: HashSet<u64>,
+    /// Clickable areas of each overlay (physical px, relative to the overlay).
+    panels: HashMap<u64, Vec<[f64; 4]>>,
+    /// Overlays currently taking the mouse because the cursor is over a panel.
+    captured: HashSet<u64>,
+    /// Table size chosen by hand for one table (when the detected one is wrong).
+    seats_override: HashMap<u64, u8>,
 }
 
 impl Inner {
@@ -122,9 +128,14 @@ impl HudService {
             }
         });
         let svc2 = svc.clone();
+        let app2 = app.clone();
         let _ = std::thread::Builder::new()
             .name("lps-hud".into())
             .spawn(move || svc2.run(app, rx));
+        let svc3 = svc.clone();
+        let _ = std::thread::Builder::new()
+            .name("lps-hud-cursor".into())
+            .spawn(move || svc3.cursor_loop(app2));
         svc
     }
 
@@ -149,6 +160,92 @@ impl HudService {
             }
             self.refresh(&app, data);
         }
+    }
+
+    /// Overlays are click-through, except over their panels: every 40 ms the
+    /// cursor is compared with the panel rectangles each overlay reported, and
+    /// the overlay takes the mouse only while the cursor is over one of them
+    /// (so a panel can be double-clicked or right-clicked, like other HUDs).
+    fn cursor_loop(&self, app: AppHandle) {
+        loop {
+            std::thread::sleep(Duration::from_millis(40));
+            let todo: Vec<(u64, bool)> = {
+                let Ok(mut i) = self.inner.lock() else {
+                    return;
+                };
+                if i.panels.is_empty() && i.captured.is_empty() {
+                    continue;
+                }
+                let Ok(cur) = app.cursor_position() else {
+                    continue;
+                };
+                let mut out = vec![];
+                let ids: Vec<u64> = i
+                    .matches
+                    .iter()
+                    .map(|m| m.window.id)
+                    .filter(|id| !i.editing(*id))
+                    .collect();
+                for id in ids {
+                    let Some((_, _, r)) = i.overlays.get(&overlay_label(id)) else {
+                        continue;
+                    };
+                    let (lx, ly) = (cur.x - r.x as f64, cur.y - r.y as f64);
+                    let inside = i.panels.get(&id).is_some_and(|ps| {
+                        ps.iter().any(|p| {
+                            lx >= p[0] && ly >= p[1] && lx <= p[0] + p[2] && ly <= p[1] + p[3]
+                        })
+                    });
+                    if inside != i.captured.contains(&id) {
+                        if inside {
+                            i.captured.insert(id);
+                        } else {
+                            i.captured.remove(&id);
+                        }
+                        out.push((id, inside));
+                    }
+                }
+                out
+            };
+            for (id, inside) in todo {
+                if let Some(w) = app.get_webview_window(&overlay_label(id)) {
+                    let _ = w.set_ignore_cursor_events(!inside);
+                }
+            }
+        }
+    }
+
+    /// The overlay reports where its panels are (CSS px; converted here).
+    pub fn set_panels(&self, app: &AppHandle, window_id: u64, rects: Vec<[f64; 4]>) {
+        let scale = app
+            .get_webview_window(&overlay_label(window_id))
+            .and_then(|w| w.scale_factor().ok())
+            .unwrap_or(1.0);
+        if let Ok(mut i) = self.inner.lock() {
+            let phys = rects
+                .into_iter()
+                .map(|r| [r[0] * scale, r[1] * scale, r[2] * scale, r[3] * scale])
+                .collect();
+            i.panels.insert(window_id, phys);
+        }
+    }
+
+    /// Table size chosen by hand for one table (None = detected size).
+    pub fn set_seats_override(&self, app: &AppHandle, window_id: u64, seats: Option<u8>) {
+        if let Ok(mut i) = self.inner.lock() {
+            match seats {
+                Some(n) => i.seats_override.insert(window_id, n.clamp(2, 10)),
+                None => i.seats_override.remove(&window_id),
+            };
+        }
+        let _ = app.emit("hud://refresh", ());
+    }
+
+    pub fn seats_override(&self, window_id: u64) -> Option<u8> {
+        self.inner
+            .lock()
+            .ok()
+            .and_then(|i| i.seats_override.get(&window_id).copied())
     }
 
     fn rules(state: &AppState) -> Vec<RoomRules> {
@@ -256,6 +353,13 @@ impl HudService {
                 let _ = w.close();
             }
             inner.overlays.remove(&label);
+            if let Some(id) = label
+                .strip_prefix("hud-")
+                .and_then(|x| x.parse::<u64>().ok())
+            {
+                inner.panels.remove(&id);
+                inner.captured.remove(&id);
+            }
         }
         for m in wanted {
             let editing = inner.editing(m.window.id);
@@ -378,11 +482,13 @@ impl HudService {
 
     fn apply_edit(&self, app: &AppHandle) {
         let states: Vec<(String, bool)> = match self.inner.lock() {
-            Ok(i) => i
-                .matches
-                .iter()
-                .map(|m| (overlay_label(m.window.id), i.editing(m.window.id)))
-                .collect(),
+            Ok(mut i) => {
+                i.captured.clear();
+                i.matches
+                    .iter()
+                    .map(|m| (overlay_label(m.window.id), i.editing(m.window.id)))
+                    .collect()
+            }
             Err(_) => return,
         };
         for (l, editing) in states {

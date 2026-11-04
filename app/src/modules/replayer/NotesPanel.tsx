@@ -34,7 +34,10 @@ export function NotesPanel({ room, name }: { room: string; name: string }) {
           className="w-32"
           aria-label={t("notes.colour")}
           value={data?.colour ?? ""}
-          onChange={(e) => void getBackend().then((b) => b.playerColour(room, name, e.target.value || null)).then(refresh)}
+          onChange={(e) => {
+            const c = e.target.value || null;
+            void getBackend().then((b) => b.playerColour(room, name, c)).then(refresh);
+          }}
         >
           {COLOURS.map((c) => (
             <option key={c} value={c}>

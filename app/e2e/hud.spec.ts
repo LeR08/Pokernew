@@ -57,3 +57,27 @@ test("show my own HUD panel", async ({ page }) => {
   await box.uncheck();
   await expect(box).not.toBeChecked();
 });
+
+test("HUD overlay: panel size and table format in edit mode", async ({ page }) => {
+  await page.goto("/#/m/hud");
+  await page.getByTestId("hud-table-edit").click();
+  await page.goto("/#/hud/1");
+  await expect(page.getByTestId("hud-scale")).toHaveText("100 %");
+  await page.getByTestId("hud-bigger").click();
+  await expect(page.getByTestId("hud-scale")).toHaveText("110 %");
+  await page.getByTestId("hud-format").selectOption("6");
+  await expect(page.getByTestId("hud-format")).toHaveValue("6");
+  await expect(page.getByTestId("hud-panel")).toHaveCount(2);
+});
+
+test("HUD overlay: right-click menu and double-click open the player sheet", async ({ page }) => {
+  await page.goto("/#/hud/1");
+  const panel = page.getByTestId("hud-panel").first();
+  await panel.click({ button: "right" });
+  await expect(page.getByTestId("hud-menu")).toBeVisible();
+  await expect(page.getByTestId("hud-menu-hide")).toContainText("Masquer le HUD de cette table");
+  await page.mouse.click(5, 5);
+  await expect(page.getByTestId("hud-menu")).toHaveCount(0);
+  await panel.dblclick();
+  await expect(page).toHaveURL(/#\/m\/tracker\/opponents\?player=/);
+});

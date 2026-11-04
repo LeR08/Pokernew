@@ -133,6 +133,11 @@ export function createTauriBackend(): Backend {
     hudSetTableHidden: (windowId, hidden) => call("hud_set_table_hidden", { windowId, hidden }),
     hudOverlay: (windowId) => call<OverlayData>("hud_overlay", { windowId }),
     hudSaveSeat: (tableSize, slot, x, y) => call("hud_save_seat", { tableSize, slot, x, y }),
+    hudSaveScale: (tableSize, scale) => call("hud_save_scale", { tableSize, scale }),
+    hudPanelRects: (windowId, rects) => call("hud_panel_rects", { windowId, rects }),
+    hudSetTableSeats: (windowId, seats) => call("hud_set_table_seats", { windowId, seats }),
+    hudOpenPlayer: (name) => call("hud_open_player", { name }),
+    onNavigate: (cb) => subscribe<string>("app://navigate", cb),
     onHudEvent(cb) {
       const offs = [
         subscribe<boolean>("playmode://changed", (p) => cb("playmode", p)),

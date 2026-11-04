@@ -32,3 +32,13 @@ Statut : **implémentée — à tester sur ton PC**
 - La comparaison du solveur postflop avec TexasSolver sur les 5 spots préparés (phase 6). Il faut soit ton accord
   pour le compiler et le lancer ici, soit tes résultats faits sur ton PC.
 - Winamax Go Fast : il manque des fichiers d'exemple.
+
+## v1.1 : retours de la v1.0
+
+- **HUD cliquable** : chaque overlay envoie au backend les rectangles de ses panneaux (`hud_panel_rects`). Toutes les 40 ms, un fil compare la position du curseur à ces rectangles. L'overlay ne prend la souris (`set_ignore_cursor_events(false)`) que lorsque le curseur est sur un panneau. Le reste de la fenêtre laisse toujours passer les clics vers la table.
+- **Double-clic** : `hud_open_player` remet la fenêtre principale au premier plan et lui envoie `app://navigate` vers `/m/tracker/opponents?player=<pseudo>`.
+- **Taille par format** : `panel_scale."<places>"` dans `hud/*.toml`, multipliée par `font_scale` et, si `auto_scale`, par la largeur de la fenêtre de table divisée par 900 px (bornée entre 0,6 et 1,6).
+- **Format manuel** : `hud_set_table_seats` impose une taille de table à une fenêtre (en mémoire). Les slots sont alors recalculés.
+- **Filtres** : `Filter.withPlayer`, `result` (`won` / `lost`), `minBb`.
+- **Bankroll par compte** : migration v7 (`bankroll_tx.account`).
+- **Thèmes** : 6 préréglages et `custom.toml` dans `config/defaults/themes/`, galerie dans Réglages → Thèmes.

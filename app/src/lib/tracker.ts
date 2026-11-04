@@ -418,6 +418,9 @@ export interface HudLayout {
   name: string;
   opacity?: number;
   font_scale?: number;
+  auto_scale?: boolean;
+  /** Panel size per table size ("6", "9"…). */
+  panel_scale?: Record<string, number>;
   show_hero?: boolean;
   min_hands?: number;
   rows: string[][];
@@ -432,4 +435,5 @@ export interface OverlayData {
   edit: boolean;
   windowId: number;
   stats: StatMeta[];
+  seatsOverride?: number | null;
 }

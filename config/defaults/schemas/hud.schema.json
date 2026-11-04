@@ -27,6 +27,20 @@
       "minimum": 0.6,
       "maximum": 2
     },
+    "auto_scale": {
+      "title": "schema.hud.auto_scale",
+      "type": "boolean"
+    },
+    "panel_scale": {
+      "title": "schema.hud.panel_scale",
+      "type": "object",
+      "x-widget": "hidden",
+      "additionalProperties": {
+        "type": "number",
+        "minimum": 0.5,
+        "maximum": 2.5
+      }
+    },
     "show_hero": {
       "title": "schema.hud.show_hero",
       "type": "boolean"

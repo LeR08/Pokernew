@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from "react";
-import { HashRouter, Navigate, Route, Routes } from "react-router-dom";
+import { HashRouter, Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useConfigEvents } from "@/lib/config";
 import { getBackend, type ConfigEvent } from "@/lib/backend";
@@ -13,6 +13,23 @@ import { HudOverlay } from "@/hud/HudOverlay";
 import { usePlayModeSync } from "@/stores/playMode";
 
 let readySent = false;
+
+/** Routes asked by the backend (e.g. a HUD double-click opens a player's sheet). */
+function NavigateListener() {
+  const navigate = useNavigate();
+  useEffect(() => {
+    let off: (() => void) | undefined;
+    let alive = true;
+    void getBackend().then((b) => {
+      if (alive) off = b.onNavigate((path) => navigate(path));
+    });
+    return () => {
+      alive = false;
+      off?.();
+    };
+  }, [navigate]);
+  return null;
+}
 
 function Root() {
   const onEvent = useCallback((e: ConfigEvent) => {
@@ -30,6 +47,7 @@ function Root() {
     <>
       <AppearanceSync />
       <HashRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+        <NavigateListener />
         <Routes>
           <Route element={<AppShell />}>
             <Route index element={<Launcher />} />

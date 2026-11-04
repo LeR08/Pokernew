@@ -295,7 +295,11 @@ mod tests {
     fn settings_and_last_file_cannot_be_deleted() {
         let (_tmp, s) = state();
         assert!(logic::delete(&s, "settings", "settings").is_err());
-        logic::delete(&s, "themes", "light").unwrap();
+        for id in s.store.list("themes") {
+            if id != "dark" {
+                logic::delete(&s, "themes", &id).unwrap();
+            }
+        }
         assert!(logic::delete(&s, "themes", "dark").is_err());
     }
 

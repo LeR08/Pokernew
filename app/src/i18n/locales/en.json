@@ -222,7 +222,9 @@
       "min_hands": "Dim under N hands",
       "rows": "Rows",
       "popup": "Popup",
-      "seats": "Positions"
+      "seats": "Positions",
+      "auto_scale": "Scale with the table size",
+      "panel_scale": "Panel size per table size"
     },
     "payouts": {
       "title": "Payout structures",
@@ -757,7 +759,13 @@
     "table_done": "Done",
     "table_hide": "Hide",
     "table_show": "Show",
-    "edit_bar": "Editing the HUD: drag the panels into place"
+    "edit_bar": "Editing the HUD: drag the panels, blue corner = size",
+    "popup_help": "Double-click: player sheet · right-click: menu",
+    "menu_sheet": "Open the player sheet",
+    "menu_hide": "Hide this table's HUD",
+    "format": "Format",
+    "format_auto": "Detected",
+    "size": "Size"
   },
   "playmode": {
     "title": "Locked while playing",

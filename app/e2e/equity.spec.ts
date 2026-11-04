@@ -61,7 +61,6 @@ test("range library: save and load", async ({ page }) => {
   await page.goto("/#/m/equity/calc");
   await page.getByTestId("player-edit").nth(1).click();
   const ed = page.getByTestId("range-editor");
-  await ed.getByTestId("range-library").locator("summary").click();
   await ed.getByTestId("range-text").fill("QQ+,AKs");
   await ed.getByTestId("range-lib-name").fill("6max/100bb/BTN_3bet");
   await ed.getByTestId("range-lib-save").click();

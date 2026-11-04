@@ -2,10 +2,12 @@
  * The overlay drawn over one poker table (a transparent, always-on-top,
  * click-through window). It only shows **historical** stats from imported
  * hands — never advice, equity or ranges for the current hand (fair-play).
- * In edit mode the window takes the mouse: panels can be dragged (positions
- * saved to the layout file) and hovering a panel opens its detail popup.
+ * Outside edit mode only the panels take the mouse (the backend follows the
+ * cursor over the rectangles reported here): hover = detail popup,
+ * double-click = the player's sheet in the app, right-click = a small menu.
+ * In edit mode panels can be dragged and resized (corner handle), per table size.
  */
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { getBackend } from "@/lib/backend";
@@ -28,17 +30,25 @@ function Panel({
   seat,
   data,
   pos,
+  scale,
   onMove,
+  onResize,
+  onMenu,
 }: {
   seat: HudSeat;
   data: OverlayData;
   pos: [number, number];
+  scale: number;
   onMove: (x: number, y: number) => void;
+  /** Live (done = false) then final (done = true) panel scale. */
+  onResize: (factor: number, done: boolean) => void;
+  onMenu: (seat: HudSeat, x: number, y: number) => void;
 }) {
   const { t } = useTranslation();
   const [drag, setDrag] = useState<{ dx: number; dy: number } | null>(null);
   const [live, setLive] = useState<[number, number] | null>(null);
   const [hover, setHover] = useState(false);
+  const [resize, setResize] = useState<{ x: number; w: number } | null>(null);
   const ref = useRef<HTMLDivElement>(null);
   const L = data.layout;
   const meta = (id: string): StatMeta | undefined => data.stats.find((s) => s.id === id);
@@ -50,11 +60,12 @@ function Panel({
     <div
       ref={ref}
       className="absolute select-none rounded px-1 py-0.5 font-mono leading-tight text-white"
+      data-hud-hit
       style={{
         left: `${x * 100}%`,
         top: `${y * 100}%`,
         background: `rgba(10,12,16,${L.opacity ?? 0.85})`,
-        fontSize: `${11 * (L.font_scale ?? 1)}px`,
+        fontSize: `${11 * scale}px`,
         outline: data.edit ? "1px dashed #3987e5" : undefined,
         cursor: data.edit ? "move" : "default",
       }}
@@ -62,8 +73,15 @@ function Panel({
       data-slot={seat.slot}
       onPointerEnter={() => setHover(true)}
       onPointerLeave={() => setHover(false)}
+      onDoubleClick={() => {
+        if (!data.edit) void getBackend().then((b) => b.hudOpenPlayer(seat.name));
+      }}
+      onContextMenu={(e) => {
+        e.preventDefault();
+        onMenu(seat, e.clientX, e.clientY);
+      }}
       onPointerDown={(e) => {
-        if (!data.edit || !ref.current) return;
+        if (!data.edit || !ref.current || e.button !== 0) return;
         const r = ref.current.getBoundingClientRect();
         setDrag({ dx: e.clientX - r.left, dy: e.clientY - r.top });
         ref.current.setPointerCapture(e.pointerId);
@@ -99,8 +117,31 @@ function Panel({
           </div>
         ))}
       </div>
-      {hover && data.edit && !drag && (
-        <div className="absolute left-full top-0 z-10 ml-1 min-w-48 rounded bg-[rgba(10,12,16,0.95)] p-1.5 font-sans text-[11px]" data-testid="hud-popup">
+      {data.edit && (
+        <div
+          className="absolute -bottom-1 -right-1 h-3 w-3 cursor-nwse-resize rounded-sm bg-[#3987e5]"
+          data-testid="hud-resize"
+          onPointerDown={(e) => {
+            e.stopPropagation();
+            if (!ref.current) return;
+            setResize({ x: e.clientX, w: ref.current.getBoundingClientRect().width });
+            e.currentTarget.setPointerCapture(e.pointerId);
+          }}
+          onPointerMove={(e) => {
+            if (resize) onResize(Math.max(0.4, (resize.w + e.clientX - resize.x) / resize.w), false);
+          }}
+          onPointerUp={(e) => {
+            if (resize) onResize(Math.max(0.4, (resize.w + e.clientX - resize.x) / resize.w), true);
+            setResize(null);
+          }}
+        />
+      )}
+      {hover && !drag && !resize && (
+        <div
+          className="absolute left-full top-0 z-10 ml-1 min-w-48 rounded bg-[rgba(10,12,16,0.95)] p-1.5 font-sans text-[11px]"
+          data-testid="hud-popup"
+          data-hud-hit
+        >
           <div className="mb-1 font-semibold">
             {seat.name} · {t("hud.hands_n", { n: seat.hands })}
           </div>
@@ -120,6 +161,7 @@ function Panel({
               {n}
             </div>
           ))}
+          {!data.edit && <div className="mt-1 text-[10px] text-[#898781]">{t("hud.popup_help")}</div>}
         </div>
       )}
     </div>
@@ -161,28 +203,149 @@ export function HudOverlay() {
     return () => off?.();
   }, [load]);
 
+  // Report the clickable areas (panels, popup, menu, edit bar) after each render.
+  const root = useRef<HTMLDivElement>(null);
+  const lastRects = useRef("");
+  useLayoutEffect(() => {
+    if (!root.current) return;
+    const rects = Array.from(root.current.querySelectorAll("[data-hud-hit]")).map((el) => {
+      const r = el.getBoundingClientRect();
+      return [Math.round(r.left), Math.round(r.top), Math.round(r.width), Math.round(r.height)] as [number, number, number, number];
+    });
+    const key = JSON.stringify(rects);
+    if (key === lastRects.current) return;
+    lastRects.current = key;
+    void getBackend().then((b) => b.hudPanelRects(windowId, rects));
+  });
+  const [menu, setMenu] = useState<{ seat: HudSeat; x: number; y: number } | null>(null);
+  const [liveScale, setLiveScale] = useState<number | null>(null);
+  const [width, setWidth] = useState(() => window.innerWidth);
+  useEffect(() => {
+    const on = () => setWidth(window.innerWidth);
+    window.addEventListener("resize", on);
+    return () => window.removeEventListener("resize", on);
+  }, []);
+
   if (!data?.table) return null;
   const n = data.table.maxSeats;
-  const positions = data.layout.seats[String(n)] ?? [];
+  const L = data.layout;
+  const positions = L.seats[String(n)] ?? [];
+  const sizeScale = liveScale ?? L.panel_scale?.[String(n)] ?? 1;
+  // Auto: panels follow the table window (reference 900 px wide).
+  const auto = L.auto_scale === false ? 1 : Math.min(1.6, Math.max(0.6, width / 900));
+  const scale = (L.font_scale ?? 1) * sizeScale * auto;
   const save = (slot: number) => (x: number, y: number) =>
     void getBackend()
       .then((b) => b.hudSaveSeat(n, slot, x, y))
       .then(load);
+  const saveScale = (v: number) =>
+    void getBackend()
+      .then((b) => b.hudSaveScale(n, Math.min(2.5, Math.max(0.5, v))))
+      .then(load)
+      .then(() => setLiveScale(null));
+  const onResize = (factor: number, done: boolean) => {
+    const base = L.panel_scale?.[String(n)] ?? 1;
+    const v = Math.min(2.5, Math.max(0.5, Math.round(base * factor * 100) / 100));
+    if (done) saveScale(v);
+    else setLiveScale(v);
+  };
+  const hideTable = () => void getBackend().then((b) => b.hudSetTableHidden(windowId, true));
+  const btn = "rounded bg-white px-2 py-0.5 font-semibold text-[#1a1a19]";
   return (
-    <div className="fixed inset-0" data-testid="hud-overlay" style={{ outline: data.edit ? "2px solid #3987e5" : undefined }}>
+    <div
+      ref={root}
+      className="fixed inset-0"
+      data-testid="hud-overlay"
+      style={{ outline: data.edit ? "2px solid #3987e5" : undefined }}
+      onPointerDown={(e) => {
+        if (menu && !(e.target as HTMLElement).closest("[data-hud-menu]")) setMenu(null);
+      }}
+    >
       {data.table.seats
-        .filter((s) => !s.isHero || data.layout.show_hero)
+        .filter((s) => !s.isHero || L.show_hero)
         .map((s) => (
-          <Panel key={s.seat} seat={s} data={data} pos={positions[s.slot] ?? defaultPos(s.slot, n)} onMove={save(s.slot)} />
+          <Panel
+            key={s.seat}
+            seat={s}
+            data={data}
+            scale={scale}
+            pos={positions[s.slot] ?? defaultPos(s.slot, n)}
+            onMove={save(s.slot)}
+            onResize={onResize}
+            onMenu={(seat, x, y) => setMenu({ seat, x, y })}
+          />
         ))}
+      {menu && (
+        <div
+          className="absolute z-20 flex min-w-44 flex-col rounded bg-[rgba(10,12,16,0.97)] py-1 font-sans text-xs text-white shadow"
+          style={{ left: Math.min(menu.x, width - 180), top: menu.y }}
+          data-hud-hit
+          data-hud-menu
+          data-testid="hud-menu"
+          onPointerLeave={() => setMenu(null)}
+        >
+          <div className="px-2 py-1 font-semibold">{menu.seat.name}</div>
+          {[
+            ["sheet", t("hud.menu_sheet"), () => void getBackend().then((b) => b.hudOpenPlayer(menu.seat.name))],
+            ["edit", t("hud.table_edit"), () => void getBackend().then((b) => b.hudSetEditTable(windowId))],
+            ["hide", t("hud.menu_hide"), hideTable],
+          ].map(([k, label, run]) => (
+            <button
+              key={k as string}
+              className="px-2 py-1 text-left hover:bg-[#3987e5]"
+              data-testid={`hud-menu-${k as string}`}
+              onClick={() => {
+                setMenu(null);
+                (run as () => void)();
+              }}
+            >
+              {label as string}
+            </button>
+          ))}
+        </div>
+      )}
       {data.edit && (
-        <div className="absolute left-1/2 top-1 flex -translate-x-1/2 items-center gap-2 rounded bg-[#3987e5] px-2 py-1 text-xs text-white shadow" data-testid="hud-edit-bar">
+        <div
+          className="absolute left-1/2 top-1 flex -translate-x-1/2 flex-wrap items-center gap-2 rounded bg-[#3987e5] px-2 py-1 text-xs text-white shadow"
+          data-testid="hud-edit-bar"
+          data-hud-hit
+        >
           {t("hud.edit_bar")}
-          <button
-            className="rounded bg-white px-2 py-0.5 font-semibold text-[#1a1a19]"
-            data-testid="hud-edit-done"
-            onClick={() => void getBackend().then((b) => b.hudSetEditTable(null))}
-          >
+          <label className="flex items-center gap-1">
+            {t("hud.format")}
+            <select
+              className="rounded px-1 text-[#1a1a19]"
+              value={data.seatsOverride ?? ""}
+              data-testid="hud-format"
+              onChange={(e) => {
+                const v = e.target.value ? Number(e.target.value) : null;
+                void getBackend().then((b) => b.hudSetTableSeats(windowId, v));
+              }}
+            >
+              <option value="">{t("hud.format_auto")}</option>
+              {[2, 3, 4, 5, 6, 7, 8, 9, 10].map((k) => (
+                <option key={k} value={k}>
+                  {t("hud.max", { n: k })}
+                </option>
+              ))}
+            </select>
+          </label>
+          <span className="flex items-center gap-1">
+            {t("hud.size")}
+            <button className={btn} data-testid="hud-smaller" onClick={() => saveScale(sizeScale - 0.1)}>
+              −
+            </button>
+            <span className="tabular-nums" data-testid="hud-scale">
+              {Math.round(sizeScale * 100)} %
+            </span>
+            <button className={btn} data-testid="hud-bigger" onClick={() => saveScale(sizeScale + 0.1)}>
+              +
+            </button>
+          </span>
+          <button className={btn} data-testid="hud-edit-hide" onClick={hideTable}>
+            {t("hud.table_hide")}
+          </button>
+          <button className={btn} data-testid="hud-edit-done" onClick={() => void getBackend().then((b) => b.hudSetEditTable(null))}>
             {t("hud.table_done")}
           </button>
         </div>

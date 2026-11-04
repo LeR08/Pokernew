@@ -195,6 +195,16 @@ export interface Backend {
   hudSetTableHidden(windowId: number, hidden: boolean): Promise<void>;
   hudOverlay(windowId: number): Promise<OverlayData>;
   hudSaveSeat(tableSize: number, slot: number, x: number, y: number): Promise<void>;
+  /** Panel size for one table size, saved in the active layout. */
+  hudSaveScale(tableSize: number, scale: number): Promise<void>;
+  /** Clickable areas of an overlay (CSS px [x, y, w, h], relative to the overlay). */
+  hudPanelRects(windowId: number, rects: [number, number, number, number][]): Promise<void>;
+  /** Table size chosen by hand for one table (null = detected). */
+  hudSetTableSeats(windowId: number, seats: number | null): Promise<void>;
+  /** Brings the main window up on a player's sheet. */
+  hudOpenPlayer(name: string): Promise<void>;
+  /** The main window is asked to show a route (e.g. from a HUD double-click). */
+  onNavigate(cb: (path: string) => void): () => void;
   /** "playmode" (bool), "hud-refresh", "hud-edit" (bool), "hud-status". */
   onHudEvent(cb: (kind: "playmode" | "hud-refresh" | "hud-edit" | "hud-status", payload: unknown) => void): () => void;
   /** Writes a CSV file in <data>/exports; returns its path. */
