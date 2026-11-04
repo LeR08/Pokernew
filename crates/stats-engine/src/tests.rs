@@ -334,7 +334,7 @@ fn bankroll_adds_movements_cash_and_tournaments() {
             at: 1_700_000_000,
             kind: "deposit".into(),
             amount_cents: 2000,
-            note: String::new(),
+            note: String::new(), account: None,
         },
     )
     .unwrap();
@@ -383,6 +383,15 @@ fn advanced_filters() {
         })
         .sum();
     assert_eq!(pots, all, "pot types partition the hands");
+    let won = n(Filter { result: Some("won".into()), ..Default::default() });
+    let lost = n(Filter { result: Some("lost".into()), ..Default::default() });
+    assert!(won > 0 && lost > 0 && won + lost <= all);
+    let big = n(Filter { min_bb: Some(10.0), ..Default::default() });
+    assert!(big < all);
+    // a name that is at many tables: present in some hands, never more than all
+    let some = n(Filter { with_player: Some("a".into()), ..Default::default() });
+    assert!(some > 0 && some <= all);
+    assert_eq!(n(Filter { with_player: Some("no-such-player-%_".into()), ..Default::default() }), 0);
     let short = n(Filter {
         stack_max: Some(20.0),
         ..Default::default()

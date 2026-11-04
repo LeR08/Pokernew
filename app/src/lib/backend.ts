@@ -177,7 +177,8 @@ export interface Backend {
   noteAdd(room: string, name: string, text: string): Promise<number>;
   noteDelete(id: number): Promise<void>;
   playerColour(room: string, name: string, colour: string | null): Promise<void>;
-  bankrollGet(): Promise<Bankroll>;
+  /** `account`: one hero account, or every account when empty. */
+  bankrollGet(account?: string | null): Promise<Bankroll>;
   bankrollTxList(): Promise<Tx[]>;
   bankrollTxAdd(tx: Tx): Promise<number>;
   bankrollTxDelete(id: number): Promise<void>;

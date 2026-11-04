@@ -110,11 +110,14 @@ pub struct Tx {
     pub amount_cents: i64,
     #[serde(default)]
     pub note: String,
+    /// Hero account (screen name); None = every account.
+    #[serde(default)]
+    pub account: Option<String>,
 }
 
 pub fn list_tx(conn: &Connection) -> Result<Vec<Tx>, DbError> {
     let mut st = conn.prepare(
-        "SELECT id, room, at, kind, amount_cents, note FROM bankroll_tx ORDER BY at DESC, id DESC",
+        "SELECT id, room, at, kind, amount_cents, note, account FROM bankroll_tx ORDER BY at DESC, id DESC",
     )?;
     let rows = st.query_map([], |r| {
         Ok(Tx {
@@ -124,6 +127,7 @@ pub fn list_tx(conn: &Connection) -> Result<Vec<Tx>, DbError> {
             kind: r.get(3)?,
             amount_cents: r.get(4)?,
             note: r.get(5)?,
+            account: r.get(6)?,
         })
     })?;
     Ok(rows.collect::<Result<_, _>>()?)
@@ -134,8 +138,8 @@ pub fn add_tx(conn: &Connection, tx: &Tx) -> Result<i64, DbError> {
         return Err(DbError::Other("amount must be positive".into()));
     }
     conn.execute(
-        "INSERT INTO bankroll_tx (room, at, kind, amount_cents, note) VALUES (?, ?, ?, ?, ?)",
-        params![tx.room, tx.at, tx.kind, tx.amount_cents, tx.note],
+        "INSERT INTO bankroll_tx (room, at, kind, amount_cents, note, account) VALUES (?, ?, ?, ?, ?, ?)",
+        params![tx.room, tx.at, tx.kind, tx.amount_cents, tx.note, tx.account.as_deref().filter(|a| !a.is_empty())],
     )?;
     Ok(conn.last_insert_rowid())
 }
@@ -185,7 +189,7 @@ mod tests {
             at: 1,
             kind: "deposit".into(),
             amount_cents: 5000,
-            note: String::new(),
+            note: String::new(), account: None,
         };
         add_tx(&conn, &dep).unwrap();
         add_tx(

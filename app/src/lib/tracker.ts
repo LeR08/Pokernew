@@ -87,6 +87,20 @@ export interface TournamentRow {
   finishPosition: number | null;
   registeredPlayers: number | null;
   netBb: number;
+  kind: string | null;
+  prizeCents: number | null;
+  bountyCents: number | null;
+  knockouts: number;
+}
+
+export interface TournamentGroup {
+  key: string;
+  tournaments: number;
+  costCents: number;
+  wonCents: number;
+  profitCents: number;
+  roi: number | null;
+  itm: number | null;
 }
 
 export interface TournamentTotals {
@@ -99,6 +113,18 @@ export interface TournamentTotals {
   itm: number | null;
   curveEur: number[];
   curveT: number[];
+  entries: number;
+  reentries: number;
+  bountiesCents: number;
+  knockouts: number;
+  avgFinishPct: number | null;
+  bestFinish: [number, number] | null;
+  wins: number;
+  top10: number;
+  avgBuyInCents: number | null;
+  biggestCashCents: number;
+  byKind: TournamentGroup[];
+  byBuyIn: TournamentGroup[];
 }
 
 export interface TournamentsResponse {
@@ -290,6 +316,8 @@ export interface Tx {
   kind: "deposit" | "withdrawal" | "bonus" | "adjustment";
   amountCents: number;
   note: string;
+  /** Hero account; empty = every account. */
+  account?: string | null;
 }
 
 export interface Bankroll {

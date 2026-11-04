@@ -19,8 +19,11 @@ export function BankrollPage({ manifest }: { manifest: ModuleManifest }) {
   const { t, i18n } = useTranslation();
   const lang = i18n.language;
   const qc = useQueryClient();
-  const b = useQuery({ queryKey: ["db", "bankroll"], queryFn: async () => (await getBackend()).bankrollGet() }).data;
-  const txs = useQuery({ queryKey: ["db", "bankroll-tx"], queryFn: async () => (await getBackend()).bankrollTxList() }).data ?? [];
+  const [account, setAccount] = useState("");
+  const accounts = useQuery({ queryKey: ["db", "accounts"], queryFn: async () => (await getBackend()).trackerAccounts() }).data ?? [];
+  const b = useQuery({ queryKey: ["db", "bankroll", account], queryFn: async () => (await getBackend()).bankrollGet(account || null) }).data;
+  const allTxs = useQuery({ queryKey: ["db", "bankroll-tx"], queryFn: async () => (await getBackend()).bankrollTxList() }).data ?? [];
+  const txs = account ? allTxs.filter((x) => x.account === account) : allTxs;
   const [kind, setKind] = useState<Tx["kind"]>("deposit");
   const [amount, setAmount] = useState("");
   const [date, setDate] = useState(() => new Date().toISOString().slice(0, 10));
@@ -30,7 +33,7 @@ export function BankrollPage({ manifest }: { manifest: ModuleManifest }) {
 
   const add = async () => {
     if (!valid) return;
-    await (await getBackend()).bankrollTxAdd({ room: "winamax", at: Math.floor(new Date(date).getTime() / 1000), kind, amountCents: cents, note });
+    await (await getBackend()).bankrollTxAdd({ room: "winamax", at: Math.floor(new Date(date).getTime() / 1000), kind, amountCents: cents, note, account: account || null });
     setAmount("");
     setNote("");
     await qc.invalidateQueries({ queryKey: ["db"] });
@@ -49,6 +52,17 @@ export function BankrollPage({ manifest }: { manifest: ModuleManifest }) {
     <div className="mx-auto flex max-w-6xl flex-col gap-d4 p-d6">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-semibold">{t(manifest.name)}</h1>
+        <label className="ml-auto mr-d4 flex items-center gap-d2 text-sm">
+          {t("bankroll.account")}
+          <Select className="w-48" value={account} onChange={(e) => setAccount(e.target.value)} data-testid="bankroll-account">
+            <option value="">{t("tracker.all_accounts")}</option>
+            {accounts.map((a) => (
+              <option key={a} value={a}>
+                {a}
+              </option>
+            ))}
+          </Select>
+        </label>
         <Link className="text-sm text-primary underline" to="/m/tracker/sessions">
           {t("bankroll.see_sessions")}
         </Link>
@@ -125,6 +139,7 @@ export function BankrollPage({ manifest }: { manifest: ModuleManifest }) {
                   {euros(x.amountCents, lang, false)}
                 </span>
                 <span className="flex-1 truncate text-muted">{x.note}</span>
+                {x.account && <span className="text-xs text-muted">{x.account}</span>}
                 <Button variant="ghost" size="icon" aria-label={t("settings.delete")} onClick={() => void del(x.id!)}>
                   <Trash2 className="h-4 w-4" />
                 </Button>

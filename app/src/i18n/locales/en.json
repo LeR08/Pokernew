@@ -440,7 +440,39 @@
     "exported": "Exported: {{path}}",
     "csv": "CSV",
     "icm_review": "Push/fold review",
-    "analyse_hands": "Analyse against the solver"
+    "analyse_hands": "Analyse against the solver",
+    "perf": {
+      "title": "Performance recap",
+      "itm": "ITM",
+      "entries": "Buy-ins",
+      "reentries": "{{n}} re-entries",
+      "knockouts": "Players knocked out",
+      "bounties": "Bounties won",
+      "avg_finish": "Average finish",
+      "top": "top {{p}} %",
+      "best": "Best finish",
+      "wins": "Wins",
+      "top10": "Top 10 %",
+      "avg_buy_in": "Average buy-in",
+      "biggest": "Biggest cash",
+      "ko_per": "KOs per tournament",
+      "profit_per": "Profit per tournament",
+      "by_kind": "By format",
+      "by_buy_in": "By buy-in",
+      "ko": "KO",
+      "bucket": {
+        "a": "under €1",
+        "b": "€1 to €5",
+        "c": "€5 to €20",
+        "d": "€20 to €100",
+        "e": "over €100"
+      },
+      "kind": {
+        "knockout": "KO",
+        "normal": "regular",
+        "regular": "regular"
+      }
+    }
   },
   "replayer": {
     "level": "level {{n}}",
@@ -601,7 +633,8 @@
     },
     "rule_ok": "Your bankroll is {{n}} average buy-ins ({{avg}}). Above 30 you have room.",
     "rule_low": "Careful: your bankroll is only {{n}} average buy-ins ({{avg}}). At least 30 buy-ins is advised for tournaments: move down or top up.",
-    "see_sessions": "See sessions and their review"
+    "see_sessions": "See sessions and their review",
+    "account": "Account"
   },
   "notes": {
     "title": "Notes on {{name}}",
@@ -680,7 +713,9 @@
     "autonotes_done_other": "{{count}} auto-notes written",
     "help": "In brackets: the gap in points to the population when it exceeds 5 points. Click a player to see and add notes. Auto-notes are set in notes/auto.toml.",
     "pick": "Click an opponent to see their notes.",
-    "empty": "No opponent with at least {{n}} hands for these filters: lower the minimum or widen the filters."
+    "empty": "No opponent with at least {{n}} hands for these filters: lower the minimum or widen the filters.",
+    "search": "Search a player…",
+    "keys": "Click a player, then ↑ / ↓ to go to the next one: the sheet stays on the right."
   },
   "hud": {
     "hands": "hands",
@@ -735,7 +770,7 @@
     "done": "Done",
     "text": "Range as text",
     "invalid": "Unknown item: \"{{token}}\". Examples: AKs, TT+, A5s-A2s, KQo:50%, AhKh, random, 15%",
-    "library": "Range library",
+    "library": "Preset ranges and library",
     "lib_choose": "Choose a range…",
     "lib_empty": "No saved range",
     "lib_load": "Load",
@@ -743,7 +778,11 @@
     "lib_save": "Save",
     "lib_loaded": "\"{{name}}\" loaded",
     "lib_saved": "\"{{name}}\" saved",
-    "lib_deleted": "\"{{name}}\" deleted"
+    "lib_deleted": "\"{{name}}\" deleted",
+    "lib_format": "Charts: format…",
+    "lib_situation": "Situation…",
+    "lib_player": "A tracked player's range…",
+    "lib_from_player": "{{name}}'s estimated range loaded"
   },
   "equity": {
     "tabs": {
@@ -1242,5 +1281,22 @@
       "days": "Training days",
       "none": "No postflop drill recorded yet."
     }
+  },
+  "sheet": {
+    "hands": "{{n}} hands",
+    "pool": "pool {{v}}",
+    "few_hands": "Not enough hands with this filter to show stats.",
+    "range": "Estimated range",
+    "kind": {
+      "pfr": "Raise",
+      "call": "Call",
+      "three_bet": "3-bet",
+      "vpip": "All (VPIP)"
+    },
+    "estimate": "The strongest {{p}} % of hands, from the stats. An estimate: players do not play exactly the best hands.",
+    "to_equity": "Open in Equity Lab",
+    "save": "Save to the library",
+    "saved": "Range saved in \"joueurs/\".",
+    "no_stat": "Not enough data for this range yet."
   }
 }

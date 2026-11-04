@@ -118,13 +118,16 @@ export function mockTracker(statsMeta: () => StatMeta[]): Pick<
     },
     async trackerTournaments() {
       const rows = [
-        { id: 1, name: "SPACE KO", gameType: "mtt", startedAt: 1793644201, hands: 176, entries: 1, costCents: 50, wonCents: 103, profitCents: 53, finishPosition: 203, registeredPlayers: 1771, netBb: 12.5 },
-        { id: 2, name: "TRIDENT SPACE KO", gameType: "mtt", startedAt: 1793643300, hands: 24, entries: 1, costCents: 50, wonCents: 0, profitCents: -50, finishPosition: 149, registeredPlayers: 559, netBb: -12.5 },
-        { id: 3, name: "Expresso Nitro", gameType: "spin", startedAt: 1743113860, hands: 12, entries: 1, costCents: 100, wonCents: null, profitCents: null, finishPosition: null, registeredPlayers: null, netBb: -15 },
+        { id: 1, name: "SPACE KO", gameType: "mtt", startedAt: 1793644201, hands: 176, entries: 1, costCents: 50, wonCents: 103, profitCents: 53, finishPosition: 203, registeredPlayers: 1771, netBb: 12.5, kind: "knockout", prizeCents: 50, bountyCents: 53, knockouts: 2 },
+        { id: 2, name: "TRIDENT SPACE KO", gameType: "mtt", startedAt: 1793643300, hands: 24, entries: 1, costCents: 50, wonCents: 0, profitCents: -50, finishPosition: 149, registeredPlayers: 559, netBb: -12.5, kind: "knockout", prizeCents: 0, bountyCents: 0, knockouts: 0 },
+        { id: 3, name: "Expresso Nitro", gameType: "spin", startedAt: 1743113860, hands: 12, entries: 1, costCents: 100, wonCents: null, profitCents: null, finishPosition: null, registeredPlayers: null, netBb: -15, kind: null, prizeCents: null, bountyCents: null, knockouts: 1 },
       ];
       return {
         rows,
-        totals: { tournaments: 3, withResult: 2, costCents: 100, wonCents: 103, profitCents: 3, roi: 0.03, itm: 0.5, curveEur: [-0.5, 0.03], curveT: [1793643300, 1793644201] },
+        totals: { tournaments: 3, withResult: 2, costCents: 100, wonCents: 103, profitCents: 3, roi: 0.03, itm: 0.5, curveEur: [-0.5, 0.03], curveT: [1793643300, 1793644201],
+          entries: 4, reentries: 1, bountiesCents: 53, knockouts: 3, avgFinishPct: 0.19, bestFinish: [203, 1771], wins: 0, top10: 0, avgBuyInCents: 50, biggestCashCents: 103,
+          byKind: [{ key: "mtt·knockout", tournaments: 2, costCents: 100, wonCents: 103, profitCents: 3, roi: 0.03, itm: 0.5 }],
+          byBuyIn: [{ key: "a:<1", tournaments: 2, costCents: 100, wonCents: 103, profitCents: 3, roi: 0.03, itm: 0.5 }] },
       };
     },
     async trackerHands(_filter, limit, offset) {
@@ -219,7 +222,7 @@ export function mockTracker(statsMeta: () => StatMeta[]): Pick<
     async playerColour(room, name, colour) {
       colours.set(`${room}/${name}`, colour);
     },
-    async bankrollGet() {
+    async bankrollGet(_account) {
       const dep = txs.filter((t) => t.kind !== "withdrawal").reduce((a, t) => a + t.amountCents, 0);
       const wd = txs.filter((t) => t.kind === "withdrawal").reduce((a, t) => a + t.amountCents, 0);
       const bal = dep - wd + 3;

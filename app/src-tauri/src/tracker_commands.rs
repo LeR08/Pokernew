@@ -310,9 +310,9 @@ pub fn player_colour(
 // ---- Bankroll ----
 
 #[tauri::command]
-pub fn bankroll_get(s: State<'_, AppState>) -> Res<lps_stats_engine::bankroll::Bankroll> {
+pub fn bankroll_get(s: State<'_, AppState>, account: Option<String>) -> Res<lps_stats_engine::bankroll::Bankroll> {
     svc(&s)?
-        .with_reader(lps_stats_engine::bankroll::bankroll)
+        .with_reader(|c| lps_stats_engine::bankroll::bankroll_for(c, account.as_deref().filter(|a| !a.is_empty())))
         .map_err(err)
 }
 

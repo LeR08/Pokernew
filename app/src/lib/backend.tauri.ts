@@ -118,7 +118,7 @@ export function createTauriBackend(): Backend {
     noteAdd: (room, name, text) => call<number>("note_add", { room, name, text }),
     noteDelete: (id) => call("note_delete", { id }),
     playerColour: (room, name, colour) => call("player_colour", { room, name, colour }),
-    bankrollGet: () => call<Bankroll>("bankroll_get"),
+    bankrollGet: (account) => call<Bankroll>("bankroll_get", { account: account || null }),
     bankrollTxList: () => call<Tx[]>("bankroll_tx_list"),
     bankrollTxAdd: (tx) => call<number>("bankroll_tx_add", { tx: { ...tx, id: tx.id ?? 0 } }),
     bankrollTxDelete: (id) => call("bankroll_tx_delete", { id }),

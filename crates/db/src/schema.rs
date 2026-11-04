@@ -212,6 +212,10 @@ CREATE TABLE hand_waiting (
     PRIMARY KEY (hand_id, player_id)
 ) WITHOUT ROWID;
 "#,
+    // v7 — bankroll transactions can belong to one hero account.
+    r#"
+ALTER TABLE bankroll_tx ADD COLUMN account TEXT;
+"#,
 ];
 
 /// Connection pragmas: WAL so the UI can read while the importer writes.

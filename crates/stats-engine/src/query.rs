@@ -48,6 +48,11 @@ pub struct Filter {
     /// Tournament total buy-in (buy-in + fee), cents.
     pub buy_in_min: Option<i64>,
     pub buy_in_max: Option<i64>,
+    /// Only hands where this player (part of the name, any case) was dealt in.
+    pub with_player: Option<String>,
+    /// Hero's result in the hand: "won" or "lost"; minimum absolute result in bb.
+    pub result: Option<String>,
+    pub min_bb: Option<f64>,
 }
 
 impl Filter {
@@ -152,6 +157,24 @@ impl Filter {
             );
             params.push(Value::Integer(self.buy_in_min.unwrap_or(0)));
             params.push(Value::Integer(self.buy_in_max.unwrap_or(i64::MAX)));
+        }
+        if let Some(name) = self.with_player.as_deref().map(str::trim).filter(|n| !n.is_empty()) {
+            parts.push(
+                "h.id IN (SELECT hp3.hand_id FROM hand_players hp3 JOIN players p3 ON p3.id = hp3.player_id
+                          WHERE p3.name LIKE ? ESCAPE '\\')"
+                    .into(),
+            );
+            let esc = name.replace('\\', "\\\\").replace('%', "\\%").replace('_', "\\_");
+            params.push(Value::Text(format!("%{esc}%")));
+        }
+        match self.result.as_deref() {
+            Some("won") => parts.push("hp.net_won > 0".into()),
+            Some("lost") => parts.push("hp.net_won < 0".into()),
+            _ => {}
+        }
+        if let Some(v) = self.min_bb.filter(|v| *v > 0.0) {
+            parts.push("abs(hp.net_won_bb) >= ?".into());
+            params.push(Value::Real(v));
         }
         Sql {
             text: parts.join(" AND "),
@@ -366,6 +389,26 @@ pub struct TournamentRow {
     pub finish_position: Option<i64>,
     pub registered_players: Option<i64>,
     pub net_bb: f64,
+    /// "knockout", "normal"… (from the summary).
+    pub kind: Option<String>,
+    /// Prize (places), bounties and tickets won, cents (with a summary).
+    pub prize_cents: Option<i64>,
+    pub bounty_cents: Option<i64>,
+    /// Players hero knocked out (all-in, lost the pot that hero won), from the hands.
+    pub knockouts: i64,
+}
+
+/// Results of one group of tournaments (format or buy-in range).
+#[derive(Debug, Clone, Default, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct TournamentGroup {
+    pub key: String,
+    pub tournaments: i64,
+    pub cost_cents: i64,
+    pub won_cents: i64,
+    pub profit_cents: i64,
+    pub roi: Option<f64>,
+    pub itm: Option<f64>,
 }
 
 #[derive(Debug, Clone, Default, Serialize)]
@@ -383,6 +426,23 @@ pub struct TournamentTotals {
     /// Cumulative profit by tournament, in start order (euros).
     pub curve_eur: Vec<f64>,
     pub curve_t: Vec<i64>,
+    /// Buy-ins paid (re-entries included) and re-entries alone.
+    pub entries: i64,
+    pub reentries: i64,
+    /// Bounties won, cents; players knocked out (from the hands).
+    pub bounties_cents: i64,
+    pub knockouts: i64,
+    /// Average finish as a share of the field (0 = winner, 1 = last), with a summary.
+    pub avg_finish_pct: Option<f64>,
+    /// Best finish: (position, field).
+    pub best_finish: Option<(i64, i64)>,
+    pub wins: i64,
+    /// Finishes in the top 10 % of the field.
+    pub top10: i64,
+    pub avg_buy_in_cents: Option<i64>,
+    pub biggest_cash_cents: i64,
+    pub by_kind: Vec<TournamentGroup>,
+    pub by_buy_in: Vec<TournamentGroup>,
 }
 
 /// Tournaments the hero played, newest first, and their totals.
@@ -395,7 +455,9 @@ pub fn tournaments(
         "SELECT t.id, t.name, t.game_type, COALESCE(t.started_at, MIN(h.played_at)), COUNT(*), t.entries,
                 (t.buy_in_cents + t.fee_cents) * t.entries,
                 CASE WHEN t.has_summary = 1 THEN COALESCE(t.won_cents, 0) + COALESCE(t.bounty_won_cents, 0) + t.ticket_won_cents END,
-                t.finish_position, t.registered_players, SUM(hp.net_won_bb)
+                t.finish_position, t.registered_players, SUM(hp.net_won_bb),
+                t.kind, CASE WHEN t.has_summary = 1 THEN COALESCE(t.won_cents, 0) + t.ticket_won_cents END,
+                CASE WHEN t.has_summary = 1 THEN COALESCE(t.bounty_won_cents, 0) END, t.buy_in_cents + t.fee_cents
          {FROM} JOIN tournaments t ON t.id = h.tournament_id
          WHERE {} GROUP BY t.id ORDER BY 4 DESC",
         w.text
@@ -418,9 +480,33 @@ pub fn tournaments(
                 finish_position: r.get(8)?,
                 registered_players: r.get(9)?,
                 net_bb: r.get::<_, Option<f64>>(10)?.unwrap_or(0.0),
+                kind: r.get(11)?,
+                prize_cents: r.get(12)?,
+                bounty_cents: r.get(13)?,
+                knockouts: 0,
             })
         })?
         .collect::<rusqlite::Result<_>>()?;
+    let mut rows = rows;
+    // knock-outs: in hero's hands, an opponent all-in who collected nothing while hero won chips
+    let mut ko: std::collections::HashMap<i64, i64> = std::collections::HashMap::new();
+    {
+        let mut st = conn.prepare(
+            "SELECT h.tournament_id, COUNT(*) FROM hand_players op
+             JOIN hands h ON h.id = op.hand_id
+             JOIN hand_players me ON me.hand_id = op.hand_id AND me.is_hero = 1
+             WHERE h.tournament_id IS NOT NULL AND op.is_hero = 0 AND op.stack > 0
+               AND op.invested >= op.stack AND op.collected = 0 AND me.collected > 0
+             GROUP BY h.tournament_id",
+        )?;
+        for x in st.query_map([], |r| Ok((r.get::<_, i64>(0)?, r.get::<_, i64>(1)?)))? {
+            let (id, n) = x?;
+            ko.insert(id, n);
+        }
+    }
+    for r in rows.iter_mut() {
+        r.knockouts = ko.get(&r.id).copied().unwrap_or(0);
+    }
     let mut tot = TournamentTotals {
         tournaments: rows.len() as i64,
         ..Default::default()
@@ -443,7 +529,61 @@ pub fn tournaments(
     }
     tot.profit_cents = tot.won_cents - tot.cost_cents;
     tot.roi = (tot.cost_cents > 0).then(|| tot.profit_cents as f64 / tot.cost_cents as f64);
-    tot.itm = (tot.with_result > 0).then(|| itm as f64 / tot.with_result as f64);
+    let _ = itm;
+    // in the money = a prize for the place (or a ticket), bounties alone do not count
+    let with: Vec<&TournamentRow> = rows.iter().filter(|r| r.won_cents.is_some()).collect();
+    let itm_n = with.iter().filter(|r| r.prize_cents.unwrap_or(0) > 0).count();
+    tot.itm = (!with.is_empty()).then(|| itm_n as f64 / with.len() as f64);
+    tot.entries = rows.iter().map(|r| r.entries).sum();
+    tot.reentries = rows.iter().map(|r| (r.entries - 1).max(0)).sum();
+    tot.bounties_cents = rows.iter().filter_map(|r| r.bounty_cents).sum();
+    tot.knockouts = rows.iter().map(|r| r.knockouts).sum();
+    let fin: Vec<(i64, i64)> = rows.iter().filter_map(|r| Some((r.finish_position?, r.registered_players?))).filter(|(p, n)| *p > 0 && *n > 1).collect();
+    if !fin.is_empty() {
+        tot.avg_finish_pct = Some(fin.iter().map(|(p, n)| (p - 1) as f64 / (n - 1) as f64).sum::<f64>() / fin.len() as f64);
+        tot.best_finish = fin.iter().copied().min_by(|a, b| (a.0 as f64 / a.1 as f64).total_cmp(&(b.0 as f64 / b.1 as f64)));
+        tot.wins = fin.iter().filter(|(p, _)| *p == 1).count() as i64;
+        tot.top10 = fin.iter().filter(|(p, n)| (*p as f64) <= (*n as f64 * 0.1).max(1.0)).count() as i64;
+    }
+    if tot.entries > 0 {
+        tot.avg_buy_in_cents = Some(rows.iter().map(|r| r.cost_cents).sum::<i64>() / tot.entries);
+    }
+    tot.biggest_cash_cents = rows.iter().filter_map(|r| r.won_cents).max().unwrap_or(0);
+    let group = |key: &dyn Fn(&TournamentRow) -> String| -> Vec<TournamentGroup> {
+        let mut m: std::collections::BTreeMap<String, (TournamentGroup, i64)> = std::collections::BTreeMap::new();
+        for r in with.iter() {
+            let e = m.entry(key(r)).or_insert_with(|| (TournamentGroup { key: key(r), ..Default::default() }, 0));
+            e.0.tournaments += 1;
+            e.0.cost_cents += r.cost_cents;
+            e.0.won_cents += r.won_cents.unwrap_or(0);
+            if r.prize_cents.unwrap_or(0) > 0 {
+                e.1 += 1;
+            }
+        }
+        m.into_values()
+            .map(|(mut g, itm)| {
+                g.profit_cents = g.won_cents - g.cost_cents;
+                g.roi = (g.cost_cents > 0).then(|| g.profit_cents as f64 / g.cost_cents as f64);
+                g.itm = (g.tournaments > 0).then(|| itm as f64 / g.tournaments as f64);
+                g
+            })
+            .collect()
+    };
+    tot.by_kind = group(&|r| {
+        let k = r.kind.clone().unwrap_or_else(|| "normal".into());
+        format!("{}·{}", r.game_type, k)
+    });
+    tot.by_buy_in = group(&|r| {
+        let b = r.cost_cents / r.entries.max(1);
+        match b {
+            0..=99 => "a:<1",
+            100..=499 => "b:1-5",
+            500..=1999 => "c:5-20",
+            2000..=9999 => "d:20-100",
+            _ => "e:100+",
+        }
+        .to_string()
+    });
     Ok((rows, tot))
 }
 

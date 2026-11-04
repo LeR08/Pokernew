@@ -440,7 +440,39 @@
     "exported": "Exporté : {{path}}",
     "csv": "CSV",
     "icm_review": "Revue push/fold",
-    "analyse_hands": "Analyser contre le solveur"
+    "analyse_hands": "Analyser contre le solveur",
+    "perf": {
+      "title": "Récap des performances",
+      "itm": "ITM",
+      "entries": "Buy-ins",
+      "reentries": "dont {{n}} re-entry",
+      "knockouts": "Joueurs éliminés",
+      "bounties": "Bounties gagnés",
+      "avg_finish": "Classement moyen",
+      "top": "top {{p}} %",
+      "best": "Meilleur résultat",
+      "wins": "Victoires",
+      "top10": "Top 10 %",
+      "avg_buy_in": "Buy-in moyen",
+      "biggest": "Plus gros gain",
+      "ko_per": "Éliminations / tournoi",
+      "profit_per": "Profit / tournoi",
+      "by_kind": "Par format",
+      "by_buy_in": "Par buy-in",
+      "ko": "KO",
+      "bucket": {
+        "a": "moins de 1 €",
+        "b": "1 à 5 €",
+        "c": "5 à 20 €",
+        "d": "20 à 100 €",
+        "e": "plus de 100 €"
+      },
+      "kind": {
+        "knockout": "KO",
+        "normal": "classique",
+        "regular": "classique"
+      }
+    }
   },
   "replayer": {
     "level": "niveau {{n}}",
@@ -601,7 +633,8 @@
     },
     "rule_ok": "Ta bankroll représente {{n}} buy-ins moyens ({{avg}}). Au-dessus de 30, tu as de la marge.",
     "rule_low": "Attention : ta bankroll ne représente que {{n}} buy-ins moyens ({{avg}}). On conseille au moins 30 buy-ins en tournoi : baisse de limite ou recharge.",
-    "see_sessions": "Voir les sessions et leur bilan"
+    "see_sessions": "Voir les sessions et leur bilan",
+    "account": "Compte"
   },
   "notes": {
     "title": "Notes sur {{name}}",
@@ -680,7 +713,9 @@
     "autonotes_done_other": "{{count}} auto-notes écrites",
     "help": "Entre parenthèses : l'écart en points avec la population quand il dépasse 5 points. Clique sur un joueur pour voir et ajouter des notes. Les auto-notes se règlent dans le fichier notes/auto.toml.",
     "pick": "Clique sur un adversaire pour voir ses notes.",
-    "empty": "Aucun adversaire avec au moins {{n}} mains pour ces filtres : baisse le minimum ou élargis les filtres."
+    "empty": "Aucun adversaire avec au moins {{n}} mains pour ces filtres : baisse le minimum ou élargis les filtres.",
+    "search": "Rechercher un joueur…",
+    "keys": "Clique sur un joueur, puis ↑ / ↓ pour passer au suivant : sa fiche reste affichée à droite."
   },
   "hud": {
     "hands": "mains",
@@ -735,7 +770,7 @@
     "done": "Terminé",
     "text": "Range en texte",
     "invalid": "Élément non reconnu : « {{token}} ». Exemples : AKs, TT+, A5s-A2s, KQo:50%, AhKh, random, 15%",
-    "library": "Bibliothèque de ranges",
+    "library": "Ranges prédéfinies et bibliothèque",
     "lib_choose": "Choisir une range…",
     "lib_empty": "Aucune range enregistrée",
     "lib_load": "Charger",
@@ -743,7 +778,11 @@
     "lib_save": "Enregistrer",
     "lib_loaded": "« {{name}} » chargée",
     "lib_saved": "« {{name}} » enregistrée",
-    "lib_deleted": "« {{name}} » supprimée"
+    "lib_deleted": "« {{name}} » supprimée",
+    "lib_format": "Charts : format…",
+    "lib_situation": "Situation…",
+    "lib_player": "Range d'un joueur du tracker…",
+    "lib_from_player": "Range estimée de {{name}} chargée"
   },
   "equity": {
     "tabs": {
@@ -1242,5 +1281,22 @@
       "days": "Jours d'entraînement",
       "none": "Pas encore d'exercice postflop enregistré."
     }
+  },
+  "sheet": {
+    "hands": "{{n}} mains",
+    "pool": "pop. {{v}}",
+    "few_hands": "Pas assez de mains avec ce filtre pour afficher ses stats.",
+    "range": "Range estimée",
+    "kind": {
+      "pfr": "Relance",
+      "call": "Call",
+      "three_bet": "3-bet",
+      "vpip": "Tout (VPIP)"
+    },
+    "estimate": "Les {{p}} % de mains les plus fortes, d'après ses stats. C'est une estimation : un joueur ne joue pas exactement les meilleures mains.",
+    "to_equity": "Ouvrir dans Equity Lab",
+    "save": "Enregistrer dans la bibliothèque",
+    "saved": "Range enregistrée dans « joueurs/ ».",
+    "no_stat": "Pas encore assez de données pour cette range."
   }
 }

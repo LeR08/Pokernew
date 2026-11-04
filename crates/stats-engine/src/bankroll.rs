@@ -19,18 +19,30 @@ pub struct Bankroll {
     pub avg_buy_in_cents: Option<i64>,
 }
 
+/// The whole bankroll (every account).
 pub fn bankroll(conn: &Connection) -> Result<Bankroll, lps_db::DbError> {
+    bankroll_for(conn, None)
+}
+
+/// The bankroll of one hero account (`None`: every account). Transactions
+/// without an account count for every account's view only when no account is chosen.
+pub fn bankroll_for(conn: &Connection, account: Option<&str>) -> Result<Bankroll, lps_db::DbError> {
     let mut events: Vec<(i64, i64, u8)> = Vec::new(); // (time, cents, kind 0=tx 1=cash 2=tourney)
     for tx in list_tx(conn)? {
-        events.push((tx.at, signed(&tx), 0));
+        if account.is_none() || tx.account.as_deref() == account {
+            events.push((tx.at, signed(&tx), 0));
+        }
     }
+    let acc = account.unwrap_or("");
+    let all = account.is_none();
     {
         // Cash results per hand.
         let mut st = conn.prepare(
             "SELECT h.played_at, hp.net_won FROM hand_players hp JOIN hands h ON h.id = hp.hand_id
-             WHERE hp.is_hero = 1 AND h.unit = 'cents'",
+             JOIN players p ON p.id = hp.player_id
+             WHERE hp.is_hero = 1 AND h.unit = 'cents' AND (?1 OR p.name = ?2)",
         )?;
-        for r in st.query_map([], |r| Ok((r.get::<_, i64>(0)?, r.get::<_, i64>(1)?)))? {
+        for r in st.query_map(rusqlite::params![all, acc], |r| Ok((r.get::<_, i64>(0)?, r.get::<_, i64>(1)?)))? {
             let (t, c) = r?;
             events.push((t, c, 1));
         }
@@ -38,9 +50,11 @@ pub fn bankroll(conn: &Connection) -> Result<Bankroll, lps_db::DbError> {
         let mut st = conn.prepare(
             "SELECT COALESCE(started_at, 0),
                     COALESCE(won_cents, 0) + COALESCE(bounty_won_cents, 0) + ticket_won_cents - (buy_in_cents + fee_cents) * entries
-             FROM tournaments WHERE has_summary = 1",
+             FROM tournaments t WHERE has_summary = 1 AND (?1 OR t.id IN (
+                 SELECT h.tournament_id FROM hands h JOIN hand_players hp ON hp.hand_id = h.id AND hp.is_hero = 1
+                 JOIN players p ON p.id = hp.player_id WHERE p.name = ?2))",
         )?;
-        for r in st.query_map([], |r| Ok((r.get::<_, i64>(0)?, r.get::<_, i64>(1)?)))? {
+        for r in st.query_map(rusqlite::params![all, acc], |r| Ok((r.get::<_, i64>(0)?, r.get::<_, i64>(1)?)))? {
             let (t, c) = r?;
             events.push((t, c, 2));
         }
