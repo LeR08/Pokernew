@@ -9,32 +9,16 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { getBackend } from "@/lib/backend";
-import { CELL_COMBOS, cellName, formatRange, NUM_COMBOS, topPercent } from "@/lib/range";
+import { CELL_COMBOS, cellName, formatRange, NUM_COMBOS } from "@/lib/range";
+import { estimatedRange, type RangeKind } from "@/lib/playerRange";
 import type { ReportRow, StatMeta } from "@/lib/tracker";
 import { formatStat, int } from "@/lib/format";
 import { cn } from "@/lib/utils";
 import { usePlayMode } from "@/stores/playMode";
 import { NotesPanel } from "../replayer/NotesPanel";
 
-type Kind = "pfr" | "call" | "three_bet" | "vpip";
-
-/** Estimated range of one kind, as 1 326 weights. */
-export function estimatedRange(row: ReportRow, kind: Kind): Float32Array | null {
-  const v = (id: string) => row.stats.find((s) => s.id === id)?.value ?? null;
-  const w = new Float32Array(NUM_COMBOS);
-  const set = (pct: number, val: number) => topPercent(Math.min(100, Math.max(0, pct * 100))).forEach((i) => (w[i] = val));
-  const vpip = v("vpip");
-  const pfr = v("pfr");
-  const tb = v("three_bet");
-  if (kind === "vpip" && vpip != null) set(vpip, 1);
-  else if (kind === "pfr" && pfr != null) set(pfr, 1);
-  else if (kind === "three_bet" && tb != null) set(tb, 1);
-  else if (kind === "call" && vpip != null && pfr != null) {
-    set(vpip, 1);
-    topPercent(Math.max(0, pfr * 100)).forEach((i) => (w[i] = 0));
-  } else return null;
-  return w;
-}
+type Kind = RangeKind;
+export { estimatedRange };
 
 function MiniGrid({ w }: { w: Float32Array }) {
   return (

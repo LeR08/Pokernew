@@ -14,6 +14,8 @@ import { EquityCurves, seriesColour, type Curve } from "./charts";
 import { combos, count, pct } from "./format";
 import { Modal } from "./Modal";
 import { useEquity } from "./store";
+import { ChartFolderPicker, QuickRanges, rangeOf, useTrackedPlayers } from "./QuickRanges";
+import type { RangeKind } from "@/lib/playerRange";
 
 export function Calculator() {
   const { t } = useTranslation();
@@ -24,15 +26,43 @@ export function Calculator() {
   const [error, setError] = useState<string | null>(null);
   const [running, setRunning] = useState(false);
 
-  // Pre-filled from the replayer: ?players=AhKd|random&board=Ah7c2d
+  // Pre-filled from the replayer: ?players=AhKd|random&board=Ah7c2d&est=1:name:pfr,2:name:call
+  // ("est" = players whose cards are unknown get the range estimated from the tracker).
+  const [pendingEst] = useState(() => params.get("est"));
+  const tracked = useTrackedPlayers(!!pendingEst).data;
+  const [estNote, setEstNote] = useState<string | null>(null);
   useEffect(() => {
     const p = params.get("players");
     if (p) {
-      s.set({ players: p.split("|"), board: params.get("board") ?? "", dead: "" });
+      s.set({ players: p.split("|"), board: params.get("board") ?? "", dead: "", who: [] });
       setParams({}, { replace: true });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  useEffect(() => {
+    if (!pendingEst || !tracked) return;
+    const st = useEquity.getState();
+    const players = [...st.players];
+    const who: (string | null)[] = players.map(() => null);
+    const done: string[] = [];
+    const missing: string[] = [];
+    for (const item of pendingEst.split(",")) {
+      const [i, name, kind] = item.split(":").map(decodeURIComponent);
+      const idx = Number(i);
+      const text = rangeOf(tracked, name, kind as RangeKind);
+      if (text && idx < players.length) {
+        players[idx] = text;
+        who[idx] = name;
+        done.push(name);
+      } else missing.push(name);
+    }
+    st.set({ players, who });
+    setEstNote(
+      [done.length ? t("equity.est_done", { names: done.join(", ") }) : "", missing.length ? t("equity.est_missing", { names: missing.join(", ") }) : ""]
+        .filter(Boolean)
+        .join(" "),
+    );
+  }, [pendingEst, tracked, t]);
 
   const boardCards = parseCards(s.board) ?? [];
   const deadCards = parseCards(s.dead) ?? [];
@@ -73,13 +103,22 @@ export function Calculator() {
   return (
     <div className="flex flex-col gap-d4">
       <Card className="flex flex-col gap-d3 p-d4">
+        <ChartFolderPicker />
+        {estNote && (
+          <p className="text-xs text-muted" data-testid="est-note">
+            {estNote}
+          </p>
+        )}
         <ul className="flex flex-col gap-d2" data-testid="players">
           {s.players.map((p, i) => {
             const w = parsed[i];
             return (
-              <li key={i} className="flex flex-wrap items-center gap-d2" data-testid="player-row">
+              <li key={i} className="flex flex-col gap-1" data-testid="player-row">
+                <div className="flex flex-wrap items-center gap-d2">
                 <span className="inline-block h-2.5 w-2.5 rounded-full" style={{ background: seriesColour(i) ?? "transparent" }} aria-hidden />
-                <span className="w-20 text-sm">{t("equity.player", { n: i + 1 })}</span>
+                <span className="w-20 truncate text-sm" title={s.who[i] ?? undefined}>
+                  {s.who[i] ?? t("equity.player", { n: i + 1 })}
+                </span>
                 <Input
                   className="min-w-48 flex-1 font-mono"
                   value={p}
@@ -98,11 +137,13 @@ export function Calculator() {
                   size="icon"
                   variant="ghost"
                   disabled={s.players.length <= 2}
-                  onClick={() => s.set({ players: s.players.filter((_, j) => j !== i) })}
+                  onClick={() => s.set({ players: s.players.filter((_, j) => j !== i), who: s.who.filter((_, j) => j !== i) })}
                   aria-label={t("equity.remove_player")}
                 >
                   <Trash2 className="h-4 w-4" />
                 </Button>
+                </div>
+                <QuickRanges index={i} />
               </li>
             );
           })}

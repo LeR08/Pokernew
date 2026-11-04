@@ -900,7 +900,13 @@
       "first": "{{n}} premiers affichés",
       "flop": "Flop",
       "weight": "Flops réels"
-    }
+    },
+    "my_ranges_format": "Format de mes ranges",
+    "my_ranges": "Mes ranges…",
+    "my_ranges_pick_format": "Mes ranges : choisis un format",
+    "tracked_player": "Joueur suivi…",
+    "est_done": "Range estimée d'après le tracker pour : {{names}}.",
+    "est_missing": "Pas assez de mains (30 min.) pour : {{names}}, range aléatoire."
   },
   "icm": {
     "tabs": {

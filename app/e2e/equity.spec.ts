@@ -105,3 +105,28 @@ test("replayer opens the spot in Equity Lab", async ({ page }) => {
   await expect(page.getByTestId("calc-board")).toHaveValue(/^([2-9TJQKA][cdhs]){5}$/);
   await expect(page.getByTestId("player-input").first()).toHaveValue(/^[2-9TJQKA][cdhs][2-9TJQKA][cdhs]$/);
 });
+
+test("quick ranges: my charts and a tracked player's estimated range", async ({ page }) => {
+  await page.goto("/#/m/equity/calc");
+  const folder = page.getByTestId("chart-folder");
+  const first = await folder.locator("option").nth(1).getAttribute("value");
+  await folder.selectOption(first!);
+  const row = page.getByTestId("player-row").nth(1);
+  const chart = row.getByTestId("quick-chart");
+  await chart.selectOption({ index: 1 });
+  await expect(row.getByTestId("player-input")).not.toHaveValue("QQ+,AK");
+  await row.getByTestId("quick-player").selectOption("Player10");
+  await expect(row).toContainText("Player10");
+  const pfr = await row.getByTestId("player-input").inputValue();
+  await row.getByTestId("quick-kind-vpip").click();
+  await expect(row.getByTestId("player-input")).not.toHaveValue(pfr);
+});
+
+test("replayer → Equity Lab: unknown cards get the tracked player's estimated range", async ({ page }) => {
+  await page.goto("/#/m/replayer/3");
+  await page.getByTestId("to-equity").click();
+  await expect(page.getByTestId("est-note")).toContainText("Player10");
+  const row = page.getByTestId("player-row").nth(1);
+  await expect(row).toContainText("Player10");
+  await expect(row.getByTestId("player-input")).not.toHaveValue("random");
+});

@@ -5,6 +5,7 @@ Format: [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/). Versions follo
 ## [1.1.0] — 2026-11-04 — Retours de la v1.0 / v1.0 feedback
 
 ### HUD
+- **Multitable** : chaque HUD est rattaché à sa fenêtre de table (fenêtre « possédée » Windows) au lieu d'être toujours au premier plan. Le HUD reste juste au-dessus de sa table : une table passée devant cache les HUD des autres, une table réduite cache le sien.
 - Les panneaux sont cliquables sans gêner la table : seul le panneau prend la souris quand le curseur passe dessus, tout le reste laisse passer les clics vers Winamax.
 - Survol = panneau détaillé. **Double-clic = l'app s'ouvre sur la fiche du joueur.** Clic droit = menu (fiche joueur, modifier ce HUD, masquer le HUD de cette table).
 - Taille des panneaux **par format de table** (2 à 10 places) : poignée bleue en mode édition ou boutons − / +, enregistrée dans `hud/*.toml` (`panel_scale`). Les panneaux suivent aussi la taille de la fenêtre de table (`auto_scale`).
@@ -24,6 +25,8 @@ Format: [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/). Versions follo
 - Filtre par compte (transactions, résultats cash et tournois). Les transactions peuvent être liées à un compte.
 
 ### Equity Lab
+- Sous chaque joueur : **Mes ranges** (format choisi une fois, puis la situation) et **Joueur suivi** (range estimée d'après ses stats, avec les boutons open, call, 3-bet, VPIP). Le pseudo remplace « Joueur n ».
+- Depuis le Replayer, un adversaire dont on ne voit pas les cartes reçoit sa range estimée selon son action préflop : relance = open, sur-relance = 3-bet, suivi = call. Pas assez de mains (30) : la range reste aléatoire, et un message l'indique.
 - La bibliothèque de ranges propose directement les charts prédéfinis (format puis situation) et la range estimée d'un joueur suivi par le tracker.
 
 ### Apparence

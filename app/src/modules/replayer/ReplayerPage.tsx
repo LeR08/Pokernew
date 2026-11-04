@@ -17,6 +17,7 @@ import { stateAt, totalSteps } from "./replay";
 import { NotesPanel } from "./NotesPanel";
 import { usePlayMode } from "@/stores/playMode";
 import { QuickFilters, recallList } from "./QuickFilters";
+import { preflopKind } from "@/lib/playerRange";
 
 /**
  * Equity Lab pre-filled with the hand as played, whatever the replay step: hero's cards, the players still
@@ -24,11 +25,19 @@ import { QuickFilters, recallList } from "./QuickFilters";
  */
 function equityLink(hand: Hand, heroIdx: number, board: (string | undefined)[], seats: { folded?: boolean }[]): string {
   const players = [hand.players[heroIdx].hole_cards.join("")];
+  // Unknown cards: the range estimated from the tracker for what the player did preflop.
+  const est: string[] = [];
   hand.players.forEach((p, i) => {
-    if (i !== heroIdx && !seats[i]?.folded) players.push(p.hole_cards.length === 2 ? p.hole_cards.join("") : "random");
+    if (i === heroIdx || seats[i]?.folded) return;
+    if (p.hole_cards.length === 2) players.push(p.hole_cards.join(""));
+    else {
+      est.push([players.length, encodeURIComponent(p.name), preflopKind(hand, i)].join(":"));
+      players.push("random");
+    }
   });
   if (players.length < 2) players.push("random");
   const q = new URLSearchParams({ players: players.slice(0, 10).join("|"), board: board.filter(Boolean).join("") });
+  if (est.length) q.set("est", est.join(","));
   return `/m/equity/calc?${q.toString()}`;
 }
 

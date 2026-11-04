@@ -900,7 +900,13 @@
       "first": "first {{n}} shown",
       "flop": "Flop",
       "weight": "Actual flops"
-    }
+    },
+    "my_ranges_format": "Format of my ranges",
+    "my_ranges": "My ranges…",
+    "my_ranges_pick_format": "My ranges: pick a format",
+    "tracked_player": "Tracked player…",
+    "est_done": "Range estimated from the tracker for: {{names}}.",
+    "est_missing": "Not enough hands (30 min.) for: {{names}}, random range."
   },
   "icm": {
     "tabs": {

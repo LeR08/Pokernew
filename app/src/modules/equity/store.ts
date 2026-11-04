@@ -13,6 +13,10 @@ interface EquityState {
   aDead: string;
   aVillain: string;
   tRange: string;
+  /** Library folder of "my ranges" (a format, e.g. "mtt-25bb"). */
+  chartFolder: string;
+  /** Who each player is (tracked player name), when the range was estimated from the tracker. */
+  who: (string | null)[];
   set: (p: Partial<Omit<EquityState, "set">>) => void;
 }
 
@@ -27,5 +31,7 @@ export const useEquity = create<EquityState>((set) => ({
   aDead: "",
   aVillain: "",
   tRange: "22+,A2s+,K9s+,QTs+,JTs,ATo+,KJo+",
+  chartFolder: "",
+  who: [],
   set: (p) => set(p),
 }));

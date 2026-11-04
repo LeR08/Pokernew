@@ -374,7 +374,7 @@ impl HudService {
                     }
                 }
                 None => {
-                    let built = WebviewWindowBuilder::new(
+                    let builder = WebviewWindowBuilder::new(
                         app,
                         &label,
                         WebviewUrl::App(format!("index.html#/hud/{}", m.window.id).into()),
@@ -383,12 +383,11 @@ impl HudService {
                     .decorations(false)
                     .transparent(true)
                     .shadow(false)
-                    .always_on_top(true)
                     .skip_taskbar(true)
                     .resizable(false)
                     .focused(false)
-                    .visible(true)
-                    .build();
+                    .visible(true);
+                    let built = owned_by_table(builder, m.window.id).build();
                     match built {
                         Ok(w) => {
                             let _ = w.set_position(PhysicalPosition::new(r.x, r.y));
@@ -545,6 +544,27 @@ impl HudService {
             .unwrap_or(false);
         self.set_edit(app, e);
     }
+}
+
+/// Multi-tabling: each overlay is **owned by its table window** (Windows), so
+/// it sits right above its own table in the z-order — a table brought to the
+/// front covers the other tables' HUDs, a minimised table hides its HUD —
+/// instead of every HUD floating above everything (always-on-top).
+#[cfg(windows)]
+fn owned_by_table<'a>(
+    b: WebviewWindowBuilder<'a, tauri::Wry, AppHandle>,
+    table: u64,
+) -> WebviewWindowBuilder<'a, tauri::Wry, AppHandle> {
+    let hwnd = windows::Win32::Foundation::HWND(table as usize as *mut std::ffi::c_void);
+    b.owner_raw(hwnd)
+}
+
+#[cfg(not(windows))]
+fn owned_by_table<'a>(
+    b: WebviewWindowBuilder<'a, tauri::Wry, AppHandle>,
+    _table: u64,
+) -> WebviewWindowBuilder<'a, tauri::Wry, AppHandle> {
+    b.always_on_top(true)
 }
 
 /// "Ctrl+Alt+H" from hotkeys.toml -> the plugin's format ("Meta" is "Super").
