@@ -44,6 +44,12 @@ pub struct Config {
     /// Share of their equity a player realises when the flop is seen (in / out of position).
     pub realization_ip: f64,
     pub realization_oop: f64,
+    /// Postflop playability: above 1, strong hands realise more than their equity and weak hands
+    /// less (share = e^k / (e^k + (1-e)^k) before the position factors); 1 = plain equity.
+    pub realization_curve: f64,
+    /// Rake taken from pots that see a flop or a showdown (no flop, no drop): fraction and cap in bb.
+    pub rake: f64,
+    pub rake_cap: f64,
 }
 
 impl Default for Config {
@@ -60,6 +66,9 @@ impl Default for Config {
             allow_allin: true,
             realization_ip: 1.0,
             realization_oop: 1.0,
+            realization_curve: 1.0,
+            rake: 0.0,
+            rake_cap: 0.0,
         }
     }
 }
@@ -144,7 +153,10 @@ impl Tree {
             && config.three_bet > 1.0
             && config.four_bet > 1.0
             && (0.0..=2.0).contains(&config.realization_ip)
-            && (0.0..=2.0).contains(&config.realization_oop);
+            && (0.0..=2.0).contains(&config.realization_oop)
+            && (0.5..=4.0).contains(&config.realization_curve)
+            && (0.0..0.5).contains(&config.rake)
+            && config.rake_cap >= 0.0;
         if !ok {
             return Err(GameError::Amounts);
         }
@@ -557,6 +569,10 @@ impl Tree {
     /// Postflop order: SB, BB, then the others in preflop order. True when `a` acts after `b` postflop.
     pub fn in_position(&self, a: usize, b: usize) -> bool {
         let n = self.config.stacks.len();
+        if n == 2 {
+            // heads-up the small blind is the button: last to act after the flop
+            return a == 0 && b == 1;
+        }
         let rank = |i: usize| {
             if i == n - 2 {
                 0
@@ -624,6 +640,8 @@ mod tests {
         .unwrap();
         assert!(t.nodes.len() > 50);
         assert!(t.in_position(3, 4)); // BTN acts after SB postflop
+        let hu = Tree::build(&Config::default()).unwrap();
+        assert!(hu.in_position(0, 1)); // heads-up the SB is the button
         assert!(!t.in_position(4, 0)); // SB is out of position against UTG
         assert!(Tree::build(&Config {
             stacks: vec![100.0],

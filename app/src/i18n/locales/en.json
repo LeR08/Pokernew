@@ -1143,7 +1143,7 @@
       "max_it": "Max iterations",
       "run": "Solve",
       "running": "Solving…",
-      "help": "Simplified tree: open, 3-bet, 4-bet and all-in with fixed sizes. Heads-up it is exact; with more players, the first one to answer the open is the only opponent left (approximation). When the flop is seen without an all-in, each player realises the given share of their equity (1 = all of it).",
+      "help": "Simplified tree: open, 3-bet, 4-bet and all-in with fixed sizes. Heads-up it is exact; with more players, the first one to answer the open is the only opponent left (approximation). When the flop is seen without an all-in, each player realises the given share of their equity (1 = all of it). Playability above 1 makes strong hands realise more than their equity and weak hands less; rake is only taken when the flop is seen.",
       "status": "{{it}} iterations, exploitability {{e}} bb/hand · EV: {{v}}",
       "to_act": "{{who}} to act ({{p}} % of hands get here)",
       "end_fold": "End: {{who}} takes the pot.",
@@ -1153,7 +1153,10 @@
       "grid_help": "Each cell's height is how much of the hand is still played here; the colours are its action mix.",
       "save_name": "Name in the library",
       "save": "Save every situation",
-      "saved": "{{n}} range(s) saved in \"{{folder}}\""
+      "saved": "{{n}} range(s) saved in \"{{folder}}\"",
+      "curve": "Postflop playability",
+      "rake": "Rake (%)",
+      "rake_cap": "Rake cap (bb)"
     }
   }
 }

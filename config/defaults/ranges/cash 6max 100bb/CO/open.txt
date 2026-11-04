@@ -1,0 +1,1 @@
+AA,AKs,AQs,AJs,ATs,A9s,A8s,A7s,A6s,A5s,A4s,A3s,A2s,AKo,KK,KQs,KJs,KTs,K9s,K8s:49%,K7s:30%,K6s:9%,K5s:4%,K4s:2%,AQo,KQo,QQ,QJs,QTs,Q9s:43%,Q8s:3%,AJo,KJo,QJo:63%,JJ,JTs:93%,J9s:9%,ATo,KTo,QTo:26%,JTo:3%,TT,T9s:8%,A9o,K9o:26%,Q9o:2%,99,A8o,K8o:4%,88,A7o,K7o:2%,77,A6o,66,A5o,55,A4o:98%,44,A3o:84%,33,A2o:52%,22:98%

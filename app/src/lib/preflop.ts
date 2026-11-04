@@ -13,6 +13,10 @@ export interface PreflopConfig {
   allowAllin: boolean;
   realizationIp: number;
   realizationOop: number;
+  /** Postflop playability (1 = plain equity, above 1 favours strong hands). */
+  realizationCurve: number;
+  rake: number;
+  rakeCap: number;
 }
 
 export type ActKind = "fold" | "check" | "call" | "limp" | "raise" | "all_in";
@@ -58,5 +62,8 @@ export const DEFAULT_PREFLOP: PreflopConfig = {
   allowLimp: true,
   allowAllin: true,
   realizationIp: 1,
-  realizationOop: 1,
+  realizationOop: 0.85,
+  realizationCurve: 1.5,
+  rake: 0.05,
+  rakeCap: 3,
 };

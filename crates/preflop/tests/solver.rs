@@ -134,3 +134,34 @@ fn six_max_approximation_converges() {
     let btn = raise_share(node);
     assert!(utg < btn, "UTG {utg:.3} vs BTN {btn:.3}");
 }
+
+/// The default charts (config/defaults/ranges) are all valid ranges, for every format and situation.
+#[test]
+fn default_charts_are_valid() {
+    let root =
+        std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../../config/defaults/ranges");
+    let mut formats = 0;
+    for f in std::fs::read_dir(&root)
+        .unwrap()
+        .flatten()
+        .filter(|e| e.path().is_dir())
+    {
+        formats += 1;
+        let mut n = 0;
+        let mut stack = vec![f.path()];
+        while let Some(d) = stack.pop() {
+            for e in std::fs::read_dir(d).unwrap().flatten() {
+                let p = e.path();
+                if p.is_dir() {
+                    stack.push(p);
+                } else if p.extension().is_some_and(|x| x == "txt") {
+                    lps_equity::Range::parse(&std::fs::read_to_string(&p).unwrap())
+                        .unwrap_or_else(|e| panic!("{p:?}: {e}"));
+                    n += 1;
+                }
+            }
+        }
+        assert!(n == 46 || n == 13, "{:?}: {n} situations", f.path());
+    }
+    assert_eq!(formats, 9);
+}

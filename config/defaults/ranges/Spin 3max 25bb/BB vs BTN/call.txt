@@ -1,0 +1,1 @@
+ATs:97%,A9s,A8s,A7s,A6s,A5s,A4s:89%,A3s:67%,A2s:55%,KJs:96%,KTs,K9s,K8s,K7s,K6s,K5s,K4s,K3s,K2s:97%,Q8s:31%,Q7s:93%,Q6s:86%,Q5s:23%,KJo,QJo,J8s:2%,J7s:76%,ATo:98%,KTo,QTo,JTo:97%,T7s:32%,A9o,K9o,Q9o:98%,J9o:90%,T9o:97%,97s:2%,96s:2%,A8o,K8o,Q8o:3%,98o:2%,87s:2%,86s:7%,A7o,K7o,77:11%,76s:5%,A6o,K6o:98%,66:98%,65s:3%,A5o,K5o:64%,55:98%,A4o,K4o:3%,44,A3o,K3o:2%,33:5%,A2o,22:2%

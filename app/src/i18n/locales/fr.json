@@ -1143,7 +1143,7 @@
       "max_it": "Itérations max",
       "run": "Résoudre",
       "running": "Calcul…",
-      "help": "Arbre simplifié : open, 3-bet, 4-bet et tapis, à tailles fixes. En tête-à-tête, c'est exact. À plusieurs, le premier joueur qui répond à l'open reste seul face à lui (approximation). Quand on voit le flop sans être à tapis, chacun réalise la part d'équité indiquée (1 = toute son équité).",
+      "help": "Arbre simplifié : open, 3-bet, 4-bet et tapis, à tailles fixes. En tête-à-tête, c'est exact. À plusieurs, le premier joueur qui répond à l'open reste seul face à lui (approximation). Quand on voit le flop sans être à tapis, chacun réalise la part d'équité indiquée (1 = toute son équité). La jouabilité au-dessus de 1 fait réaliser plus que leur équité aux mains fortes et moins aux faibles ; le rake n'est pris que si on voit le flop.",
       "status": "{{it}} itérations, exploitabilité {{e}} bb/main · EV : {{v}}",
       "to_act": "À {{who}} de jouer ({{p}} % des mains passent ici)",
       "end_fold": "Fin : {{who}} ramasse le pot.",
@@ -1153,7 +1153,10 @@
       "grid_help": "La hauteur de chaque case donne la part de la main encore jouée ici, et les couleurs son mélange d'actions.",
       "save_name": "Nom dans la bibliothèque",
       "save": "Enregistrer toutes les situations",
-      "saved": "{{n}} range(s) enregistrée(s) dans « {{folder}} »"
+      "saved": "{{n}} range(s) enregistrée(s) dans « {{folder}} »",
+      "curve": "Jouabilité postflop",
+      "rake": "Rake (%)",
+      "rake_cap": "Plafond rake (bb)"
     }
   }
 }

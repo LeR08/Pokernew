@@ -7,6 +7,13 @@ Format: [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/). Versions follo
 ### Ajouté / Added
 - `lps-preflop` : arbre préflop simplifié (open, limp de la SB, 3-bet, 4-bet, tapis) résolu par CFR+ sur les 169 mains, avec les équités exactes et les cartes bloquées. Tête-à-tête exact, approximation à 6 joueurs au plus, réalisation d'équité IP/OOP réglable, exploitabilité exacte du modèle.
 - Bibliothèque de ranges : export et import d'un dossier entier (`.lpsranges`), import des ranges PioSOLVER / GTO+, aller-retour à l'identique.
+- **Charts par défaut** pour 9 formats (cash 6-max 100 bb, MTT de 10 à 100 bb, Spin 25 bb), 46 situations chacun, calculés par notre solveur préflop calibré (rake, réalisation d'équité). Ce sont des points de départ, qui ne remplacent jamais tes fichiers.
+- Solveur préflop : rake (pas de flop, pas de rake) et jouabilité postflop.
+
+### Corrigé / Fixed
+- Solveur préflop : en tête-à-tête, la SB (bouton) est bien en position après le flop.
+
+### Module
 - Module Préflop :
   - Charts : dossiers par format (cash 6-max 100 bb, MTT de 10 à 100 bb, Spin), situations vides créées pour toi, édition, import et export ;
   - Solveur : réglages, arbre cliquable, grille 13×13 par action, enregistrement de toutes les situations dans la bibliothèque.

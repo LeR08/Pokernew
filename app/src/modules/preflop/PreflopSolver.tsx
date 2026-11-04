@@ -148,6 +148,18 @@ export function PreflopSolver() {
             <Input type="number" min={0.5} max={1.5} step={0.05} className="w-20" value={cfg.realizationOop} onChange={(e) => set({ realizationOop: Number(e.target.value) })} />
           </label>
           <label className="flex flex-col gap-1">
+            {t("preflop.solver.curve")}
+            <Input type="number" min={0.5} max={4} step={0.1} className="w-20" value={cfg.realizationCurve} onChange={(e) => set({ realizationCurve: Number(e.target.value) })} />
+          </label>
+          <label className="flex flex-col gap-1">
+            {t("preflop.solver.rake")}
+            <Input type="number" min={0} max={20} step={0.5} className="w-20" value={cfg.rake * 100} onChange={(e) => set({ rake: Number(e.target.value) / 100 })} />
+          </label>
+          <label className="flex flex-col gap-1">
+            {t("preflop.solver.rake_cap")}
+            <Input type="number" min={0} step={0.5} className="w-20" value={cfg.rakeCap} onChange={(e) => set({ rakeCap: Number(e.target.value) })} />
+          </label>
+          <label className="flex flex-col gap-1">
             {t("preflop.solver.target")}
             <Input type="number" min={0} step={0.001} className="w-24" value={target} onChange={(e) => setTarget(Number(e.target.value))} />
           </label>

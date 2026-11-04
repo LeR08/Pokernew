@@ -78,8 +78,14 @@ function breakdown(text: string, board: string, dead: string): Breakdown {
   };
 }
 
+/** The default charts shipped in config/defaults/ranges (installed into <data>/ranges by the app). */
+const defaultCharts = import.meta.glob("../../../config/defaults/ranges/**/*.txt", { query: "?raw", import: "default", eager: true }) as Record<string, string>;
+
 export function mockEquity(): EquityPart {
-  const library = new Map<string, string>([["exemples/BTN_open", "22+,A2s+,K9s+,QTs+,J9s+,T9s,98s,ATo+,KJo+"]]);
+  const library = new Map<string, string>(
+    Object.entries(defaultCharts).map(([path, text]) => [path.split("config/defaults/ranges/")[1].replace(/\.txt$/, ""), text.trim()]),
+  );
+  library.set("exemples/BTN_open", "22+,A2s+,K9s+,QTs+,J9s+,T9s,98s,ATo+,KJo+");
   return {
     async equityCalc(req) {
       if (req.players.length < 2 || req.players.length > 10) throw new BackendError("between 2 and 10 players are needed");

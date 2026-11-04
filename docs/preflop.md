@@ -34,6 +34,23 @@
   fait la moyenne sur les joueurs de (meilleure réponse − valeur réelle), en bb par main. Elle est mesurée
   toutes les 10 itérations, et le calcul s'arrête sous la cible.
 
+## Réalisation d'équité et rake
+- **Position** : facteurs IP et OOP. En tête-à-tête, la SB est le bouton et parle en dernier après le flop.
+- **Jouabilité** `k` : la part de chaque joueur vaut `e^k × facteur / (e^k × facteur + (1−e)^k × facteur adverse)`.
+  Au-dessus de 1, les mains fortes réalisent plus que leur équité et les faibles moins. Le modèle à
+  équité fixe surestimait toutes les mains faibles : UTG ouvrait 38 % en cash.
+- **Rake** : pourcentage et plafond, pris seulement sur les pots qui voient le flop ou un abattage (pas de flop,
+  pas de rake).
+
+## Charts par défaut (`config/defaults/ranges`)
+`examples/gen_charts.rs` les calcule pour 9 formats. Chaque format a 46 situations (13 pour le Spin) :
+- **cash 6-max 100 bb** : rake 5 % plafonné à 3 bb, jouabilité 1,5, 85 % hors position.
+  Ouvertures : UTG 17 %, HJ 21 %, CO 26 %, BTN 36 % ; la SB relance 39 % ou limpe 22 %.
+- **MTT 10 à 100 bb** (6 joueurs, ante 0,12 bb) et **Spin 25 bb** : jouabilité 2,5, 80 % hors position.
+  Ouvertures à 40 bb : UTG 23 %, CO 32 %, BTN 45 %.
+
+Ce sont des points de départ, installés sans jamais remplacer les fichiers de l'utilisateur.
+
 ## Vérifications
 - **Tête-à-tête 100 bb** (open 2,5, 3-bet ×3, 4-bet ×2,2, limp et tapis) : **0,0048 bb/main en 250
   itérations** (cible 0,005). Somme des gains : 0.

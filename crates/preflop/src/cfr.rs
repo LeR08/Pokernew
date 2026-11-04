@@ -55,6 +55,7 @@ struct Pay {
     q: usize,
     /// Share of the pot won by p for (a, b).
     share: Vec<f64>,
+    /// What the winner takes: the pot minus the rake.
     pot: f64,
 }
 
@@ -63,6 +64,17 @@ struct Pay {
 pub struct Progress {
     pub iterations: usize,
     pub exploitability: f64,
+}
+
+/// Pot minus the rake (only pots that see a flop or a showdown are raked).
+fn raked(tree: &Tree, node: usize) -> f64 {
+    let pot = tree.pot(node);
+    let cap = if tree.config.rake_cap > 0.0 {
+        tree.config.rake_cap
+    } else {
+        f64::INFINITY
+    };
+    pot - (pot * tree.config.rake).min(cap)
 }
 
 impl Solver {
@@ -85,7 +97,7 @@ impl Solver {
                     p,
                     q,
                     share: (0..H * H).map(|k| m.equity(k / H, k % H)).collect(),
-                    pot: tree.pot(id),
+                    pot: raked(&tree, id),
                 }),
                 Some(End::Flop { p, q }) => {
                     let (rp, rq) = if tree.in_position(p, q) {
@@ -96,7 +108,8 @@ impl Solver {
                     let share = (0..H * H)
                         .map(|k| {
                             let e = m.equity(k / H, k % H);
-                            let (x, y) = (e * rp, (1.0 - e) * rq);
+                            let c = tree.config.realization_curve;
+                            let (x, y) = (e.powf(c) * rp, (1.0 - e).powf(c) * rq);
                             if x + y > 0.0 {
                                 x / (x + y)
                             } else {
@@ -108,7 +121,7 @@ impl Solver {
                         p,
                         q,
                         share,
-                        pot: tree.pot(id),
+                        pot: raked(&tree, id),
                     })
                 }
                 _ => None,
