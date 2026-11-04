@@ -439,7 +439,8 @@
     "export_csv_hands": "Export up to 1,000 hands as CSV",
     "exported": "Exported: {{path}}",
     "csv": "CSV",
-    "icm_review": "Push/fold review"
+    "icm_review": "Push/fold review",
+    "analyse_hands": "Analyse against the solver"
   },
   "replayer": {
     "level": "level {{n}}",
@@ -1157,6 +1158,89 @@
       "curve": "Postflop playability",
       "rake": "Rake (%)",
       "rake_cap": "Rake cap (bb)"
+    }
+  },
+  "trainer": {
+    "tabs": {
+      "postflop": "Postflop",
+      "preflop": "Preflop",
+      "pushfold": "Push/fold",
+      "analysis": "Hand analysis",
+      "history": "History"
+    },
+    "start": "Start",
+    "new_question": "Next question",
+    "session": "Session: {{n}} question(s), average loss {{avg}} bb, {{best}} good answer(s)",
+    "grade": {
+      "best": "Best",
+      "correct": "Correct",
+      "inaccuracy": "Inaccuracy",
+      "mistake": "Mistake",
+      "blunder": "Blunder"
+    },
+    "settings": {
+      "title": "Trainer: grade thresholds (loss in % of pot)",
+      "correct": "Correct up to",
+      "inaccuracy": "Inaccuracy up to",
+      "mistake": "Mistake up to (beyond: blunder)"
+    },
+    "post": {
+      "no_solution": "No cached solution: solve a spot in the Solver module (or run a batch), then come back.",
+      "solution": "Solution",
+      "family": "Every solution of the same spot (other boards)",
+      "mode": "Mode",
+      "modes": {
+        "node": "One node (first decision)",
+        "street": "One street",
+        "hand": "Full hand"
+      },
+      "side": "Your side",
+      "any": "Random",
+      "timed": "Timer (s, 0 = off)",
+      "weak": "Only my weak spots",
+      "you_are": "You are {{who}}",
+      "left": "{{s}} s",
+      "loss": "loss {{bb}} bb ({{pct}} % of pot)",
+      "action": "Action",
+      "gto": "Solution",
+      "ev": "EV (bb)",
+      "equity": "Your equity: {{e}} %",
+      "continue": "Continue the hand",
+      "oop": "OOP (out of position)",
+      "ip": "IP (in position)"
+    },
+    "pre": {
+      "folder": "Charts",
+      "count": "{{n}} situations",
+      "stats": "{{good}} good answer(s) out of {{n}}",
+      "situation": "Situation: {{s}}",
+      "help": "Questions come from your charts (Preflop module). The grade depends on how often the chart takes your action: the most frequent one is best."
+    },
+    "ana": {
+      "help": "Analyse your hands against the solver: heads-up pots that see the flop. Ranges come from the chosen format's charts (open, call, 3-bet) and every postflop decision is compared with the solution.",
+      "from_tracker": "{{n}} hand(s) picked in the tracker.",
+      "format": "Charts used for the ranges",
+      "tree": "Bet tree",
+      "count": "Latest hands of the filter",
+      "start": "Analyse",
+      "fairplay": "The analysis runs in the background; it pauses as soon as a table is open and respects the memory cap of the settings. Each solved spot goes to the solver cache.",
+      "progress": "{{done}} / {{total}} hand(s) processed, {{ok}} analysed",
+      "waiting": "paused: a table is open",
+      "leaks": "Leaks by kind of spot (average loss per decision)",
+      "decisions": "{{n}} decision(s)",
+      "by_hand": "Hands, most expensive first",
+      "hand": "Hand",
+      "line": "Decisions (played → best)",
+      "loss": "EV lost",
+      "replay": "Replayer",
+      "approx": "(real size far from the tree)",
+      "skipped": "{{n}} hand(s) not analysed:"
+    },
+    "hist": {
+      "total": "{{n}} answer(s) recorded",
+      "avg_loss": "Average loss (bb)",
+      "days": "Training days",
+      "none": "No postflop drill recorded yet."
     }
   }
 }

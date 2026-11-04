@@ -8,7 +8,8 @@ import type { JSONSchema } from "./schema";
 import type { Breakdown, CalcRequest, EquityResult, FlopFilter, TextureReport } from "./equity";
 import type { BatchRow, IcmResult, Review, ReviewRequest, Solution, SolveOptions, Spot } from "./icm";
 import type { PreflopConfig, PreflopSolution } from "./preflop";
-import type { BatchProgress, CacheEntry, Estimate, Lock, NodeView, Progress, SolveParams, SpotConfig } from "./solver";
+import type { AnalysisProgress, Answer, DrillMode, Question } from "./trainer";
+import type { BatchProgress, CacheEntry, Estimate, Lock, NodeView, Progress, SolveParams, SpotConfig, Tree } from "./solver";
 import type {
   HudStatus,
   OverlayData,
@@ -247,6 +248,17 @@ export interface Backend {
   rangesExportFile(prefix: string): Promise<string>;
   /** Saves every range of a bundle under `prefix`; returns how many were written. */
   rangesImport(text: string, prefix: string, overwrite: boolean): Promise<number>;
+
+  // ---- Trainer (phase 8; refused in play mode) ----
+  trainerDeal(hash: string, mode: DrillMode, hero: 0 | 1 | null, weak: boolean): Promise<Question>;
+  trainerAnswer(hash: string, question: Question, chosen: number): Promise<Answer>;
+  /** Full-hand mode: the next decision of the same hand, or null when it is over. */
+  trainerNext(hash: string, question: Question, chosen: number): Promise<Question | null>;
+  trainerRecord(entry: Record<string, unknown>): Promise<void>;
+  trainerHistory(limit: number): Promise<Record<string, unknown>[]>;
+  analysisStart(handIds: number[], format: string, tree: Tree, params: SolveParams): Promise<void>;
+  analysisProgress(): Promise<AnalysisProgress | null>;
+  analysisCancel(): Promise<void>;
 }
 
 export const isTauri = (): boolean =>

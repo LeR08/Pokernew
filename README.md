@@ -5,7 +5,7 @@
 Suite poker 100 % locale (tracker + HUD, solveur, équité, ICM) pour un seul joueur sur un seul PC.
 Aucun compte, aucune télémétrie, aucun appel réseau.
 
-> État : **phase 7 (ranges et solveur préflop)** : import Winamax, tracker, replayer, HUD, Equity Lab, ICM, push/fold, solveurs postflop et préflop. Voir `docs/phase-*.md` et [`CHANGELOG.md`](CHANGELOG.md).
+> État : **phase 8 (entraîneur et analyse)** : import Winamax, tracker, replayer, HUD, Equity Lab, ICM, push/fold, solveurs postflop et préflop, entraîneur et analyse de mains. Voir `docs/phase-*.md` et [`CHANGELOG.md`](CHANGELOG.md).
 
 ## Installer sans compiler
 
@@ -135,6 +135,11 @@ cache `<données>/solver-cache/`, batch. Maths : [`docs/solver.md`](docs/solver.
 Charts par format dans la bibliothèque de ranges (import / export `.lpsranges`, ranges PioSOLVER acceptées) et solveur préflop
 CFR+ (tête-à-tête exact, approximation jusqu'à 6 joueurs). Maths : [`docs/preflop.md`](docs/preflop.md).
 
+## Entraîneur
+
+Exercices postflop (cache du solveur), préflop (tes charts) et push/fold, analyse de tes mains contre le solveur
+(EV perdue par main et par type de spot). Détails : [`docs/trainer.md`](docs/trainer.md).
+
 ## Fair-play
 
 C'est un outil d'**étude et de revue**. Aucun module ne donne de conseil en temps réel pendant le jeu.
@@ -152,7 +157,7 @@ AGPL-3.0-or-later. Le solveur s'appuiera sur `postflop-solver`, qui est sous AGP
 100 % local poker suite (tracker + HUD, solver, equity, ICM) for one player on one PC.
 No account, no telemetry, no network calls.
 
-> Status: **phase 7 (preflop ranges & solver)**: Winamax import, tracker, replayer, HUD, Equity Lab, ICM, push/fold, postflop and preflop solvers. See `docs/phase-*.md` and [`CHANGELOG.md`](CHANGELOG.md).
+> Status: **phase 8 (trainer & analysis)**: Winamax import, tracker, replayer, HUD, Equity Lab, ICM, push/fold, postflop and preflop solvers, trainer and hand analysis. See `docs/phase-*.md` and [`CHANGELOG.md`](CHANGELOG.md).
 
 ### Build and run on Windows 10/11
 

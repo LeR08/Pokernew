@@ -203,7 +203,7 @@ pub fn prepare(
         tree: tree.clone(),
         ..SpotConfig::default()
     };
-    if !(spot.stack > 0.0) {
+    if spot.stack.is_nan() || spot.stack <= 0.0 {
         return Err(AnalysisError::NotHeadsUp);
     }
     let hc = &hand.players[hero].hole_cards;

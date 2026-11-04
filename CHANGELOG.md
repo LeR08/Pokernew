@@ -2,7 +2,18 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/). Versions follow the roadmap phases.
 
-## [Unreleased] — Phase 7 : Ranges et solveur préflop
+## [Unreleased] — Phase 8 : Entraîneur et analyse
+
+### Ajouté / Added
+- `lps-trainer` :
+  - exercices postflop tirés du cache du solveur : un nœud, une street ou une main complète, chrono, « mes points faibles » ;
+  - correction par l'EV de chaque action pour ta main, perte en bb et en % du pot, note avec seuils réglables ;
+  - analyse des mains jouées contre le solveur : ranges tirées de tes charts, ligne réelle suivie, EV perdue à chaque décision, fuites par type de spot ;
+  - file en tâche de fond qui se met en pause dès qu'une table est ouverte.
+- Module Entraîneur : Postflop, Préflop (depuis tes charts), Push/fold, Analyse de mains, Historique (courbe de la perte moyenne).
+- Tracker : bouton « Analyser contre le solveur » sur la liste des mains.
+
+## Phase 7 : Ranges et solveur préflop
 
 ### Ajouté / Added
 - `lps-preflop` : arbre préflop simplifié (open, limp de la SB, 3-bet, 4-bet, tapis) résolu par CFR+ sur les 169 mains, avec les équités exactes et les cartes bloquées. Tête-à-tête exact, approximation à 6 joueurs au plus, réalisation d'équité IP/OOP réglable, exploitabilité exacte du modèle.

@@ -13,6 +13,7 @@ pub mod preflop_commands;
 pub mod solver_commands;
 pub mod state;
 pub mod tracker_commands;
+pub mod trainer_commands;
 
 use std::time::Instant;
 
@@ -43,6 +44,7 @@ pub fn run(started: Instant) {
         .manage(state)
         .manage(equity_commands::EquityJobs::default())
         .manage(solver_commands::SolverState::default())
+        .manage(trainer_commands::TrainerState::default())
         .setup(|app| {
             // HUD: window tracking, overlays, play mode, global hotkeys.
             let hud = hud::HudService::start(app.handle().clone());
@@ -249,6 +251,14 @@ pub fn run(started: Instant) {
             preflop_commands::ranges_export,
             preflop_commands::ranges_import,
             preflop_commands::ranges_export_file,
+            trainer_commands::trainer_deal,
+            trainer_commands::trainer_answer,
+            trainer_commands::trainer_next,
+            trainer_commands::trainer_record,
+            trainer_commands::trainer_history,
+            trainer_commands::analysis_start,
+            trainer_commands::analysis_progress,
+            trainer_commands::analysis_cancel,
         ])
         .run(tauri::generate_context!())
         .expect("error while running Local Poker Suite");

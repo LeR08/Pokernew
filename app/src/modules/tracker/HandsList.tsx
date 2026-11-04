@@ -9,6 +9,7 @@ import { useTracker } from "@/stores/tracker";
 import { FileDown } from "lucide-react";
 import { getBackend } from "@/lib/backend";
 import { exportCsv, useFilter, useHands } from "./api";
+import { usePlayMode } from "@/stores/playMode";
 
 const PAGE = 50;
 
@@ -21,6 +22,7 @@ export function HandsList() {
   const tournament = params.get("tournament");
   const filter = tournament ? { ...base, tournament: Number(tournament) } : base;
   const euro = useTracker((s) => s.euros);
+  const playMode = usePlayMode((x) => x.on);
   const [page, setPage] = useState(0);
   const data = useHands(filter, PAGE, page * PAGE).data;
   if (!data) return null;
@@ -48,6 +50,20 @@ export function HandsList() {
             <FileDown className="h-4 w-4" />
             {t("tracker.csv")}
           </Button>
+          {!playMode && (
+            <Button
+              variant="ghost"
+              size="sm"
+              data-testid="hands-analyse"
+              onClick={() =>
+                void getBackend()
+                  .then((b) => b.trackerHands(filter, 200, 0))
+                  .then((r) => navigate(`/m/trainer/analysis?hands=${r.rows.map((h) => h.handId).join(",")}`))
+              }
+            >
+              {t("tracker.analyse_hands")}
+            </Button>
+          )}
         </span>
         <div className="flex items-center gap-d2">
           <Button variant="outline" size="sm" disabled={page === 0} onClick={() => setPage((p) => p - 1)}>

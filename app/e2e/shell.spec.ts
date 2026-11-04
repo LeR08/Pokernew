@@ -6,7 +6,7 @@ test("tiles and sidebar come from the module manifests", async ({ page }) => {
   await expect(page.getByTestId("sidebar-modules").getByRole("link")).toHaveCount(10);
   await page.getByTestId("module-tile").filter({ hasText: "Entraîneur" }).click();
   await expect(page).toHaveURL(/#\/m\/trainer$/);
-  await expect(page.getByTestId("coming-soon")).toContainText("phase 8");
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Entraîneur");
 });
 
 test("settings form changes theme, language and module visibility live", async ({ page }) => {

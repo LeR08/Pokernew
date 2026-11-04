@@ -439,7 +439,8 @@
     "export_csv_hands": "Exporter jusqu'à 1 000 mains en CSV",
     "exported": "Exporté : {{path}}",
     "csv": "CSV",
-    "icm_review": "Revue push/fold"
+    "icm_review": "Revue push/fold",
+    "analyse_hands": "Analyser contre le solveur"
   },
   "replayer": {
     "level": "niveau {{n}}",
@@ -1157,6 +1158,89 @@
       "curve": "Jouabilité postflop",
       "rake": "Rake (%)",
       "rake_cap": "Plafond rake (bb)"
+    }
+  },
+  "trainer": {
+    "tabs": {
+      "postflop": "Postflop",
+      "preflop": "Préflop",
+      "pushfold": "Push/fold",
+      "analysis": "Analyse de mains",
+      "history": "Historique"
+    },
+    "start": "Commencer",
+    "new_question": "Question suivante",
+    "session": "Session : {{n}} question(s), perte moyenne {{avg}} bb, {{best}} bonne(s) réponse(s)",
+    "grade": {
+      "best": "Meilleur coup",
+      "correct": "Correct",
+      "inaccuracy": "Imprécision",
+      "mistake": "Erreur",
+      "blunder": "Grosse erreur"
+    },
+    "settings": {
+      "title": "Entraîneur : seuils des notes (perte en % du pot)",
+      "correct": "Correct jusqu'à",
+      "inaccuracy": "Imprécision jusqu'à",
+      "mistake": "Erreur jusqu'à (au-delà : grosse erreur)"
+    },
+    "post": {
+      "no_solution": "Aucune solution en cache : résous un spot dans le module Solveur (ou lance un batch), puis reviens ici.",
+      "solution": "Solution",
+      "family": "Toutes les solutions du même spot (autres boards)",
+      "mode": "Mode",
+      "modes": {
+        "node": "Un nœud (première décision)",
+        "street": "Une street",
+        "hand": "Main complète"
+      },
+      "side": "Ton côté",
+      "any": "Au hasard",
+      "timed": "Chrono (s, 0 = sans)",
+      "weak": "Seulement mes points faibles",
+      "you_are": "Tu es {{who}}",
+      "left": "{{s}} s",
+      "loss": "perte {{bb}} bb ({{pct}} % du pot)",
+      "action": "Action",
+      "gto": "Solution",
+      "ev": "EV (bb)",
+      "equity": "Ton équité : {{e}} %",
+      "continue": "Suite de la main",
+      "oop": "OOP (hors position)",
+      "ip": "IP (en position)"
+    },
+    "pre": {
+      "folder": "Charts",
+      "count": "{{n}} situations",
+      "stats": "{{good}} bonne(s) réponse(s) sur {{n}}",
+      "situation": "Situation : {{s}}",
+      "help": "Les questions viennent de tes charts (module Préflop). La note dépend de la fréquence de ton action dans le chart : la plus fréquente est le meilleur coup."
+    },
+    "ana": {
+      "help": "Analyse tes mains contre le solveur : pots en tête-à-tête qui vont au flop. Les ranges viennent des charts du format choisi (open, call, 3-bet), et chaque décision postflop est comparée à la solution.",
+      "from_tracker": "{{n}} main(s) choisies dans le tracker.",
+      "format": "Charts utilisés pour les ranges",
+      "tree": "Arbre de mises",
+      "count": "Dernières mains du filtre",
+      "start": "Analyser",
+      "fairplay": "L'analyse tourne en tâche de fond. Elle se met en pause dès qu'une table est ouverte et respecte le plafond mémoire des réglages. Chaque spot résolu va dans le cache du solveur.",
+      "progress": "{{done}} / {{total}} main(s) traitée(s), {{ok}} analysée(s)",
+      "waiting": "en pause : une table est ouverte",
+      "leaks": "Fuites par type de spot (perte moyenne par décision)",
+      "decisions": "{{n}} décision(s)",
+      "by_hand": "Mains, de la plus coûteuse à la moins coûteuse",
+      "hand": "Main",
+      "line": "Décisions (jouée → meilleure)",
+      "loss": "EV perdue",
+      "replay": "Replayer",
+      "approx": "(taille réelle loin de l'arbre)",
+      "skipped": "{{n}} main(s) non analysée(s) :"
+    },
+    "hist": {
+      "total": "{{n}} réponse(s) enregistrée(s)",
+      "avg_loss": "Perte moyenne (bb)",
+      "days": "Jours d'entraînement",
+      "none": "Pas encore d'exercice postflop enregistré."
     }
   }
 }

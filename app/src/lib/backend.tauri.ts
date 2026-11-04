@@ -17,6 +17,7 @@ import type { JSONSchema } from "./schema";
 import type { Breakdown, EquityResult, TextureReport } from "./equity";
 import type { BatchRow, IcmResult, Review, Solution } from "./icm";
 import type { PreflopSolution } from "./preflop";
+import type { AnalysisProgress, Answer, Question } from "./trainer";
 import type { BatchProgress, CacheEntry, Estimate, NodeView, Progress, SpotConfig } from "./solver";
 import type {
   HudStatus,
@@ -176,6 +177,14 @@ export function createTauriBackend(): Backend {
     rangesExport: (prefix) => call<string>("ranges_export", { prefix }),
     rangesExportFile: (prefix) => call<string>("ranges_export_file", { prefix }),
     rangesImport: (text, prefix, overwrite) => call<number>("ranges_import", { text, prefix, overwrite }),
+    trainerDeal: (hash, mode, hero, weak) => call<Question>("trainer_deal", { hash, mode, hero, weak }),
+    trainerAnswer: (hash, question, chosen) => call<Answer>("trainer_answer", { hash, question, chosen }),
+    trainerNext: (hash, question, chosen) => call<Question | null>("trainer_next", { hash, question, chosen }),
+    trainerRecord: (entry) => call("trainer_record", { entry }),
+    trainerHistory: (limit) => call<Record<string, unknown>[]>("trainer_history", { limit }),
+    analysisStart: (handIds, format, tree, params) => call("analysis_start", { handIds, format, tree, params }),
+    analysisProgress: () => call<AnalysisProgress | null>("analysis_progress"),
+    analysisCancel: () => call("analysis_cancel"),
     markReady() {
       void invoke("frontend_ready").catch(() => undefined);
     },
