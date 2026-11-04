@@ -7,11 +7,11 @@ use serde::Serialize;
 
 use crate::spot::SCALE;
 
-#[derive(Debug, Clone, Serialize)]
+#[derive(Debug, Clone, Serialize, serde::Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ActionInfo {
     /// "fold", "check", "call", "bet", "raise", "allin"
-    pub kind: &'static str,
+    pub kind: String,
     /// Amount in bb (bets and raises: the total put in on this street).
     pub amount: f64,
 }
@@ -82,31 +82,31 @@ fn action_info(a: &Action) -> ActionInfo {
     let bb = |x: i32| x as f64 / SCALE;
     match *a {
         Action::Fold => ActionInfo {
-            kind: "fold",
+            kind: "fold".into(),
             amount: 0.0,
         },
         Action::Check => ActionInfo {
-            kind: "check",
+            kind: "check".into(),
             amount: 0.0,
         },
         Action::Call => ActionInfo {
-            kind: "call",
+            kind: "call".into(),
             amount: 0.0,
         },
         Action::Bet(x) => ActionInfo {
-            kind: "bet",
+            kind: "bet".into(),
             amount: bb(x),
         },
         Action::Raise(x) => ActionInfo {
-            kind: "raise",
+            kind: "raise".into(),
             amount: bb(x),
         },
         Action::AllIn(x) => ActionInfo {
-            kind: "allin",
+            kind: "allin".into(),
             amount: bb(x),
         },
         _ => ActionInfo {
-            kind: "chance",
+            kind: "chance".into(),
             amount: 0.0,
         },
     }

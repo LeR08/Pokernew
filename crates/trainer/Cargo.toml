@@ -1,0 +1,23 @@
+[package]
+name = "lps-trainer"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish = false
+
+[lib]
+name = "lps_trainer"
+
+[dependencies]
+lps-solver = { path = "../solver" }
+postflop-solver = { path = "../solver/engine" }
+lps-equity = { path = "../equity" }
+lps-evaluator = { path = "../evaluator" }
+lps-core-model = { path = "../core-model" }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+
+[dev-dependencies]
+lps-hh-parsers = { path = "../hh-parsers" }
+tempfile = { workspace = true }
