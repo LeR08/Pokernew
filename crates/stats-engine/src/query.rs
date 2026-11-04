@@ -158,13 +158,21 @@ impl Filter {
             params.push(Value::Integer(self.buy_in_min.unwrap_or(0)));
             params.push(Value::Integer(self.buy_in_max.unwrap_or(i64::MAX)));
         }
-        if let Some(name) = self.with_player.as_deref().map(str::trim).filter(|n| !n.is_empty()) {
+        if let Some(name) = self
+            .with_player
+            .as_deref()
+            .map(str::trim)
+            .filter(|n| !n.is_empty())
+        {
             parts.push(
                 "h.id IN (SELECT hp3.hand_id FROM hand_players hp3 JOIN players p3 ON p3.id = hp3.player_id
                           WHERE p3.name LIKE ? ESCAPE '\\')"
                     .into(),
             );
-            let esc = name.replace('\\', "\\\\").replace('%', "\\%").replace('_', "\\_");
+            let esc = name
+                .replace('\\', "\\\\")
+                .replace('%', "\\%")
+                .replace('_', "\\_");
             params.push(Value::Text(format!("%{esc}%")));
         }
         match self.result.as_deref() {
@@ -532,27 +540,54 @@ pub fn tournaments(
     let _ = itm;
     // in the money = a prize for the place (or a ticket), bounties alone do not count
     let with: Vec<&TournamentRow> = rows.iter().filter(|r| r.won_cents.is_some()).collect();
-    let itm_n = with.iter().filter(|r| r.prize_cents.unwrap_or(0) > 0).count();
+    let itm_n = with
+        .iter()
+        .filter(|r| r.prize_cents.unwrap_or(0) > 0)
+        .count();
     tot.itm = (!with.is_empty()).then(|| itm_n as f64 / with.len() as f64);
     tot.entries = rows.iter().map(|r| r.entries).sum();
     tot.reentries = rows.iter().map(|r| (r.entries - 1).max(0)).sum();
     tot.bounties_cents = rows.iter().filter_map(|r| r.bounty_cents).sum();
     tot.knockouts = rows.iter().map(|r| r.knockouts).sum();
-    let fin: Vec<(i64, i64)> = rows.iter().filter_map(|r| Some((r.finish_position?, r.registered_players?))).filter(|(p, n)| *p > 0 && *n > 1).collect();
+    let fin: Vec<(i64, i64)> = rows
+        .iter()
+        .filter_map(|r| Some((r.finish_position?, r.registered_players?)))
+        .filter(|(p, n)| *p > 0 && *n > 1)
+        .collect();
     if !fin.is_empty() {
-        tot.avg_finish_pct = Some(fin.iter().map(|(p, n)| (p - 1) as f64 / (n - 1) as f64).sum::<f64>() / fin.len() as f64);
-        tot.best_finish = fin.iter().copied().min_by(|a, b| (a.0 as f64 / a.1 as f64).total_cmp(&(b.0 as f64 / b.1 as f64)));
+        tot.avg_finish_pct = Some(
+            fin.iter()
+                .map(|(p, n)| (p - 1) as f64 / (n - 1) as f64)
+                .sum::<f64>()
+                / fin.len() as f64,
+        );
+        tot.best_finish = fin
+            .iter()
+            .copied()
+            .min_by(|a, b| (a.0 as f64 / a.1 as f64).total_cmp(&(b.0 as f64 / b.1 as f64)));
         tot.wins = fin.iter().filter(|(p, _)| *p == 1).count() as i64;
-        tot.top10 = fin.iter().filter(|(p, n)| (*p as f64) <= (*n as f64 * 0.1).max(1.0)).count() as i64;
+        tot.top10 = fin
+            .iter()
+            .filter(|(p, n)| (*p as f64) <= (*n as f64 * 0.1).max(1.0))
+            .count() as i64;
     }
     if tot.entries > 0 {
         tot.avg_buy_in_cents = Some(rows.iter().map(|r| r.cost_cents).sum::<i64>() / tot.entries);
     }
     tot.biggest_cash_cents = rows.iter().filter_map(|r| r.won_cents).max().unwrap_or(0);
     let group = |key: &dyn Fn(&TournamentRow) -> String| -> Vec<TournamentGroup> {
-        let mut m: std::collections::BTreeMap<String, (TournamentGroup, i64)> = std::collections::BTreeMap::new();
+        let mut m: std::collections::BTreeMap<String, (TournamentGroup, i64)> =
+            std::collections::BTreeMap::new();
         for r in with.iter() {
-            let e = m.entry(key(r)).or_insert_with(|| (TournamentGroup { key: key(r), ..Default::default() }, 0));
+            let e = m.entry(key(r)).or_insert_with(|| {
+                (
+                    TournamentGroup {
+                        key: key(r),
+                        ..Default::default()
+                    },
+                    0,
+                )
+            });
             e.0.tournaments += 1;
             e.0.cost_cents += r.cost_cents;
             e.0.won_cents += r.won_cents.unwrap_or(0);

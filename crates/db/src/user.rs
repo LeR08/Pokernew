@@ -189,7 +189,8 @@ mod tests {
             at: 1,
             kind: "deposit".into(),
             amount_cents: 5000,
-            note: String::new(), account: None,
+            note: String::new(),
+            account: None,
         };
         add_tx(&conn, &dep).unwrap();
         add_tx(

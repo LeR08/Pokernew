@@ -351,7 +351,10 @@ mod tests {
         assert!(store.issues().is_empty(), "{:#?}", store.issues());
         assert_eq!(
             store.list("themes"),
-            vec!["bordeaux", "custom", "dark", "feutre", "graphite", "light", "ocean", "sable", "violet"]
+            vec![
+                "bordeaux", "custom", "dark", "feutre", "graphite", "light", "ocean", "sable",
+                "violet"
+            ]
         );
         assert_eq!(store.list("profiles"), vec!["cash-6max", "mtt", "spin"]);
         assert_eq!(

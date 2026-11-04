@@ -42,7 +42,9 @@ pub fn bankroll_for(conn: &Connection, account: Option<&str>) -> Result<Bankroll
              JOIN players p ON p.id = hp.player_id
              WHERE hp.is_hero = 1 AND h.unit = 'cents' AND (?1 OR p.name = ?2)",
         )?;
-        for r in st.query_map(rusqlite::params![all, acc], |r| Ok((r.get::<_, i64>(0)?, r.get::<_, i64>(1)?)))? {
+        for r in st.query_map(rusqlite::params![all, acc], |r| {
+            Ok((r.get::<_, i64>(0)?, r.get::<_, i64>(1)?))
+        })? {
             let (t, c) = r?;
             events.push((t, c, 1));
         }
@@ -54,7 +56,9 @@ pub fn bankroll_for(conn: &Connection, account: Option<&str>) -> Result<Bankroll
                  SELECT h.tournament_id FROM hands h JOIN hand_players hp ON hp.hand_id = h.id AND hp.is_hero = 1
                  JOIN players p ON p.id = hp.player_id WHERE p.name = ?2))",
         )?;
-        for r in st.query_map(rusqlite::params![all, acc], |r| Ok((r.get::<_, i64>(0)?, r.get::<_, i64>(1)?)))? {
+        for r in st.query_map(rusqlite::params![all, acc], |r| {
+            Ok((r.get::<_, i64>(0)?, r.get::<_, i64>(1)?))
+        })? {
             let (t, c) = r?;
             events.push((t, c, 2));
         }
